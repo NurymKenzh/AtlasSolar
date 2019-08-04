@@ -1,0 +1,81 @@
+﻿@model AtlasSolar.Models.MeteoData
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Delete;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.Delete</h2>
+
+<h3>@AtlasSolar.Resources.Common.Delete?</h3>
+<div>
+    <h4>@AtlasSolar.Resources.Common.MeteoData</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MeteoDataType.NameAdditional)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeteoDataType.NameAdditional)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Month)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Month)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Day)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="@AtlasSolar.Resources.Common.Delete" class="btn btn-default" /> |
+            @Html.ActionLink(AtlasSolar.Resources.Common.BackToList, "Index")
+        </div>
+    }
+</div>

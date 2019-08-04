@@ -1,0 +1,59 @@
+﻿@model PagedList.IPagedList<AtlasSolar.Models.Appliance>
+@using PagedList.Mvc
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Appliances;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.Appliances</h2>
+
+<p>
+    @Html.ActionLink(AtlasSolar.Resources.Common.Create, "Create")
+</p>
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortOrder = Request.QueryString["SortOrder"], ApplianceTypeId = ViewBag.ApplianceTypeIdFilter, Power = ViewBag.PowerFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })
+
+@using (Html.BeginForm("Index", "Appliances", new { SortOrder = Request.QueryString["SortOrder"], ApplianceTypeId = ViewBag.ApplianceTypeIdFilter, Power = ViewBag.PowerFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = Request.QueryString["SortOrder"] })
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(a => a.FirstOrDefault().ApplianceType).ToString(), "Index", new { SortOrder = ViewBag.ApplianceTypeSort, ApplianceTypeId = ViewBag.ApplianceTypeIdFilter, Power = ViewBag.PowerFilter })
+                <br />
+                @Html.DropDownList("ApplianceTypeId", (IEnumerable<SelectListItem>)ViewBag.ApplianceTypes, "", htmlAttributes: new { @class = "form-control" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(a => a.FirstOrDefault().Power).ToString(), "Index", new { SortOrder = ViewBag.PowerSort, ApplianceTypeId = ViewBag.ApplianceTypeIdFilter, Power = ViewBag.PowerFilter })
+                <br />
+                @Html.Editor("Power", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                <br />
+                <input type="submit" value="@AtlasSolar.Resources.Common.Find" class="btn btn-default">
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplianceType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Power)
+                </td>
+                <td>
+                    @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = item.Id }) |
+                    @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id }) |
+                    @Html.ActionLink(AtlasSolar.Resources.Common.Delete, "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortOrder = Request.QueryString["SortOrder"], ApplianceTypeId = ViewBag.ApplianceTypeIdFilter, Power = ViewBag.PowerFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })

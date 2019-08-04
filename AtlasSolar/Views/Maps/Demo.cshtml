@@ -1,0 +1,4410 @@
+﻿@* -Xms6g -Xmx7g -XX:-UseGCOverheadLimit -XX:+UseParallelGC –XX:+UseG1GC *@
+@* '+' Enable direct integration with GeoServer WMS + *@
+@* '-' Automatically configure a GeoWebCache layer for each new layer or layer group -*@
+@{
+    ViewBag.Title = "Map";
+    Layout = "~/Views/Shared/_LayoutMap.cshtml";
+}
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.12.4.js"></script>
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+
+
+<link href="~/Content/ol.css" rel="stylesheet" />
+<script src="~/Scripts/ol.js"></script>
+
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/jquery.flot.js"></script>
+<script src="~/Scripts/jquery.flot.resize.js"></script>
+<script src="~/Scripts/jquery.flot.time.js"></script>
+<script src="~/Scripts/jquery.flot.time.min.js"></script>
+<script src="~/Scripts/jquery.flot.canvas.js"></script>
+<script src="~/Scripts/jquery.flot.canvas.min.js"></script>
+@*<script src="~/Scripts/jquery.flot.axislabels.js"></script>*@
+<script src="~/Scripts/jquery.flot.resize.js"></script>
+
+<script src="~/Scripts/jquery-ui.js"></script>
+
+<link href="~/Content/jsTree/default/style.css" rel="stylesheet" />
+<script src="~/Scripts/jstree.js"></script>
+
+<script src="~/Scripts/inputmask.js"></script>
+<script src="~/Scripts/inputmask.numeric.extensions.js"></script>
+<script src="~/Scripts/inputmask.regex.extensions.js"></script>
+@*<script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+<script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.1.57/js/jquery.inputmask.js"></script>*@
+<script src="~/Scripts/jquery.inputmask.bundle.js"></script>
+<script src="~/Scripts/jquery.inputmask.js"></script>
+
+<style>
+    .nav > li > a:hover, .nav > li > a:focus{
+        background-color: rgb(225,226,225);
+    }
+
+    .ui-dialog,
+    .ui-dialog:before,
+    .ui-dialog:after {
+        box-sizing: content-box;
+    }
+
+    .fullscreen:fullscreen {
+        height: 100%;
+    }
+
+    .fullscreen {
+        margin-bottom: 10px;
+        width: 100%;
+        height: 400px;
+    }
+
+    .ol-rotate {
+        top: 3em;
+    }
+
+    .map {
+        width: calc(100% - 300px);
+        height: calc(100% - 44px);
+        float: left;
+        /*min-width: 930px;*/
+    }
+
+    .sidepanel {
+        background: #ffffff;
+        width: 300px;
+        height: 100%;
+        float: left;
+    }
+
+    /*.sidepanel-title {
+        width: 100%;
+        font-size: 3em;
+        color: #ffffff;
+        display: block;
+        text-align: center;
+    }*/
+    .ol-attribution ul {
+        font-size: 1rem;
+    }
+
+    .ui-tabs .ui-tabs-panel {
+        padding: 0;
+    }
+
+    #layertree li > span {
+        cursor: pointer;
+        color: #444444;
+        font-weight: bold;
+    }
+
+    #jstree a {
+        white-space: normal !important;
+        height: auto;
+        padding: 1px 30px 1px 2px;
+    }
+
+    .jstree-anchor > .jstree-checkbox-disabled {
+        display: none;
+    }
+
+    /*легенды*/
+    .legend td:nth-child(1) {
+        padding: 0px;
+    }
+
+    .legend td:nth-child(2) {
+        padding-left: 20px;
+    }
+
+    .legend div {
+        width: 50px;
+        height: 19px;
+        border-style: solid;
+        border-width: 1px;
+    }
+    /*.legend th, td {
+        background-color: blue;
+    }*/
+
+    /*информация*/
+    /*#dialog_table {
+        border-collapse: collapse;
+    }
+
+        #dialog_table td, th {
+            border: 1px solid black;
+            padding: 0px 10px 0px 10px;
+        }
+
+        #dialog_table tr.header {
+            cursor: pointer;
+        }
+
+        #dialog_table td:nth-child(1) {
+            width: 50%;
+        }
+
+        #dialog_table td:nth-child(2) {
+            width: 50%;
+        }*/
+
+    /*выберите точку на карте*/
+    .simplelabel {
+        font-weight: normal;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 101; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 500px;
+        position: absolute;
+        left: 320px;
+    }
+
+    .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        opacity: 1;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    pre {
+        white-space: pre-wrap; /* Since CSS 2.1 */
+        white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+        white-space: -pre-wrap; /* Opera 4-6 */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        word-wrap: break-word; /* Internet Explorer 5.5+ */
+        word-break: keep-all;
+    }
+
+    .td-center {
+    text-align: center;
+    vertical-align: middle;
+    }
+
+    .axisLabels{
+        color: brown;
+    }
+
+    #loading {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 200;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(192, 192, 192, 0.5);
+        background-image: url("/Images/sun_preloader.gif");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .tooltip {
+        position: relative;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 4px;
+        color: white;
+        padding: 4px 8px;
+        opacity: 0.7;
+        white-space: nowrap;
+      }
+      .tooltip-measure {
+        opacity: 1;
+        font-weight: bold;
+      }
+      .tooltip-static {
+        background-color: #ffcc33;
+        color: black;
+        border: 1px solid white;
+      }
+      .tooltip-measure:before,
+      .tooltip-static:before {
+        border-top: 6px solid rgba(0, 0, 0, 0.5);
+        border-right: 6px solid transparent;
+        border-left: 6px solid transparent;
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        margin-left: -7px;
+        left: 50%;
+      }
+      .tooltip-static:before {
+        border-top-color: #ffcc33;
+      }    
+</style>
+
+@Html.Partial("_mapPartial")
+@Html.Partial("_mapDialogs")
+@Html.Partial("_mapHelp")
+
+<div hidden="hidden">
+    <div id="mapid">@ViewBag.Map</div>
+    <div id="Month">@AtlasSolar.Resources.Common.Month</div>
+    <div id="year">@AtlasSolar.Resources.Common.Year.ToLower()</div>
+    <div id="Year">@AtlasSolar.Resources.Common.Year</div>
+    <div id="month01">@AtlasSolar.Resources.Common.month01</div>
+    <div id="month02">@AtlasSolar.Resources.Common.month02</div>
+    <div id="month03">@AtlasSolar.Resources.Common.month03</div>
+    <div id="month04">@AtlasSolar.Resources.Common.month04</div>
+    <div id="month05">@AtlasSolar.Resources.Common.month05</div>
+    <div id="month06">@AtlasSolar.Resources.Common.month06</div>
+    <div id="month07">@AtlasSolar.Resources.Common.month07</div>
+    <div id="month08">@AtlasSolar.Resources.Common.month08</div>
+    <div id="month09">@AtlasSolar.Resources.Common.month09</div>
+    <div id="month10">@AtlasSolar.Resources.Common.month10</div>
+    <div id="month11">@AtlasSolar.Resources.Common.month11</div>
+    <div id="month12">@AtlasSolar.Resources.Common.month12</div>
+    <div id="province">@AtlasSolar.Resources.Common.Province</div>
+    <div id="district">@AtlasSolar.Resources.Common.District</div>
+    <div id="AverageMonthlyRequiredTotalAreaOfSolarPVSystems">@AtlasSolar.Resources.Common.AverageMonthlyRequiredTotalAreaOfSolarPVSystems</div>
+    <div id="AverageMonthlyOutputPowerOfThePVSystem">@AtlasSolar.Resources.Common.AverageMonthlyOutputPowerOfThePVSystem</div>
+    <div id="HasAlready">@AtlasSolar.Resources.Common.HasAlready</div>
+    <div id="language">@ViewBag.Language</div>
+    <div id="SelectMeteoDataType">@AtlasSolar.Resources.Common.SelectMeteoDataType</div>
+    <div id="RetrievingData">@AtlasSolar.Resources.Common.RetrievingData</div>
+    <div id="PanelsSquare">@AtlasSolar.Resources.Common.PanelsSquare</div>
+    <div id="Role">@ViewBag.Role</div>
+    <div id="SPPLayerJson">@ViewBag.SPPLayerJson</div>
+    <div id="lep_info">@AtlasSolar.Resources.Layers.lep</div>
+    <div id="lep2_info">@AtlasSolar.Resources.Layers.lep2</div>
+    <div id="North">@AtlasSolar.Resources.Layers.North</div>
+    <div id="Northeast">@AtlasSolar.Resources.Layers.Northeast</div>
+    <div id="East">@AtlasSolar.Resources.Layers.East</div>
+    <div id="Southeast">@AtlasSolar.Resources.Layers.Southeast</div>
+    <div id="South">@AtlasSolar.Resources.Layers.South</div>
+    <div id="Southwest">@AtlasSolar.Resources.Layers.Southwest</div>
+    <div id="West">@AtlasSolar.Resources.Layers.West</div>
+    <div id="Northwest">@AtlasSolar.Resources.Layers.Northwest</div>
+    <div id="Plane">@AtlasSolar.Resources.Layers.Plane</div>
+    <div id="SuitabilityOfTheTerritoryToAccommodateSES">@AtlasSolar.Resources.Common.SuitabilityOfTheTerritoryToAccommodateSES</div>
+    <div id="p_clr_cky_name">-Средняя суточная солнечная радиация на горизонтальную поверхность (источник NASA Sustainable Buildings)-</div>
+    <div id="p_swv_dwn_name">-Средняя суточная солнечная радиация на горизонтальную поверхность (источник NASA Sustainable Buildings)-</div>
+    <div id="p_toa_dwn_name">-Средняя суточная инсоляция приходящая на верхнюю границу атмосферы (источник NASA Sustainable Buildings)-</div>
+    <div id="spp" style="word-wrap: break-word;">@AtlasSolar.Resources.Layers.spp</div>
+    @Html.DropDownList("Leprngs", null, htmlAttributes: new { @id = "Leprngs" })
+    @Html.DropDownList("Lepinsttps", null, htmlAttributes: new { @id = "Lepinsttps" })
+    @Html.DropDownList("Lepmtrls", null, htmlAttributes: new { @id = "Lepmtrls" })
+    @Html.DropDownList("Leprnzons", null, htmlAttributes: new { @id = "Leprnzons" })
+    @Html.DropDownList("Leptypes", null, htmlAttributes: new { @id = "Leptypes" })
+    <div id="Name_lep">@ViewBag.Name_lep</div>
+    <div id="Description_lep">@ViewBag.Description_lep</div>
+    <div id="Appointment_lep">@ViewBag.Appointment_lep</div>
+    <div id="Resolution_lep">@ViewBag.Resolution_lep</div>
+    <div id="Source_lep">@ViewBag.Source_lep</div>
+    <div id="Additional_lep">@ViewBag.Additional_lep</div>
+    <div id="EnterName">@AtlasSolar.Resources.Common.EnterName</div>
+    <div id="EnterPower">@AtlasSolar.Resources.Common.EnterPower</div>
+    <div id="EnterYear">@AtlasSolar.Resources.Common.EnterYear</div>
+    <div id="WrongYear">@AtlasSolar.Resources.Common.WrongYear</div>
+    <div id="PointNumber1">@AtlasSolar.Resources.Common.PointNumber1</div>
+    <div id="PointNumber2">@AtlasSolar.Resources.Common.PointNumber2</div>
+    <div id="PointNumber3">@AtlasSolar.Resources.Common.PointNumber3</div>
+
+    <div id="MeasureOnTheMap">@AtlasSolar.Resources.Common.MeasureOnTheMap</div>
+    <div id="MeasureType">@AtlasSolar.Resources.Common.MeasureType</div>
+    <div id="MeasureLength">@AtlasSolar.Resources.Common.MeasureLength</div>
+    <div id="MeasureArea">@AtlasSolar.Resources.Common.MeasureArea</div>
+    <div id="MeasureUseGeodesic">@AtlasSolar.Resources.Common.MeasureUseGeodesic</div>
+    <div id="MeasureClickDrawPolygon">@AtlasSolar.Resources.Common.MeasureClickDrawPolygon</div>
+    <div id="MeasureClickDrawLine">@AtlasSolar.Resources.Common.MeasureClickDrawLine</div>
+    <div id="MeasureClickStartDraw">@AtlasSolar.Resources.Common.MeasureClickStartDraw</div>
+    <div id="Measurekm">@AtlasSolar.Resources.Common.Measurekm</div>
+    <div id="Measurem">@AtlasSolar.Resources.Common.Measurem</div>
+
+    <div id="Information">@AtlasSolar.Resources.Common.Information</div>
+    <div id="ParameterValue">@AtlasSolar.Resources.Common.ParameterValue</div>
+    <div id="Date">@AtlasSolar.Resources.Common.Date</div>
+</div>
+
+@* Слои *@
+<div hidden="hidden">
+    <div id="Info_OPTANG">@AtlasSolar.Resources.Layers.Info_OPTANG</div>
+
+    <div id="Tree_meteo_st">@AtlasSolar.Resources.Common.MeteoStation</div>
+
+    <div id="Tree_avg_dnr">@AtlasSolar.Resources.Layers.Tree_avg_dnr</div>
+    <div id="Info_avg_dnr_year">@AtlasSolar.Resources.Layers.Info_avg_dnr_year</div>
+    <div id="Info_avg_dnr_xx">@AtlasSolar.Resources.Layers.Info_avg_dnr_xx</div>
+    <div id="Name_avg_dnr">@ViewBag.Name_avg_dnr</div>
+    <div id="Description_avg_dnr">@ViewBag.Description_avg_dnr</div>
+    <div id="Appointment_avg_dnr">@ViewBag.Appointment_avg_dnr</div>
+    <div id="Resolution_avg_dnr">@ViewBag.Resolution_avg_dnr</div>
+    <div id="Source_avg_dnr">@ViewBag.Source_avg_dnr</div>
+    <div id="Additional_avg_dnr">@ViewBag.Additional_avg_dnr</div>
+
+    <div id="Tree_swv_dwn">@AtlasSolar.Resources.Layers.Tree_swv_dwn</div>
+    <div id="Name_swv_dwn">@ViewBag.Name_swv_dwn</div>
+    <div id="Description_swv_dwn">@ViewBag.Description_swv_dwn</div>
+    <div id="Appointment_swv_dwn">@ViewBag.Appointment_swv_dwn</div>
+    <div id="Resolution_swv_dwn">@ViewBag.Resolution_swv_dwn</div>
+    <div id="Source_swv_dwn">@ViewBag.Source_swv_dwn</div>
+    <div id="Additional_swv_dwn">@ViewBag.Additional_swv_dwn</div>
+
+    <div id="Tree_exp_dif">@AtlasSolar.Resources.Layers.Tree_exp_dif</div>
+    <div id="Name_exp_dif">@ViewBag.Name_exp_dif</div>
+    <div id="Description_exp_dif">@ViewBag.Description_exp_dif</div>
+    <div id="Appointment_exp_dif">@ViewBag.Appointment_exp_dif</div>
+    <div id="Resolution_exp_dif">@ViewBag.Resolution_exp_dif</div>
+    <div id="Source_exp_dif">@ViewBag.Source_exp_dif</div>
+    <div id="Additional_exp_dif">@ViewBag.Additional_exp_dif</div>
+
+    <div id="Tree_rettlt0opt">@AtlasSolar.Resources.Layers.Tree_rettlt0opt</div>
+    <div id="Name_rettlt0opt">@ViewBag.Name_rettlt0opt</div>
+    <div id="Description_rettlt0opt">@ViewBag.Description_rettlt0opt</div>
+    <div id="Appointment_rettlt0opt">@ViewBag.Appointment_rettlt0opt</div>
+    <div id="Resolution_rettlt0opt">@ViewBag.Resolution_rettlt0opt</div>
+    <div id="Source_rettlt0opt">@ViewBag.Source_rettlt0opt</div>
+    <div id="Additional_rettlt0opt">@ViewBag.Additional_rettlt0opt</div>
+
+    <div id="Tree_clrskyavrg">@AtlasSolar.Resources.Layers.Tree_clrskyavrg</div>
+    <div id="Name_clrskyavrg">@ViewBag.Name_clrskyavrg</div>
+    <div id="Description_clrskyavrg">@ViewBag.Description_clrskyavrg</div>
+    <div id="Appointment_clrskyavrg">@ViewBag.Appointment_clrskyavrg</div>
+    <div id="Resolution_clrskyavrg">@ViewBag.Resolution_clrskyavrg</div>
+    <div id="Source_clrskyavrg">@ViewBag.Source_clrskyavrg</div>
+    <div id="Additional_clrskyavrg">@ViewBag.Additional_clrskyavrg</div>
+
+    <div id="Tree_retesh0mim">@AtlasSolar.Resources.Layers.Tree_retesh0mim</div>
+    <div id="Name_retesh0mim">@ViewBag.Name_retesh0mim</div>
+    <div id="Description_retesh0mim">@ViewBag.Description_retesh0mim</div>
+    <div id="Appointment_retesh0mim">@ViewBag.Appointment_retesh0mim</div>
+    <div id="Resolution_retesh0mim">@ViewBag.Resolution_retesh0mim</div>
+    <div id="Source_retesh0mim">@ViewBag.Source_retesh0mim</div>
+    <div id="Additional_retesh0mim">@ViewBag.Additional_retesh0mim</div>
+    
+    <div id="Tree_dni">@AtlasSolar.Resources.Layers.Tree_dni</div>
+    <div id="Name_dni">@ViewBag.Name_dni</div>
+    <div id="Description_dni">@ViewBag.Description_dni</div>
+    <div id="Appointment_dni">@ViewBag.Appointment_dni</div>
+    <div id="Resolution_dni">@ViewBag.Resolution_dni</div>
+    <div id="Source_dni">@ViewBag.Source_dni</div>
+    <div id="Additional_dni">@ViewBag.Additional_dni</div>
+
+    <div id="Tree_sic">@AtlasSolar.Resources.Layers.Tree_sic</div>
+    <div id="Name_sic">@ViewBag.Name_sic</div>
+    <div id="Description_sic">@ViewBag.Description_sic</div>
+    <div id="Appointment_sic">@ViewBag.Appointment_sic</div>
+    <div id="Resolution_sic">@ViewBag.Resolution_sic</div>
+    <div id="Source_sic">@ViewBag.Source_sic</div>
+    <div id="Additional_sic">@ViewBag.Additional_sic</div>
+
+    <div id="Tree_sid">@AtlasSolar.Resources.Layers.Tree_sid</div>
+    <div id="Name_sid">@ViewBag.Name_sid</div>
+    <div id="Description_sid">@ViewBag.Description_sid</div>
+    <div id="Appointment_sid">@ViewBag.Appointment_sid</div>
+    <div id="Resolution_sid">@ViewBag.Resolution_sid</div>
+    <div id="Source_sid">@ViewBag.Source_sid</div>
+    <div id="Additional_sid">@ViewBag.Additional_sid</div>
+
+    <div id="Tree_sis">@AtlasSolar.Resources.Layers.Tree_sis</div>
+    <div id="Name_sis">@ViewBag.Name_sis</div>
+    <div id="Description_sis">@ViewBag.Description_sis</div>
+    <div id="Appointment_sis">@ViewBag.Appointment_sis</div>
+    <div id="Resolution_sis">@ViewBag.Resolution_sis</div>
+    <div id="Source_sis">@ViewBag.Source_sis</div>
+    <div id="Additional_sis">@ViewBag.Additional_sis</div>
+
+    <div id="Tree_sis_klr">@AtlasSolar.Resources.Layers.Tree_sis_klr</div>
+    <div id="Name_sis_klr">@ViewBag.Name_sis_klr</div>
+    <div id="Description_sis_klr">@ViewBag.Description_sis_klr</div>
+    <div id="Appointment_sis_klr">@ViewBag.Appointment_sis_klr</div>
+    <div id="Resolution_sis_klr">@ViewBag.Resolution_sis_klr</div>
+    <div id="Source_sis_klr">@ViewBag.Source_sis_klr</div>
+    <div id="Additional_sis_klr">@ViewBag.Additional_sis_klr</div>
+
+    <div id="Tree_t10m">@AtlasSolar.Resources.Layers.Tree_t10m</div>
+    <div id="Info_t10m_xx">°С</div>
+    <div id="Name_t10m">@ViewBag.Name_t10m</div>
+    <div id="Description_t10m">@ViewBag.Description_t10m</div>
+    <div id="Appointment_t10m">@ViewBag.Appointment_t10m</div>
+    <div id="Resolution_t10m">@ViewBag.Resolution_t10m</div>
+    <div id="Source_t10m">@ViewBag.Source_t10m</div>
+    <div id="Additional_t10m">@ViewBag.Additional_t10m</div>
+
+    <div id="Tree_rainavgesm">@AtlasSolar.Resources.Layers.Tree_rainavgesm</div>
+    <div id="Info_rainavgesm_xx">°С</div>
+    <div id="Info_rainavgesm_year">°С</div>
+    <div id="Name_rainavgesm">@ViewBag.Name_rainavgesm</div>
+    <div id="Description_rainavgesm">@ViewBag.Description_rainavgesm</div>
+    <div id="Appointment_rainavgesm">@ViewBag.Appointment_rainavgesm</div>
+    <div id="Resolution_rainavgesm">@ViewBag.Resolution_rainavgesm</div>
+    <div id="Source_rainavgesm">@ViewBag.Source_rainavgesm</div>
+    <div id="Additional_rainavgesm">@ViewBag.Additional_rainavgesm</div>
+
+    <div id="Tree_t10mmax">@AtlasSolar.Resources.Layers.Tree_t10mmax</div>
+    <div id="Info_t10mmax_xx">°С</div>
+    <div id="Name_t10mmax">@ViewBag.Name_t10mmax</div>
+    <div id="Description_t10mmax">@ViewBag.Description_t10mmax</div>
+    <div id="Appointment_t10mmax">@ViewBag.Appointment_t10mmax</div>
+    <div id="Resolution_t10mmax">@ViewBag.Resolution_t10mmax</div>
+    <div id="Source_t10mmax">@ViewBag.Source_t10mmax</div>
+    <div id="Additional_t10mmax">@ViewBag.Additional_t10mmax</div>
+
+    <div id="Tree_t10m_min">@AtlasSolar.Resources.Layers.Tree_t10m_min</div>
+    <div id="Info_t10m_min_xx">°С</div>
+    <div id="Name_t10m_min">@ViewBag.Name_t10m_min</div>
+    <div id="Description_t10m_min">@ViewBag.Description_t10m_min</div>
+    <div id="Appointment_t10m_min">@ViewBag.Appointment_t10m_min</div>
+    <div id="Resolution_t10m_min">@ViewBag.Resolution_t10m_min</div>
+    <div id="Source_t10m_min">@ViewBag.Source_t10m_min</div>
+    <div id="Additional_t10m_min">@ViewBag.Additional_t10m_min</div>
+
+    <div id="Tree_tskinavg">@AtlasSolar.Resources.Layers.Tree_tskinavg</div>
+    <div id="Info_tskinavg_xx">°С</div>
+    <div id="Name_tskinavg">@ViewBag.Name_tskinavg</div>
+    <div id="Description_tskinavg">@ViewBag.Description_tskinavg</div>
+    <div id="Appointment_tskinavg">@ViewBag.Appointment_tskinavg</div>
+    <div id="Resolution_tskinavg">@ViewBag.Resolution_tskinavg</div>
+    <div id="Source_tskinavg">@ViewBag.Source_tskinavg</div>
+    <div id="Additional_tskinavg">@ViewBag.Additional_tskinavg</div>
+
+    <div id="Tree_srfalbavg">@AtlasSolar.Resources.Layers.Tree_srfalbavg</div>
+    <div id="Name_srfalbavg">@ViewBag.Name_srfalbavg</div>
+    <div id="Description_srfalbavg">@ViewBag.Description_srfalbavg</div>
+    <div id="Appointment_srfalbavg">@ViewBag.Appointment_srfalbavg</div>
+    <div id="Resolution_srfalbavg">@ViewBag.Resolution_srfalbavg</div>
+    <div id="Source_srfalbavg">@ViewBag.Source_srfalbavg</div>
+    <div id="Additional_srfalbavg">@ViewBag.Additional_srfalbavg</div>
+
+    <div id="Tree_avg_kt_22">@AtlasSolar.Resources.Layers.Tree_avg_kt_22</div>
+    <div id="Name_avg_kt_22">@ViewBag.Name_avg_kt_22</div>
+    <div id="Description_avg_kt_22">@ViewBag.Description_avg_kt_22</div>
+    <div id="Appointment_avg_kt_22">@ViewBag.Appointment_avg_kt_22</div>
+    <div id="Resolution_avg_kt_22">@ViewBag.Resolution_avg_kt_22</div>
+    <div id="Source_avg_kt_22">@ViewBag.Source_avg_kt_22</div>
+    <div id="Additional_avg_kt_22">@ViewBag.Additional_avg_kt_22</div>
+
+    <div id="Tree_avg_nkt_22">@AtlasSolar.Resources.Layers.Tree_avg_nkt_22</div>
+    <div id="Name_avg_nkt_22">@ViewBag.Name_avg_nkt_22</div>
+    <div id="Description_avg_nkt_22">@ViewBag.Description_avg_nkt_22</div>
+    <div id="Appointment_avg_nkt_22">@ViewBag.Appointment_avg_nkt_22</div>
+    <div id="Resolution_avg_nkt_22">@ViewBag.Resolution_avg_nkt_22</div>
+    <div id="Source_avg_nkt_22">@ViewBag.Source_avg_nkt_22</div>
+    <div id="Additional_avg_nkt_22">@ViewBag.Additional_avg_nkt_22</div>
+
+    <div id="Tree_day_cld_22">@AtlasSolar.Resources.Layers.Tree_day_cld_22</div>
+    <div id="Info_day_cld_22_xx">@AtlasSolar.Resources.Layers.Info_day_cld_22</div>
+    <div id="Name_day_cld_22">@ViewBag.Name_day_cld_22</div>
+    <div id="Description_day_cld_22">@ViewBag.Description_day_cld_22</div>
+    <div id="Appointment_day_cld_22">@ViewBag.Appointment_day_cld_22</div>
+    <div id="Resolution_day_cld_22">@ViewBag.Resolution_day_cld_22</div>
+    <div id="Source_day_cld_22">@ViewBag.Source_day_cld_22</div>
+    <div id="Additional_day_cld_22">@ViewBag.Additional_day_cld_22</div>
+
+    <div id="Tree_daylghtav">@AtlasSolar.Resources.Layers.Tree_daylghtav</div>
+    <div id="Info_daylghtav_xx">@AtlasSolar.Resources.Layers.Info_daylghtav</div>
+    <div id="Name_daylghtav">@ViewBag.Name_daylghtav</div>
+    <div id="Description_daylghtav">@ViewBag.Description_daylghtav</div>
+    <div id="Appointment_daylghtav">@ViewBag.Appointment_daylghtav</div>
+    <div id="Resolution_daylghtav">@ViewBag.Resolution_daylghtav</div>
+    <div id="Source_daylghtav">@ViewBag.Source_daylghtav</div>
+    <div id="Additional_daylghtav">@ViewBag.Additional_daylghtav</div>
+
+    <div id="Relief">@AtlasSolar.Resources.Layers.Relief</div>
+
+    <div id="Info_srtm">@AtlasSolar.Resources.Layers.Info_srtm</div>
+    <div id="Name_srtm">@ViewBag.Name_srtm</div>
+    <div id="Description_srtm">@ViewBag.Description_srtm</div>
+    <div id="Appointment_srtm">@ViewBag.Appointment_srtm</div>
+    <div id="Resolution_srtm">@ViewBag.Resolution_srtm</div>
+    <div id="Source_srtm">@ViewBag.Source_srtm</div>
+    <div id="Additional_srtm">@ViewBag.Additional_srtm</div>
+
+    <div id="Info_aspect_srtm">@AtlasSolar.Resources.Layers.Info_aspect_srtm</div>
+    <div id="Name_aspect_srtm">@ViewBag.Name_aspect_srtm</div>
+    <div id="Description_aspect_srtm">@ViewBag.Description_aspect_srtm</div>
+    <div id="Appointment_aspect_srtm">@ViewBag.Appointment_aspect_srtm</div>
+    <div id="Resolution_aspect_srtm">@ViewBag.Resolution_aspect_srtm</div>
+    <div id="Source_aspect_srtm">@ViewBag.Source_aspect_srtm</div>
+    <div id="Additional_aspect_srtm">@ViewBag.Additional_aspect_srtm</div>
+
+    <div id="Info_slope_srtm">@AtlasSolar.Resources.Layers.Info_slope_srtm</div>
+    <div id="Name_slope_srtm">@ViewBag.Name_slope_srtm</div>
+    <div id="Description_slope_srtm">@ViewBag.Description_slope_srtm</div>
+    <div id="Appointment_slope_srtm">@ViewBag.Appointment_slope_srtm</div>
+    <div id="Resolution_slope_srtm">@ViewBag.Resolution_slope_srtm</div>
+    <div id="Source_slope_srtm">@ViewBag.Source_slope_srtm</div>
+    <div id="Additional_slope_srtm">@ViewBag.Additional_slope_srtm</div>
+
+    <div id="OOPT">@AtlasSolar.Resources.Layers.Tree_oopt</div>
+
+    <div id="Info_pamyatnikprirodypol">@AtlasSolar.Resources.Layers.Tree_pamyatnikprirodypol</div>
+    <div id="Name_pamyatnikprirodypol">@ViewBag.Name_pamyatnikprirodypol</div>
+    <div id="Description_pamyatnikprirodypol">@ViewBag.Description_pamyatnikprirodypol</div>
+    <div id="Appointment_pamyatnikprirodypol">@ViewBag.Appointment_pamyatnikprirodypol</div>
+    <div id="Resolution_pamyatnikprirodypol">@ViewBag.Resolution_pamyatnikprirodypol</div>
+    <div id="Source_pamyatnikprirodypol">@ViewBag.Source_pamyatnikprirodypol</div>
+    <div id="Additional_pamyatnikprirodypol">@ViewBag.Additional_pamyatnikprirodypol</div>
+
+    <div id="Info_prirparki">@AtlasSolar.Resources.Layers.Tree_prirparki</div>
+    <div id="Name_prirparki">@ViewBag.Name_prirparki</div>
+    <div id="Description_prirparki">@ViewBag.Description_prirparki</div>
+    <div id="Appointment_prirparki">@ViewBag.Appointment_prirparki</div>
+    <div id="Resolution_prirparki">@ViewBag.Resolution_prirparki</div>
+    <div id="Source_prirparki">@ViewBag.Source_prirparki</div>
+    <div id="Additional_prirparki">@ViewBag.Additional_prirparki</div>
+
+    <div id="Info_rezervaty">@AtlasSolar.Resources.Layers.Tree_rezervaty</div>
+    <div id="Name_rezervaty">@ViewBag.Name_rezervaty</div>
+    <div id="Description_rezervaty">@ViewBag.Description_rezervaty</div>
+    <div id="Appointment_rezervaty">@ViewBag.Appointment_rezervaty</div>
+    <div id="Resolution_rezervaty">@ViewBag.Resolution_rezervaty</div>
+    <div id="Source_rezervaty">@ViewBag.Source_rezervaty</div>
+    <div id="Additional_rezervaty">@ViewBag.Additional_rezervaty</div>
+
+    <div id="Info_zakazniky">@AtlasSolar.Resources.Layers.Tree_zakazniky</div>
+    <div id="Name_zakazniky">@ViewBag.Name_zakazniky</div>
+    <div id="Description_zakazniky">@ViewBag.Description_zakazniky</div>
+    <div id="Appointment_zakazniky">@ViewBag.Appointment_zakazniky</div>
+    <div id="Resolution_zakazniky">@ViewBag.Resolution_zakazniky</div>
+    <div id="Source_zakazniky">@ViewBag.Source_zakazniky</div>
+    <div id="Additional_zakazniky">@ViewBag.Additional_zakazniky</div>
+
+    <div id="Info_zapovedniki">@AtlasSolar.Resources.Layers.Tree_zapovedniki</div>
+    <div id="Name_zapovedniki">@ViewBag.Name_zapovedniki</div>
+    <div id="Description_zapovedniki">@ViewBag.Description_zapovedniki</div>
+    <div id="Appointment_zapovedniki">@ViewBag.Appointment_zapovedniki</div>
+    <div id="Resolution_zapovedniki">@ViewBag.Resolution_zapovedniki</div>
+    <div id="Source_zapovedniki">@ViewBag.Source_zapovedniki</div>
+    <div id="Additional_zapovedniki">@ViewBag.Additional_zapovedniki</div>
+
+    <div id="Info_zapovedzony">@AtlasSolar.Resources.Layers.Tree_zapovedzony</div>
+    <div id="Name_zapovedzony">@ViewBag.Name_zapovedzony</div>
+    <div id="Description_zapovedzony">@ViewBag.Description_zapovedzony</div>
+    <div id="Appointment_zapovedzony">@ViewBag.Appointment_zapovedzony</div>
+    <div id="Resolution_zapovedzony">@ViewBag.Resolution_zapovedzony</div>
+    <div id="Source_zapovedzony">@ViewBag.Source_zapovedzony</div>
+    <div id="Additional_zapovedzony">@ViewBag.Additional_zapovedzony</div>
+
+    <div id="Info_hidroohrzony">@AtlasSolar.Resources.Layers.Tree_hidroohrzony</div>
+    <div id="Name_hidroohrzony">@ViewBag.Name_hidroohrzony</div>
+    <div id="Description_hidroohrzony">@ViewBag.Description_hidroohrzony</div>
+    <div id="Appointment_hidroohrzony">@ViewBag.Appointment_hidroohrzony</div>
+    <div id="Resolution_hidroohrzony">@ViewBag.Resolution_hidroohrzony</div>
+    <div id="Source_hidroohrzony">@ViewBag.Source_hidroohrzony</div>
+    <div id="Additional_hidroohrzony">@ViewBag.Additional_hidroohrzony</div>
+
+    <div id="Info_arheopamyat">@AtlasSolar.Resources.Layers.Tree_arheopamyat</div>
+    <div id="Name_arheopamyat">@ViewBag.Name_arheopamyat</div>
+    <div id="Description_arheopamyat">@ViewBag.Description_arheopamyat</div>
+    <div id="Appointment_arheopamyat">@ViewBag.Appointment_arheopamyat</div>
+    <div id="Resolution_arheopamyat">@ViewBag.Resolution_arheopamyat</div>
+    <div id="Source_arheopamyat">@ViewBag.Source_arheopamyat</div>
+    <div id="Additional_arheopamyat">@ViewBag.Additional_arheopamyat</div>
+
+    <div id="Info_kzcover">@AtlasSolar.Resources.Layers.Info_kzcover</div>
+    <div id="Legend_kzcover">@AtlasSolar.Resources.Layers.Legend_kzcover</div>
+    <div id="Legend_kzcover_1">@AtlasSolar.Resources.Layers.Legend_kzcover_1</div>
+    <div id="Legend_kzcover_2">@AtlasSolar.Resources.Layers.Legend_kzcover_2</div>
+    <div id="Legend_kzcover_3">@AtlasSolar.Resources.Layers.Legend_kzcover_3</div>
+    <div id="Legend_kzcover_4">@AtlasSolar.Resources.Layers.Legend_kzcover_4</div>
+    <div id="Legend_kzcover_5">@AtlasSolar.Resources.Layers.Legend_kzcover_5</div>
+    <div id="Legend_kzcover_6">@AtlasSolar.Resources.Layers.Legend_kzcover_6</div>
+    <div id="Legend_kzcover_7">@AtlasSolar.Resources.Layers.Legend_kzcover_7</div>
+    <div id="Legend_kzcover_8">@AtlasSolar.Resources.Layers.Legend_kzcover_8</div>
+    <div id="Legend_kzcover_9">@AtlasSolar.Resources.Layers.Legend_kzcover_9</div>
+    <div id="Name_kzcover">@ViewBag.Name_kzcover</div>
+    <div id="Description_kzcover">@ViewBag.Description_kzcover</div>
+    <div id="Appointment_kzcover">@ViewBag.Appointment_kzcover</div>
+    <div id="Resolution_kzcover">@ViewBag.Resolution_kzcover</div>
+    <div id="Source_kzcover">@ViewBag.Source_kzcover</div>
+    <div id="Additional_kzcover">@ViewBag.Additional_kzcover</div>
+</div>
+
+<div id="myModal" class="modalinfo modal">
+    <div>
+        <span class="close" id="modal_close">&times;</span>
+        @*<h4 id="layer_name" align="left"></h4>
+        <p id="layer_info" align="justify"></p>
+        <br />
+        <p align="justify">Карта распределения средних сумм прямой солнечной радиации на перпендикулярную поверхность при средних условиях облачности и представляют собой результаты интерполяции с разрешением 5 км.</p>
+        <br />
+        <p align="justify">Назначение: Значения солнечной радиации представляют собой ресурс необходимый для солнечных энергетических систем, для расчетов количества солнечной энергии на наклонную, ориентированную поверхность.  Также учитываются при расчетах эффективности PV и CSP систем.</p>
+        <br />
+        <p align="justify">Источник: Данные были получены из проекта  POWER Исследовательского центра NASA Langley,  финансируемая  Программой прикладных наук NASA (науки о Земле) https://eosweb.larc.nasa.gov/sse/. Разрешение: 1°×1° Период осреднения:  июль 1983 г. - июнь 2005 г.</p>
+        <br />
+        <p align="justify">Дополнительная информация: Верификация данных базы для территории РК проводилась на основе данных двух метеорологических станции (МС Семей, МС Аральское море). Карты в свободном доступе для личного пользования. При использовании карты в печатном виде, под картой должен быть указан следующий текст: Интерактивный Атлас Солнечных ресурсов РК, <a href="URL">http://atlassolar.kz</a>; на основе данных <a href="URL">https://eosweb.larc.nasa.gov/sse/</a> </p>
+        <br />
+        <p align="justify">Его можно использовать в широком диапазоне, начиная от вывода сообщений и заканчивая формой регистрации.</p>*@
+        <h4 id="layer_Name" align="left"></h4>
+        <p id="layer_Description" align="justify" style="margin-top: 10px;"></p>
+        <br />
+        <p id="layer_Appointment" align="justify"></p>
+        <br />
+        <p id="layer_Resolution" align="justify"></p>
+        <br />
+        <p id="layer_Source" align="justify"></p>
+        <br />
+        <p id="layer_Additional" align="justify"></p>
+    </div>
+</div>
+
+@*<input type="button" value="-Test-" name="Action" onclick="Test();" class="btn btn-default" />*@
+
+<script>
+    document.getElementById("loading").style.display = "block";
+</script>
+
+@* переменные *@
+<script src="~/Scripts/mapvariables.js"></script>
+
+@* слои *@
+<script src="~/Scripts/maplayers.js"></script>
+
+@* дерево слоев, легенды *@
+<script src="~/Scripts/maptreelegends.js"></script>
+
+@* карта *@
+<script>
+    // вид
+    var view = new ol.View({
+        projection: 'EPSG:3857',
+        center: [7447522, 6202316],
+        zoom: 5,
+        maxZoom: max_zoom, //16,
+        minZoom: min_zoom,
+        extent: [5000000,4800000,10000000,7500000]
+    });
+
+    // карта
+    var map = new ol.Map({
+        //interactions: ol.interaction.defaults().extend([select, translate]),
+        controls: ol.control.defaults().extend([
+              new ol.control.FullScreen({
+                  source: 'fullscreen'
+              }),
+            new ol.control.OverviewMap(),
+            new ol.control.ScaleLine()
+        ]),
+        layers: [
+            Layer_Base,
+
+            Layer_rayony,
+            Layer_avg_dnr_year,
+            Layer_avg_dnr_01,
+            Layer_avg_dnr_02,
+            Layer_avg_dnr_03,
+            Layer_avg_dnr_04,
+            Layer_avg_dnr_05,
+            Layer_avg_dnr_06,
+            Layer_avg_dnr_07,
+            Layer_avg_dnr_08,
+            Layer_avg_dnr_09,
+            Layer_avg_dnr_10,
+            Layer_avg_dnr_11,
+            Layer_avg_dnr_12,
+            Layer_swv_dwn_year,
+            Layer_swv_dwn_01,
+            Layer_swv_dwn_02,
+            Layer_swv_dwn_03,
+            Layer_swv_dwn_04,
+            Layer_swv_dwn_05,
+            Layer_swv_dwn_06,
+            Layer_swv_dwn_07,
+            Layer_swv_dwn_08,
+            Layer_swv_dwn_09,
+            Layer_swv_dwn_10,
+            Layer_swv_dwn_11,
+            Layer_swv_dwn_12,
+            Layer_exp_dif_year,
+            Layer_exp_dif_01,
+            Layer_exp_dif_02,
+            Layer_exp_dif_03,
+            Layer_exp_dif_04,
+            Layer_exp_dif_05,
+            Layer_exp_dif_06,
+            Layer_exp_dif_07,
+            Layer_exp_dif_08,
+            Layer_exp_dif_09,
+            Layer_exp_dif_10,
+            Layer_exp_dif_11,
+            Layer_exp_dif_12,
+            Layer_rettlt0opt_year,
+            Layer_rettlt0opt_01,
+            Layer_rettlt0opt_02,
+            Layer_rettlt0opt_03,
+            Layer_rettlt0opt_04,
+            Layer_rettlt0opt_05,
+            Layer_rettlt0opt_06,
+            Layer_rettlt0opt_07,
+            Layer_rettlt0opt_08,
+            Layer_rettlt0opt_09,
+            Layer_rettlt0opt_10,
+            Layer_rettlt0opt_11,
+            Layer_rettlt0opt_12,
+            Layer_clrskyavrg_year,
+            Layer_clrskyavrg_01,
+            Layer_clrskyavrg_02,
+            Layer_clrskyavrg_03,
+            Layer_clrskyavrg_04,
+            Layer_clrskyavrg_05,
+            Layer_clrskyavrg_06,
+            Layer_clrskyavrg_07,
+            Layer_clrskyavrg_08,
+            Layer_clrskyavrg_09,
+            Layer_clrskyavrg_10,
+            Layer_clrskyavrg_11,
+            Layer_clrskyavrg_12,
+            Layer_retesh0mim_year,
+            Layer_retesh0mim_01,
+            Layer_retesh0mim_02,
+            Layer_retesh0mim_03,
+            Layer_retesh0mim_04,
+            Layer_retesh0mim_05,
+            Layer_retesh0mim_06,
+            Layer_retesh0mim_07,
+            Layer_retesh0mim_08,
+            Layer_retesh0mim_09,
+            Layer_retesh0mim_10,
+            Layer_retesh0mim_11,
+            Layer_retesh0mim_12,
+            
+            Layer_avg_kt_22_01,
+            Layer_avg_kt_22_02,
+            Layer_avg_kt_22_03,
+            Layer_avg_kt_22_04,
+            Layer_avg_kt_22_05,
+            Layer_avg_kt_22_06,
+            Layer_avg_kt_22_07,
+            Layer_avg_kt_22_08,
+            Layer_avg_kt_22_09,
+            Layer_avg_kt_22_10,
+            Layer_avg_kt_22_11,
+            Layer_avg_kt_22_12,
+            
+            Layer_avg_nkt_22_01,
+            Layer_avg_nkt_22_02,
+            Layer_avg_nkt_22_03,
+            Layer_avg_nkt_22_04,
+            Layer_avg_nkt_22_05,
+            Layer_avg_nkt_22_06,
+            Layer_avg_nkt_22_07,
+            Layer_avg_nkt_22_08,
+            Layer_avg_nkt_22_09,
+            Layer_avg_nkt_22_10,
+            Layer_avg_nkt_22_11,
+            Layer_avg_nkt_22_12,
+            
+            Layer_day_cld_22_01,
+            Layer_day_cld_22_02,
+            Layer_day_cld_22_03,
+            Layer_day_cld_22_04,
+            Layer_day_cld_22_05,
+            Layer_day_cld_22_06,
+            Layer_day_cld_22_07,
+            Layer_day_cld_22_08,
+            Layer_day_cld_22_09,
+            Layer_day_cld_22_10,
+            Layer_day_cld_22_11,
+            Layer_day_cld_22_12,
+            
+            Layer_daylghtav_01,
+            Layer_daylghtav_02,
+            Layer_daylghtav_03,
+            Layer_daylghtav_04,
+            Layer_daylghtav_05,
+            Layer_daylghtav_06,
+            Layer_daylghtav_07,
+            Layer_daylghtav_08,
+            Layer_daylghtav_09,
+            Layer_daylghtav_10,
+            Layer_daylghtav_11,
+            Layer_daylghtav_12,
+            //
+            Layer_dni_year,
+            Layer_dni_01,
+            Layer_dni_02,
+            Layer_dni_03,
+            Layer_dni_04,
+            Layer_dni_05,
+            Layer_dni_06,
+            Layer_dni_07,
+            Layer_dni_08,
+            Layer_dni_09,
+            Layer_dni_10,
+            Layer_dni_11,
+            Layer_dni_12,
+            Layer_sic_year,
+            Layer_sic_01,
+            Layer_sic_02,
+            Layer_sic_03,
+            Layer_sic_04,
+            Layer_sic_05,
+            Layer_sic_06,
+            Layer_sic_07,
+            Layer_sic_08,
+            Layer_sic_09,
+            Layer_sic_10,
+            Layer_sic_11,
+            Layer_sic_12,
+            Layer_sid_year,
+            Layer_sid_01,
+            Layer_sid_02,
+            Layer_sid_03,
+            Layer_sid_04,
+            Layer_sid_05,
+            Layer_sid_06,
+            Layer_sid_07,
+            Layer_sid_08,
+            Layer_sid_09,
+            Layer_sid_10,
+            Layer_sid_11,
+            Layer_sid_12,
+            Layer_sis_year,
+            Layer_sis_01,
+            Layer_sis_02,
+            Layer_sis_03,
+            Layer_sis_04,
+            Layer_sis_05,
+            Layer_sis_06,
+            Layer_sis_07,
+            Layer_sis_08,
+            Layer_sis_09,
+            Layer_sis_10,
+            Layer_sis_11,
+            Layer_sis_12,
+            //
+            Layer_sis_klr_year,
+            Layer_sis_klr_01,
+            Layer_sis_klr_02,
+            Layer_sis_klr_03,
+            Layer_sis_klr_04,
+            Layer_sis_klr_05,
+            Layer_sis_klr_06,
+            Layer_sis_klr_07,
+            Layer_sis_klr_08,
+            Layer_sis_klr_09,
+            Layer_sis_klr_10,
+            Layer_sis_klr_11,
+            Layer_sis_klr_12,
+            //
+            Layer_t10m_01,
+            Layer_t10m_02,
+            Layer_t10m_03,
+            Layer_t10m_04,
+            Layer_t10m_05,
+            Layer_t10m_06,
+            Layer_t10m_07,
+            Layer_t10m_08,
+            Layer_t10m_09,
+            Layer_t10m_10,
+            Layer_t10m_11,
+            Layer_t10m_12,
+            
+            Layer_rainavgesm_year,
+            Layer_rainavgesm_01,
+            Layer_rainavgesm_02,
+            Layer_rainavgesm_03,
+            Layer_rainavgesm_04,
+            Layer_rainavgesm_05,
+            Layer_rainavgesm_06,
+            Layer_rainavgesm_07,
+            Layer_rainavgesm_08,
+            Layer_rainavgesm_09,
+            Layer_rainavgesm_10,
+            Layer_rainavgesm_11,
+            Layer_rainavgesm_12,
+
+            Layer_t10mmax_01,
+            Layer_t10mmax_02,
+            Layer_t10mmax_03,
+            Layer_t10mmax_04,
+            Layer_t10mmax_05,
+            Layer_t10mmax_06,
+            Layer_t10mmax_07,
+            Layer_t10mmax_08,
+            Layer_t10mmax_09,
+            Layer_t10mmax_10,
+            Layer_t10mmax_11,
+            Layer_t10mmax_12,
+
+            Layer_t10m_min_01,
+            Layer_t10m_min_02,
+            Layer_t10m_min_03,
+            Layer_t10m_min_04,
+            Layer_t10m_min_05,
+            Layer_t10m_min_06,
+            Layer_t10m_min_07,
+            Layer_t10m_min_08,
+            Layer_t10m_min_09,
+            Layer_t10m_min_10,
+            Layer_t10m_min_11,
+            Layer_t10m_min_12,
+
+            Layer_tskinavg_01,
+            Layer_tskinavg_02,
+            Layer_tskinavg_03,
+            Layer_tskinavg_04,
+            Layer_tskinavg_05,
+            Layer_tskinavg_06,
+            Layer_tskinavg_07,
+            Layer_tskinavg_08,
+            Layer_tskinavg_09,
+            Layer_tskinavg_10,
+            Layer_tskinavg_11,
+            Layer_tskinavg_12,
+
+            Layer_srfalbavg_01,
+            Layer_srfalbavg_02,
+            Layer_srfalbavg_03,
+            Layer_srfalbavg_04,
+            Layer_srfalbavg_05,
+            Layer_srfalbavg_06,
+            Layer_srfalbavg_07,
+            Layer_srfalbavg_08,
+            Layer_srfalbavg_09,
+            Layer_srfalbavg_10,
+            Layer_srfalbavg_11,
+            Layer_srfalbavg_12,
+            //
+            Layer_lep2,
+            Layer_lep,
+            Layer_lep_bufer,
+            //
+            Layer_srtm,
+            Layer_aspect_srtm,
+            Layer_slope_srtm,
+
+            Layer_pamyatnikprirodypol,
+            Layer_prirparki,
+            Layer_rezervaty,
+            Layer_zakazniky,
+            Layer_zapovedniki,
+            Layer_zapovedzony,
+
+            Layer_arheopamyat,
+            Layer_hidroohrzony,
+            Layer_kzcover,
+            //
+            Layer_oblasti,
+            //
+            Layer_AnalizeTerrain,
+            Layer_FindTerrain,
+            //
+            Layer_meteo_st,
+            //
+            Layer_spp,
+            //
+            Layer_CP,
+            Layer_select,
+            vector,
+            Layer_Base_Top
+        ],
+        target: 'map',
+        view: view
+    });
+
+    // смена базового слоя
+    function ChangeMapSource(val) {
+        if (val == 'OpenStreetMap') {
+            var Source = new ol.source.OSM({});
+            Layer_Base.setSource(Source);
+            Layer_Base_Top.setSource(Source);
+        }
+        if (val == 'Stamen') {
+            var Source = new ol.source.Stamen({ layer: 'watercolor' });
+            Layer_Base.setSource(Source);
+            Layer_Base_Top.setSource(Source);
+        }
+        if (val == 'ArcGIS') {
+            var attribution = new ol.Attribution({
+                html: 'Tiles © <a href="http://services.arcgisonline.com/ArcGIS/' +
+                    'rest/services/World_Topo_Map/MapServer">ArcGIS</a>'
+            });
+            var Source = new ol.source.XYZ({
+                attributions: [attribution],
+                url: 'http://server.arcgisonline.com/ArcGIS/rest/services/' +
+                    'World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
+            });
+            Layer_Base.setSource(Source);
+            Layer_Base_Top.setSource(Source);
+        }
+        if (val == 'Bing') {
+            var Source = new ol.source.BingMaps({
+                key: 'Ao6OG0CUJlC041CzLcQfdNu5bV3IPLHimUQaICqzaJjhg8sKSXCp1sDdSrrnWCzt',
+                imagerySet: 'Road'
+            });
+            Layer_Base.setSource(Source);
+            Layer_Base_Top.setSource(Source);
+        }
+        if (val == 'BingAerial') {
+            var Source = new ol.source.BingMaps({
+                key: 'Ao6OG0CUJlC041CzLcQfdNu5bV3IPLHimUQaICqzaJjhg8sKSXCp1sDdSrrnWCzt',
+                imagerySet: 'AerialWithLabels'
+            });
+            Layer_Base.setSource(Source);
+            Layer_Base_Top.setSource(Source);
+        }
+    };
+</script>
+
+@* функция нажатия на карту *@
+<script src="~/Scripts/mapclick.js"></script>
+
+@* выбор инструмента *@
+<script>
+    // выбор инструмента
+    function ChangeTool(newtool) {
+        if ((tool == 'comparepoints' || tool == 'setpoint') && (newtool == 'calcarea' || newtool == 'getmeteodata' || newtool == 'getmeteodataregion' || newtool == 'createspp' || newtool == 'calcefficiency' || newtool == 'comparepoints' || newtool == 'calcenergy' || newtool == 'analizeterrain' || newtool == 'findterrain')) {
+            $("#dialog_compare_points").dialog("destroy");
+            newtool = 'info';
+            Source_CP.clear();
+        }
+        if (tool == 'findterrain' && newtool != 'findterrain') {
+            $("#dialog_find_terrain").dialog("close");
+        }
+        if (tool == 'analizeterrain' && newtool != 'analizeterrain') {
+            $("#dialog_analize_terrain").dialog("close");
+        }
+        $("#tool_calc_area").css({
+            "background": "url(../images/css-sprite-iconok2.png) -76px -38px no-repeat"
+        });
+        $("#tool_get_meteo_data").css({
+            "font-weight": "normal"
+        });
+        $("#tool_get_meteo_data_region").css({
+            "font-weight": "normal"
+        });
+        $("#tool_create_spp").css({
+            "font-weight": "normal"
+        });
+        $("#tool_calc_efficiency").css({
+            "background": "url(../images/css-sprite-iconok2.png) -38px -38px no-repeat"
+        });
+        $("#tool_compare_points").css({
+            "background": "url(../images/css-sprite-iconok2.png) -153px -38px no-repeat"
+        });
+        $("#tool_calc_energy").css({
+            "background": "url(../images/css-sprite-iconok2.png) -0px -38px no-repeat"
+        });
+        $("#tool_measure").css({
+            "background": "url(../images/css-sprite-iconok2.png) -268px -38px no-repeat"
+        });
+        $("#tool_analize_terrain").css({
+            "background": "url(../images/css-sprite-iconok2.png) -191px -38px no-repeat"
+        });
+        $("#tool_find_terrain").css({
+            "background": "url(../images/css-sprite-iconok2.png) -230px -38px no-repeat"
+        });
+        if (newtool == tool) {
+            tool = 'info';
+            if (newtool == 'calcenergy') {
+                $("#dialog_calc_energy").dialog("close");
+            }
+            if (newtool == 'measure') {
+                $("#dialog_measure").dialog("close");
+                removeInteraction();
+            }
+            if (newtool == 'analizeterrain') {
+                $("#dialog_analize_terrain").dialog("close");
+                Layer_AnalizeTerrain.setSource(null);
+                Layer_AnalizeTerrain.setVisible(false);
+                $('#legend_analizeterrain').hide();
+                map.setView(new ol.View({
+                    center: map.getView().getCenter(),
+                    zoom: map.getView().getZoom(),
+                    maxZoom: max_zoom,
+                    minZoom: min_zoom,
+                    extent: [5000000,4800000,10000000,7500000]
+                }));
+            }
+            if (newtool == 'findterrain') {
+                $("#dialog_find_terrain").dialog("close");
+                Layer_FindTerrain.setSource(null);
+                Layer_FindTerrain.setVisible(false);
+                $('#legend_findterrain').hide();
+                map.setView(new ol.View({
+                    center: map.getView().getCenter(),
+                    zoom: map.getView().getZoom(),
+                    maxZoom: max_zoom,
+                    minZoom: min_zoom,
+                    extent: [5000000, 4800000, 10000000, 7500000]
+                }));
+            }
+        }
+        else if (newtool == 'calcarea' || newtool == 'getmeteodata' || newtool == 'createspp' || newtool == 'calcefficiency') {
+            tool = newtool;
+            if (!dontshow_selectpoint) {
+                $("#dialog_selectpoint").dialog({
+                    width: 300,
+                    height: 120,
+                    appendTo: "#fullscreen"
+                });
+            }
+        }
+        else if (newtool == 'getmeteodataregion') {
+            tool = newtool;
+            GetMeteoDataRegionPeriodicitiesBySource();
+            $("#dialog_get_meteo_data_region").dialog({
+                width: 550,
+                height: 200,
+                appendTo: "#fullscreen"
+            });
+            $('#dialog_get_meteo_data_region').on('dialogclose', function (event) {
+                if (tool == 'getmeteodataregion') {
+                    tool = 'info';
+                    $("#tool_get_meteo_data_region").css({
+                        "font-weight": "normal"
+                    });
+                }
+            });
+        }
+        else if (newtool == 'calcenergy') {
+            tool = newtool;
+        }
+        else if (newtool == 'measure') {
+            tool = newtool;
+        }
+        else if (newtool == 'analizeterrain') {
+            tool = newtool;
+        }
+        else if (newtool == 'findterrain') {
+            tool = newtool;
+        }
+        else if (newtool == 'info') {
+            tool = newtool;
+        }
+        else if (newtool == 'comparepoints') {
+            tool = newtool;
+            $("#compare_points_p1_longitude").html('');
+            $("#compare_points_p1_latitude").html('');
+            $("#compare_points_p2_longitude").html('');
+            $("#compare_points_p2_latitude").html('');
+            $("#compare_points_p3_longitude").html('');
+            $("#compare_points_p3_latitude").html('');
+            for (var i = 0; i < Source_CP.getFeatures().length; i++) {
+                if (Source_CP.getFeatures()[i].get('Id') == 1) {
+                    $("#compare_points_p1_longitude").html(ol.proj.transform(Source_CP.getFeatures()[i].getGeometry().getCoordinates(), 'EPSG:3857', 'EPSG:4326')[0].toString().replace('.', ','));
+                    $("#compare_points_p1_latitude").html(ol.proj.transform(Source_CP.getFeatures()[i].getGeometry().getCoordinates(), 'EPSG:3857', 'EPSG:4326')[1].toString().replace('.', ','));
+                }
+                if (Source_CP.getFeatures()[i].get('Id') == 2) {
+                    $("#compare_points_p2_longitude").html(ol.proj.transform(Source_CP.getFeatures()[i].getGeometry().getCoordinates(), 'EPSG:3857', 'EPSG:4326')[0].toString().replace('.', ','));
+                    $("#compare_points_p2_latitude").html(ol.proj.transform(Source_CP.getFeatures()[i].getGeometry().getCoordinates(), 'EPSG:3857', 'EPSG:4326')[1].toString().replace('.', ','));
+                }
+                if (Source_CP.getFeatures()[i].get('Id') == 3) {
+                    $("#compare_points_p3_longitude").html(ol.proj.transform(Source_CP.getFeatures()[i].getGeometry().getCoordinates(), 'EPSG:3857', 'EPSG:4326')[0].toString().replace('.', ','));
+                    $("#compare_points_p3_latitude").html(ol.proj.transform(Source_CP.getFeatures()[i].getGeometry().getCoordinates(), 'EPSG:3857', 'EPSG:4326')[1].toString().replace('.', ','));
+                }
+            }
+            ComparePointsPeriodicitiesBySource();
+            $("#dialog_compare_points").dialog({
+                width: 430,
+                height: 290,
+                appendTo: "#fullscreen",
+                position: { my: "left bottom", at: "left bottom", of: window }
+            });
+            $('#dialog_compare_points').on('dialogclose', function (event) {
+                tool = 'info';
+                $("#tool_compare_points").css({
+                    "background": "url(../images/css-sprite-iconok2.png) -153px -38px no-repeat"
+                });
+                Source_CP.clear();
+            });
+        }
+        if (tool == 'calcarea') {
+            $("#tool_calc_area").css({
+                "background": "url(../images/css-sprite-iconok2.png) -76px 0 no-repeat"
+            });
+        }
+        if (tool == 'getmeteodata') {
+            $("#tool_get_meteo_data").css({
+                "font-weight": "bold"
+            });
+        }
+        if (tool == 'getmeteodataregion') {
+            $("#tool_get_meteo_data_region").css({
+                "font-weight": "bold"
+            });
+        }
+        if (tool == 'createspp') {
+            $("#tool_create_spp").css({
+                "font-weight": "bold"
+            });
+        }
+        if (tool == 'calcefficiency') {
+            $("#tool_calc_efficiency").css({
+                "background": "url(../images/css-sprite-iconok2.png) -38px 0 no-repeat"
+            });
+        }
+        if (tool == 'comparepoints') {
+            $("#tool_compare_points").css({
+                "background": "url(../images/css-sprite-iconok2.png) -153px 0px no-repeat"
+            });
+        }
+        if (tool == 'calcenergy') {
+            $("#tool_calc_energy").css({
+                "background": "url(../images/css-sprite-iconok2.png) -00px 0 no-repeat"
+            });
+            $("#dialog_calc_energy").dialog({
+                width: 600,
+                height: 500,
+                appendTo: "#fullscreen"
+            });
+            $('#dialog_calc_energy').on('dialogclose', function (event) {
+                if (tool == 'calcenergy') {
+                    tool = 'info';
+                    $("#tool_calc_energy").css({
+                        "background": "url(../images/css-sprite-iconok2.png) -0px -38px no-repeat"
+                    });
+                }
+            });
+        }
+        if (tool == 'measure') {
+            $("#tool_measure").css({
+                "background": "url(../images/css-sprite-iconok2.png) -268px 0px no-repeat"
+            });
+            $("#dialog_measure").dialog({
+                width: 300,
+                height: 200,
+                appendTo: "#fullscreen"
+            });
+            addInteraction();
+            $('#dialog_measure').on('dialogclose', function (event) {
+                if (tool == 'measure') {
+                    tool = 'info';
+                    $("#tool_measure").css({
+                        "background": "url(../images/css-sprite-iconok2.png) -268px -38px no-repeat"
+                    });
+
+                    
+
+                }
+                removeInteraction();
+            });
+        }
+        if (tool == 'analizeterrain') {
+            $("#tool_analize_terrain").css({
+                "background": "url(../images/css-sprite-iconok2.png) -191px 0px no-repeat"
+            });
+            document.getElementById("analize_terrain_downloadlink").style.display = "none";
+            $("#dialog_analize_terrain").dialog({
+                //width: 700,
+                //height: 750,
+                width: 400,
+                height: 300,
+                appendTo: "#fullscreen",
+                position: { my: "left bottom", at: "left bottom", of: window }
+            });
+            $('#dialog_analize_terrain').on('dialogclose', function (event) {
+                if (tool == 'analizeterrain') {
+                    tool = 'info';
+                }
+                $("#tool_analize_terrain").css({
+                    "background": "url(../images/css-sprite-iconok2.png) -191px -38px no-repeat"
+                });
+                Layer_AnalizeTerrain.setSource(null);
+                Layer_AnalizeTerrain.setVisible(false);
+                $('#legend_analizeterrain').hide();
+                map.setView(new ol.View({
+                    center: map.getView().getCenter(),
+                    zoom: map.getView().getZoom(),
+                    maxZoom: max_zoom,
+                    minZoom: min_zoom,
+                    extent: [5000000, 4800000, 10000000, 7500000]
+                }));
+            });
+        }
+        if (tool == 'findterrain') {
+            $("#tool_find_terrain").css({
+                "background": "url(../images/css-sprite-iconok2.png) -230px 0px no-repeat"
+            });
+            document.getElementById("find_terrain_downloadlink").style.display = "none";
+            $("#dialog_find_terrain").dialog({
+                width: 700,
+                height: 450,
+                appendTo: "#fullscreen",
+                position: { my: "left bottom", at: "left bottom", of: window }
+            });
+            $('#dialog_find_terrain').on('dialogclose', function (event) {
+                if (tool == 'findterrain') {
+                    tool = 'info';
+                }
+                $("#tool_find_terrain").css({
+                    "background": "url(../images/css-sprite-iconok2.png) -230px -38px no-repeat"
+                });
+                Layer_FindTerrain.setSource(null);
+                Layer_FindTerrain.setVisible(false);
+                $('#legend_findterrain').hide();
+                map.setView(new ol.View({
+                    center: map.getView().getCenter(),
+                    zoom: map.getView().getZoom(),
+                    maxZoom: max_zoom,
+                    minZoom: min_zoom,
+                    extent: [5000000, 4800000, 10000000, 7500000]
+                }));
+            });
+        }
+    };
+</script>
+
+@* окно необходимости выбора точки на карте *@
+<script>
+    // больше не показывать окно необходимости выбора точки на карте
+    function DontShowSelectPoint() {
+        if (document.getElementById('dontshow_selectpoint').checked) {
+            dontshow_selectpoint = true;
+        } else {
+            dontshow_selectpoint = false;
+        }
+    };
+
+    // закрыть окно необходимости выбора точки на карте
+    function CloseSelectPointDialog() {
+        $("#dialog_selectpoint").dialog("close");
+    };
+</script>
+
+@* расчет энергопотребления *@
+<script>
+    // расчет энергопотребления: изменить прибор
+    function ChangeAppliance() {
+        var power = $("#calc_energy_ApplianceId option:selected").text().split("(")[$("#calc_energy_ApplianceId option:selected").text().split("(").length - 1].split(")")[0];
+        $("#calcpv_power").val(power);
+    };
+    // расчет энергопотребления: добавить прибор
+    function AddAppliance() {
+        var appliance_id = $("#calc_energy_ApplianceId").val();
+        var was = false;
+        //for (i = 0; i < appliances.length; i++) {
+        //    if (appliances[i].id == appliance_id) {
+        //        was = true;
+        //        break;
+        //    }
+        //}
+        if (was) {
+            alert($('#HasAlready').html());
+        }
+        else {
+            var appliance = $("#calc_energy_ApplianceId option:selected").text();
+            appliance = appliance.split(" (")[0];
+            //var power = $("#calc_energy_ApplianceId option:selected").text().split("(")[$("#calc_energy_ApplianceId option:selected").text().split("(").length - 1].split(")")[0];
+            var power = $("#calcpv_power").val();
+            var count = $("#calcpv_energy_count").val();
+            if (count == "") {
+                count = 0;
+            }
+            var hours = $("#calcpv_energy_hours").val().replace(',','.');
+            if (hours == "") {
+                hours = 0;
+            }
+            var minutes = $("#calcpv_energy_minutes").val().replace(',', '.');
+            if (minutes == "") {
+                minutes = 0;
+            }
+            var max_index = 0;
+            for (i = 0; i < appliances.length; i++) {
+                if (appliances[i].aindex > max_index) {
+                    max_index = appliances[i].aindex;
+                }
+            }
+            var markup = "<tr id=" + (max_index + 1).toString() + "><td>" +
+                appliance + "</td><td style=\"padding-left: 10px;\">" +
+                power + "</td><td style=\"padding-left: 10px;\">" +
+                count + "</td><td style=\"padding-left: 10px;\">" +
+                hours.toString() + ":" + minutes.toString() + "</td><td style=\"padding-left: 10px;\">" +
+                "<input type=\"button\" value=\"@AtlasSolar.Resources.Common.Delete\" class=\"calc_button\" onclick=\"RemoveAppliance(" + (max_index + 1).toString() + ")\">" + "</td></tr>";
+            var app_obejct = { id: appliance_id, aindex: max_index + 1, appliance: appliance, power: power, count: count, hours: hours, minutes: minutes };
+            appliances.push(app_obejct);
+            $("#calcpv_energy_table").append(markup);
+            CalcEnergy();
+        }
+    };
+
+    // расчет энергопотребления: убрать прибор
+    function RemoveAppliance(appliance_id) {
+        $('table#calcpv_energy_table tr#' + appliance_id.toString()).remove();
+        for (i = 0; i < appliances.length; i++) {
+            if (appliances[i].aindex == appliance_id) {
+                appliances.splice(i, 1);
+                break;
+            }
+        }
+        CalcEnergy();
+    };
+
+    // расчет энергопотребления
+    function CalcEnergy() {
+        var energy = 0;
+        for (i = 0; i < appliances.length; i++) {
+            var h = parseInt(appliances[i].hours) + parseFloat((parseInt(appliances[i].minutes) / 60));
+            energy += appliances[i].power * appliances[i].count * h;
+        }
+        $("#calc_energy_result").text((energy / 1000).toFixed(2));
+    };
+</script>
+
+@* расчет площади PV системы *@
+<script>
+    // расчет площади PV системы: изменение типа материала
+    function CalcPVChangePVSystemMaterial(val) {
+        $.ajax({
+            url: '@Url.Action("GetPVSystemMaterial")',
+            data: JSON.stringify({ "Id": val }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#calcpv_panel_efficiency").val(data.Efficiency);
+                $("#calcpv_rated_operating_temperature").val(data.RatedOperatingTemperature);
+                $("#calcpv_thermal_power_factor").val(data.ThermalPowerFactor);
+            },
+            error: function () {
+            }
+        });
+    };
+
+    // расчет площади PV системы: изменение типа ориентации
+    function CalcPVChangePanelOrientation(val) {
+        if (val == 1) {
+            $("#calcpv_azimuth").prop('readonly', true);
+            $("#calcpv_azimuth").val('');
+            $("#calcpv_tilt").prop('readonly', true);
+            $("#calcpv_tilt").val('');
+        }
+        else if (val == 2) {
+            $("#calcpv_azimuth").prop('readonly', true);
+            $("#calcpv_azimuth").val('');
+            $("#calcpv_tilt").prop('readonly', false);
+        }
+        else if (val == 3) {
+            $("#calcpv_azimuth").prop('readonly', false);
+            $("#calcpv_tilt").prop('readonly', true);
+            $("#calcpv_tilt").val('');
+        }
+        else if (val == 5) {
+            $("#calcpv_azimuth").prop('readonly', false);
+            $("#calcpv_tilt").prop('readonly', false);
+        }
+        else if (val == 4) {
+            $("#calcpv_azimuth").prop('readonly', true);
+            $("#calcpv_azimuth").val('');
+            $("#calcpv_tilt").prop('readonly', true);
+            $("#calcpv_tilt").val('');
+        }
+    };
+
+    // диалог расчета площади PV системы
+    function CalcPVDialog() {
+        $("#dialog_calc").dialog("close");
+        document.getElementById("calcpv_coordinates").innerHTML = hdms;
+        $("#calcpv_wiringefficiency").val(0.95);
+        $("#calcpv_controllerefficiency").val(0.95);
+        $("#calcpv_inverterefficiency").val(0.95);
+        $("#calcpv_batteryefficiency").val(0.95);
+        $("#dialog_calcpv").dialog({
+            width: 700,
+            height: 440,
+            appendTo: "#fullscreen"
+        });
+    };
+
+    @*// расчет площади PV системы: изменение типа материала
+    function CalcPVChangePVSystemMaterial(val) {
+        $.ajax({
+            url: '@Url.Action("GetPVSystemMaterial")',
+            data: JSON.stringify({ "Id": val }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#calcpv_Efficiency").val(data.Efficiency);
+                $("#calcpv_RatedOperatingTemperature").val(data.RatedOperatingTemperature);
+                $("#calcpv_ThermalPowerFactor").val(data.ThermalPowerFactor);
+            },
+            error: function () {
+            }
+        });
+    };*@
+
+    // расчет площади PV системы
+    function CalcPV() {
+        var LossesSnowMoths = [];
+        var favorite = [];
+        $.each($("input[name='calcpv_lossessnow_month']:checked"), function () {
+            LossesSnowMoths.push($(this).val());
+        });
+        document.getElementById("loading").style.display = "block";
+        $.ajax({
+            url: '@Url.Action("CalcPV")',
+            data: JSON.stringify({
+                "Longitude": parseFloat($("#calcpv_longitude").val().replace(",", ".")),
+                "Latitude": parseFloat($("#calcpv_latitude").val().replace(",", ".")),
+                "MeteoDataSourceId": $("#calcpv_MeteoDataSourceId").val(),
+                "Wload": $("#calcpv_wload").val(),
+                "SPPPurposeId": $("#calcpv_SPPPurposeId").val(),
+                "PanelOrientationId": $("#calcpv_PanelOrientationId").val(),
+                "PVSystemMaterialId": $("#calcpv_PVSystemMaterialId").val(),
+                "RatedPower": parseFloat($("#calcpv_rated_power").val().replace(",", ".")),
+                "PanelsCount": $("#calcpv_panels_count").val(),
+                "PanelEfficiency": parseFloat($("#calcpv_panel_efficiency").val().replace(",", ".")),
+                "RatedOperatingTemperature": $("#calcpv_rated_operating_temperature").val(),
+                "ThermalPowerFactor": parseFloat($("#calcpv_thermal_power_factor").val().replace(",", ".")),
+                "WiringEfficiency": parseFloat($("#calcpv_wiringefficiency").val().replace(",", ".")),
+                "ControllerEfficiency": parseFloat($("#calcpv_controllerefficiency").val().replace(",", ".")),
+                "InverterEfficiency": parseFloat($("#calcpv_inverterefficiency").val().replace(",", ".")),
+                "BatteryEfficiency": parseFloat($("#calcpv_batteryefficiency").val().replace(",", ".")),
+                "Azimuth": $("#calcpv_azimuth").val(),
+                "Tilt": $("#calcpv_tilt").val(),
+                "LossesSoil": parseFloat($("#calcpv_lossessoil").val().replace(",", ".")),
+                "LossesSnow": parseFloat($("#calcpv_lossessnow").val().replace(",", ".")),
+                "LossesSnowMoths": LossesSnowMoths,
+                "LossesShad": parseFloat($("#calcpv_lossesshad").val().replace(",", ".")),
+                "LossesMis": parseFloat($("#calcpv_lossesmis").val().replace(",", "."))
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                //$("#calcpvresult_Longitude").html(data.Longitude);
+                //$("#calcpvresult_Latitude").html(data.Latitude);
+                //$("#calcpvresult_SPPPurpose").html(data.SPPPurpose);
+                //$("#calcpvresult_PanelOrientation").html(data.PanelOrientation);
+                //$("#calcpvresult_PVSystemMaterial").html(data.PVSystemMaterial);
+                //$("#calcpvresult_RatedPower").html(data.RatedPower);
+                //$("#calcpvresult_PanelsCount").html(data.PanelsCount);
+                //$("#calcpvresult_PanelEfficiency").html(data.PanelEfficiency);
+                //$("#calcpvresult_RatedOperatingTemperature").html(data.RatedOperatingTemperature);
+                //$("#calcpvresult_ThermalPowerFactor").html(data.ThermalPowerFactor);
+                //$("#calcpvresult_Tilt").html(data.Tilt);
+                //$("#calcpvresult_Azimuth").html(data.Azimuth);
+                //$("#calcpvresult_WiringEfficiency").html(data.WiringEfficiency);
+                //$("#calcpvresult_ControllerEfficiency").html(data.ControllerEfficiency);
+                //$("#calcpvresult_InverterEfficiency").html(data.InverterEfficiency);
+                //$("#calcpvresult_BatteryEfficiency").html(data.BatteryEfficiency);
+                //$("#calcpvresult_LossesSoil").html(data.LossesSoil);
+                //$("#calcpvresult_LossesSnow").html(data.LossesSnow);
+                //$("#calcpvresult_LossesShad").html(data.LossesShad);
+                //$("#calcpvresult_LossesMis").html(data.LossesMis);
+                //$("#calcpvresult_H_td_average").html(data.H_td_average);
+                //$("#calcpvresult_η_epv").html(data.η_epv);
+                //$("#calcpvresult_S_pv").html(data.S_pv);
+
+                $("#calcpvresult_month01").html($("#month01").text());
+                $("#calcpvresult_month02").html($("#month02").text());
+                $("#calcpvresult_month03").html($("#month03").text());
+                $("#calcpvresult_month04").html($("#month04").text());
+                $("#calcpvresult_month05").html($("#month05").text());
+                $("#calcpvresult_month06").html($("#month06").text());
+                $("#calcpvresult_month07").html($("#month07").text());
+                $("#calcpvresult_month08").html($("#month08").text());
+                $("#calcpvresult_month09").html($("#month09").text());
+                $("#calcpvresult_month10").html($("#month10").text());
+                $("#calcpvresult_month11").html($("#month11").text());
+                $("#calcpvresult_month12").html($("#month12").text());
+
+                $("#calcpvresult_S_pv01").html(data.S_pv[0]);
+                $("#calcpvresult_S_pv02").html(data.S_pv[1]);
+                $("#calcpvresult_S_pv03").html(data.S_pv[2]);
+                $("#calcpvresult_S_pv04").html(data.S_pv[3]);
+                $("#calcpvresult_S_pv05").html(data.S_pv[4]);
+                $("#calcpvresult_S_pv06").html(data.S_pv[5]);
+                $("#calcpvresult_S_pv07").html(data.S_pv[6]);
+                $("#calcpvresult_S_pv08").html(data.S_pv[7]);
+                $("#calcpvresult_S_pv09").html(data.S_pv[8]);
+                $("#calcpvresult_S_pv10").html(data.S_pv[9]);
+                $("#calcpvresult_S_pv11").html(data.S_pv[10]);
+                $("#calcpvresult_S_pv12").html(data.S_pv[11]);
+
+                $("#calcpvresult_P_tpv01").html(data.P_tpv[0]);
+                $("#calcpvresult_P_tpv02").html(data.P_tpv[1]);
+                $("#calcpvresult_P_tpv03").html(data.P_tpv[2]);
+                $("#calcpvresult_P_tpv04").html(data.P_tpv[3]);
+                $("#calcpvresult_P_tpv05").html(data.P_tpv[4]);
+                $("#calcpvresult_P_tpv06").html(data.P_tpv[5]);
+                $("#calcpvresult_P_tpv07").html(data.P_tpv[6]);
+                $("#calcpvresult_P_tpv08").html(data.P_tpv[7]);
+                $("#calcpvresult_P_tpv09").html(data.P_tpv[8]);
+                $("#calcpvresult_P_tpv10").html(data.P_tpv[9]);
+                $("#calcpvresult_P_tpv11").html(data.P_tpv[10]);
+                $("#calcpvresult_P_tpv12").html(data.P_tpv[11]);
+
+                //$("#calcpvresult_H_td01").html(data.H_td[0]);
+                //$("#calcpvresult_H_td02").html(data.H_td[1]);
+                //$("#calcpvresult_H_td03").html(data.H_td[2]);
+                //$("#calcpvresult_H_td04").html(data.H_td[3]);
+                //$("#calcpvresult_H_td05").html(data.H_td[4]);
+                //$("#calcpvresult_H_td06").html(data.H_td[5]);
+                //$("#calcpvresult_H_td07").html(data.H_td[6]);
+                //$("#calcpvresult_H_td08").html(data.H_td[7]);
+                //$("#calcpvresult_H_td09").html(data.H_td[8]);
+                //$("#calcpvresult_H_td10").html(data.H_td[9]);
+                //$("#calcpvresult_H_td11").html(data.H_td[10]);
+                //$("#calcpvresult_H_td12").html(data.H_td[11]);
+
+                //$("#calcpvresult_H_tah01").html(data.H_tah[0]);
+                //$("#calcpvresult_H_tah02").html(data.H_tah[1]);
+                //$("#calcpvresult_H_tah03").html(data.H_tah[2]);
+                //$("#calcpvresult_H_tah04").html(data.H_tah[3]);
+                //$("#calcpvresult_H_tah05").html(data.H_tah[4]);
+                //$("#calcpvresult_H_tah06").html(data.H_tah[5]);
+                //$("#calcpvresult_H_tah07").html(data.H_tah[6]);
+                //$("#calcpvresult_H_tah08").html(data.H_tah[7]);
+                //$("#calcpvresult_H_tah09").html(data.H_tah[8]);
+                //$("#calcpvresult_H_tah10").html(data.H_tah[9]);
+                //$("#calcpvresult_H_tah11").html(data.H_tah[10]);
+                //$("#calcpvresult_H_tah12").html(data.H_tah[11]);
+
+                //$("#calcpvresult_H_tm01").html(data.H_tm[0]);
+                //$("#calcpvresult_H_tm02").html(data.H_tm[1]);
+                //$("#calcpvresult_H_tm03").html(data.H_tm[2]);
+                //$("#calcpvresult_H_tm04").html(data.H_tm[3]);
+                //$("#calcpvresult_H_tm05").html(data.H_tm[4]);
+                //$("#calcpvresult_H_tm06").html(data.H_tm[5]);
+                //$("#calcpvresult_H_tm07").html(data.H_tm[6]);
+                //$("#calcpvresult_H_tm08").html(data.H_tm[7]);
+                //$("#calcpvresult_H_tm09").html(data.H_tm[8]);
+                //$("#calcpvresult_H_tm10").html(data.H_tm[9]);
+                //$("#calcpvresult_H_tm11").html(data.H_tm[10]);
+                //$("#calcpvresult_H_tm12").html(data.H_tm[11]);
+
+                //$("#calcpvresult_Ta01").html(data.Ta[0]);
+                //$("#calcpvresult_Ta02").html(data.Ta[1]);
+                //$("#calcpvresult_Ta03").html(data.Ta[2]);
+                //$("#calcpvresult_Ta04").html(data.Ta[3]);
+                //$("#calcpvresult_Ta05").html(data.Ta[4]);
+                //$("#calcpvresult_Ta06").html(data.Ta[5]);
+                //$("#calcpvresult_Ta07").html(data.Ta[6]);
+                //$("#calcpvresult_Ta08").html(data.Ta[7]);
+                //$("#calcpvresult_Ta09").html(data.Ta[8]);
+                //$("#calcpvresult_Ta10").html(data.Ta[9]);
+                //$("#calcpvresult_Ta11").html(data.Ta[10]);
+                //$("#calcpvresult_Ta12").html(data.Ta[11]);
+
+                //$("#calcpvresult_D01").html(data.D[0]);
+                //$("#calcpvresult_D02").html(data.D[1]);
+                //$("#calcpvresult_D03").html(data.D[2]);
+                //$("#calcpvresult_D04").html(data.D[3]);
+                //$("#calcpvresult_D05").html(data.D[4]);
+                //$("#calcpvresult_D06").html(data.D[5]);
+                //$("#calcpvresult_D07").html(data.D[6]);
+                //$("#calcpvresult_D08").html(data.D[7]);
+                //$("#calcpvresult_D09").html(data.D[8]);
+                //$("#calcpvresult_D10").html(data.D[9]);
+                //$("#calcpvresult_D11").html(data.D[10]);
+                //$("#calcpvresult_D12").html(data.D[11]);
+
+                //$("#calcpvresult_η_tpv01").html(data.η_tpv[0]);
+                //$("#calcpvresult_η_tpv02").html(data.η_tpv[1]);
+                //$("#calcpvresult_η_tpv03").html(data.η_tpv[2]);
+                //$("#calcpvresult_η_tpv04").html(data.η_tpv[3]);
+                //$("#calcpvresult_η_tpv05").html(data.η_tpv[4]);
+                //$("#calcpvresult_η_tpv06").html(data.η_tpv[5]);
+                //$("#calcpvresult_η_tpv07").html(data.η_tpv[6]);
+                //$("#calcpvresult_η_tpv08").html(data.η_tpv[7]);
+                //$("#calcpvresult_η_tpv09").html(data.η_tpv[8]);
+                //$("#calcpvresult_η_tpv10").html(data.η_tpv[9]);
+                //$("#calcpvresult_η_tpv11").html(data.η_tpv[10]);
+                //$("#calcpvresult_η_tpv12").html(data.η_tpv[11]);
+
+                //$("#calcpvresult_η_spv01").html(data.η_spv[0]);
+                //$("#calcpvresult_η_spv02").html(data.η_spv[1]);
+                //$("#calcpvresult_η_spv03").html(data.η_spv[2]);
+                //$("#calcpvresult_η_spv04").html(data.η_spv[3]);
+                //$("#calcpvresult_η_spv05").html(data.η_spv[4]);
+                //$("#calcpvresult_η_spv06").html(data.η_spv[5]);
+                //$("#calcpvresult_η_spv07").html(data.η_spv[6]);
+                //$("#calcpvresult_η_spv08").html(data.η_spv[7]);
+                //$("#calcpvresult_η_spv09").html(data.η_spv[8]);
+                //$("#calcpvresult_η_spv10").html(data.η_spv[9]);
+                //$("#calcpvresult_η_spv11").html(data.η_spv[10]);
+                //$("#calcpvresult_η_spv12").html(data.η_spv[11]);
+
+                //$("#calcpvresult_T_c01").html(data.T_c[0]);
+                //$("#calcpvresult_T_c02").html(data.T_c[1]);
+                //$("#calcpvresult_T_c03").html(data.T_c[2]);
+                //$("#calcpvresult_T_c04").html(data.T_c[3]);
+                //$("#calcpvresult_T_c05").html(data.T_c[4]);
+                //$("#calcpvresult_T_c06").html(data.T_c[5]);
+                //$("#calcpvresult_T_c07").html(data.T_c[6]);
+                //$("#calcpvresult_T_c08").html(data.T_c[7]);
+                //$("#calcpvresult_T_c09").html(data.T_c[8]);
+                //$("#calcpvresult_T_c10").html(data.T_c[9]);
+                //$("#calcpvresult_T_c11").html(data.T_c[10]);
+                //$("#calcpvresult_T_c12").html(data.T_c[11]);
+
+                //if ($("#calcpv_PanelOrientationId").val() == 4) {
+                //    $("#calcpvresult_β_h01").html(data.β_h[0]);
+                //    $("#calcpvresult_β_h02").html(data.β_h[1]);
+                //    $("#calcpvresult_β_h03").html(data.β_h[2]);
+                //    $("#calcpvresult_β_h04").html(data.β_h[3]);
+                //    $("#calcpvresult_β_h05").html(data.β_h[4]);
+                //    $("#calcpvresult_β_h06").html(data.β_h[5]);
+                //    $("#calcpvresult_β_h07").html(data.β_h[6]);
+                //    $("#calcpvresult_β_h08").html(data.β_h[7]);
+                //    $("#calcpvresult_β_h09").html(data.β_h[8]);
+                //    $("#calcpvresult_β_h10").html(data.β_h[9]);
+                //    $("#calcpvresult_β_h11").html(data.β_h[10]);
+                //    $("#calcpvresult_β_h12").html(data.β_h[11]);
+                //}
+                var S_pv = [];
+                for (i = 0; i < data.S_pv_c.length; i++) {
+                    S_pv.push([data.S_pv_c[i].X, data.S_pv_c[i].Y]);
+                }
+                //$('#CalcPVResultChart').show();
+                var options = {
+                    axisLabels: {
+                        show: true
+                    },
+                    xaxes: [{
+                        axisLabel: $('#Month').html(),
+                        axisLabelPadding: 15,
+                    }],
+                    yaxes: [{
+                        position: 'left',
+                        axisLabel: $('#AverageMonthlyRequiredTotalAreaOfSolarPVSystems').html(),
+                        axisLabelPadding: 25,
+                    }, {
+                        position: 'right',
+                        axisLabel: 'bleem'
+                    }],
+                    canvas: true
+                };
+                //calcpvresultchart = $.plot("#calcpvresult_chart", [S_pv],
+                //    {
+                //        canvas: true
+                //    });
+                calcpvresultchart = $.plot("#calcpvresult_chart", [S_pv], options);
+                //$('#CalcPVResult').show();
+
+                if (dialog_calcpvresult_first) {
+                    $("#dialog_calcpvresult").dialog({
+                        width: 1000,
+                        height: 740,
+                        appendTo: "#fullscreen",
+                        minHeight: 740,
+                        minWidth: 1000
+                    });
+                    dialog_calcpvresult_first = false;
+                }
+                else {
+                    $("#dialog_calcpvresult").dialog({
+                        appendTo: "#fullscreen"
+                    });
+                }
+                document.getElementById("loading").style.display = "none";
+            },
+            error: function () {
+                document.getElementById("loading").style.display = "none";
+                alert('Error');
+            }
+        });
+    };
+
+    // расчет площади PV системы: скачать диаграмму
+    function DownloadCalcPVChart() {
+        var myCanvas = calcpvresultchart.getCanvas();
+        $("#calcpvresult_chart_download").attr("src", myCanvas.toDataURL());
+        var picture = $('#calcpvresult_chart_download').attr("src");
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetChart")',
+            data: { source: picture },
+            success: function (data) {
+                if (data.Error == null) {
+                    window.open(data.FilePath);
+                }
+                else {
+                    alert(data.Error);
+                }
+            },
+            error: function () {
+                alert('Error');
+            }
+        });
+    };
+</script>
+
+@* расчет производительности PV системы *@
+<script>
+    // расчет производительности PV системы: изменение типа материала
+    function CalcEfficiencyChangePVSystemMaterial(val) {
+        $.ajax({
+            url: '@Url.Action("GetPVSystemMaterial")',
+            data: JSON.stringify({ "Id": val }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#calcefficiency_panel_efficiency").val(data.Efficiency);
+                $("#calcefficiency_rated_operating_temperature").val(data.RatedOperatingTemperature);
+                $("#calcefficiency_thermal_power_factor").val(data.ThermalPowerFactor);
+            },
+            error: function () {
+            }
+        });
+    };
+
+    // расчет производительности PV системы: изменение типа ориентации
+    function CalcEfficiencyChangePanelOrientation(val) {
+        if (val == 1) {
+            $("#calcefficiency_azimuth").prop('readonly', true);
+            $("#calcefficiency_azimuth").val('');
+            $("#calcefficiency_tilt").prop('readonly', true);
+            $("#calcefficiency_tilt").val('');
+        }
+        else if (val == 2) {
+            $("#calcefficiency_azimuth").prop('readonly', true);
+            $("#calcefficiency_azimuth").val('');
+            $("#calcefficiency_tilt").prop('readonly', false);
+        }
+        else if (val == 3) {
+            $("#calcefficiency_azimuth").prop('readonly', false);
+            $("#calcefficiency_tilt").prop('readonly', true);
+            $("#calcefficiency_tilt").val('');
+        }
+        else if (val == 5) {
+            $("#calcefficiency_azimuth").prop('readonly', false);
+            $("#calcefficiency_tilt").prop('readonly', false);
+        }
+        else if (val == 4) {
+            //$("#calcefficiency_azimuth").prop('readonly', true);
+            //$("#calcefficiency_azimuth").val('');
+            $("#calcefficiency_azimuth").prop('readonly', false);
+            $("#calcefficiency_tilt").prop('readonly', true);
+            $("#calcefficiency_tilt").val('');
+        }
+    };
+
+    // расчет производительности PV системы
+    function CalcEfficiency() {
+        var LossesSnowMoths = [];
+        var favorite = [];
+        $.each($("input[name='calcefficiency_lossessnow_month']:checked"), function () {
+            LossesSnowMoths.push($(this).val());
+        });
+        document.getElementById("loading").style.display = "block";
+        $.ajax({
+            url: '@Url.Action("CalcEfficiency")',
+            data: JSON.stringify({
+                "Longitude": parseFloat($("#calcefficiency_longitude").val().replace(",", ".")),
+                "Latitude": parseFloat($("#calcefficiency_latitude").val().replace(",", ".")),
+                "MeteoDataSourceId": $("#calcefficiency_MeteoDataSourceId").val(),
+                "SPPPurposeId": $("#calcefficiency_SPPPurposeId").val(),
+                "PanelOrientationId": $("#calcefficiency_PanelOrientationId").val(),
+                "PVSystemMaterialId": $("#calcefficiency_PVSystemMaterialId").val(),
+                //"RatedPower": parseFloat($("#calcefficiency_rated_power").val().replace(",", ".")),
+                //"PanelsCount": $("#calcefficiency_panels_count").val(),
+                "PanelsArea": parseFloat($("#calcefficiency_panels_area").val().replace(",", ".")),
+                "PanelEfficiency": parseFloat($("#calcefficiency_panel_efficiency").val().replace(",", ".")),
+                "RatedOperatingTemperature": $("#calcefficiency_rated_operating_temperature").val(),
+                "ThermalPowerFactor": parseFloat($("#calcefficiency_thermal_power_factor").val().replace(",", ".")),
+                "WiringEfficiency": parseFloat($("#calcefficiency_wiringefficiency").val().replace(",", ".")),
+                "ControllerEfficiency": parseFloat($("#calcefficiency_controllerefficiency").val().replace(",", ".")),
+                "InverterEfficiency": parseFloat($("#calcefficiency_inverterefficiency").val().replace(",", ".")),
+                "BatteryEfficiency": parseFloat($("#calcefficiency_batteryefficiency").val().replace(",", ".")),
+                "Azimuth": $("#calcefficiency_azimuth").val(),
+                "Tilt": $("#calcefficiency_tilt").val(),
+                "LossesSoil": parseFloat($("#calcefficiency_lossessoil").val().replace(",", ".")),
+                "LossesSnow": parseFloat($("#calcefficiency_lossessnow").val().replace(",", ".")),
+                "LossesSnowMoths": LossesSnowMoths,
+                "LossesShad": parseFloat($("#calcefficiency_lossesshad").val().replace(",", ".")),
+                "LossesMis": parseFloat($("#calcefficiency_lossesmis").val().replace(",", "."))
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                //$("#calcefficiencyresult_Longitude").html(data.Longitude);
+                //$("#calcefficiencyresult_Latitude").html(data.Latitude);
+                //$("#calcefficiencyresult_SPPPurpose").html(data.SPPPurpose);
+                //$("#calcefficiencyresult_PanelOrientation").html(data.PanelOrientation);
+                //$("#calcefficiencyresult_PVSystemMaterial").html(data.PVSystemMaterial);
+                //$("#calcefficiencyresult_RatedPower").html(data.RatedPower);
+                //$("#calcefficiencyresult_PanelsCount").html(data.PanelsCount);
+                //$("#calcefficiencyresult_PanelEfficiency").html(data.PanelEfficiency);
+                //$("#calcefficiencyresult_RatedOperatingTemperature").html(data.RatedOperatingTemperature);
+                //$("#calcefficiencyresult_ThermalPowerFactor").html(data.ThermalPowerFactor);
+                //$("#calcefficiencyresult_Tilt").html(data.Tilt);
+                //$("#calcefficiencyresult_Azimuth").html(data.Azimuth);
+                //$("#calcefficiencyresult_WiringEfficiency").html(data.WiringEfficiency);
+                //$("#calcefficiencyresult_ControllerEfficiency").html(data.ControllerEfficiency);
+                //$("#calcefficiencyresult_InverterEfficiency").html(data.InverterEfficiency);
+                //$("#calcefficiencyresult_BatteryEfficiency").html(data.BatteryEfficiency);
+                //$("#calcefficiencyresult_LossesSoil").html(data.LossesSoil);
+                //$("#calcefficiencyresult_LossesSnow").html(data.LossesSnow);
+                //$("#calcefficiencyresult_LossesShad").html(data.LossesShad);
+                //$("#calcefficiencyresult_LossesMis").html(data.LossesMis);
+                //$("#calcefficiencyresult_H_td_average").html(data.H_td_average);
+                //$("#calcefficiencyresult_η_epv").html(data.η_epv);
+                //$("#calcefficiencyresult_S_pv").html(data.S_pv);
+
+                $("#calcefficiencyresult_month01").html($("#month01").text());
+                $("#calcefficiencyresult_month02").html($("#month02").text());
+                $("#calcefficiencyresult_month03").html($("#month03").text());
+                $("#calcefficiencyresult_month04").html($("#month04").text());
+                $("#calcefficiencyresult_month05").html($("#month05").text());
+                $("#calcefficiencyresult_month06").html($("#month06").text());
+                $("#calcefficiencyresult_month07").html($("#month07").text());
+                $("#calcefficiencyresult_month08").html($("#month08").text());
+                $("#calcefficiencyresult_month09").html($("#month09").text());
+                $("#calcefficiencyresult_month10").html($("#month10").text());
+                $("#calcefficiencyresult_month11").html($("#month11").text());
+                $("#calcefficiencyresult_month12").html($("#month12").text());
+                $("#calcefficiencyresult_year").html($("#Year").text());
+
+                $("#calcefficiencyresult_W_PV01").html(data.W_PV[0]);
+                $("#calcefficiencyresult_W_PV02").html(data.W_PV[1]);
+                $("#calcefficiencyresult_W_PV03").html(data.W_PV[2]);
+                $("#calcefficiencyresult_W_PV04").html(data.W_PV[3]);
+                $("#calcefficiencyresult_W_PV05").html(data.W_PV[4]);
+                $("#calcefficiencyresult_W_PV06").html(data.W_PV[5]);
+                $("#calcefficiencyresult_W_PV07").html(data.W_PV[6]);
+                $("#calcefficiencyresult_W_PV08").html(data.W_PV[7]);
+                $("#calcefficiencyresult_W_PV09").html(data.W_PV[8]);
+                $("#calcefficiencyresult_W_PV10").html(data.W_PV[9]);
+                $("#calcefficiencyresult_W_PV11").html(data.W_PV[10]);
+                $("#calcefficiencyresult_W_PV12").html(data.W_PV[11]);
+                $("#calcefficiencyresult_W_PVyear").html(data.W_PV_year);
+
+                $("#calcefficiencyresult_H_td01").html(data.H_td[0]);
+                $("#calcefficiencyresult_H_td02").html(data.H_td[1]);
+                $("#calcefficiencyresult_H_td03").html(data.H_td[2]);
+                $("#calcefficiencyresult_H_td04").html(data.H_td[3]);
+                $("#calcefficiencyresult_H_td05").html(data.H_td[4]);
+                $("#calcefficiencyresult_H_td06").html(data.H_td[5]);
+                $("#calcefficiencyresult_H_td07").html(data.H_td[6]);
+                $("#calcefficiencyresult_H_td08").html(data.H_td[7]);
+                $("#calcefficiencyresult_H_td09").html(data.H_td[8]);
+                $("#calcefficiencyresult_H_td10").html(data.H_td[9]);
+                $("#calcefficiencyresult_H_td11").html(data.H_td[10]);
+                $("#calcefficiencyresult_H_td12").html(data.H_td[11]);
+                $("#calcefficiencyresult_H_tdyear").html(data.H_td_year);
+
+                //$("#calcefficiencyresult_H_tah01").html(data.H_tah[0]);
+                //$("#calcefficiencyresult_H_tah02").html(data.H_tah[1]);
+                //$("#calcefficiencyresult_H_tah03").html(data.H_tah[2]);
+                //$("#calcefficiencyresult_H_tah04").html(data.H_tah[3]);
+                //$("#calcefficiencyresult_H_tah05").html(data.H_tah[4]);
+                //$("#calcefficiencyresult_H_tah06").html(data.H_tah[5]);
+                //$("#calcefficiencyresult_H_tah07").html(data.H_tah[6]);
+                //$("#calcefficiencyresult_H_tah08").html(data.H_tah[7]);
+                //$("#calcefficiencyresult_H_tah09").html(data.H_tah[8]);
+                //$("#calcefficiencyresult_H_tah10").html(data.H_tah[9]);
+                //$("#calcefficiencyresult_H_tah11").html(data.H_tah[10]);
+                //$("#calcefficiencyresult_H_tah12").html(data.H_tah[11]);
+
+                //$("#calcefficiencyresult_H_tm01").html(data.H_tm[0]);
+                //$("#calcefficiencyresult_H_tm02").html(data.H_tm[1]);
+                //$("#calcefficiencyresult_H_tm03").html(data.H_tm[2]);
+                //$("#calcefficiencyresult_H_tm04").html(data.H_tm[3]);
+                //$("#calcefficiencyresult_H_tm05").html(data.H_tm[4]);
+                //$("#calcefficiencyresult_H_tm06").html(data.H_tm[5]);
+                //$("#calcefficiencyresult_H_tm07").html(data.H_tm[6]);
+                //$("#calcefficiencyresult_H_tm08").html(data.H_tm[7]);
+                //$("#calcefficiencyresult_H_tm09").html(data.H_tm[8]);
+                //$("#calcefficiencyresult_H_tm10").html(data.H_tm[9]);
+                //$("#calcefficiencyresult_H_tm11").html(data.H_tm[10]);
+                //$("#calcefficiencyresult_H_tm12").html(data.H_tm[11]);
+
+                //$("#calcefficiencyresult_Ta01").html(data.Ta[0]);
+                //$("#calcefficiencyresult_Ta02").html(data.Ta[1]);
+                //$("#calcefficiencyresult_Ta03").html(data.Ta[2]);
+                //$("#calcefficiencyresult_Ta04").html(data.Ta[3]);
+                //$("#calcefficiencyresult_Ta05").html(data.Ta[4]);
+                //$("#calcefficiencyresult_Ta06").html(data.Ta[5]);
+                //$("#calcefficiencyresult_Ta07").html(data.Ta[6]);
+                //$("#calcefficiencyresult_Ta08").html(data.Ta[7]);
+                //$("#calcefficiencyresult_Ta09").html(data.Ta[8]);
+                //$("#calcefficiencyresult_Ta10").html(data.Ta[9]);
+                //$("#calcefficiencyresult_Ta11").html(data.Ta[10]);
+                //$("#calcefficiencyresult_Ta12").html(data.Ta[11]);
+
+                //$("#calcefficiencyresult_D01").html(data.D[0]);
+                //$("#calcefficiencyresult_D02").html(data.D[1]);
+                //$("#calcefficiencyresult_D03").html(data.D[2]);
+                //$("#calcefficiencyresult_D04").html(data.D[3]);
+                //$("#calcefficiencyresult_D05").html(data.D[4]);
+                //$("#calcefficiencyresult_D06").html(data.D[5]);
+                //$("#calcefficiencyresult_D07").html(data.D[6]);
+                //$("#calcefficiencyresult_D08").html(data.D[7]);
+                //$("#calcefficiencyresult_D09").html(data.D[8]);
+                //$("#calcefficiencyresult_D10").html(data.D[9]);
+                //$("#calcefficiencyresult_D11").html(data.D[10]);
+                //$("#calcefficiencyresult_D12").html(data.D[11]);
+
+                //$("#calcefficiencyresult_η_tpv01").html(data.η_tpv[0]);
+                //$("#calcefficiencyresult_η_tpv02").html(data.η_tpv[1]);
+                //$("#calcefficiencyresult_η_tpv03").html(data.η_tpv[2]);
+                //$("#calcefficiencyresult_η_tpv04").html(data.η_tpv[3]);
+                //$("#calcefficiencyresult_η_tpv05").html(data.η_tpv[4]);
+                //$("#calcefficiencyresult_η_tpv06").html(data.η_tpv[5]);
+                //$("#calcefficiencyresult_η_tpv07").html(data.η_tpv[6]);
+                //$("#calcefficiencyresult_η_tpv08").html(data.η_tpv[7]);
+                //$("#calcefficiencyresult_η_tpv09").html(data.η_tpv[8]);
+                //$("#calcefficiencyresult_η_tpv10").html(data.η_tpv[9]);
+                //$("#calcefficiencyresult_η_tpv11").html(data.η_tpv[10]);
+                //$("#calcefficiencyresult_η_tpv12").html(data.η_tpv[11]);
+
+                //$("#calcefficiencyresult_η_spv01").html(data.η_spv[0]);
+                //$("#calcefficiencyresult_η_spv02").html(data.η_spv[1]);
+                //$("#calcefficiencyresult_η_spv03").html(data.η_spv[2]);
+                //$("#calcefficiencyresult_η_spv04").html(data.η_spv[3]);
+                //$("#calcefficiencyresult_η_spv05").html(data.η_spv[4]);
+                //$("#calcefficiencyresult_η_spv06").html(data.η_spv[5]);
+                //$("#calcefficiencyresult_η_spv07").html(data.η_spv[6]);
+                //$("#calcefficiencyresult_η_spv08").html(data.η_spv[7]);
+                //$("#calcefficiencyresult_η_spv09").html(data.η_spv[8]);
+                //$("#calcefficiencyresult_η_spv10").html(data.η_spv[9]);
+                //$("#calcefficiencyresult_η_spv11").html(data.η_spv[10]);
+                //$("#calcefficiencyresult_η_spv12").html(data.η_spv[11]);
+
+                //$("#calcefficiencyresult_T_c01").html(data.T_c[0]);
+                //$("#calcefficiencyresult_T_c02").html(data.T_c[1]);
+                //$("#calcefficiencyresult_T_c03").html(data.T_c[2]);
+                //$("#calcefficiencyresult_T_c04").html(data.T_c[3]);
+                //$("#calcefficiencyresult_T_c05").html(data.T_c[4]);
+                //$("#calcefficiencyresult_T_c06").html(data.T_c[5]);
+                //$("#calcefficiencyresult_T_c07").html(data.T_c[6]);
+                //$("#calcefficiencyresult_T_c08").html(data.T_c[7]);
+                //$("#calcefficiencyresult_T_c09").html(data.T_c[8]);
+                //$("#calcefficiencyresult_T_c10").html(data.T_c[9]);
+                //$("#calcefficiencyresult_T_c11").html(data.T_c[10]);
+                //$("#calcefficiencyresult_T_c12").html(data.T_c[11]);
+
+                //if ($("#calcefficiency_PanelOrientationId").val() == 4) {
+                //    $("#calcefficiencyresult_β_h01").html(data.β_h[0]);
+                //    $("#calcefficiencyresult_β_h02").html(data.β_h[1]);
+                //    $("#calcefficiencyresult_β_h03").html(data.β_h[2]);
+                //    $("#calcefficiencyresult_β_h04").html(data.β_h[3]);
+                //    $("#calcefficiencyresult_β_h05").html(data.β_h[4]);
+                //    $("#calcefficiencyresult_β_h06").html(data.β_h[5]);
+                //    $("#calcefficiencyresult_β_h07").html(data.β_h[6]);
+                //    $("#calcefficiencyresult_β_h08").html(data.β_h[7]);
+                //    $("#calcefficiencyresult_β_h09").html(data.β_h[8]);
+                //    $("#calcefficiencyresult_β_h10").html(data.β_h[9]);
+                //    $("#calcefficiencyresult_β_h11").html(data.β_h[10]);
+                //    $("#calcefficiencyresult_β_h12").html(data.β_h[11]);
+                //}
+
+                var W_PV = [];
+                for (i = 0; i < data.W_PV_c.length; i++) {
+                    W_PV.push([data.W_PV_c[i].X, data.W_PV_c[i].Y]);
+                }
+                //$('#CalcEfficiencyResultChart').show();
+                var options = {
+                    axisLabels: {
+                        show: true
+                    },
+                    grid: {
+                        show: true,
+                        margin: 15
+                    },
+                    //margin: {
+                    //    top: 50,
+                    //    left: 50,
+                    //    bottom: 50,
+                    //    right: 50
+                    //},
+                    //labelMargin: {
+                    //    top: 50,
+                    //    left: 50,
+                    //    bottom: 50,
+                    //    right: 50
+                    //},
+                    //borderWidth: {
+                    //    top: 5,
+                    //    left: 5,
+                    //    bottom: 5,
+                    //    right: 5
+                    //},
+                    //xaxes: [{
+                    //    axisLabel: $('#Month').html(),
+                    //    axisLabelPadding: 15,
+                    //}],
+                    //yaxes: [{
+                    //    position: 'left',
+                    //    axisLabel: $('#AverageMonthlyOutputPowerOfThePVSystem').html(),
+                    //    axisLabelPadding: 25,
+                    //}, {
+                    //    position: 'right',
+                    //    axisLabel: 'bleem'
+                    //}],
+                    canvas: true
+                };
+                calcefficiencyresultchart = $.plot("#calcefficiencyresult_chart", [W_PV], options);
+                //$('#CalcEfficiencyResult').show();
+
+                
+
+                if (dialog_calcefficiencyresult_first) {
+                    $("#dialog_calcefficiencyresult").dialog({
+                        width: 1050,
+                        height: 680,
+                        appendTo: "#fullscreen",
+                        minHeight: 680,
+                        minWidth: 1000,
+                        resize: function (event, ui) { setTimeout(FlotLabels, 500); }
+
+                    });
+                    dialog_calcefficiencyresult_first = false;
+                }
+                else {
+                    $("#dialog_calcefficiencyresult").dialog({
+                        appendTo: "#fullscreen",
+                        resize: function (event, ui) { setTimeout(FlotLabels, 500); }
+
+                    });
+                }
+
+                calcefficiencyresultchart.setupGrid();
+                calcefficiencyresultchart.draw();
+
+                //calcefficiencyresultchart.getCanvas().getContext("2d").fillText("Hello World", canvas.width / 2, canvas.height / 2);
+                
+
+                document.getElementById("loading").style.display = "none";
+                //calcefficiencyresultchart.draw();
+
+                //var canvas = calcefficiencyresultchart.getCanvas();
+                //var ctx = canvas.getContext("2d");
+                //ctx.save();
+                //ctx.fillStyle = "brown";
+                //ctx.textAlign = "center";
+                //ctx.fillText($('#Month').html(), canvas.width / 2, canvas.height - 10);
+                //var tx = 60;
+                //var ty = (50);
+                //ctx.rotate(-Math.PI / 2);
+                //ctx.fillStyle = "brown";
+                //ctx.textAlign = "center";
+                //ctx.fillText($('#AverageMonthlyOutputPowerOfThePVSystem').html(), -canvas.height / 2, 10);
+                //ctx.restore();
+
+                setTimeout(FlotLabels, 500);
+            },
+            error: function () {
+                document.getElementById("loading").style.display = "none";
+                alert('Error');
+            }
+        });
+    };
+
+    function FlotLabels() {
+        var canvas = calcefficiencyresultchart.getCanvas();
+        var ctx = canvas.getContext("2d");
+        ctx.save();
+        ctx.fillStyle = "brown";
+        ctx.textAlign = "center";
+        ctx.fillText($('#Month').html(), canvas.width / 2, canvas.height - 10);
+        var tx = 60;
+        var ty = (50);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillStyle = "brown";
+        ctx.textAlign = "center";
+        ctx.fillText($('#AverageMonthlyOutputPowerOfThePVSystem').html(), -canvas.height / 2, 10);
+        ctx.restore();
+    };
+
+    // расчет производительности PV системы: скачать параметры PV-системы
+    function DownloadCalcEfficiencyResult() {
+        var myTableArray = [];
+        $("table#CalcEfficiencyResultParamsTable tr").each(function () {
+            var arrayOfThisRow = [];
+            var tableData = $(this).find('td');
+            if (tableData.length > 0) {
+                tableData.each(function () {
+                    arrayOfThisRow.push($.trim($(this).text().toString()));
+                });
+                myTableArray.push(arrayOfThisRow);
+            }
+        });
+        $.ajax({
+            url: '@Url.Action("GetCSV")',
+            data: JSON.stringify({
+                "Array": myTableArray
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                if (data.Error == null) {
+                    window.location = data.FilePath;
+                }
+                else {
+                    alert(data.Error);
+                }
+            },
+            error: function () {
+                alert('Error');
+            }
+        });
+    };
+
+    // расчет производительности PV системы: скачать диаграмму
+    function DownloadCalcEfficiencyChart() {
+        var myCanvas = calcefficiencyresultchart.getCanvas();
+        
+        //var canvas = calcefficiencyresultchart.getCanvas();
+        //var ctx = canvas.getContext("2d");
+        //ctx.save();
+        //ctx.fillStyle = "brown";
+        //ctx.textAlign = "center";
+        //ctx.fillText($('#Month').html(), canvas.width / 2, canvas.height - 10);
+        //var tx = 60;
+        //var ty = (50);
+        //ctx.rotate(-Math.PI / 2);
+        //ctx.fillStyle = "brown";
+        //ctx.textAlign = "center";
+        //ctx.fillText($('#AverageMonthlyOutputPowerOfThePVSystem').html(), -canvas.height / 2, 10);
+        //ctx.restore();
+
+        @*$("#calcefficiencyresult_chart_download").attr("src", myCanvas.toDataURL());
+        var picture = $('#calcefficiencyresult_chart_download').attr("src");
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetChart")',
+            data: { source: picture },
+            success: function (data) {
+                if (data.Error == null) {
+                    window.open(data.FilePath);
+                    //window.location = data.FilePath;
+                }
+                else {
+                    alert(data.Error);
+                }
+            },
+            error: function () {
+                alert('Error');
+            }
+        });*@
+        var c = myCanvas;
+        var d = c.toDataURL("image/png");
+        var w = window.open('about:blank', 'image from canvas');
+        //var w = window.open(c.toDataURL('image/png'));
+        w.document.write("<img src='" + d + "' alt='from canvas'/>");
+
+        //var image = myCanvas.toDataURL();
+        //image = image.replace("image/png", "image/octet-stream");
+        //document.location.href = image;
+    };
+</script>
+
+@* анализ местности *@
+<script>
+    function AnalizeTerrain() {
+        document.getElementById("loading").style.display = "block";
+        $.ajax({
+            url: '@Url.Action("AnalizeTerrain")',
+            data: JSON.stringify({
+                "OblastId": $("#analize_terrain_OblastId").val(),
+                "Importances_swvdwnyear": $("#analize_terrain_swvdwnyear_importance").val(),
+                "Min_swvdwnyear": $("#analize_terrain_swvdwnyear_min").val(),
+                "Importances_np_dist": $("#analize_terrain_np_dist_importance").val(),
+                "Max_np_dist": $("#analize_terrain_np_dist_max").val(),
+                "Importances_lep_dist": $("#analize_terrain_lep_dist_importance").val(),
+                "Max_lep_dist": $("#analize_terrain_lep_dist_max").val(),
+                "Importances_auto_dist": $("#analize_terrain_auto_dist_importance").val(),
+                "Max_auto_dist": $("#analize_terrain_auto_dist_max").val(),
+                "Importances_slope_srtm": $("#analize_terrain_slope_srtm_importance").val(),
+                "Max_slope_srtm": $("#analize_terrain_slope_srtm_max").val(),
+                "Importances_srtm": $("#analize_terrain_srtm_importance").val(),
+                "Max_srtm": $("#analize_terrain_srtm_max").val(),
+                "Exclude_settlement": $("input[name='analize_terrain_settlement_exclude']").prop("checked"),
+                "Exclude_agri": $("input[name='analize_terrain_agri_exclude']").prop("checked"),
+                "Exclude_wood": $("input[name='analize_terrain_wood_exclude']").prop("checked"),
+                "Exclude_bush": $("input[name='analize_terrain_bush_exclude']").prop("checked"),
+                "Exclude_hydro": $("input[name='analize_terrain_hydro_exclude']").prop("checked"),
+                "Exclude_takyr": $("input[name='analize_terrain_takyr_exclude']").prop("checked"),
+                "Exclude_desert": $("input[name='analize_terrain_desert_exclude']").prop("checked"),
+                "Exclude_solon": $("input[name='analize_terrain_solon_exclude']").prop("checked"),
+                "Exclude_stone": $("input[name='analize_terrain_stone_exclude']").prop("checked"),
+                "Exclude_protect": $("input[name='analize_terrain_protect_exclude']").prop("checked"),
+                "Exclude_reserve": $("input[name='analize_terrain_reserve_exclude']").prop("checked"),
+                "Exclude_park": $("input[name='analize_terrain_park_exclude']").prop("checked"),
+                "Exclude_natres": $("input[name='analize_terrain_natres_exclude']").prop("checked"),
+                "Exclude_preserve": $("input[name='analize_terrain_preserve_exclude']").prop("checked")
+
+
+
+                //"Importances_lep": $("#analize_terrain_sum_swv_dwn").val(),
+                //"Max_lep": $("#analize_terrain_lep_max").val(),
+                //"Importances_road": $("#analize_terrain_road").val(),
+                //"Max_road": $("#analize_terrain_road_max").val(),
+                //"Importances_np": $("#analize_terrain_np").val(),
+                //"Max_np": $("#analize_terrain_np_max").val(),
+                //"Importances_slope_blh": $("#analize_terrain_slope_blh").val(),
+                //"Max_slope_blh": $("#analize_terrain_slope_blh_max").val(),
+                //"Importances_srtm_blh": $("#analize_terrain_srtm_blh").val(),
+                //"Max_srtm_blh": $("#analize_terrain_srtm_blh_max").val(),
+                //"Exclude_oopt": $("input[name='analize_terrain_oopt_exclude']").prop("checked"),
+                //"Exclude_wood": $("input[name='analize_terrain_wood_exclude']").prop("checked"),
+                //"Exclude_hydro": $("input[name='analize_terrain_hydro_exclude']").prop("checked"),
+                //"Exclude_pamatniki": $("input[name='analize_terrain_pamatniki_exclude']").prop("checked"),
+                //"Exclude_np": $("input[name='analize_terrain_np_exclude']").prop("checked")
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                if (!data.ErrorMessage) {
+
+                    
+                    //var Source_AnalizeTerrain_buf = new ol.source.TileWMS();
+                    //var Layer_AnalizeTerrain_buf = new ol.layer.Tile({source: Source_AnalizeTerrain_buf});
+                    //Layer_AnalizeTerrain_buf.setVisible(false);
+
+                    //alert(map.getLayers()[map.getLayers().length - 1]);
+                    //map.removeLayer(map.getLayers()[map.getLayers().length - 1]);
+                    //map.removeLayer(Layer_AnalizeTerrain);
+
+                    Source_AnalizeTerrain = new ol.source.TileWMS({
+                        url: 'http://' + gip + ':8080/geoserver/AtlasSolar/wms?',//service=WMS&request=GetMap&srs=EPSG:3857&format=application/openlayers&',
+                        params: {
+                            'LAYERS': 'AtlasSolar:' + data.Layer,
+                            'VERSION': '1.1.0',
+                            'FORMAT': 'image/png8',
+                            'TILED': false,
+                            'SRS': 'EPSG:3857'
+                        },
+                        serverType: 'geoserver'
+                        //,
+                        //projection: 'EPSG:3857'
+                    });
+                    if (map.getView().getZoom() > 7){
+                        map.getView().setZoom(7);
+                    }
+                    map.setView(new ol.View({
+                        center: map.getView().getCenter(),
+                        zoom: map.getView().getZoom(),
+                        maxZoom: 7,
+                        minZoom: min_zoom,
+                        extent: [5000000, 4800000, 10000000, 7500000]
+                    }));
+
+                    Layer_AnalizeTerrain.setSource(Source_AnalizeTerrain);
+                    Layer_AnalizeTerrain.setOpacity(0.75);
+                    Layer_AnalizeTerrain.setVisible(true);
+                    $('#legend_analizeterrain').show();
+                    var index = $('#tabs a[href="#Legend"]').parent().index();
+                    $("#tabs").tabs("option", "active", index);
+
+                    //Layer_AnalizeTerrain = Layer_AnalizeTerrain_buf;
+                    //Source_AnalizeTerrain = Source_AnalizeTerrain_buf;
+                    //map.addLayer(Layer_AnalizeTerrain_buf);    
+                    var editedHref = $('#analize_terrain_downloadlink').attr('href').split('?')[0];
+                    $('#analize_terrain_downloadlink').attr('href', editedHref + '?FileName=' + data.Layer + '&Folder=AnalizeTerrain');
+                    document.getElementById("analize_terrain_downloadlink").style.display = "inline-block";
+                }
+                else {
+                    alert(data.ErrorMessage);
+                }
+                document.getElementById("loading").style.display = "none";
+            },
+            error: function () {
+                document.getElementById("loading").style.display = "none";
+                alert('error');
+            }
+        });
+    };
+
+    function AnalizeTerrainOblast() {
+        $.ajax({
+            url: '@Url.Action("AnalizeTerrainOblast")',
+            data: JSON.stringify({
+                "RayonId": 35,
+                "Importances_sum_swv_dwn": $("#analize_terrain_sum_swv_dwn").val(),
+                "Min_sum_swv_dwn": $("#analize_terrain_sum_swv_dwn_min").val(),
+                "Importances_lep": $("#analize_terrain_sum_swv_dwn").val(),
+                "Max_lep": $("#analize_terrain_lep_max").val(),
+                "Importances_road": $("#analize_terrain_road").val(),
+                "Max_road": $("#analize_terrain_road_max").val(),
+                "Importances_np": $("#analize_terrain_np").val(),
+                "Max_np": $("#analize_terrain_np_max").val(),
+                "Importances_slope_blh": $("#analize_terrain_slope_blh").val(),
+                "Max_slope_blh": $("#analize_terrain_slope_blh_max").val(),
+                "Importances_srtm_blh": $("#analize_terrain_srtm_blh").val(),
+                "Max_srtm_blh": $("#analize_terrain_srtm_blh_max").val(),
+                "Exclude_oopt": $("input[name='analize_terrain_oopt_exclude']").prop("checked"),
+                "Exclude_wood": $("input[name='analize_terrain_wood_exclude']").prop("checked"),
+                "Exclude_hydro": $("input[name='analize_terrain_hydro_exclude']").prop("checked"),
+                "Exclude_pamatniki": $("input[name='analize_terrain_pamatniki_exclude']").prop("checked"),
+                "Exclude_np": $("input[name='analize_terrain_np_exclude']").prop("checked")
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                if (!data.ErrorMessage) {
+
+
+                    //var Source_AnalizeTerrain_buf = new ol.source.TileWMS();
+                    //var Layer_AnalizeTerrain_buf = new ol.layer.Tile({source: Source_AnalizeTerrain_buf});
+                    //Layer_AnalizeTerrain_buf.setVisible(false);
+
+                    //alert(map.getLayers()[map.getLayers().length - 1]);
+                    //map.removeLayer(map.getLayers()[map.getLayers().length - 1]);
+                    //map.removeLayer(Layer_AnalizeTerrain);
+
+                    Source_AnalizeTerrain = new ol.source.TileWMS({
+                        url: 'http://' + gip + ':8080/geoserver/AtlasSolar/wms?',//service=WMS&request=GetMap&srs=EPSG:3857&format=application/openlayers&',
+                        params: {
+                            'LAYERS': 'AtlasSolar:' + data.Layer,
+                            'VERSION': '1.1.0',
+                            'FORMAT': 'image/png8',
+                            'TILED': false,
+                            'SRS': 'EPSG:3857'
+                        },
+                        serverType: 'geoserver'
+                        //,
+                        //projection: 'EPSG:3857'
+                    });
+                    if (map.getView().getZoom() > 7) {
+                        map.getView().setZoom(7);
+                    }
+                    map.setView(new ol.View({
+                        center: map.getView().getCenter(),
+                        zoom: map.getView().getZoom(),
+                        maxZoom: 7,
+                        minZoom: min_zoom,
+                        extent: [5000000, 4800000, 10000000, 7500000]
+                    }));
+
+                    Layer_AnalizeTerrain.setSource(Source_AnalizeTerrain);
+                    Layer_AnalizeTerrain.setOpacity(0.75);
+                    Layer_AnalizeTerrain.setVisible(true);
+                    $('#legend_analizeterrain').show();
+                    var index = $('#tabs a[href="#Legend"]').parent().index();
+                    $("#tabs").tabs("option", "active", index);
+
+                    //Layer_AnalizeTerrain = Layer_AnalizeTerrain_buf;
+                    //Source_AnalizeTerrain = Source_AnalizeTerrain_buf;
+                    //map.addLayer(Layer_AnalizeTerrain_buf);                    
+                }
+                else {
+                    alert(data.ErrorMessage);
+                }
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    };
+</script>
+
+@* поиск местности *@
+<script>
+    var formulas = $("#formulas");
+    var formula = $("#find_terrain_formula");
+    var operands = $("#operands");
+    var message = $("#message");
+    //var expectFormula = true;
+
+    formulas.dblclick(function () {
+        if (formula.val()[formula.val().length - 1] != ' ') {
+            formula.val(formula.val() + ' ');
+        }
+        var currentFormula = formula.val();
+        var appendFormula = formulas.val();
+        var newFormula = (currentFormula + appendFormula).trim() + " ";
+        formula.val(newFormula);
+        return;
+    });
+
+    operands.dblclick(function () {
+        if (formula.val()[formula.val().length - 1] != ' ') {
+            formula.val(formula.val() + ' ');
+        }
+        var currentFormula = formula.val();
+        var appendFormula = operands.val();
+        var newFormula = (currentFormula + appendFormula).trim() + " ";
+        formula.val(newFormula);
+        return;
+    });
+
+    function FindTerrainAddLayer() {
+        if (formula.val()[formula.val().length - 1] != ' ') {
+            formula.val(formula.val() + ' ');
+        }
+        var currentFormula = formula.val();
+        var appendFormula = formulas.val();
+        var newFormula = (currentFormula + appendFormula).trim() + " ";
+        formula.val(newFormula);
+    };
+
+    function FindTerrainAddOperand() {
+        if (formula.val()[formula.val().length - 1] != ' ') {
+            formula.val(formula.val() + ' ');
+        }
+        var currentFormula = formula.val();
+        var appendFormula = operands.val();
+        var newFormula = (currentFormula + appendFormula).trim() + " ";
+        formula.val(newFormula);
+    };
+
+    function FindTerrainDownloadMap() {
+        $.ajax({
+            url: '@Url.Action("DownloadMap")',
+            data: JSON.stringify({
+                "FileName": "2017_05_04_14_02_31_5434319",
+                "Folder": "FindTerrain"
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                alert(data.FilePath);
+                window.location = data.FilePath;
+            },
+            error: function () {
+                alert('Error');
+            }
+        });
+    };
+
+    function FindTerrain() {
+        document.getElementById("loading").style.display = "block";
+        $.ajax({
+            url: '@Url.Action("FindTerrain")',
+            data: JSON.stringify({
+                "OblastId": $("#find_terrain_OblastId").val(),
+                "Formula": $("#find_terrain_formula").val()
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                if (!data.ErrorMessage) {
+                    Source_FindTerrain = new ol.source.TileWMS({
+                        url: 'http://' + gip + ':8080/geoserver/AtlasSolar/wms?',
+                        params: {
+                            'LAYERS': 'AtlasSolar:' + data.Layer,
+                            'VERSION': '1.1.0',
+                            'FORMAT': 'image/png8',
+                            'TILED': false,
+                            'SRS': 'EPSG:3857'
+                        },
+                        serverType: 'geoserver'
+                    });
+                    if (map.getView().getZoom() > 7){
+                        map.getView().setZoom(7);
+                    }
+                    map.setView(new ol.View({
+                        center: map.getView().getCenter(),
+                        zoom: map.getView().getZoom(),
+                        maxZoom: 7,
+                        minZoom: min_zoom,
+                        extent: [5000000, 4800000, 10000000, 7500000]
+                    }));
+
+                    Layer_FindTerrain.setSource(Source_FindTerrain);
+                    Layer_FindTerrain.setOpacity(0.75);
+                    Layer_FindTerrain.setVisible(true);
+                    $('#legend_findterrain').show();
+                    var index = $('#tabs a[href="#Legend"]').parent().index();
+                    $("#tabs").tabs("option", "active", index);
+
+
+                    var editedHref = $('#find_terrain_downloadlink').attr('href').split('?')[0];
+                    $('#find_terrain_downloadlink').attr('href', editedHref + '?FileName=' + data.Layer + '&Folder=FindTerrain');
+                    document.getElementById("find_terrain_downloadlink").style.display = "inline-block";
+                }
+                else {
+                    alert(data.ErrorMessage);
+                }
+                document.getElementById("loading").style.display = "none";
+            },
+            error: function () {
+                document.getElementById("loading").style.display = "none";
+                alert('error');
+            }
+        });
+    };
+</script>
+
+@* получение метеоданых *@
+<script>
+    @*function GetMeteoDataRefreshMeteoDataTypeIds() {
+        $.ajax({
+            url: '@Url.Action("GetMeteoDataTypes")',
+            data: JSON.stringify({
+                "MeteoDataPeriodicityId": $('#get_meteo_data_meteodataperiodicityid').val(),
+                "MeteoDataSourceId": $('#get_meteo_data_meteodatasourceid').val()
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#get_meteo_data_meteodatatypeid").empty();
+                $.each(data, function (i) {
+                    var optionhtml = '<option value="' +
+                data[i].Value + '">' + data[i].Text + '</option>';
+                    $('#get_meteo_data_meteodatatypeid').append(optionhtml);
+                });
+            },
+            error: function () {
+            }
+        });
+    };*@
+    function GetMeteoDataPeriodicitiesBySource() {
+        $.ajax({
+            url: '@Url.Action("GetMeteoDataPeriodicitiesBySource")',
+            data: JSON.stringify({
+                "MeteoDataSourceId": $('#get_meteo_data_meteodatasourceid').val()
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#get_meteo_data_meteodataperiodicityid").empty();
+                $.each(data, function (i) {
+                    var optionhtml = '<option value="' +
+                data[i].Value + '">' + data[i].Text + '</option>';
+                    $('#get_meteo_data_meteodataperiodicityid').append(optionhtml);
+                });
+                GetMeteoDataTypesBySourcePeriodicity();
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function GetMeteoDataTypesBySourcePeriodicity() {
+        $.ajax({
+            url: '@Url.Action("GetMeteoDataTypesBySourcePeriodicity")',
+            data: JSON.stringify({
+                "MeteoDataSourceId": $('#get_meteo_data_meteodatasourceid').val(),
+                "MeteoDataPeriodicityId": $('#get_meteo_data_meteodataperiodicityid').val()
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#get_meteo_data_meteodatatypeid").empty();
+                $.each(data, function (i) {
+                    var optionhtml = '<option value="' +
+                data[i].Value + '">' + data[i].Text + '</option>';
+                    $('#get_meteo_data_meteodatatypeid').append(optionhtml);
+                });
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function GetMeteoData() {
+        if ($('#get_meteo_data_meteodatatypeid').val() == null) {
+            alert($('#SelectMeteoDataType').html());
+        }
+        else {
+            document.getElementById("loading").style.display = "block";
+            $.ajax({
+                url: '@Url.Action("GetMeteoData")',
+                data: JSON.stringify({
+                    "MeteoDataTypeId": $('#get_meteo_data_meteodatatypeid').val(),
+                    "Longitude": parseFloat($("#get_meteo_data_longitude").val().replace(/\./g, ',').replace(',', '.')),
+                    "Latitude": parseFloat($("#get_meteo_data_latitude").val().replace(/\./g, ',').replace(',', '.'))
+                }),
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if (data.Error == null) {
+                        window.location = data.FilePath;
+                    }
+                    else {
+                        alert(data.Error);
+                    }
+                    document.getElementById("loading").style.display = "none";
+                },
+                error: function () {
+                    document.getElementById("loading").style.display = "none";
+                }
+            });
+        }
+    };
+</script>
+
+@* получение метеоданых по области *@
+<script>
+    function GetMeteoDataRegionPeriodicitiesBySource() {
+        $.ajax({
+            url: '@Url.Action("GetMeteoDataPeriodicitiesBySource")',
+            data: JSON.stringify({
+                "MeteoDataSourceId": $('#get_meteo_data_region_meteodatasourceid').val()
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#get_meteo_data_region_meteodataperiodicityid").empty();
+                $.each(data, function (i) {
+                    var optionhtml = '<option value="' +
+                data[i].Value + '">' + data[i].Text + '</option>';
+                    $('#get_meteo_data_region_meteodataperiodicityid').append(optionhtml);
+                });
+                GetMeteoDataRegionTypesBySourcePeriodicity();
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function GetMeteoDataRegionTypesBySourcePeriodicity() {
+        $.ajax({
+            url: '@Url.Action("GetMeteoDataTypesBySourcePeriodicity")',
+            data: JSON.stringify({
+                "MeteoDataSourceId": $('#get_meteo_data_region_meteodatasourceid').val(),
+                "MeteoDataPeriodicityId": $('#get_meteo_data_region_meteodataperiodicityid').val()
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#get_meteo_data_region_meteodatatypeid").empty();
+                $.each(data, function (i) {
+                    var optionhtml = '<option value="' +
+                data[i].Value + '">' + data[i].Text + '</option>';
+                    $('#get_meteo_data_region_meteodatatypeid').append(optionhtml);
+                });
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function GetMeteoDataRegion() {
+        if ($('#get_meteo_data_region_meteodatatypeid').val() == null) {
+            alert($('#SelectMeteoDataType').html());
+        }
+        else {
+            document.getElementById("loading").style.display = "block";
+            $.ajax({
+                url: '@Url.Action("GetMeteoDataRegion")',
+                data: JSON.stringify({
+                    "MeteoDataTypeId": $('#get_meteo_data_region_meteodatatypeid').val(),
+                    "OblastId": $('#get_meteo_data_region_OblastId').val()
+                }),
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if (data.Error == null) {
+                        window.location = data.FilePath;
+                    }
+                    else {
+                        alert(data.Error);
+                    }
+                    document.getElementById("loading").style.display = "none";
+                },
+                error: function () {
+                    document.getElementById("loading").style.display = "none";
+                }
+            });
+        }
+    };
+</script>
+
+@* СЭС *@
+<script>
+    window.onload = function () {
+        document.getElementById('uploader').onsubmit = function () {
+            if (role != 'Admin' && role != 'Moderator') {
+                return;
+            }
+            var lon4326 = parseFloat($("#create_spp_longitude").val().replace(',', '.'));
+            var lat4326 = parseFloat($("#create_spp_latitude").val().replace(',', '.'));
+            var coor3857 = ol.proj.transform([lon4326, lat4326], 'EPSG:4326', 'EPSG:3857');
+            var lon3857 = coor3857[0];
+            var lat3857 = coor3857[1];
+            var geom = new ol.geom.Point(
+                [lon3857, lat3857]
+            );
+            ///////////////
+            if ($("#create_spp_Name").val() == '') {
+                alert($("#EnterName").html());
+                return false;
+            }
+            if ($("#create_spp_Power").val() == '') {
+                alert($("#EnterPower").html());
+                return false;
+            }
+            if ($("#create_spp_Startup").val() == '') {
+                alert($("#EnterYear").html());
+                return false;
+            }
+            if ($("#create_spp_SPPStatusId").val() == 1) {
+                var d = new Date();
+                var y = d.getFullYear();
+                if ($("#create_spp_Startup").val() > y) {
+                    alert($("#WrongYear").html());
+                    return false;
+                }
+            }
+            if ($("#create_spp_SPPStatusId").val() == 2) {
+                var d = new Date();
+                var y = d.getFullYear();
+                if ($("#create_spp_Startup").val() < y) {
+                    alert('Неверный год');
+                    return false;
+                }
+            }
+
+            var formdata = new FormData();
+            var fileInput = document.getElementById('create_spp_Photo');
+            for (i = 0; i < fileInput.files.length; i++) {
+                formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            }
+            formdata.append("Id", 0);
+            formdata.append("Name", $("#create_spp_Name").val());
+            formdata.append("Count", $("#create_spp_Count").val());
+            formdata.append("Power", $("#create_spp_Power").val());
+            formdata.append("Cost", $("#create_spp_Cost").val());
+            formdata.append("Startup", $("#create_spp_Startup").val());
+            formdata.append("Link", $("#create_spp_Link").val());
+            formdata.append("Customer", $("#create_spp_Customer").val());
+            formdata.append("Investor", $("#create_spp_Investor").val());
+            formdata.append("Executor", $("#create_spp_Executor").val());
+            formdata.append("CapacityFactor", $("#create_spp_CapacityFactor").val());
+            formdata.append("Coordinates", lon4326.toString() + "," + lat4326.toString());
+            formdata.append("SPPStatusId", $("#create_spp_SPPStatusId").val());
+            formdata.append("SPPPurposeId", $("#create_spp_SPPPurposeId").val());
+            formdata.append("PanelOrientationId", $("#create_spp_PanelOrientationId").val());
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Maps/GetSPPsFromMap');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var featurething = new ol.Feature({
+                        Id: xhr.responseText,
+                        Name: $("#create_spp_Name").val(),
+                        Count: $("#create_spp_Count").val(),
+                        Power: ((!isNaN(parseFloat($("#create_spp_Power").val().replace(',', '.')))) ? parseFloat($("#create_spp_Power").val().replace(',', '.')) : null),
+                        Cost: $("#create_spp_Cost").val(),
+                        Startup: $("#create_spp_Startup").val(),
+                        Link: $("#create_spp_Link").val(),
+                        Customer: $("#create_spp_Customer").val(),
+                        Investor: $("#create_spp_Investor").val(),
+                        Executor: $("#create_spp_Executor").val(),
+                        CapacityFactor: ((!isNaN(parseFloat($("#create_spp_CapacityFactor").val().replace(',', '.')))) ? (parseFloat($("#create_spp_CapacityFactor").val().replace(',', '.'))).toString().replace('.', ',') : ''),
+                        Coordinates: lon4326.toString() + "," + lat4326.toString(),
+                        SPPStatusId: $("#create_spp_SPPStatusId").val(),
+                        SPPPurposeId: $("#create_spp_SPPPurposeId").val(),
+                        PanelOrientationId: $("#create_spp_PanelOrientationId").val(),
+                        geometry: geom
+                    });
+                    Source_spp.addFeature(featurething);
+                    var geojson = new ol.format.GeoJSON;
+                    var features = Source_spp.getFeatures();
+                    var json = geojson.writeFeatures(features);
+                }
+            }
+            $("#dialog_create_spp").dialog("close");
+            return false;
+        }
+        //--------------------
+        document.getElementById('edit_spp').onsubmit = function () {
+            if (role != 'Admin' && role != 'Moderator') {
+                return;
+            }
+            var lon4326 = parseFloat($("#edit_spp_longitude").val().replace(',', '.'));
+            var lat4326 = parseFloat($("#edit_spp_latitude").val().replace(',', '.'));
+            var coor3857 = ol.proj.transform([lon4326, lat4326], 'EPSG:4326', 'EPSG:3857');
+            var lon3857 = coor3857[0];
+            var lat3857 = coor3857[1];
+            var geom = new ol.geom.Point(
+                [lon3857, lat3857]
+            );
+            ///////////////
+            if ($("#edit_spp_Name").val() == '') {
+                alert($("#EnterName").html());
+                return false;
+            }
+            if ($("#edit_spp_Power").val() == '') {
+                alert($("#EnterPower").html());
+                return false;
+            }
+            if ($("#edit_spp_Startup").val() == '') {
+                alert($("#EnterYear").html());
+                return false;
+            }
+            if ($("#edit_spp_SPPStatusId").val() == 1) {
+                var d = new Date();
+                var y = d.getFullYear();
+                if ($("#edit_spp_Startup").val() > y) {
+                    alert($("#WrongYear").html());
+                    return false;
+                }
+            }
+            if ($("#edit_spp_SPPStatusId").val() == 2) {
+                var d = new Date();
+                var y = d.getFullYear();
+                if ($("#edit_spp_Startup").val() < y) {
+                    alert('Неверный год');
+                    return false;
+                }
+            }
+
+            var formdata = new FormData();
+            var fileInput = document.getElementById('edit_spp_Photo');
+            for (i = 0; i < fileInput.files.length; i++) {
+                formdata.append(fileInput.files[i].name, fileInput.files[i]);
+            }
+            formdata.append("Id", $("#info_spp_id").val());
+            formdata.append("Name", $("#edit_spp_Name").val());
+            formdata.append("Count", $("#edit_spp_Count").val());
+            formdata.append("Power", $("#edit_spp_Power").val());
+            formdata.append("Cost", $("#edit_spp_Cost").val());
+            formdata.append("Startup", $("#edit_spp_Startup").val());
+            formdata.append("Link", $("#edit_spp_Link").val());
+            formdata.append("Customer", $("#edit_spp_Customer").val());
+            formdata.append("Investor", $("#edit_spp_Investor").val());
+            formdata.append("Executor", $("#edit_spp_Executor").val());
+            formdata.append("CapacityFactor", $("#edit_spp_CapacityFactor").val());
+            formdata.append("Coordinates", lon4326.toString() + "," + lat4326.toString());
+            formdata.append("SPPStatusId", $("#edit_spp_SPPStatusId").val());
+            formdata.append("SPPPurposeId", $("#edit_spp_SPPPurposeId").val());
+            formdata.append("PanelOrientationId", $("#edit_spp_PanelOrientationId").val());
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Maps/GetSPPsFromMap');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    Source_spp.getFeatures().forEach(function (feature) {
+                        if (feature.get('Id') == $('#info_spp_id').val()) {
+                            Source_spp.removeFeature(feature);
+                        }
+                    });
+                    var featurething = new ol.Feature({
+                        Id: $('#info_spp_id').val(),
+                        Name: $("#edit_spp_Name").val(),
+                        Count: $("#edit_spp_Count").val(),
+                        Power: ((!isNaN(parseFloat($("#create_spp_Power").val().replace(',', '.')))) ? parseFloat($("#create_spp_Power").val().replace(',', '.')) : null),
+                        Cost: $("#edit_spp_Cost").val(),
+                        Startup: $("#edit_spp_Startup").val(),
+                        Link: $("#edit_spp_Link").val(),
+                        Customer: $("#edit_spp_Customer").val(),
+                        Investor: $("#edit_spp_Investor").val(),
+                        Executor: $("#edit_spp_Executor").val(),
+                        CapacityFactor: ((!isNaN(parseFloat($("#create_spp_CapacityFactor").val().replace(',', '.')))) ? (parseFloat($("#create_spp_CapacityFactor").val().replace(',', '.'))).toString().replace('.', ',') : ''),
+                        Coordinates: lon4326.toString() + "," + lat4326.toString(),
+                        SPPStatusId: $("#edit_spp_SPPStatusId").val(),
+                        SPPPurposeId: $("#edit_spp_SPPPurposeId").val(),
+                        PanelOrientationId: $("#edit_spp_PanelOrientationId").val(),
+                        geometry: geom
+                    });
+                    Source_spp.addFeature(featurething);
+                    var geojson = new ol.format.GeoJSON;
+                    var features = Source_spp.getFeatures();
+                    var json = geojson.writeFeatures(features);
+                }
+            }
+            $("#dialog_edit_spp").dialog("close");
+            return false;
+        }
+    };
+
+    function ShowSPPInfoDialog(id) {
+        Source_spp.getFeatures().forEach(function (feature) {
+            if (feature.get('Id') == id) {
+
+                $('#info_spp_Photo').attr("src", '');
+                $.ajax({
+                    url: '@Url.Action("GetSPPPhoto")',
+                    data: JSON.stringify({
+                        "SPPId": id
+                    }),
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        $('#info_spp_Photo').attr("src", data);
+                    },
+                    error: function () {
+                    }
+                });
+                $('#info_spp_id').val(id);
+                $('#info_spp_longitude').html(feature.get('Coordinates').split(",")[0].replace(".", ","));
+                $('#info_spp_latitude').html(feature.get('Coordinates').split(",")[1].replace(".", ","));
+                $('#info_spp_Name').html(feature.get('Name'));
+                $('#info_spp_Count').html(feature.get('Count'));
+                $('#info_spp_Power').html(feature.get('Power'));
+                $('#info_spp_Cost').html(feature.get('Cost'));
+                $('#info_spp_Startup').html(feature.get('Startup'));
+                $('#info_spp_Link').html(feature.get('Link'));
+                $('#info_spp_Customer').html(feature.get('Customer'));
+                $('#info_spp_Investor').html(feature.get('Investor'));
+                $('#info_spp_Executor').html(feature.get('Executor'));
+                $('#info_spp_CapacityFactor').html(feature.get('CapacityFactor'));
+                $('#info_spp_SPPStatusId').val(feature.get('SPPStatusId'));
+                $('#info_spp_SPPPurposeId').val(feature.get('SPPPurposeId'));
+                $('#info_spp_PanelOrientationId').val(feature.get('PanelOrientationId'));
+                $("#dialog_info_spp").dialog({
+                    width: 720,
+                    height: 650,
+                    appendTo: "#fullscreen"
+                });
+            }
+        });
+        return false;
+    };
+
+    function EditSPP() {
+        var SPP;
+        Source_spp.getFeatures().forEach(function (feature) {
+            if (feature.get('Id') == $("#info_spp_id").val()) {
+                SPP = feature;
+            }
+        });
+        $("#edit_spp_longitude").val(SPP.get('Coordinates').split(",")[0].replace(".", ","));
+        $('#edit_spp_latitude').val(SPP.get('Coordinates').split(",")[1].replace(".", ","));
+        $('#edit_spp_Name').val(SPP.get('Name'));
+        $('#edit_spp_Count').val(SPP.get('Count'));
+        var Power = (SPP.get('Power') == null ? "" : SPP.get('Power').toString());
+        if (Power.split(",").length == 1) {
+            Power += ',000';
+        }
+        var need_symbols = 3 - Power.split(",")[0].length;
+        for (count = 0; count < need_symbols; count++) {
+            Power = '0' + Power;
+        }
+        $('#edit_spp_Power').val(Power);
+        $('#edit_spp_Cost').val(SPP.get('Cost'));
+        $('#edit_spp_Startup').val(SPP.get('Startup'));
+        $('#edit_spp_Link').val(SPP.get('Link'));
+        $('#edit_spp_Customer').val(SPP.get('Customer'));
+        $('#edit_spp_Investor').val(SPP.get('Investor'));
+        $('#edit_spp_Executor').val(SPP.get('Executor'));
+
+        var CapacityFactor = (SPP.get('CapacityFactor') == null ? "" : SPP.get('CapacityFactor').toString());
+        if (CapacityFactor.split(",").length == 1) {
+            CapacityFactor += ',000';
+        }
+        var need_symbols = 3 - CapacityFactor.split(",")[0].length;
+        for (count = 0; count < need_symbols; count++) {
+            CapacityFactor = '0' + CapacityFactor;
+        }
+        $('#edit_spp_CapacityFactor').val(CapacityFactor);
+
+        $('#edit_spp_SPPStatusId').val(SPP.get('SPPStatusId'));
+        $('#edit_spp_SPPPurposeId').val(SPP.get('SPPPurposeId'));
+        $('#edit_spp_PanelOrientationId').val(SPP.get('PanelOrientationId'));
+        $("#dialog_info_spp").dialog("close");
+        $("#dialog_edit_spp").dialog({
+            width: 720,
+            height: 650,
+            appendTo: "#fullscreen"
+        });
+    };
+</script>
+
+@* ЛЭП *@
+<script>
+    function ShowLepInfoDialog(gid) {
+        for (i = 0; i < lep_gid.length; i++) {
+            if (lep_gid[i] == gid) {
+                $('#info_lep_name_rs').html(lep_name_rs[i]);
+                $('#info_lep_vltg').html(lep_vltg[i]);
+                $('#info_lep_rng').html($('#Leprngs option[value="' + lep_rng[i] + '"]').text());
+                $('#info_lep_type').html($('#Leptypes option[value="' + lep_type[i] + '"]').text());
+                $('#info_lep_dtntr').html(lep_dtntr[i]);
+                $('#info_lep_elvt').html(lep_elvt[i]);
+                $('#info_lep_mtrl').html($('#Lepmtrls option[value="' + lep_mtrl[i] + '"]').text());
+                $('#info_lep_insttp').html($('#Lepinsttps option[value="' + lep_insttp[i] + '"]').text());
+                $('#info_lep_lnght').html(lep_lnght[i]);
+                $('#info_lep_rnzon').html($('#Leprnzons option[value="' + lep_rnzon[i] + '"]').text());
+                break;
+            }
+        }
+        $("#dialog_info_lep").dialog({
+            width: 720,
+            height: 650,
+            appendTo: "#fullscreen"
+        });
+        return false;
+    };
+</script>
+
+@* сравнение точек *@
+<script>
+    // сравнение точек: обновление списка метеоданных
+    @*function ComparePointsRefreshMeteoDataTypeIds() {
+        $.ajax({
+            url: '@Url.Action("GetMeteoDataTypes")',
+            data: JSON.stringify({
+                "MeteoDataPeriodicityId": $('#compare_points_meteodataperiodicityid').val(),
+                "MeteoDataSourceId": $('#compare_points_meteodatasourceid').val()
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#compare_points_meteodatatypeid").empty();
+                $.each(data, function (i) {
+                    var optionhtml = '<option value="' +
+                data[i].Value + '">' + data[i].Text + '</option>';
+                    $('#compare_points_meteodatatypeid').append(optionhtml);
+                });
+            },
+            error: function () {
+            }
+        });
+    };*@
+    function ComparePointsPeriodicitiesBySource() {
+        $.ajax({
+            url: '@Url.Action("GetMeteoDataPeriodicitiesBySourceComparePoints")',
+            data: JSON.stringify({
+                "MeteoDataSourceId": $('#compare_points_meteodatasourceid').val()
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#compare_points_meteodataperiodicityid").empty();
+                $.each(data, function (i) {
+                    var optionhtml = '<option value="' +
+                data[i].Value + '">' + data[i].Text + '</option>';
+                    $('#compare_points_meteodataperiodicityid').append(optionhtml);
+                });
+                ComparePointsTypesBySourcePeriodicity();
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function ComparePointsTypesBySourcePeriodicity() {
+        $.ajax({
+            url: '@Url.Action("GetMeteoDataGroupsBySourcePeriodicity")',
+            data: JSON.stringify({
+                "MeteoDataSourceId": $('#compare_points_meteodatasourceid').val(),
+                "MeteoDataPeriodicityId": $('#compare_points_meteodataperiodicityid').val()
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#compare_points_meteodatagroup").empty();
+                $.each(data, function (i) {
+                    var optionhtml = '<option value="' +
+                data[i].Value + '">' + data[i].Text + '</option>';
+                    $('#compare_points_meteodatagroup').append(optionhtml);
+                });
+                ComparePointsTypesBySourcePeriodicityGroup();
+            },
+            error: function () {
+            }
+        });
+    };
+
+    function ComparePointsTypesBySourcePeriodicityGroup() {
+        $.ajax({
+            url: '@Url.Action("GetMeteoDataTypesBySourcePeriodicityGroup")',
+            data: JSON.stringify({
+                "MeteoDataSourceId": $('#compare_points_meteodatasourceid').val(),
+                "MeteoDataPeriodicityId": $('#compare_points_meteodataperiodicityid').val(),
+                "Group": $('#compare_points_meteodatagroup').val()
+            }),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $("#compare_points_meteodatatypeid").empty();
+                $.each(data, function (i) {
+                    var optionhtml = '<option value="' +
+                data[i].Value + '">' + data[i].Text + '</option>';
+                    $('#compare_points_meteodatatypeid').append(optionhtml);
+                });
+            },
+            error: function () {
+            }
+        });
+    };
+
+    // сравнение точек
+    function ComparePointsSet(point) {
+        tool = 'setpoint';
+        set_point_number = point;
+    };
+
+    // сравнение точек
+    function ComparePoints() {
+        if ($('#compare_points_meteodatatypeid').val() == null) {
+            alert($('#SelectMeteoDataType').html());
+        }
+        else {
+            document.getElementById("loading").style.display = "block";
+            $.ajax({
+                url: '@Url.Action("ComparePoints")',
+                data: JSON.stringify({
+                    "MeteoDataTypeId": $('#compare_points_meteodatatypeid').val(),
+                    "Longitude1": parseFloat($("#compare_points_p1_longitude").html().replace(",", ".")),
+                    "Latitude1": parseFloat($("#compare_points_p1_latitude").html().replace(",", ".")),
+                    "Longitude2": parseFloat($("#compare_points_p2_longitude").html().replace(",", ".")),
+                    "Latitude2": parseFloat($("#compare_points_p2_latitude").html().replace(",", ".")),
+                    "Longitude3": parseFloat($("#compare_points_p3_longitude").html().replace(",", ".")),
+                    "Latitude3": parseFloat($("#compare_points_p3_latitude").html().replace(",", "."))
+                }),
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    var X = [];
+                    for (i = 0; i < data.XAxis.length; i++) {
+                        X.push([data.XAxis[i].Y + 1, data.XAxis[i].X.toString()]);
+                    }
+                    var P1 = [];
+                    for (i = 0; i < data.P1.length; i++) {
+                        P1.push([data.P1[i].X, data.P1[i].Y]);
+                    }
+                    var P2 = [];
+                    for (i = 0; i < data.P2.length; i++) {
+                        P2.push([data.P2[i].X, data.P2[i].Y]);
+                    }
+                    var P3 = [];
+                    for (i = 0; i < data.P3.length; i++) {
+                        P3.push([data.P3[i].X, data.P3[i].Y]);
+                    }
+                    $('#compare_pointsresult_chart').html('');
+                    $("#dialog_compare_pointsresult").dialog({
+                        width: 700,
+                        height: 400,
+                        appendTo: "#fullscreen",
+                        position: { my: "right bottom", at: "right bottom", of: window },
+                        resize: function (event, ui) { setTimeout(ComparePointsFlotLabels, 500); }
+                    });
+                    comparepointsresultchart = $.plot("#compare_pointsresult_chart",
+                        [{ label: $("#PointNumber1").html(), data: P1, color: "#ff0000" },
+                            { label: $("#PointNumber2").html(), data: P2, color: "#00ff00" },
+                            { label: $("#PointNumber3").html(), data: P3, color: "#0000ff" }
+                        ],
+                        {
+                            series: {
+                                lines: {
+                                    show: true
+                                }
+                            },
+                            xaxis: {
+                                //mode: "time",
+                                tickLength: 0,
+                                ticks: X
+                            },
+                            grid: {
+                                show: true,
+                                margin: 15
+                            },
+                            canvas: true
+                        });
+                    $("#compare_pointsresult_chart").css('width', 'calc(100% - 30px)');
+                    $("#compare_pointsresult_chart").css('height', 'calc(100% - 30px)');
+                    setTimeout(ComparePointsFlotLabels, 500);
+                    document.getElementById("loading").style.display = "none";
+                },
+                error: function () {
+                    document.getElementById("loading").style.display = "none";
+                }
+            });
+        }
+    };
+
+    function ComparePointsFlotLabels() {
+        var canvas = comparepointsresultchart.getCanvas();
+        var ctx = canvas.getContext("2d");
+        ctx.save();
+        ctx.fillStyle = "brown";
+        ctx.textAlign = "center";
+        ctx.fillText($('#Date').html(), canvas.width / 2, canvas.height - 10);
+        var tx = 60;
+        var ty = (50);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillStyle = "brown";
+        ctx.textAlign = "center";
+        ctx.fillText($('#ParameterValue').html(), -canvas.height / 2, 10);
+        ctx.restore();
+    };
+</script>
+
+@* маска ввода *@
+<script>
+    var selector = document.getElementById("create_spp_longitude");
+    Inputmask({
+        "mask": "99,9[9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("create_spp_latitude");
+    Inputmask({
+        "mask": "99,9[9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("create_spp_Power");
+    Inputmask({
+        "mask": "[9][9]9,999",
+        clearMaskOnLostFocus: true,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("create_spp_CapacityFactor");
+    Inputmask({
+        "mask": "[9][9]9,999",
+        clearMaskOnLostFocus: true,
+        "placeholder": "0"
+    }).mask(selector);
+    //---------------------------------------------
+    var selector = document.getElementById("edit_spp_longitude");
+    Inputmask({
+        "mask": "99,9[9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("edit_spp_latitude");
+    Inputmask({
+        "mask": "99,9[9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("edit_spp_Power");
+    Inputmask({
+        "mask": "[9][9]9,999",
+        clearMaskOnLostFocus: true,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("edit_spp_CapacityFactor");
+    Inputmask({
+        "mask": "[9][9]9,999",
+        clearMaskOnLostFocus: true,
+        "placeholder": "0"
+    }).mask(selector);
+    //---------------------------------------------
+    selector = document.getElementById("calcpv_longitude");
+    Inputmask({
+        "mask": "99,9[9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_latitude");
+    Inputmask({
+        "mask": "99,9[9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_wload");
+    Inputmask({
+        "mask": "9[9][9][9][9][9][9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_rated_power");
+    Inputmask({
+        "mask": "9[9][9][9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_panels_count");
+    Inputmask({
+        "mask": "9[9][9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_panel_efficiency");
+    Inputmask({
+        "mask": "9,9[9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_rated_operating_temperature");
+    Inputmask({
+        "mask": "9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_thermal_power_factor");
+    Inputmask({
+        "mask": "[-]9,9[9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_wiringefficiency");
+    Inputmask({
+        "mask": "9,9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_controllerefficiency");
+    Inputmask(
+        {
+        "mask": "9,9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_inverterefficiency");
+    Inputmask({
+        "mask": "9,9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_batteryefficiency");
+    Inputmask({
+        "mask": "9,9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    //selector = document.getElementById("calcpv_azimuth");
+    //Inputmask({
+    //    "mask": "[-]9[9][9]",
+    //    skipOptionalPartCharacter: " ",
+    //    clearMaskOnLostFocus: true,
+    //    greedy: false,
+    //    "placeholder": "0",
+    //    allowMinus: true
+    //}).mask(selector);
+    $("#calcpv_azimuth").inputmask("numeric", {
+        min: -180,
+        max: 180,
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        placeholder: "0",
+        rightAlign: false
+    });
+
+    //selector = document.getElementById("calcpv_tilt");
+    //Inputmask({
+    //    "mask": "9[9]",
+    //    skipOptionalPartCharacter: " ",
+    //    clearMaskOnLostFocus: true,
+    //    greedy: false,
+    //    "placeholder": "0"
+    //}).mask(selector);
+    $("#calcpv_tilt").inputmask("numeric", {
+        min: 0,
+        max: 90,
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        placeholder: "0",
+        rightAlign: false
+    });
+
+    selector = document.getElementById("calcpv_lossessoil");
+    Inputmask({
+        "mask": "9,9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_lossessnow");
+    Inputmask({
+        "mask": "9,9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_lossesshad");
+    Inputmask({
+        "mask": "9,9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_lossesmis");
+    Inputmask({
+        "mask": "9,9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+    //---------------------------------------------
+    selector = document.getElementById("calcefficiency_longitude");
+    Inputmask({
+        "mask": "99,9[9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcefficiency_latitude");
+    Inputmask({
+        "mask": "99,9[9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    //selector = document.getElementById("calcefficiency_rated_power");
+    //Inputmask({
+    //    "mask": "9[9][9][9][9][9]",
+    //    skipOptionalPartCharacter: " ",
+    //    clearMaskOnLostFocus: true,
+    //    greedy: false,
+    //    "placeholder": "0"
+    //}).mask(selector);
+
+    //selector = document.getElementById("calcefficiency_panels_count");
+    //Inputmask({
+    //    "mask": "9[9][9][9][9]",
+    //    skipOptionalPartCharacter: " ",
+    //    clearMaskOnLostFocus: true,
+    //    greedy: false,
+    //    "placeholder": "0"
+    //}).mask(selector);
+
+    selector = document.getElementById("calcefficiency_panels_area");
+    Inputmask({
+        "mask": "9[9][9][9],9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    //selector = document.getElementById("calcefficiency_panel_efficiency");
+    //Inputmask({
+    //    "mask": "9,9[9][9][9]",
+    //    skipOptionalPartCharacter: " ",
+    //    clearMaskOnLostFocus: true,
+    //    greedy: false,
+    //    "placeholder": "0"
+    //}).mask(selector);
+    $("#calcefficiency_panel_efficiency").inputmask("numeric", {
+        radixPoint: ',',
+        min: 0,
+        max: 1,
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        placeholder: "0",
+        rightAlign: false
+    });
+
+    selector = document.getElementById("calcefficiency_rated_operating_temperature");
+    Inputmask({
+        "mask": "9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcefficiency_thermal_power_factor");
+    Inputmask({
+        "mask": "[-]9,9[9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    //selector = document.getElementById("calcefficiency_wiringefficiency");
+    //Inputmask({
+    //    "mask": "9,9[9]",
+    //    skipOptionalPartCharacter: " ",
+    //    clearMaskOnLostFocus: true,
+    //    greedy: false,
+    //    "placeholder": "0"
+    //}).mask(selector);
+    $("#calcefficiency_wiringefficiency").inputmask("numeric", {
+        radixPoint: ',',
+        min: 0,
+        max: 1,
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        placeholder: "0",
+        rightAlign: false
+    });
+
+    //selector = document.getElementById("calcefficiency_controllerefficiency");
+    //Inputmask({
+    //    "mask": "9,9[9]",
+    //    skipOptionalPartCharacter: " ",
+    //    clearMaskOnLostFocus: true,
+    //    greedy: false,
+    //    "placeholder": "0"
+    //}).mask(selector);
+    $("#calcefficiency_controllerefficiency").inputmask("numeric", {
+        radixPoint: ',',
+        min: 0,
+        max: 1,
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        placeholder: "0",
+        rightAlign: false
+    });
+
+    //selector = document.getElementById("calcefficiency_inverterefficiency");
+    //Inputmask({
+    //    "mask": "9,9[9]",
+    //    skipOptionalPartCharacter: " ",
+    //    clearMaskOnLostFocus: true,
+    //    greedy: false,
+    //    "placeholder": "0"
+    //}).mask(selector);
+    $("#calcefficiency_inverterefficiency").inputmask("numeric", {
+        radixPoint: ',',
+        min: 0,
+        max: 1,
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        placeholder: "0",
+        rightAlign: false
+    });
+
+    //selector = document.getElementById("calcefficiency_batteryefficiency");
+    //Inputmask({
+    //    "mask": "9,9[9]",
+    //    skipOptionalPartCharacter: " ",
+    //    clearMaskOnLostFocus: true,
+    //    greedy: false,
+    //    "placeholder": "0"
+    //}).mask(selector);
+    $("#calcefficiency_batteryefficiency").inputmask("numeric", {
+        radixPoint: ',',
+        min: 0,
+        max: 1,
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        placeholder: "0",
+        rightAlign: false
+    });
+
+    //selector = document.getElementById("calcefficiency_azimuth");
+    //Inputmask({
+    //    "mask": "[-]9[9][9]",
+    //    skipOptionalPartCharacter: " ",
+    //    clearMaskOnLostFocus: true,
+    //    greedy: false,
+    //    "placeholder": "0",
+    //    allowMinus: true
+    //}).mask(selector);
+    $("#calcefficiency_azimuth").inputmask("numeric", {
+        min: -180,
+        max: 180,
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        placeholder: "0",
+        rightAlign: false
+    });
+
+    //selector = document.getElementById("calcefficiency_tilt");
+    //Inputmask({
+    //    "mask": "9[9]",
+    //    skipOptionalPartCharacter: " ",
+    //    clearMaskOnLostFocus: true,
+    //    greedy: false,
+    //    "placeholder": "0"
+    //}).mask(selector);
+    $("#calcefficiency_tilt").inputmask("numeric", {
+        min: 0,
+        max: 90,
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        placeholder: "0",
+        rightAlign: false
+    });
+
+    selector = document.getElementById("calcefficiency_lossessoil");
+    Inputmask({
+        "mask": "9,9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcefficiency_lossessnow");
+    Inputmask({
+        "mask": "9,9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcefficiency_lossesshad");
+    Inputmask({
+        "mask": "9,9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcefficiency_lossesmis");
+    Inputmask({
+        "mask": "9,9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+    //-----------
+    selector = document.getElementById("calcpv_energy_count");
+    Inputmask("numeric", {
+        "mask": "9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("calcpv_power");
+    Inputmask("numeric", {
+        "mask": "9[9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    //selector = document.getElementById("calcpv_energy_hours");
+    //Inputmask({
+    //    "mask": "9[9],9[9]",
+    //    skipOptionalPartCharacter: " ",
+    //    clearMaskOnLostFocus: true,
+    //    greedy: false,
+    //    "placeholder": "0"
+    //}).mask(selector);
+    //$("#calcpv_energy_hours").inputmask('Regex', {
+    //    regex: "^[1-9][0-9]?$|^24$",
+    //    skipOptionalPartCharacter: " ",
+    //    clearMaskOnLostFocus: true,
+    //    greedy: false,
+    //    "placeholder": "0"
+    //});
+    $("#calcpv_energy_hours").inputmask("numeric", {
+        mask: "9[9]",
+        min: 0,
+        max: 24,
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        placeholder: "0",
+        rightAlign: false
+    });
+
+    $("#calcpv_energy_minutes").inputmask("numeric", {
+        mask: "9[9]",
+        min: 0,
+        max: 60,
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        placeholder: "0",
+        rightAlign: false
+    });
+    //-----------
+    var selector = document.getElementById("get_meteo_data_longitude");
+    Inputmask({
+        "mask": "99,9[9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+
+    selector = document.getElementById("get_meteo_data_latitude");
+    Inputmask({
+        "mask": "99,9[9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+    //------------
+    selector = document.getElementById("analize_terrain_swvdwnyear_min");
+    Inputmask({
+        "mask": "9[9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+    selector = document.getElementById("analize_terrain_np_dist_max");
+    Inputmask({
+        "mask": "9[9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+    selector = document.getElementById("analize_terrain_lep_dist_max");
+    Inputmask({
+        "mask": "9[9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+    selector = document.getElementById("analize_terrain_auto_dist_max");
+    Inputmask({
+        "mask": "9[9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+    selector = document.getElementById("analize_terrain_slope_srtm_max");
+    Inputmask({
+        "mask": "9[9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+    selector = document.getElementById("analize_terrain_srtm_max");
+    Inputmask({
+        "mask": "[-]9[9][9][9]",
+        skipOptionalPartCharacter: " ",
+        clearMaskOnLostFocus: true,
+        greedy: false,
+        "placeholder": "0"
+    }).mask(selector);
+</script>
+
+@* окно информации о слое *@
+<script>
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    //var span = document.getElementsByClassName("close")[0];
+    var span = document.getElementById("modal_close");
+
+    // When the user clicks the button, open the modal
+    function ShowLayerInfo(Name_layer, Description_layer, Appointment_layer, Resolution_layer, Source_layer, Additional_layer) {
+        if (Name_layer.attr('id') == 'Name_lep') {
+            
+        }
+        $('#layer_Name').html(Name_layer.html());
+        $('#layer_Description').html(Description_layer.html());
+        $('#layer_Appointment').html(Appointment_layer.html());
+        $('#layer_Appointment').each(function () {
+            // Get the content
+            var str = $(this).html();
+            // Set the regex string
+            var regex = /(https?:\/\/([-\w\.]+)+(:\d+)?(\/([\w\/_\.]*(\?\S+)?)?)?)/ig
+            // Replace plain text links by hyperlinks
+            var replaced_text = str.replace(regex, "<a href='$1' target='_blank'>$1</a>");
+            // Echo link
+            $(this).html(replaced_text);
+        });
+        $('#layer_Resolution').html(Resolution_layer.html());
+        $('#layer_Source').html(Source_layer.html());
+        $('#layer_Source').each(function () {
+            // Get the content
+            var str = $(this).html();
+            // Set the regex string
+            var regex = /(https?:\/\/([-\w\.]+)+(:\d+)?(\/([\w\/_\.]*(\?\S+)?)?)?)/ig
+            // Replace plain text links by hyperlinks
+            var replaced_text = str.replace(regex, "<a href='$1' target='_blank'>$1</a>");
+            // Echo link
+            $(this).html(replaced_text);
+        });
+        $('#layer_Additional').html(Additional_layer.html());
+        $('#layer_Additional').each(function () {
+            // Get the content
+            var str = $(this).html();
+            // Set the regex string
+            var regex = /(https?:\/\/([-\w\.]+)+(:\d+)?(\/([\w\/_\.]*(\?\S+)?)?)?)/ig
+            // Replace plain text links by hyperlinks
+            var replaced_text = str.replace(regex, "<a href='$1' target='_blank'>$1</a>");
+            // Echo link
+            $(this).html(replaced_text);
+        });
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        if (event.target == help_CalcEnergy) {
+            help_CalcEnergy.style.display = "none";
+        }
+        if (event.target == help_CalcEfficiency) {
+            help_CalcEfficiency.style.display = "none";
+        }
+        if (event.target == help_AnalizeTerrain) {
+            help_AnalizeTerrain.style.display = "none";
+        }
+        if (event.target == help_CompareDataInPoints) {
+            help_CompareDataInPoints.style.display = "none";
+        }
+        if (event.target == help_GetMeteoData) {
+            help_GetMeteoData.style.display = "none";
+        }
+        if (event.target == help_FindTerrain) {
+            help_FindTerrain.style.display = "none";
+        }
+    }
+</script>
+
+@* измерения на карте *@
+<script>
+    var wgs84Sphere = new ol.Sphere(6378137);
+    var sketch;
+    var helpTooltipElement;
+    var helpTooltip;
+    var measureTooltipElement;
+    var measureTooltip;
+    var continuePolygonMsg = $('#MeasureClickDrawPolygon').html();
+    var continueLineMsg = $('#MeasureClickDrawLine').html();
+    var draw;
+    var typeSelect = document.getElementById('measure_type');
+    //var pointerMoveHandler = function (evt) {
+    //    if (evt.dragging) {
+    //        return;
+    //    }
+    //    var helpMsg = 'Click to start drawing';
+    //    if (sketch) {
+    //        var geom = (sketch.getGeometry());
+    //        if (geom instanceof ol.geom.Polygon) {
+    //            helpMsg = continuePolygonMsg;
+    //        } else if (geom instanceof ol.geom.LineString) {
+    //            helpMsg = continueLineMsg;
+    //        }
+    //    }
+    //    helpTooltipElement.innerHTML = helpMsg;
+    //    helpTooltip.setPosition(evt.coordinate);
+    //    helpTooltipElement.classList.remove('hidden');
+    //};
+    //map.on('pointermove', pointerMoveHandler);
+    //map.getViewport().addEventListener('mouseout', function () {
+    //    helpTooltipElement.classList.add('hidden');
+    //});
+    //var typeSelect = document.getElementById('type');
+    //var geodesicCheckbox = document.getElementById('geodesic');    
+    //var formatLength = function (line) {
+    //    var length;
+    //    if (geodesicCheckbox.checked) {
+    //        var coordinates = line.getCoordinates();
+    //        length = 0;
+    //        var sourceProj = map.getView().getProjection();
+    //        for (var i = 0, ii = coordinates.length - 1; i < ii; ++i) {
+    //            var c1 = ol.proj.transform(coordinates[i], sourceProj, 'EPSG:4326');
+    //            var c2 = ol.proj.transform(coordinates[i + 1], sourceProj, 'EPSG:4326');
+    //            length += wgs84Sphere.haversineDistance(c1, c2);
+    //        }
+    //    } else {
+    //        length = Math.round(line.getLength() * 100) / 100;
+    //    }
+    //    var output;
+    //    if (length > 100) {
+    //        output = (Math.round(length / 1000 * 100) / 100) +
+    //            ' ' + 'km';
+    //    } else {
+    //        output = (Math.round(length * 100) / 100) +
+    //            ' ' + 'm';
+    //    }
+    //    return output;
+    //};
+    //var formatArea = function (polygon) {
+    //    var area;
+    //    if (geodesicCheckbox.checked) {
+    //        var sourceProj = map.getView().getProjection();
+    //        var geom = (polygon.clone().transform(
+    //            sourceProj, 'EPSG:4326'));
+    //        var coordinates = geom.getLinearRing(0).getCoordinates();
+    //        area = Math.abs(wgs84Sphere.geodesicArea(coordinates));
+    //    } else {
+    //        area = polygon.getArea();
+    //    }
+    //    var output;
+    //    if (area > 10000) {
+    //        output = (Math.round(area / 1000000 * 100) / 100) +
+    //            ' ' + 'km<sup>2</sup>';
+    //    } else {
+    //        output = (Math.round(area * 100) / 100) +
+    //            ' ' + 'm<sup>2</sup>';
+    //    }
+    //    return output;
+    //};
+
+    function addInteraction() {
+        pointerMoveHandler = function (evt) {
+            if (evt.dragging) {
+                return;
+            }
+            var helpMsg = $('#MeasureClickStartDraw').html();
+
+            if (sketch) {
+                var geom = (sketch.getGeometry());
+                if (geom instanceof ol.geom.Polygon) {
+                    helpMsg = continuePolygonMsg;
+                } else if (geom instanceof ol.geom.LineString) {
+                    helpMsg = continueLineMsg;
+                }
+            }
+
+            helpTooltipElement.innerHTML = helpMsg;
+            helpTooltip.setPosition(evt.coordinate);
+
+            helpTooltipElement.classList.remove('hidden');
+        };
+        map.on('pointermove', pointerMoveHandler);
+        map.getViewport().addEventListener('mouseout', function () {
+            helpTooltipElement.classList.add('hidden');
+        });
+        typeSelect = document.getElementById('measure_type');
+        geodesicCheckbox = document.getElementById('geodesic');
+        formatLength = function (line) {
+            var length;
+            if (geodesicCheckbox.checked) {
+                var coordinates = line.getCoordinates();
+                length = 0;
+                var sourceProj = map.getView().getProjection();
+                for (var i = 0, ii = coordinates.length - 1; i < ii; ++i) {
+                    var c1 = ol.proj.transform(coordinates[i], sourceProj, 'EPSG:4326');
+                    var c2 = ol.proj.transform(coordinates[i + 1], sourceProj, 'EPSG:4326');
+                    length += wgs84Sphere.haversineDistance(c1, c2);
+                }
+            } else {
+                length = Math.round(line.getLength() * 100) / 100;
+            }
+            var output;
+            if (length > 100) {
+                output = (Math.round(length / 1000 * 100) / 100) +
+                    ' ' + $('#Measurekm').html();
+            } else {
+                output = (Math.round(length * 100) / 100) +
+                    ' ' + $('#Measurem').html();
+            }
+            return output;
+        };
+        formatArea = function (polygon) {
+            var area;
+            if (geodesicCheckbox.checked) {
+                var sourceProj = map.getView().getProjection();
+                var geom = (polygon.clone().transform(
+                    sourceProj, 'EPSG:4326'));
+                var coordinates = geom.getLinearRing(0).getCoordinates();
+                area = Math.abs(wgs84Sphere.geodesicArea(coordinates));
+            } else {
+                area = polygon.getArea();
+            }
+            var output;
+            if (area > 10000) {
+                output = (Math.round(area / 1000000 * 100) / 100) +
+                    ' ' + $('#Measurekm').html() + '<sup>2</sup>';
+            } else {
+                output = (Math.round(area * 100) / 100) +
+                    ' ' + $('#Measurem').html() + '<sup>2</sup>';
+            }
+            return output;
+        };
+
+
+
+        var type = (typeSelect.value == 'area' ? 'Polygon' : 'LineString');
+        draw = new ol.interaction.Draw({
+            source: source,
+            type:  (type),
+            style: new ol.style.Style({
+                fill: new ol.style.Fill({
+                    color: 'rgba(255, 255, 255, 0.2)'
+                }),
+                stroke: new ol.style.Stroke({
+                    color: 'rgba(0, 0, 0, 0.5)',
+                    lineDash: [10, 10],
+                    width: 2
+                }),
+                image: new ol.style.Circle({
+                    radius: 5,
+                    stroke: new ol.style.Stroke({
+                        color: 'rgba(0, 0, 0, 0.7)'
+                    }),
+                    fill: new ol.style.Fill({
+                        color: 'rgba(255, 255, 255, 0.2)'
+                    })
+                })
+            })
+        });
+        map.addInteraction(draw);
+        createMeasureTooltip();
+        createHelpTooltip();
+
+        var listener;
+        draw.on('drawstart',
+            function(evt) {
+                // set sketch
+                sketch = evt.feature;
+
+                var tooltipCoord = evt.coordinate;
+
+                listener = sketch.getGeometry().on('change', function(evt) {
+                    var geom = evt.target;
+                    var output;
+                    if (geom instanceof ol.geom.Polygon) {
+                        output = formatArea(geom);
+                        tooltipCoord = geom.getInteriorPoint().getCoordinates();
+                    } else if (geom instanceof ol.geom.LineString) {
+                        output = formatLength(geom);
+                        tooltipCoord = geom.getLastCoordinate();
+                    }
+                    measureTooltipElement.innerHTML = output;
+                    measureTooltip.setPosition(tooltipCoord);
+                });
+            }, this);
+
+        draw.on('drawend',
+            function() {
+                measureTooltipElement.className = 'tooltip tooltip-static';
+                measureTooltip.setOffset([0, -7]);
+                // unset sketch
+                sketch = null;
+                // unset tooltip so that a new one can be created
+                measureTooltipElement = null;
+                createMeasureTooltip();
+                ol.Observable.unByKey(listener);
+            }, this);
+    }
+    function createHelpTooltip() {
+        if (helpTooltipElement) {
+            helpTooltipElement.parentNode.removeChild(helpTooltipElement);
+        }
+        helpTooltipElement = document.createElement('div');
+        helpTooltipElement.className = 'tooltip hidden';
+        helpTooltip = new ol.Overlay({
+            element: helpTooltipElement,
+            offset: [15, 0],
+            positioning: 'center-left'
+        });
+        map.addOverlay(helpTooltip);
+    }
+    function createMeasureTooltip() {
+        if (measureTooltipElement) {
+            measureTooltipElement.parentNode.removeChild(measureTooltipElement);
+        }
+        measureTooltipElement = document.createElement('div');
+        measureTooltipElement.className = 'tooltip tooltip-measure';
+        measureTooltip = new ol.Overlay({
+            element: measureTooltipElement,
+            offset: [0, -15],
+            positioning: 'bottom-center'
+        });
+        map.addOverlay(measureTooltip);
+    }
+    typeSelect.onchange = function () {
+        map.removeInteraction(draw);
+        addInteraction();
+    };
+
+    //addInteraction();
+    function removeInteraction() {
+        map.removeInteraction(draw);
+
+        var dblclickzoom;
+        map.getInteractions().forEach(function (interaction) {
+            if (interaction instanceof ol.interaction.Draw) {
+                dblclickzoom = interaction;
+            }
+        });
+
+        // Remove the interaction from the map.
+        if (dblclickzoom) { map.removeInteraction(dblclickzoom); }
+        helpTooltipElement = null;
+        map.unByKey('mouseout');
+        map.on('pointermove', null);
+        $(".tooltip-static").remove();
+        source.clear();
+    };
+</script>
+
+@* оптимальные углы наклона *@
+<script>
+    function ShowOPTANGInfoDialog() {
+        $("#dialog_OPTANG").dialog({
+            width: 300,
+            height: 400,
+            appendTo: "#fullscreen"
+        });
+    };
+</script>
+
+@* шторка *@
+<script>
+    var swipe = document.getElementById('swipe');
+
+    Layer_Base_Top.on('precompose', function (event) {
+        
+        var ctx = event.context;
+
+        var width = ctx.canvas.width * (swipe.value / 100);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(width, 0, ctx.canvas.width - width, ctx.canvas.height);
+        ctx.clip();
+    });
+
+    Layer_Base_Top.on('postcompose', function (event) {
+        var ctx = event.context;
+        ctx.restore();
+    });
+
+    swipe.addEventListener('input', function () {
+        map.render();
+    }, false);
+
+</script>
+
+@* дополнительные функции *@
+<script>
+    //function Test() {
+    //    alert(Layer_select.getSource().getFeatures().length);
+    //    alert(Layer_select.getVisible());
+    //};
+
+    String.format = function () {
+        alert(format);
+        var s = arguments[0];
+        for (var i = 0; i < arguments.length - 1; i++) {
+            var reg = new RegExp("\\{" + i + "\\}", "gm");
+            s = s.replace(reg, arguments[i + 1]);
+        }
+
+        return s;
+    }
+
+    function CreateCookie(name, value, days) {
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            var expires = "; expires=" + date.toGMTString();
+        }
+        else var expires = "";
+        document.cookie = name + "=" + value + expires + "; path=/";
+    };
+
+    function ChangeCookie(name, value) {
+        CreateCookie(name, value);
+        location.reload();
+    };
+
+    $(document).ready(function (e) {
+        $.getScript("http://code.jquery.com/ui/1.12.0/jquery-ui.min.js", function (data, textStatus, jqxhr) {
+        });
+
+        document.getElementById("divbody").style.overflowY = "scroll";
+
+        // высота карты
+        $("#fullscreen").height($(window).height() - 10);
+        if ($("#fullscreen").height() < 440) {
+            $("#fullscreen").height(440);
+        }
+        map.updateSize();
+
+        var val = $("#calcpv_PVSystemMaterialId").val();
+        CalcPVChangePVSystemMaterial(val);
+
+        var val = $("#calcefficiency_PVSystemMaterialId").val();
+        CalcEfficiencyChangePVSystemMaterial(val);
+
+        $("#calcpv_wiringefficiency").val('0,96');
+        $("#calcpv_controllerefficiency").val('0,96');
+        $("#calcpv_inverterefficiency").val('0,95');
+        $("#calcpv_batteryefficiency").val('0,8');
+        $("#calcpv_wload").val('5');
+
+        $("#calcefficiency_wiringefficiency").val('0,96');
+        $("#calcefficiency_controllerefficiency").val('0,96');
+        $("#calcefficiency_inverterefficiency").val('0,95');
+        $("#calcefficiency_batteryefficiency").val('0,8');
+
+        //$("#calcefficiency_rated_power").val('10');
+        //$("#calcefficiency_panels_count").val('10');
+        $("#calcefficiency_panels_area").val('1');
+
+        var val = $("#CalcEfficiencyChangePanelOrientation").val();
+        CalcEfficiencyChangePanelOrientation(val);
+
+        $("#tabs").tabs();
+        //$("#CalcPVResult").tabs();
+        //$("#CalcEfficiencyResult").tabs();
+        $("#ComparePointsResult").tabs();
+        $("#dialog_calcefficiency_tab").tabs();
+        $("#dialog_calcpv_tab").tabs();
+
+        //if (role == 'Admin' || role == 'Moderator') {
+        //    $("#tool_create_spp").unhide();
+        //}
+
+        $('#legend_analizeterrain').hide();
+        $('#legend_findterrain').hide();
+        document.getElementById("loading").style.display = "none";
+
+        ChangeAppliance();
+    });
+</script>

@@ -1,0 +1,298 @@
+﻿
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Help;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.CalcEfficiency</h2>
+
+@{
+    if (System.Threading.Thread.CurrentThread.CurrentCulture != null)
+    {
+        if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "en")
+        {
+            <div>
+                <p><strong><em><span style="font-size: medium;">Calculation of energy output of PV station &ndash; </span></em></strong><span style="font-size: medium;">is a tool for the calculation of the electrical energy output of the projected PV station, and it also estimates total solar radiation coming to any orientated and tracking surfaces. </span><span style="font-size: medium;">&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+                <p><strong><em><span style="font-size: medium;">Tilt of solar panel</span></em></strong><span style="font-size: medium;"> is the angle of the solar panel to the horizontal surface. The tilt angle varies from 0 to 90 degrees. The horizontal arrangement corresponds to 0 degrees, and the vertical arrangement is 90 degrees. Entering the angle is available and mandatory for "Fixed" and "Vertical axis tracking" systems. For other systems it is determined by the calculator.</span></p>
+                <p><span style="font-size: medium;">Often, users set the tilt angle equal to the latitude of the location. However, setting the tilt angle equal to the latitude does not necessarily maximize the annual output of the system's energy, since smaller tilt angles favor peak production in the summer months, and higher tilt angles favor lower exposure conditions in the winter months.</span></p>
+                <p><strong><em><span style="font-size: medium;">The azimuth of solar panels</span></em></strong><span style="font-size: medium;"> is the angle showing the orientation of the solar panels to the sides of the world. The azimuth angle is 0 degrees when the solar panel is oriented to the &ldquo;south&rdquo;, 180 degrees with the orientation to the &ldquo;north&rdquo;. Entering the azimuth value is mandatory and is only available for the "Fixed" orientation type. For the orientation types of the panels "Fixed Adjustable 2 times per year" and "Horizontal axis tracking" the default values ​​are zero, and correction of the values ​​of this field is possible. For other types of orientation panels is calculated by the calculator.</span></p>
+                <p><span style="font-size: medium;">The default value of azimuth angle is 0 &deg; (south orientation), these values tend to maximize the production of electricity for the year. Changing the value of the azimuth angle to the positive side, i.e. &ldquo;west&rdquo; contributes to increased energy production in the second half of the day, and the change in the value of the azimuth angle to the negative side, i.e. &ldquo;east&rdquo; contributes to increased energy production in the morning.</span></p>
+                <p align="center"><span style="font-size: medium;">Angles of azimuth for different compass headings</span></p>
+                <table border="1" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><em><span style="font-size: medium;">Azimuth angles</span></em></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><em><span style="font-size: medium;">Headings</span></em></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">-180&deg; </span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">North</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">-135&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center">Northeast</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">-90&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">East</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">-45&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">Southeast</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">0&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">South</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">45&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">Southwest</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">90&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">West</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">135&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">Northwest</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">180&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">North</span></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+        else if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "kk")
+        {
+            <div>
+                <p><strong><em><span style="font-size: medium;">&laquo;ФЭС-тің энергия өндірісн есептеу&raquo; калькуляторы &ndash; </span></em></strong><span style="font-size: medium;">жобадағы фотоэлектрлік станцияның электр энергия өндіру мөлшерін есептеуге және кез келген бағдарланған беткейге келетін жиынтық күн радиация мөлшерін есетеуге арналған құрал болып табылады.</span></p>
+                <p><strong><em><span style="font-size: medium;">Күн панелінің көлбеу бұрышы</span></em></strong><span style="font-size: medium;"> - көлденең беткеймен күн панельдерінің арасындағы бұрыш. Көлбеу бұрышы 0 мен 90 градус аралығында өзгеріп отырады. Көлденең орналасқан күн панелінің бұрышы 0 градусқа, ал тікке орнатылған күн панелінің бұрышы 90 градусқа сәйкес келеді. Бұрыштың мәндерін енгізу &laquo;Тұрақты&raquo; және &laquo;Вертикальді осьті бақылау&raquo; жүйелері үшін қажетті болып табылады. Басқа жүйелер үшін калькулятормен автоматты түрде есептелінеді.</span></p>
+                <p><span style="font-size: medium;">Әдетте, көлбеу бұрышын пайдаланушылар орналасқан мекеннің ендігіне тең қылып алады. Алайда, ендікке тең етіп алынған көлбеу бұрышы міндетті түрде жүйенің максимум жылдық энергия өндірісін бермейді.</span><span style="font-size: medium;">&nbsp; </span><span style="font-size: medium;">Жаз айларында энергия өндірісін арттыру үшін орналасқан мекеннің ендігінен төмен бұрыштарды, ал қысқы айлар үшін орналасқан мекеннің ендігінен жоғары бұрыштарды таңдау күн электр станциясының энергия өндірісін арттырады. </span></p>
+                <p><strong><em><span style="font-size: medium;">Күн панельдерінің азимуты</span></em></strong><span style="font-size: medium;"> - күн панельдерінің компас бойынша бағытын көрсететін бұрыш. Күн панелі оңтүстікке бағытталғанда азимут бұрышы 180 градусқа, ал солтүстікке бағдарланғанда азимут 0 градусқа сәйкес келеді. Азимут мәнің енгізу &laquo;Тұрақты&raquo; жүйеге міндетті болып табылады. &laquo;Тұрақты, күн панельдерінің бұрышы жылына 2 рет өзгертілетін&raquo; және &laquo;Горизонтальді осьті бақылау&raquo; жүйелеріне азимут бұрышының әдепкі мәні 0 градусқа тең, бірақ пайдаланушымен өзгертуге болады. Басқа күн панельдерінің бағдарлану түрлері үшін калькулятормен автоматты түрде есептелінеді.</span></p>
+                <p><span style="font-size: medium;">Азимут бұрышының әдепкі мәнде 0&deg; болуы (оңтүстікке бағдарланған панель) жыл бойғы энергия өндірісін барынша арттырады. Азимут бұрышының мәнін оң жаққа өзгерту, яғни, батыс бағытқа энергия өндірісін күннің екінші жартысында арттырады, ал азимут бұрышын теріс жаққа өзгерту, яғни, шығыс бағытқа таңертеңгі энергия өндірісінің өсуіне ықпал етеді.</span></p>
+                <p align="center"><span style="font-size: medium;">Әр түрлі компас бағыттарына сәйкес азимут бұрыштары</span></p>
+                <table border="1" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><em><span style="font-size: medium;">Азимут бұрыштары</span></em></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><em><span style="font-size: medium;">Бағыттар</span></em></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">-180&deg; </span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">солтүстік</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">-135&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">солтүстік</span> -<span style="font-size: medium;"> шығыс</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">-90&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">шығыс</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">-45&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">оңтүстік</span><span style="font-size: medium;"> -</span><span style="font-size: medium;"> шығыс</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">0&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">оңтүстік</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">45&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">оңтүстік</span><span style="font-size: medium;"> -</span><span style="font-size: medium;"> батыс</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">90&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">батыс</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">135&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">солтүстік</span><span style="font-size: medium;">-</span><span style="font-size: medium;"> батыс</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">180&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">солтүстік</span></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div>
+                <p><strong><em><span style="font-size: medium;">Калькулятор &laquo;Расчет производительности ФЭС&raquo; - </span></em></strong><span style="font-size: medium;">я</span><span style="font-size: medium;">вляется инструментом для расчета выработки электрической энергии проектируемой фотоэлектрической станции, а также оценивает суммарное солнечное излучение, поступающее на любых ориентированных и следящих поверхностей.</span></p>
+                <p><strong><em><span style="font-size: medium;">Угол наклона солнечных панелей</span></em></strong><span style="font-size: medium;"> -</span><span style="font-size: medium;">&nbsp; </span><span style="font-size: medium;">угол</span><span style="font-size: medium;">&nbsp; </span><span style="font-size: medium;">наклона солнечный панели к горизонтальной поверхности. Угол наклона</span><span style="font-size: medium;">&nbsp; </span><span style="font-size: medium;">рассматриваемой плоскости к горизонту изменяется от 0 до 90 градусов. Горизонтальное расположение соответствует 0 градусу, </span><span style="font-size: medium;">а</span><span style="font-size: medium;"> вертикальное расположение 90 градусу. Ввод значения угла наклона доступен и обязателен для &laquo;Фиксированной&raquo; и для &laquo;Следящих по вертикальной оси&raquo; систем. Для остальных систем рассчитывается калькулятором. </span></p>
+                <p><span style="font-size: medium;">Часто пользователи устанавливают угол наклона равного широте выбранного местоположения. Тем не менее, установка наклона, равного широте, не обязательно максимизирует годовой выпуск энергии системы, поскольку меньшие углы наклона благоприятствуют пиковой продукции в летние месяцы, а более высокие углы наклона благоприятствуют более низким условиям облучения в зимние месяцы. </span></p>
+                <p><strong><em><span style="font-size: medium;">Азимут солнечных панелей</span></em></strong><span style="font-size: medium;"> - угол показывающий ориентацию солнечных панелей</span><span style="font-size: medium;">&nbsp; </span><span style="font-size: medium;">на стороны света. Азимут равен 0 градусов при ориентации солнечной панели</span><span style="font-size: medium;">&nbsp; </span><span style="font-size: medium;">на юг, 180 градусов при ориентации на север. Ввод значения азимута обязателен и доступен только для типа ориентации &laquo;Фиксированная&raquo;. </span><span style="font-size: medium;">&nbsp;</span><span style="font-size: medium;">Для типов ориентации панелей &laquo;Фиксированные корректируемые 2 раза в год&raquo; и &laquo;Следящая по горизонтальной оси&raquo; значения по умолчанию равны нулю, при этом корректировка значений данного поля, возможно. Для других типов ориентации панелей</span><span style="font-size: medium;">&nbsp; </span><span style="font-size: medium;">рассчитывается калькулятором.</span></p>
+                <p><span style="font-size: medium;">Значение по умолчанию является азимутальным углом 0&deg; (ориентация панелей на юг), это значения, как правило, максимизировать производство электроэнергии за год. </span><span style="font-size: medium;">&nbsp;</span><span style="font-size: medium;">Изменение значение угла азимута положительную сторону, т.е. западу способствует повышению выработки энергии во второй половине дня, а изменение значение угла азимута отрицательную сторону, т.е. востоку способствует повышению выработки энергии утром.</span></p>
+                <p align="center"><span style="font-size: medium;">Углы азимута для различных сторон света</span></p>
+                <table border="1" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><em><span style="font-size: medium;">Углы азимута </span></em></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><em><span style="font-size: medium;">Стороны света</span></em></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">-180&deg; </span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">север</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">-135&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">северо-восток</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">-90&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">восток</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">-45&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">юго-восток</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">0&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">юг</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">45&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">юго-запад</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">90&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">запад</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">135&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">северо-запад</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="225">
+                                <p align="center"><span style="font-size: medium;">180&deg;</span></p>
+                            </td>
+                            <td valign="top" width="413">
+                                <p align="center"><span style="font-size: medium;">север</span></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+}

@@ -1,0 +1,73 @@
+﻿@model PagedList.IPagedList<AtlasSolar.Models.SPP>
+@using PagedList.Mvc
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.SPPs;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.SPPs</h2>
+
+<p>
+    @Html.ActionLink(AtlasSolar.Resources.Common.Create, "Create")
+</p>
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortOrder = Request.QueryString["SortOrder"], Name = ViewBag.NameFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })
+
+@using (Html.BeginForm("Index", "SPPs", new { SortOrder = Request.QueryString["SortOrder"], Name = ViewBag.NameFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = Request.QueryString["SortOrder"] })
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().Name).ToString(), "Index", new { SortOrder = ViewBag.NameSort, Name = ViewBag.NameFilter })
+                <br />
+                @Html.Editor("Name", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().Power).ToString(), "Index", new { SortOrder = ViewBag.PowerSort, Name = ViewBag.NameFilter })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().Startup).ToString(), "Index", new { SortOrder = ViewBag.StartupSort, Name = ViewBag.NameFilter })
+            </th>
+            <th>
+                <br />
+                <input type="submit" value="@AtlasSolar.Resources.Common.Find" class="btn btn-default">
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Power)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Startup)
+                </td>
+                @if (ViewBag.Role.Contains("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = item.Id }) |
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id }) |
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Delete, "Delete", new { id = item.Id })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = item.Id }) |
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id })
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+}
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortOrder = Request.QueryString["SortOrder"], Name = ViewBag.NameFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })

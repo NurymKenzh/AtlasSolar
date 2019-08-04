@@ -1,0 +1,147 @@
+﻿@model AtlasSolar.Models.MeteoDataType
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Details;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.Details</h2>
+
+<div>
+    <h4>@AtlasSolar.Resources.Common.MeteoDataType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MeteoDataSource)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeteoDataSource.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeteoDataPeriodicity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeteoDataPeriodicity.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupKZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupKZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupRU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupRU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameKZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameKZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameRU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameRU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdditionalEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalKZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdditionalKZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalRU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdditionalRU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionKZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionKZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionRU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionRU)
+        </dd>
+    </dl>
+</div>
+@*@if (ViewBag.Role.Contains("Admin"))
+{*@
+    <p>
+        @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = Model.Id }) |
+        @Html.ActionLink(AtlasSolar.Resources.Common.BackToList, "Index")
+    </p>
+@*}
+else
+{
+    <p>
+        @Html.ActionLink(AtlasSolar.Resources.Common.BackToList, "Index")
+    </p>
+}*@

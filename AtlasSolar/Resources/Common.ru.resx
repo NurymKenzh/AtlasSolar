@@ -1,0 +1,1134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>О проекте</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Действие</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AdditionalEN" xml:space="preserve">
+    <value>Дополнительно (Английский)</value>
+  </data>
+  <data name="AdditionalKZ" xml:space="preserve">
+    <value>Дополнительно (Казахский)</value>
+  </data>
+  <data name="AdditionalRU" xml:space="preserve">
+    <value>Дополнительно (Русский)</value>
+  </data>
+  <data name="AdditionalSettings" xml:space="preserve">
+    <value>Расширенные настройки</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Администрирование</value>
+  </data>
+  <data name="AllowableSlopeOfTheTerrain" xml:space="preserve">
+    <value>Допустимый уклон местности (не более, градусы)</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Количество</value>
+  </data>
+  <data name="AmountPcs" xml:space="preserve">
+    <value>Количество, шт</value>
+  </data>
+  <data name="AnalizedTerrain" xml:space="preserve">
+    <value>Проанализированная территория</value>
+  </data>
+  <data name="AnalizeTerrain" xml:space="preserve">
+    <value>Анализ пригодности территории для размещения СЭС</value>
+  </data>
+  <data name="Analyze" xml:space="preserve">
+    <value>Анализировать</value>
+  </data>
+  <data name="Appliance" xml:space="preserve">
+    <value>Прибор</value>
+  </data>
+  <data name="Appliances" xml:space="preserve">
+    <value>Приборы</value>
+  </data>
+  <data name="ApplianceType" xml:space="preserve">
+    <value>Тип прибора</value>
+  </data>
+  <data name="ApplianceTypes" xml:space="preserve">
+    <value>Типы приборов</value>
+  </data>
+  <data name="Appointment" xml:space="preserve">
+    <value>Назначение</value>
+  </data>
+  <data name="AppointmentEN" xml:space="preserve">
+    <value>Назначение (Английский)</value>
+  </data>
+  <data name="AppointmentKZ" xml:space="preserve">
+    <value>Назначение (Казахский)</value>
+  </data>
+  <data name="AppointmentRU" xml:space="preserve">
+    <value>Назначение (Русский)</value>
+  </data>
+  <data name="AverageAnnualOutputPowerOfThePVSystem" xml:space="preserve">
+    <value>Средняя годовая дневная выходная мощность фотоэлектрической станции (ФЭС), кВт/день</value>
+  </data>
+  <data name="AverageMonthlyCalculatedValues" xml:space="preserve">
+    <value>Среднемесячные расчетные значения</value>
+  </data>
+  <data name="AverageMonthlyDurationOfASunnyDayInHours" xml:space="preserve">
+    <value>Средняя месячная продолжительность солнечного дня в часах</value>
+  </data>
+  <data name="AverageMonthlyHourlyTotalRadiationOnTheOrientedPanel" xml:space="preserve">
+    <value>Средняя месячная часовая суммарная радиация на ориентированную панель (кВт*ч)</value>
+  </data>
+  <data name="AverageMonthlyLossesDueToSnow" xml:space="preserve">
+    <value>Среднемесячные потери из-за снежного покрова</value>
+  </data>
+  <data name="AverageMonthlyOutputPowerOfThePVSystem" xml:space="preserve">
+    <value>Средняя месячная дневная выработка энергии ФЭС, кВт∙ч/день</value>
+  </data>
+  <data name="AverageMonthlyRequiredTotalAreaOfSolarPVSystems" xml:space="preserve">
+    <value>Средняя месячная необходимая общая площадь солнечных панелей, м²</value>
+  </data>
+  <data name="AverageMonthlyTotalRadiationOnTheOrientedPanel" xml:space="preserve">
+    <value>Средняя месячная дневная суммарная солнечная радиация на ориентированную поверхность, кВт∙ч/м2 в день</value>
+  </data>
+  <data name="AzimuthPanels" xml:space="preserve">
+    <value>Азимут солнечных панелей, градусы</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Обратно к списку</value>
+  </data>
+  <data name="BasicSettings" xml:space="preserve">
+    <value>Основные настройки</value>
+  </data>
+  <data name="BatteryEfficiency" xml:space="preserve">
+    <value>Эффективность аккумуляторов</value>
+  </data>
+  <data name="BetaTesting" xml:space="preserve">
+    <value>Бета-тестирование</value>
+  </data>
+  <data name="CalcArea" xml:space="preserve">
+    <value>Расчет общей площади панелей ФЭС</value>
+  </data>
+  <data name="CalcEfficiency" xml:space="preserve">
+    <value>Расчет производительности ФЭС</value>
+  </data>
+  <data name="CalcEnergy" xml:space="preserve">
+    <value>Расчет энергопотребления</value>
+  </data>
+  <data name="CalcPVArea" xml:space="preserve">
+    <value>Расчет общей площади панелей ФЭС</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>Рассчитать</value>
+  </data>
+  <data name="CalculatingThePerformanceOfThePVSystem" xml:space="preserve">
+    <value>Расчет производительности ФЭС</value>
+  </data>
+  <data name="Calculation" xml:space="preserve">
+    <value>Расчет</value>
+  </data>
+  <data name="CalculationOfEnergyConsumption" xml:space="preserve">
+    <value>Расчет энергопотребления</value>
+  </data>
+  <data name="CalculationPanelsSquare" xml:space="preserve">
+    <value>Расчет площади панелей</value>
+  </data>
+  <data name="CapacityFactor" xml:space="preserve">
+    <value>Коэффициент использования установленной мощности, %</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Изменить пароль</value>
+  </data>
+  <data name="ChangePasswordForm" xml:space="preserve">
+    <value>Форма изменения пароля</value>
+  </data>
+  <data name="ChangeYourAccountSettings" xml:space="preserve">
+    <value>Изменение настроек учетной записи</value>
+  </data>
+  <data name="Chart" xml:space="preserve">
+    <value>Диаграмма</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Код</value>
+  </data>
+  <data name="ColumnName" xml:space="preserve">
+    <value>Название столбца</value>
+  </data>
+  <data name="ColumnNameEN" xml:space="preserve">
+    <value>Название столбца (Английский)</value>
+  </data>
+  <data name="ColumnNameKZ" xml:space="preserve">
+    <value>Название столбца (Казахский)</value>
+  </data>
+  <data name="ColumnNameRU" xml:space="preserve">
+    <value>Название столбца (Русский)</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="CommissioningYear" xml:space="preserve">
+    <value>Год ввода в эксплуатацию</value>
+  </data>
+  <data name="Compare" xml:space="preserve">
+    <value>Сравнить</value>
+  </data>
+  <data name="CompareDataInPoints" xml:space="preserve">
+    <value>Сравнить данные в точках</value>
+  </data>
+  <data name="ComparePoints" xml:space="preserve">
+    <value>Сравнить данные</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Подтвердите новый пароль</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Подтвердите пароль</value>
+  </data>
+  <data name="ConsiderMonthlyAverageLossesDueToSnowByMonths" xml:space="preserve">
+    <value>Учитывать среднемесячные потери из-за снега по месяцам</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Перейти</value>
+  </data>
+  <data name="ControllerEfficiency" xml:space="preserve">
+    <value>Эффективность контроллера</value>
+  </data>
+  <data name="Coordinates" xml:space="preserve">
+    <value>Координаты</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Стоимость</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="CreateANewAccount" xml:space="preserve">
+    <value>Создать новый аккаунт</value>
+  </data>
+  <data name="CreateSPP" xml:space="preserve">
+    <value>Нанести солнечную электростанцию</value>
+  </data>
+  <data name="criticallyImportant" xml:space="preserve">
+    <value>Критично важно</value>
+  </data>
+  <data name="CurrentLanguage" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Текущий пароль</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Заказчик</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Данные</value>
+  </data>
+  <data name="DataCount" xml:space="preserve">
+    <value>Количество данных</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>День</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="DescriptionEN" xml:space="preserve">
+    <value>Описание (Английский)</value>
+  </data>
+  <data name="DescriptionForUser" xml:space="preserve">
+    <value>Описание для идентификации</value>
+  </data>
+  <data name="DescriptionKZ" xml:space="preserve">
+    <value>Описание (Казахский)</value>
+  </data>
+  <data name="DescriptionRU" xml:space="preserve">
+    <value>Описание (Русский)</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="disregard" xml:space="preserve">
+    <value>Не учитывать</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>Район</value>
+  </data>
+  <data name="DoNotShowThisWindowAgain" xml:space="preserve">
+    <value>Больше не показывать это окно</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Скачать</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="EditSES" xml:space="preserve">
+    <value>Редактировать ФЭС</value>
+  </data>
+  <data name="Efficiency" xml:space="preserve">
+    <value>Эффективность</value>
+  </data>
+  <data name="EfficiencyOfElectricalDevices" xml:space="preserve">
+    <value>Эффективность электрических устройств</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailLink" xml:space="preserve">
+    <value>Ссылка на электронную почту</value>
+  </data>
+  <data name="EnterName" xml:space="preserve">
+    <value>Введите название!</value>
+  </data>
+  <data name="EnterPower" xml:space="preserve">
+    <value>Введите мощность!</value>
+  </data>
+  <data name="EnterValue" xml:space="preserve">
+    <value>Введите значение</value>
+  </data>
+  <data name="EnterYear" xml:space="preserve">
+    <value>Введите год!</value>
+  </data>
+  <data name="EnterYourEmail" xml:space="preserve">
+    <value>Введите адрес электронной почты.</value>
+  </data>
+  <data name="Errors" xml:space="preserve">
+    <value>Ошибки</value>
+  </data>
+  <data name="ExcludeForestLands" xml:space="preserve">
+    <value>Исключить земли лесного фонда</value>
+  </data>
+  <data name="ExcludeHydrographyAndWaterProtectionZones" xml:space="preserve">
+    <value>Исключить гидрографию и водоохранные зоны</value>
+  </data>
+  <data name="ExcludePAs" xml:space="preserve">
+    <value>Исключить ООПТ</value>
+  </data>
+  <data name="ExcludeProtectedAreasOfHistoricalAndCulturalMonuments" xml:space="preserve">
+    <value>Исключить охранные зоны памятников истории и культуры</value>
+  </data>
+  <data name="ExcludeSettlements" xml:space="preserve">
+    <value>Исключить населенные пункты</value>
+  </data>
+  <data name="Executor" xml:space="preserve">
+    <value>Исполнитель</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Файлы</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Найти</value>
+  </data>
+  <data name="FindTerrain" xml:space="preserve">
+    <value>Конструктор запросов</value>
+  </data>
+  <data name="FindTerrainSuitableTerritories" xml:space="preserve">
+    <value>Соответствующие условиям выбора</value>
+  </data>
+  <data name="FindTerrainUnsuitableTerritories" xml:space="preserve">
+    <value>Не соответствующие условиям выбора</value>
+  </data>
+  <data name="ForgotPasswordConfirmation" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
+  <data name="Formula" xml:space="preserve">
+    <value>Формула</value>
+  </data>
+  <data name="FormulaAND" xml:space="preserve">
+    <value>И (&amp;&amp;)</value>
+  </data>
+  <data name="FormulaFALSE" xml:space="preserve">
+    <value>Ложь (false)</value>
+  </data>
+  <data name="FormulaNOT" xml:space="preserve">
+    <value>Не (!)</value>
+  </data>
+  <data name="FormulaOR" xml:space="preserve">
+    <value>Или (||)</value>
+  </data>
+  <data name="FormulaTRUE" xml:space="preserve">
+    <value>Правда (true)</value>
+  </data>
+  <data name="GetMeteoData" xml:space="preserve">
+    <value>Получение метеорологических данных</value>
+  </data>
+  <data name="GroupEN" xml:space="preserve">
+    <value>Группа (Английский)</value>
+  </data>
+  <data name="GroupKZ" xml:space="preserve">
+    <value>Группа (Казахский)</value>
+  </data>
+  <data name="GroupRU" xml:space="preserve">
+    <value>Группа (Русский)</value>
+  </data>
+  <data name="HasAlready" xml:space="preserve">
+    <value>Уже есть</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>Час</value>
+  </data>
+  <data name="important" xml:space="preserve">
+    <value>важно</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Показатель</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="InvalidFormula" xml:space="preserve">
+    <value>Некорректная формула</value>
+  </data>
+  <data name="InverterEfficiency" xml:space="preserve">
+    <value>Эффективность инвертора</value>
+  </data>
+  <data name="Investor" xml:space="preserve">
+    <value>Инвестор</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Широта</value>
+  </data>
+  <data name="Layers" xml:space="preserve">
+    <value>Слои</value>
+  </data>
+  <data name="Legend" xml:space="preserve">
+    <value>Легенда</value>
+  </data>
+  <data name="Lepdtntr" xml:space="preserve">
+    <value>Год ввода в эксплуатацию</value>
+  </data>
+  <data name="Lepelvt" xml:space="preserve">
+    <value>Высота опор</value>
+  </data>
+  <data name="Lepinsttp" xml:space="preserve">
+    <value>Тип установки</value>
+  </data>
+  <data name="Lepinsttps" xml:space="preserve">
+    <value>Типы установки</value>
+  </data>
+  <data name="Leplnght" xml:space="preserve">
+    <value>Протяженность, км</value>
+  </data>
+  <data name="Lepmtrl" xml:space="preserve">
+    <value>Материал</value>
+  </data>
+  <data name="Lepmtrls" xml:space="preserve">
+    <value>Материалы</value>
+  </data>
+  <data name="Leprng" xml:space="preserve">
+    <value>Ранг</value>
+  </data>
+  <data name="Leprngs" xml:space="preserve">
+    <value>Ранги</value>
+  </data>
+  <data name="Leprnzon" xml:space="preserve">
+    <value>Принадлежность</value>
+  </data>
+  <data name="Leprnzons" xml:space="preserve">
+    <value>Принадлежности</value>
+  </data>
+  <data name="Leptype" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Leptypes" xml:space="preserve">
+    <value>Типы</value>
+  </data>
+  <data name="Lepvltg" xml:space="preserve">
+    <value>Вольтаж, кВ</value>
+  </data>
+  <data name="Link" xml:space="preserve">
+    <value>Ссылка</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Авторизоваться</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>Долгота</value>
+  </data>
+  <data name="LossesDueToNonconformities" xml:space="preserve">
+    <value>Потери из-за несоответствий</value>
+  </data>
+  <data name="LossesDueToPollution" xml:space="preserve">
+    <value>Потери из-за загрязнения</value>
+  </data>
+  <data name="LossFromTheShadow" xml:space="preserve">
+    <value>Потери из-за тени</value>
+  </data>
+  <data name="MainPage" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Управление</value>
+  </data>
+  <data name="MapDescription" xml:space="preserve">
+    <value>Описание карты</value>
+  </data>
+  <data name="MapDescriptions" xml:space="preserve">
+    <value>Описания карт</value>
+  </data>
+  <data name="MeasureArea" xml:space="preserve">
+    <value>Площадь</value>
+  </data>
+  <data name="MeasureClickDrawLine" xml:space="preserve">
+    <value>Нажмите, чтобы продолжить рисование линии</value>
+  </data>
+  <data name="MeasureClickDrawPolygon" xml:space="preserve">
+    <value>Нажмите, чтобы продолжить рисование полигона</value>
+  </data>
+  <data name="MeasureClickStartDraw" xml:space="preserve">
+    <value>Нажмите, чтобы начать рисование</value>
+  </data>
+  <data name="Measurekm" xml:space="preserve">
+    <value>км</value>
+  </data>
+  <data name="MeasureLength" xml:space="preserve">
+    <value>Длина</value>
+  </data>
+  <data name="Measurem" xml:space="preserve">
+    <value>м</value>
+  </data>
+  <data name="MeasureOnTheMap" xml:space="preserve">
+    <value>Измерения на карте</value>
+  </data>
+  <data name="MeasureType" xml:space="preserve">
+    <value>Тип измерения</value>
+  </data>
+  <data name="MeasureUseGeodesic" xml:space="preserve">
+    <value>Использовать геодезические меры</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="MeteoData" xml:space="preserve">
+    <value>Метеоданные</value>
+  </data>
+  <data name="MeteoDataPeriodicities" xml:space="preserve">
+    <value>Периодичности метеоданных</value>
+  </data>
+  <data name="MeteoDataPeriodicity" xml:space="preserve">
+    <value>Периодичность метеоданных</value>
+  </data>
+  <data name="MeteoDataSource" xml:space="preserve">
+    <value>Источник метеоданных</value>
+  </data>
+  <data name="MeteoDataSources" xml:space="preserve">
+    <value>Источники метеоданных</value>
+  </data>
+  <data name="MeteoDataType" xml:space="preserve">
+    <value>Тип метеоданных</value>
+  </data>
+  <data name="MeteoDataTypes" xml:space="preserve">
+    <value>Типы метеоданных</value>
+  </data>
+  <data name="MeteoDataTypesCount" xml:space="preserve">
+    <value>Количество типов метеоданных</value>
+  </data>
+  <data name="Moderator" xml:space="preserve">
+    <value>Модератор</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Месяц</value>
+  </data>
+  <data name="month01" xml:space="preserve">
+    <value>январь</value>
+  </data>
+  <data name="month02" xml:space="preserve">
+    <value>февраль</value>
+  </data>
+  <data name="month03" xml:space="preserve">
+    <value>март</value>
+  </data>
+  <data name="month04" xml:space="preserve">
+    <value>апрель</value>
+  </data>
+  <data name="month05" xml:space="preserve">
+    <value>май</value>
+  </data>
+  <data name="month06" xml:space="preserve">
+    <value>июнь</value>
+  </data>
+  <data name="month07" xml:space="preserve">
+    <value>июль</value>
+  </data>
+  <data name="month08" xml:space="preserve">
+    <value>август</value>
+  </data>
+  <data name="month09" xml:space="preserve">
+    <value>сентябрь</value>
+  </data>
+  <data name="month10" xml:space="preserve">
+    <value>октябрь</value>
+  </data>
+  <data name="month11" xml:space="preserve">
+    <value>ноябрь</value>
+  </data>
+  <data name="month12" xml:space="preserve">
+    <value>декабрь</value>
+  </data>
+  <data name="MonthlyAverageOtherLossesOfPVPanels" xml:space="preserve">
+    <value>Среднемесячные прочие потери PV-панели</value>
+  </data>
+  <data name="Months" xml:space="preserve">
+    <value>Месяцы</value>
+  </data>
+  <data name="mostSuitable" xml:space="preserve">
+    <value>наиболее пригодный</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="NameEN" xml:space="preserve">
+    <value>Название (Английский)</value>
+  </data>
+  <data name="NameKZ" xml:space="preserve">
+    <value>Название (Казахский)</value>
+  </data>
+  <data name="NameRU" xml:space="preserve">
+    <value>Название (Русский)</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="NewsMinEnergy" xml:space="preserve">
+    <value>Новости Министерства Энергетики</value>
+  </data>
+  <data name="notVeryImportant" xml:space="preserve">
+    <value>не очень важно</value>
+  </data>
+  <data name="OnlyRegisteredUsers" xml:space="preserve">
+    <value>Доступно только зарегистрированным пользователям</value>
+  </data>
+  <data name="Operands" xml:space="preserve">
+    <value>Операнды</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Операция</value>
+  </data>
+  <data name="Option" xml:space="preserve">
+    <value>Опция</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Опции</value>
+  </data>
+  <data name="PanelEfficiency" xml:space="preserve">
+    <value>Эффективность солнечных панелей</value>
+  </data>
+  <data name="PanelOrientation" xml:space="preserve">
+    <value>Ориентация солнечных панелей</value>
+  </data>
+  <data name="PanelOrientations" xml:space="preserve">
+    <value>Ориентации панелей</value>
+  </data>
+  <data name="PanelsCount" xml:space="preserve">
+    <value>Количество солнечных панелей, шт.</value>
+  </data>
+  <data name="PanelsSquare" xml:space="preserve">
+    <value>Площадь панелей, кв.м.</value>
+  </data>
+  <data name="PanelTiltAngle" xml:space="preserve">
+    <value>Угол наклона солнечных панелей, градусы</value>
+  </data>
+  <data name="ParametersOfThePVSystem" xml:space="preserve">
+    <value>Параметры PV-системы</value>
+  </data>
+  <data name="Passport" xml:space="preserve">
+    <value>Паспорт</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Вставить</value>
+  </data>
+  <data name="Periodicity" xml:space="preserve">
+    <value>Периодичность</value>
+  </data>
+  <data name="PermissibleAbsoluteMark" xml:space="preserve">
+    <value>Допустимая абсолютная отметка (не более, метры)</value>
+  </data>
+  <data name="PermissibleDistanceFromNP" xml:space="preserve">
+    <value>Допустимое расстояние от НП (не более, км)</value>
+  </data>
+  <data name="PermissibleDistanceFromPowerLines" xml:space="preserve">
+    <value>Допустимое расстояние от ЛЭП (не более, км)</value>
+  </data>
+  <data name="PermissibleDistanceFromRoads" xml:space="preserve">
+    <value>Допустимое расстояние от автодорог (не более, км)</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Фото</value>
+  </data>
+  <data name="PleaseCheckYourEmailToResetYourPassword" xml:space="preserve">
+    <value>Проверьте свой адрес электронной почты, чтобы сбросить пароль.</value>
+  </data>
+  <data name="PointNumber1" xml:space="preserve">
+    <value>Точка №1</value>
+  </data>
+  <data name="PointNumber2" xml:space="preserve">
+    <value>Точка №2</value>
+  </data>
+  <data name="PointNumber3" xml:space="preserve">
+    <value>Точка №3</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>Мощность</value>
+  </data>
+  <data name="PowerMW" xml:space="preserve">
+    <value>Мощность, МВт</value>
+  </data>
+  <data name="PowerW" xml:space="preserve">
+    <value>Мощность, Вт</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>Область</value>
+  </data>
+  <data name="Provinces" xml:space="preserve">
+    <value>Области</value>
+  </data>
+  <data name="PVSystemMaterial" xml:space="preserve">
+    <value>Материал солнечных панелей</value>
+  </data>
+  <data name="PVSystemMaterials" xml:space="preserve">
+    <value>Материалы PV систем</value>
+  </data>
+  <data name="RatedOperatingTemperature" xml:space="preserve">
+    <value>Номинальная температура работы солнечного элемента NOCT</value>
+  </data>
+  <data name="RatedPowerOfThePVPanel" xml:space="preserve">
+    <value>Номинальная мощность ФЭС, Вт</value>
+  </data>
+  <data name="RefreshList" xml:space="preserve">
+    <value>Обновить список</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="RegisterAsANewUser" xml:space="preserve">
+    <value>Зарегистрируйтесь как новый пользователь</value>
+  </data>
+  <data name="relativelyFit" xml:space="preserve">
+    <value>относительно пригодный</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запомнить меня?</value>
+  </data>
+  <data name="RequiredMonthlyAverageEnergy" xml:space="preserve">
+    <value>Требуемая cредняя месячная дневная энергия, кВт∙ч/день</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Сброс</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Сброс пароля</value>
+  </data>
+  <data name="ResetPasswordConfirmation" xml:space="preserve">
+    <value>Подтверждение сброса пароля</value>
+  </data>
+  <data name="ResetYourPassword" xml:space="preserve">
+    <value>Сброс пароля.</value>
+  </data>
+  <data name="Resolution" xml:space="preserve">
+    <value>Разрешение</value>
+  </data>
+  <data name="ResolutionEN" xml:space="preserve">
+    <value>Разрешение (Английский)</value>
+  </data>
+  <data name="ResolutionKZ" xml:space="preserve">
+    <value>Разрешение (Казахский)</value>
+  </data>
+  <data name="ResolutionRU" xml:space="preserve">
+    <value>Разрешение (Русский)</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Результат</value>
+  </data>
+  <data name="RetrievingData" xml:space="preserve">
+    <value>Получение данных</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Роли</value>
+  </data>
+  <data name="RowNameEN" xml:space="preserve">
+    <value>Имя строки (Английский)</value>
+  </data>
+  <data name="RowNameKZ" xml:space="preserve">
+    <value>Имя строки (Казахский)</value>
+  </data>
+  <data name="RowNameRU" xml:space="preserve">
+    <value>Имя строки (Русский)</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>График</value>
+  </data>
+  <data name="SelectMeteoDataType" xml:space="preserve">
+    <value>Выберите тип метеоданных</value>
+  </data>
+  <data name="SelectPointOnTheMap" xml:space="preserve">
+    <value>Выберите точку на карте</value>
+  </data>
+  <data name="SelectWeatherDataType" xml:space="preserve">
+    <value>Выберите тип метеоданных</value>
+  </data>
+  <data name="ShowOnMap" xml:space="preserve">
+    <value>Указать на карте</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Источник</value>
+  </data>
+  <data name="SourceEN" xml:space="preserve">
+    <value>Источник (Английский)</value>
+  </data>
+  <data name="SourceKZ" xml:space="preserve">
+    <value>Источник (Казахский)</value>
+  </data>
+  <data name="SourceRU" xml:space="preserve">
+    <value>Источник (Русский)</value>
+  </data>
+  <data name="SpeciallyProtectedNaturalAreas" xml:space="preserve">
+    <value>Особо охраняемые природные территории</value>
+  </data>
+  <data name="SPP" xml:space="preserve">
+    <value>Солнечная электростанция</value>
+  </data>
+  <data name="SPPPurpose" xml:space="preserve">
+    <value>Назначение солнечной электростанции</value>
+  </data>
+  <data name="SPPPurposes" xml:space="preserve">
+    <value>Назначения солнечных электростанций</value>
+  </data>
+  <data name="SPPs" xml:space="preserve">
+    <value>Солнечные электростанции</value>
+  </data>
+  <data name="SPPStatus" xml:space="preserve">
+    <value>Статус солнечной электростанции</value>
+  </data>
+  <data name="SPPStatuses" xml:space="preserve">
+    <value>Статусы солнечных электростанций</value>
+  </data>
+  <data name="Statistic" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
+  <data name="SuitabilityOfTheTerritoryToAccommodateSES" xml:space="preserve">
+    <value>Пригодность территории для размещения СЭС, %</value>
+  </data>
+  <data name="suitable" xml:space="preserve">
+    <value>Пригодный</value>
+  </data>
+  <data name="SystemLog" xml:space="preserve">
+    <value>Запись системного журнала</value>
+  </data>
+  <data name="SystemLogs" xml:space="preserve">
+    <value>Системный журнал</value>
+  </data>
+  <data name="SystemParameters" xml:space="preserve">
+    <value>Параметры системы</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Таблица</value>
+  </data>
+  <data name="TemperatureCoefficientOfPowerPanel" xml:space="preserve">
+    <value>Температурный коэффициент мощности солнечных панелей, °C</value>
+  </data>
+  <data name="TerrainAnalysis" xml:space="preserve">
+    <value>Анализ пригодности территории для размещения СЭС</value>
+  </data>
+  <data name="TheAmountOfEnergyDay" xml:space="preserve">
+    <value>Количество энергии,  кВт∙ч/сутки</value>
+  </data>
+  <data name="TheAngleOfThePVPanel" xml:space="preserve">
+    <value>Угол наклона солнечных панелей, градусы</value>
+  </data>
+  <data name="TheAverageDailyOutsideTemperature" xml:space="preserve">
+    <value>Средняя дневная температура наружного воздуха (С°)</value>
+  </data>
+  <data name="TheAverageMonthlyEfficiencyCoefficientOfASolarPanelAtDifferentCellTemperatures" xml:space="preserve">
+    <value>Среднемесячный коэффициент эффективности солнечной панели при различных температурах ячейки</value>
+  </data>
+  <data name="TheAverageMonthlyEfficiencyCoefficientOfThePVSystem" xml:space="preserve">
+    <value>Среднемесячный коэффициент эффективности PV-системы</value>
+  </data>
+  <data name="TheAverageMonthlySumOfTotalRadiationOnTheOrientedPanel" xml:space="preserve">
+    <value>Средняя месячная сумма суммарной солнечной радиации на ориентированную панель (кВт/м² в месяц)</value>
+  </data>
+  <data name="TheCellTemperatureInOperatingModeForEachMonth" xml:space="preserve">
+    <value>Температура ячейки в рабочем режиме для каждого месяца</value>
+  </data>
+  <data name="TheFieldIsNotAValidEmailAddress" xml:space="preserve">
+    <value>Поле {0} не является действительным адресом электронной почты.</value>
+  </data>
+  <data name="TheMinimumAllowableValueOfTotalRadiationOnTheHorizontalSurface" xml:space="preserve">
+    <value>Минимально допустимое значение суммарной радиации на горизонтальную поверхность (годовые суммы) кВт*час/м² в год</value>
+  </data>
+  <data name="TheNominalOperatingTemperatureOfTheSolarCell" xml:space="preserve">
+    <value>Номинальная рабочая температура солнечных ячеек (NOCT), °C</value>
+  </data>
+  <data name="TheResultOfPointComparison" xml:space="preserve">
+    <value>Результат сравнения точек</value>
+  </data>
+  <data name="TheResultOfTheCalculationOfPanelsSquare" xml:space="preserve">
+    <value>Результат расчета площади панелей</value>
+  </data>
+  <data name="ThermalPowerFactor" xml:space="preserve">
+    <value>Температурный коэффициент мощности фотопанели</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="TotalAreaOccupiedByPVPanels" xml:space="preserve">
+    <value>Общая площадь, занимаемая солнечными панелями, м²</value>
+  </data>
+  <data name="TotalEnergyConsumptionPerDay" xml:space="preserve">
+    <value>Итого энергопотребление в сутки, кВт*ч:</value>
+  </data>
+  <data name="TotalRequiredRatedPowerOfSolarPVSystems" xml:space="preserve">
+    <value>Общая необходимая номинальная мощность ФЭС, Вт</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="TypeOfPanelMaterial" xml:space="preserve">
+    <value>Тип материала панелей</value>
+  </data>
+  <data name="TypeOfPanelOrientation" xml:space="preserve">
+    <value>Тип ориентации панелей</value>
+  </data>
+  <data name="unfit" xml:space="preserve">
+    <value>непригодный</value>
+  </data>
+  <data name="unsuitable" xml:space="preserve">
+    <value>малопригодный</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="UseALocalAccountToLogIn" xml:space="preserve">
+    <value>Используйте локальную учетную запись для входа</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
+  <data name="UserId" xml:space="preserve">
+    <value>Идентификатор пользователя</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Значение</value>
+  </data>
+  <data name="veryImportant" xml:space="preserve">
+    <value>очень важно</value>
+  </data>
+  <data name="WiringEfficiency" xml:space="preserve">
+    <value>Эффективность проводки</value>
+  </data>
+  <data name="WorkingTimePerDay" xml:space="preserve">
+    <value>Время работы в сутки, ч</value>
+  </data>
+  <data name="WrongYear" xml:space="preserve">
+    <value>Неверный год!</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="YourPasswordHasBeenChanged" xml:space="preserve">
+    <value>Ваш пароль был изменен.</value>
+  </data>
+  <data name="YourPasswordHasBeenResetPleaseClickHereToLogIn" xml:space="preserve">
+    <value>Ваш пароль был сброшен. Пожалуйста кликните сюда для авторизации</value>
+  </data>
+  <data name="LesfondOrgup" xml:space="preserve">
+    <value>Ведомственная принадлежность лесхоза</value>
+  </data>
+  <data name="LesfondOrgups" xml:space="preserve">
+    <value>Ведомственные принадлежности лесхозов</value>
+  </data>
+  <data name="Lesfondtype" xml:space="preserve">
+    <value>Тип лесхоза</value>
+  </data>
+  <data name="Lesfondtypes" xml:space="preserve">
+    <value>Типы лесхозов</value>
+  </data>
+  <data name="MeteoStation" xml:space="preserve">
+    <value>Метеостанция</value>
+  </data>
+  <data name="MeteoStations" xml:space="preserve">
+    <value>Метеостанции</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>Дата, время</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Обратная связь</value>
+  </data>
+  <data name="Feedbacks" xml:space="preserve">
+    <value>Отзывы</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="GetMeteoDataRegion" xml:space="preserve">
+    <value>Получение метеорологических данных по областям</value>
+  </data>
+  <data name="PanelsArea" xml:space="preserve">
+    <value>Общая площадь солнечных панелей, м²</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="ParameterValue" xml:space="preserve">
+    <value>Значение параметра</value>
+  </data>
+  <data name="SPPCostHint" xml:space="preserve">
+    <value>Данные от компаний</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="MeteoDataGroup" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+</root>

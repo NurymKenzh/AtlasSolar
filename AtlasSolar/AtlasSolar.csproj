@@ -1,0 +1,1271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{66A45480-8C9F-4B81-BF22-26839EDB0880}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtlasSolar</RootNamespace>
+    <AssemblyName>AtlasSolar</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework6.Npgsql, Version=3.1.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework6.Npgsql.3.1.1\lib\net45\EntityFramework6.Npgsql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="gdalconst_csharp, Version=1.0.5387.28601, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <HintPath>..\packages\GDAL.1.11.1\lib\net40\gdalconst_csharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="gdal_csharp, Version=1.0.5387.28601, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <HintPath>..\packages\GDAL.1.11.1\lib\net40\gdal_csharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.7\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Npgsql, Version=3.1.9.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.3.1.9\lib\net451\Npgsql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ogr_csharp, Version=1.0.5387.28600, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <HintPath>..\packages\GDAL.1.11.1\lib\net40\ogr_csharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="osr_csharp, Version=1.0.5387.28600, Culture=neutral, PublicKeyToken=db5a52b08dc5b321, processorArchitecture=MSIL">
+      <HintPath>..\packages\GDAL.1.11.1\lib\net40\osr_csharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AppliancesController.cs" />
+    <Compile Include="Controllers\ApplianceTypesController.cs" />
+    <Compile Include="Controllers\AveragerController.cs" />
+    <Compile Include="Controllers\FeedbacksController.cs" />
+    <Compile Include="Controllers\HelpController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
+    <Compile Include="Controllers\LepinsttpsController.cs" />
+    <Compile Include="Controllers\LepmtrlsController.cs" />
+    <Compile Include="Controllers\LeprngsController.cs" />
+    <Compile Include="Controllers\LeprnzonsController.cs" />
+    <Compile Include="Controllers\LeptypesController.cs" />
+    <Compile Include="Controllers\LesfondOrgupsController.cs" />
+    <Compile Include="Controllers\LesfondtypesController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MapDescriptionsController.cs" />
+    <Compile Include="Controllers\MapsController.cs" />
+    <Compile Include="Controllers\MeteoDataController.cs" />
+    <Compile Include="Controllers\MeteoDataPeriodicitiesController.cs" />
+    <Compile Include="Controllers\MeteoDataSourcesController.cs" />
+    <Compile Include="Controllers\MeteoDataTypesController.cs" />
+    <Compile Include="Controllers\MeteoUploaderController.cs" />
+    <Compile Include="Controllers\ModeratorController.cs" />
+    <Compile Include="Controllers\OptionsController.cs" />
+    <Compile Include="Controllers\PanelOrientationsController.cs" />
+    <Compile Include="Controllers\ParserController.cs" />
+    <Compile Include="Controllers\ProvincesController.cs" />
+    <Compile Include="Controllers\PVSystemMaterialsController.cs" />
+    <Compile Include="Controllers\SPPPurposesController.cs" />
+    <Compile Include="Controllers\SPPsController.cs" />
+    <Compile Include="Controllers\SPPStatusesController.cs" />
+    <Compile Include="Controllers\StatisticsController.cs" />
+    <Compile Include="Controllers\SystemLogsController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="GdalConfiguration.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701151113246_MeteoDataPeriodicity.cs" />
+    <Compile Include="Migrations\201701151113246_MeteoDataPeriodicity.Designer.cs">
+      <DependentUpon>201701151113246_MeteoDataPeriodicity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701151133080_MeteoDataSource.cs" />
+    <Compile Include="Migrations\201701151133080_MeteoDataSource.Designer.cs">
+      <DependentUpon>201701151133080_MeteoDataSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701151145410_MeteoDataType.cs" />
+    <Compile Include="Migrations\201701151145410_MeteoDataType.Designer.cs">
+      <DependentUpon>201701151145410_MeteoDataType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701151153197_MeteoData.cs" />
+    <Compile Include="Migrations\201701151153197_MeteoData.Designer.cs">
+      <DependentUpon>201701151153197_MeteoData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701151154177_MeteoData1.cs" />
+    <Compile Include="Migrations\201701151154177_MeteoData1.Designer.cs">
+      <DependentUpon>201701151154177_MeteoData1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701151158311_ApplianceType.cs" />
+    <Compile Include="Migrations\201701151158311_ApplianceType.Designer.cs">
+      <DependentUpon>201701151158311_ApplianceType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701151200275_Appliance.cs" />
+    <Compile Include="Migrations\201701151200275_Appliance.Designer.cs">
+      <DependentUpon>201701151200275_Appliance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701151205046_Option.cs" />
+    <Compile Include="Migrations\201701151205046_Option.Designer.cs">
+      <DependentUpon>201701151205046_Option.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701151207185_PVSystemMaterial.cs" />
+    <Compile Include="Migrations\201701151207185_PVSystemMaterial.Designer.cs">
+      <DependentUpon>201701151207185_PVSystemMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701151207469_PVSystemMaterial1.cs" />
+    <Compile Include="Migrations\201701151207469_PVSystemMaterial1.Designer.cs">
+      <DependentUpon>201701151207469_PVSystemMaterial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701151227002_SystemLog.cs" />
+    <Compile Include="Migrations\201701151227002_SystemLog.Designer.cs">
+      <DependentUpon>201701151227002_SystemLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701230323200_PVSystemMaterial2.cs" />
+    <Compile Include="Migrations\201701230323200_PVSystemMaterial2.Designer.cs">
+      <DependentUpon>201701230323200_PVSystemMaterial2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701230330072_PVSystemMaterial3.cs" />
+    <Compile Include="Migrations\201701230330072_PVSystemMaterial3.Designer.cs">
+      <DependentUpon>201701230330072_PVSystemMaterial3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701310550581_MeteoDataType1.cs" />
+    <Compile Include="Migrations\201701310550581_MeteoDataType1.Designer.cs">
+      <DependentUpon>201701310550581_MeteoDataType1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702030249317_MeteoDataType2.cs" />
+    <Compile Include="Migrations\201702030249317_MeteoDataType2.Designer.cs">
+      <DependentUpon>201702030249317_MeteoDataType2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702060409531_SPPStatus.cs" />
+    <Compile Include="Migrations\201702060409531_SPPStatus.Designer.cs">
+      <DependentUpon>201702060409531_SPPStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702060453184_SPPPurpose.cs" />
+    <Compile Include="Migrations\201702060453184_SPPPurpose.Designer.cs">
+      <DependentUpon>201702060453184_SPPPurpose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702060519337_PanelOrientation.cs" />
+    <Compile Include="Migrations\201702060519337_PanelOrientation.Designer.cs">
+      <DependentUpon>201702060519337_PanelOrientation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702061032137_SPP.cs" />
+    <Compile Include="Migrations\201702061032137_SPP.Designer.cs">
+      <DependentUpon>201702061032137_SPP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702070958109_SPP1.cs" />
+    <Compile Include="Migrations\201702070958109_SPP1.Designer.cs">
+      <DependentUpon>201702070958109_SPP1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702171535334_SPP2.cs" />
+    <Compile Include="Migrations\201702171535334_SPP2.Designer.cs">
+      <DependentUpon>201702171535334_SPP2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703050433564_Statistic.cs" />
+    <Compile Include="Migrations\201703050433564_Statistic.Designer.cs">
+      <DependentUpon>201703050433564_Statistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703050519456_Statistic1.cs" />
+    <Compile Include="Migrations\201703050519456_Statistic1.Designer.cs">
+      <DependentUpon>201703050519456_Statistic1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704171743217_Leprng.cs" />
+    <Compile Include="Migrations\201704171743217_Leprng.Designer.cs">
+      <DependentUpon>201704171743217_Leprng.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704180606504_Leps.cs" />
+    <Compile Include="Migrations\201704180606504_Leps.Designer.cs">
+      <DependentUpon>201704180606504_Leps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704240349021_MapDescription.cs" />
+    <Compile Include="Migrations\201704240349021_MapDescription.Designer.cs">
+      <DependentUpon>201704240349021_MapDescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704240450505_MapDescription1.cs" />
+    <Compile Include="Migrations\201704240450505_MapDescription1.Designer.cs">
+      <DependentUpon>201704240450505_MapDescription1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705010543378_Province.cs" />
+    <Compile Include="Migrations\201705010543378_Province.Designer.cs">
+      <DependentUpon>201705010543378_Province.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705010547172_Province1.cs" />
+    <Compile Include="Migrations\201705010547172_Province1.Designer.cs">
+      <DependentUpon>201705010547172_Province1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705091237161_Province2.cs" />
+    <Compile Include="Migrations\201705091237161_Province2.Designer.cs">
+      <DependentUpon>201705091237161_Province2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705091238547_Province3.cs" />
+    <Compile Include="Migrations\201705091238547_Province3.Designer.cs">
+      <DependentUpon>201705091238547_Province3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705290349293_Lesfond.cs" />
+    <Compile Include="Migrations\201705290349293_Lesfond.Designer.cs">
+      <DependentUpon>201705290349293_Lesfond.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705300606176_Feedback.cs" />
+    <Compile Include="Migrations\201705300606176_Feedback.Designer.cs">
+      <DependentUpon>201705300606176_Feedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Appliance.cs" />
+    <Compile Include="Models\ApplianceType.cs" />
+    <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Lepinsttp.cs" />
+    <Compile Include="Models\Lepmtrl.cs" />
+    <Compile Include="Models\Leprng.cs" />
+    <Compile Include="Models\Leprnzon.cs" />
+    <Compile Include="Models\Leptype.cs" />
+    <Compile Include="Models\LesfondOrgup.cs" />
+    <Compile Include="Models\Lesfondtype.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MapDescription.cs" />
+    <Compile Include="Models\MeteoData.cs" />
+    <Compile Include="Models\MeteoDataPeriodicity.cs" />
+    <Compile Include="Models\MeteoDataSource.cs" />
+    <Compile Include="Models\MeteoDataType.cs" />
+    <Compile Include="Models\NpgsqlContext.cs" />
+    <Compile Include="Models\Option.cs" />
+    <Compile Include="Models\PanelOrientation.cs" />
+    <Compile Include="Models\Province.cs" />
+    <Compile Include="Models\PVSystemMaterial.cs" />
+    <Compile Include="Models\SPP.cs" />
+    <Compile Include="Models\SPPPurpose.cs" />
+    <Compile Include="Models\SPPStatus.cs" />
+    <Compile Include="Models\Statistic.cs" />
+    <Compile Include="Models\SystemLog.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Common.ru.Designer.cs">
+      <DependentUpon>Common.ru.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Common.Designer.cs">
+      <DependentUpon>Common.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Common.kk.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.kk.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Errors.kk.Designer.cs">
+      <DependentUpon>Errors.kk.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Errors.ru.Designer.cs">
+      <DependentUpon>Errors.ru.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Errors.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Errors.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Info.ru.Designer.cs">
+      <DependentUpon>Info.ru.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Info.kk.Designer.cs">
+      <DependentUpon>Info.kk.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Info.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Info.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Layers.ru.Designer.cs">
+      <DependentUpon>Layers.ru.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Layers.kk.Designer.cs">
+      <DependentUpon>Layers.kk.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Layers.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Layers.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dopstyle.css" />
+    <Content Include="Content\infotable.css" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jsTree\default\32px.png" />
+    <Content Include="Content\jsTree\default\40px.png" />
+    <Content Include="Content\jsTree\default\style.css" />
+    <Content Include="Content\jsTree\default\style.min.css" />
+    <Content Include="Content\jsTree\default\throbber.gif" />
+    <Content Include="Content\mapreset.css" />
+    <Content Include="Content\mapstyle.css" />
+    <Content Include="Content\ol.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\reset.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\style_old2.css" />
+    <Content Include="Content\style_old.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="GdalConfiguration.vb" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="DownloadMeteoData\804 11.zip" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Images\bg-soc.png" />
+    <Content Include="Images\Buttons\calcarea.png" />
+    <Content Include="Images\Buttons\calcefficiency.png" />
+    <Content Include="Images\Buttons\calcenergy.png" />
+    <Content Include="Images\Buttons\getmeteodata.png" />
+    <Content Include="Images\Buttons\info.png" />
+    <Content Include="Images\Buttons\question.png" />
+    <Content Include="Images\css-sprite-iconok.png" />
+    <Content Include="Images\css-sprite-iconok2.png" />
+    <Content Include="Images\icon1.png" />
+    <Content Include="Images\icon2.png" />
+    <Content Include="Images\icon3.png" />
+    <Content Include="Images\icon5.png" />
+    <Content Include="Images\info.png" />
+    <Content Include="Images\info16.png" />
+    <Content Include="Images\Legend\spp1.png" />
+    <Content Include="Images\Legend\spp2.png" />
+    <Content Include="Images\sun_preloader.gif" />
+    <Content Include="img\32px.png" />
+    <Content Include="img\ecosolar_logo.png" />
+    <Content Include="img\ecosolar_name.png" />
+    <Content Include="img\gb.png" />
+    <Content Include="img\gerb_rk.png" />
+    <Content Include="img\ico\favicon.ico" />
+    <Content Include="img\img11.jpg" />
+    <Content Include="img\kz.png" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\logo_eng.png" />
+    <Content Include="img\logo_gb.png" />
+    <Content Include="img\logo_kaz.png" />
+    <Content Include="img\logo_kz.png" />
+    <Content Include="img\ru.png" />
+    <Content Include="img\sl1-01.jpg" />
+    <Content Include="img\sl1.jpg" />
+    <Content Include="img\sl2.jpg" />
+    <Content Include="img\sl3.jpg" />
+    <Content Include="img\sl4.jpg" />
+    <Content Include="img\sl5.jpg" />
+    <Content Include="img\sl6.jpg" />
+    <Content Include="img\sl7.jpg" />
+    <Content Include="img\UNDP_Logo_En.png" />
+    <Content Include="img\vector.png" />
+    <Content Include="img\w.png" />
+    <Content Include="Scripts\ai.0.22.19-build00125.js" />
+    <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\inputmask.date.extensions.js" />
+    <Content Include="Scripts\inputmask.dependencyLib.js" />
+    <Content Include="Scripts\inputmask.extensions.js" />
+    <Content Include="Scripts\inputmask.js" />
+    <Content Include="Scripts\inputmask.numeric.extensions.js" />
+    <Content Include="Scripts\inputmask.phone.extensions.js" />
+    <Content Include="Scripts\inputmask.regex.extensions.js" />
+    <Content Include="Scripts\jquery-1.12.4.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.12.0.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.flot.axislabels.js" />
+    <Content Include="Scripts\jquery.flot.canvas.js" />
+    <Content Include="Scripts\jquery.flot.canvas.min.js" />
+    <Content Include="Scripts\jquery.flot.categories.js" />
+    <Content Include="Scripts\jquery.flot.categories.min.js" />
+    <Content Include="Scripts\jquery.flot.crosshair.js" />
+    <Content Include="Scripts\jquery.flot.crosshair.min.js" />
+    <Content Include="Scripts\jquery.flot.errorbars.js" />
+    <Content Include="Scripts\jquery.flot.errorbars.min.js" />
+    <Content Include="Scripts\jquery.flot.fillbetween.js" />
+    <Content Include="Scripts\jquery.flot.fillbetween.min.js" />
+    <Content Include="Scripts\jquery.flot.image.js" />
+    <Content Include="Scripts\jquery.flot.image.min.js" />
+    <Content Include="Scripts\jquery.flot.js" />
+    <Content Include="Scripts\jquery.flot.min.js" />
+    <Content Include="Scripts\jquery.flot.navigate.js" />
+    <Content Include="Scripts\jquery.flot.navigate.min.js" />
+    <Content Include="Scripts\jquery.flot.pie.js" />
+    <Content Include="Scripts\jquery.flot.pie.min.js" />
+    <Content Include="Scripts\jquery.flot.resize.js" />
+    <Content Include="Scripts\jquery.flot.resize.min.js" />
+    <Content Include="Scripts\jquery.flot.selection.js" />
+    <Content Include="Scripts\jquery.flot.selection.min.js" />
+    <Content Include="Scripts\jquery.flot.stack.js" />
+    <Content Include="Scripts\jquery.flot.stack.min.js" />
+    <Content Include="Scripts\jquery.flot.symbol.js" />
+    <Content Include="Scripts\jquery.flot.symbol.min.js" />
+    <Content Include="Scripts\jquery.flot.threshold.js" />
+    <Content Include="Scripts\jquery.flot.threshold.min.js" />
+    <Content Include="Scripts\jquery.flot.time.js" />
+    <Content Include="Scripts\jquery.flot.time.min.js" />
+    <Content Include="Scripts\jquery.inputmask.bundle.js" />
+    <Content Include="Scripts\jquery.inputmask.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jstree.js" />
+    <Content Include="Scripts\jstree.min.js" />
+    <Content Include="Scripts\mapclick.js" />
+    <Content Include="Scripts\maplayers.js" />
+    <Content Include="Scripts\maptreelegends.js" />
+    <Content Include="Scripts\mapvariables.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\ol.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\slide.js" />
+    <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
+    <Content Include="Scripts\tinymce\license.txt" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="Scripts\tinymce\plugins\codesample\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\colorpicker\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\css\dialog.css" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\buttons.png" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\icons.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\items.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\menu_arrow.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\menu_check.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\progress.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\tabs.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\tiny_mce_popup.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\editable_selects.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\form_utils.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\mctabs.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\validate.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\help\img\logo.png" />
+    <Content Include="Scripts\tinymce\plugins\help\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\help\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\imagetools\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\importcss\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textpattern\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\toc\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\toc\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Scripts\tinymce\themes\inlite\theme.js" />
+    <Content Include="Scripts\tinymce\themes\inlite\theme.min.js" />
+    <Content Include="Scripts\tinymce\themes\modern\theme.js" />
+    <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
+    <Content Include="Scripts\tinymce\tinymce.js" />
+    <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\MeteoDataPeriodicities\Create.cshtml" />
+    <Content Include="Views\MeteoDataPeriodicities\Delete.cshtml" />
+    <Content Include="Views\MeteoDataPeriodicities\Details.cshtml" />
+    <Content Include="Views\MeteoDataPeriodicities\Edit.cshtml" />
+    <Content Include="Views\MeteoDataPeriodicities\Index.cshtml" />
+    <Content Include="Views\MeteoDataSources\Create.cshtml" />
+    <Content Include="Views\MeteoDataSources\Delete.cshtml" />
+    <Content Include="Views\MeteoDataSources\Details.cshtml" />
+    <Content Include="Views\MeteoDataSources\Edit.cshtml" />
+    <Content Include="Views\MeteoDataSources\Index.cshtml" />
+    <Content Include="Views\MeteoDataTypes\Create.cshtml" />
+    <Content Include="Views\MeteoDataTypes\Delete.cshtml" />
+    <Content Include="Views\MeteoDataTypes\Details.cshtml" />
+    <Content Include="Views\MeteoDataTypes\Edit.cshtml" />
+    <Content Include="Views\MeteoDataTypes\Index.cshtml" />
+    <Content Include="Views\MeteoData\Create.cshtml" />
+    <Content Include="Views\MeteoData\Delete.cshtml" />
+    <Content Include="Views\MeteoData\Details.cshtml" />
+    <Content Include="Views\MeteoData\Edit.cshtml" />
+    <Content Include="Views\MeteoData\Index.cshtml" />
+    <Content Include="Views\MeteoData\Parse.cshtml" />
+    <Content Include="Views\ApplianceTypes\Create.cshtml" />
+    <Content Include="Views\ApplianceTypes\Delete.cshtml" />
+    <Content Include="Views\ApplianceTypes\Details.cshtml" />
+    <Content Include="Views\ApplianceTypes\Edit.cshtml" />
+    <Content Include="Views\ApplianceTypes\Index.cshtml" />
+    <Content Include="Views\Appliances\Create.cshtml" />
+    <Content Include="Views\Appliances\Delete.cshtml" />
+    <Content Include="Views\Appliances\Details.cshtml" />
+    <Content Include="Views\Appliances\Edit.cshtml" />
+    <Content Include="Views\Appliances\Index.cshtml" />
+    <Content Include="Views\Options\Create.cshtml" />
+    <Content Include="Views\Options\Delete.cshtml" />
+    <Content Include="Views\Options\Details.cshtml" />
+    <Content Include="Views\Options\Edit.cshtml" />
+    <Content Include="Views\Options\Index.cshtml" />
+    <Content Include="Views\PVSystemMaterials\Create.cshtml" />
+    <Content Include="Views\PVSystemMaterials\Delete.cshtml" />
+    <Content Include="Views\PVSystemMaterials\Details.cshtml" />
+    <Content Include="Views\PVSystemMaterials\Edit.cshtml" />
+    <Content Include="Views\PVSystemMaterials\Index.cshtml" />
+    <Content Include="Views\SystemLogs\Create.cshtml" />
+    <Content Include="Views\SystemLogs\Delete.cshtml" />
+    <Content Include="Views\SystemLogs\Details.cshtml" />
+    <Content Include="Views\SystemLogs\Edit.cshtml" />
+    <Content Include="Views\SystemLogs\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Init.cshtml" />
+    <Content Include="Views\Admin\ParseMeteoDataNASASSEDaily.cshtml" />
+    <Content Include="Views\Admin\ParseMeteoDataNASASSEMonthlyAverage.cshtml" />
+    <Content Include="Views\Admin\ParseMeteoDataTypes.cshtml" />
+    <Content Include="Views\Averager\Average.cshtml" />
+    <Content Include="Views\Averager\CreateLayerData.cshtml" />
+    <Content Include="Views\Averager\Index.cshtml" />
+    <Content Include="Views\Language\Index.cshtml" />
+    <Content Include="Views\Maps\Demo.cshtml" />
+    <Content Include="Views\Maps\Test2.cshtml" />
+    <Content Include="Views\MeteoUploader\Index.cshtml" />
+    <Content Include="Views\MeteoUploader\Upload.cshtml" />
+    <Content Include="Views\Moderator\Index.cshtml" />
+    <Content Include="Views\Parser\EraseMeteoData.cshtml" />
+    <Content Include="Views\Parser\EraseMeteoDataTypes.cshtml" />
+    <Content Include="Views\Parser\Index.cshtml" />
+    <Content Include="Views\Parser\ParseMeteoDataTypes.cshtml" />
+    <Content Include="Views\Parser\ParseNASA1983Daily.cshtml" />
+    <Content Include="Views\Parser\ParseNASA1983Monthly.cshtml" />
+    <Content Include="Views\Parser\ParseNASADaily.cshtml" />
+    <Content Include="Views\Parser\Test.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutMap.cshtml" />
+    <Content Include="Views\Shared\_ModeratorPartial.cshtml" />
+    <Content Include="Views\Admin\ParseMeteoDataNASAPOWERDaily.cshtml" />
+    <Content Include="Views\Admin\UploadSARAHE.cshtml" />
+    <Content Include="Views\Admin\Average.cshtml" />
+    <Content Include="Views\SPPStatuses\Create.cshtml" />
+    <Content Include="Views\SPPStatuses\Delete.cshtml" />
+    <Content Include="Views\SPPStatuses\Details.cshtml" />
+    <Content Include="Views\SPPStatuses\Edit.cshtml" />
+    <Content Include="Views\SPPStatuses\Index.cshtml" />
+    <Content Include="Views\SPPPurposes\Create.cshtml" />
+    <Content Include="Views\SPPPurposes\Delete.cshtml" />
+    <Content Include="Views\SPPPurposes\Details.cshtml" />
+    <Content Include="Views\SPPPurposes\Edit.cshtml" />
+    <Content Include="Views\SPPPurposes\Index.cshtml" />
+    <Content Include="Views\PanelOrientations\Create.cshtml" />
+    <Content Include="Views\PanelOrientations\Delete.cshtml" />
+    <Content Include="Views\PanelOrientations\Details.cshtml" />
+    <Content Include="Views\PanelOrientations\Edit.cshtml" />
+    <Content Include="Views\PanelOrientations\Index.cshtml" />
+    <Content Include="Views\SPPs\Create.cshtml" />
+    <Content Include="Views\SPPs\Delete.cshtml" />
+    <Content Include="Views\SPPs\Details.cshtml" />
+    <Content Include="Views\SPPs\Edit.cshtml" />
+    <Content Include="Views\SPPs\Index.cshtml" />
+    <Content Include="Views\Admin\UploadNewMeteoDataTypes.cshtml" />
+    <Content Include="Views\Admin\CreateLayerData.cshtml" />
+    <Content Include="Views\Statistics\Create.cshtml" />
+    <Content Include="Views\Statistics\Delete.cshtml" />
+    <Content Include="Views\Statistics\Details.cshtml" />
+    <Content Include="Views\Statistics\Edit.cshtml" />
+    <Content Include="Views\Statistics\Index.cshtml" />
+    <Content Include="Views\Admin\RefreshStatistics.cshtml" />
+    <Content Include="Views\Admin\ParseMeteoDataNASAPOWERMonthlyAverage.cshtml" />
+    <Content Include="Views\Shared\_Slider.cshtml" />
+    <Content Include="Views\Admin\UploadRayon.cshtml" />
+    <Content Include="Views\Admin\UploadCLARA.cshtml" />
+    <Content Include="Views\Leprngs\Create.cshtml" />
+    <Content Include="Views\Leprngs\Delete.cshtml" />
+    <Content Include="Views\Leprngs\Details.cshtml" />
+    <Content Include="Views\Leprngs\Edit.cshtml" />
+    <Content Include="Views\Leprngs\Index.cshtml" />
+    <Content Include="Views\Leptypes\Create.cshtml" />
+    <Content Include="Views\Leptypes\Delete.cshtml" />
+    <Content Include="Views\Leptypes\Details.cshtml" />
+    <Content Include="Views\Leptypes\Edit.cshtml" />
+    <Content Include="Views\Leptypes\Index.cshtml" />
+    <Content Include="Views\Lepmtrls\Create.cshtml" />
+    <Content Include="Views\Lepmtrls\Delete.cshtml" />
+    <Content Include="Views\Lepmtrls\Details.cshtml" />
+    <Content Include="Views\Lepmtrls\Edit.cshtml" />
+    <Content Include="Views\Lepmtrls\Index.cshtml" />
+    <Content Include="Views\Lepinsttps\Create.cshtml" />
+    <Content Include="Views\Lepinsttps\Delete.cshtml" />
+    <Content Include="Views\Lepinsttps\Details.cshtml" />
+    <Content Include="Views\Lepinsttps\Edit.cshtml" />
+    <Content Include="Views\Lepinsttps\Index.cshtml" />
+    <Content Include="Views\Leprnzons\Create.cshtml" />
+    <Content Include="Views\Leprnzons\Delete.cshtml" />
+    <Content Include="Views\Leprnzons\Details.cshtml" />
+    <Content Include="Views\Leprnzons\Edit.cshtml" />
+    <Content Include="Views\Leprnzons\Index.cshtml" />
+    <Content Include="Views\MapDescriptions\Create.cshtml" />
+    <Content Include="Views\MapDescriptions\Delete.cshtml" />
+    <Content Include="Views\MapDescriptions\Details.cshtml" />
+    <Content Include="Views\MapDescriptions\Edit.cshtml" />
+    <Content Include="Views\MapDescriptions\Index.cshtml" />
+    <Content Include="Views\Provinces\Create.cshtml" />
+    <Content Include="Views\Provinces\Delete.cshtml" />
+    <Content Include="Views\Provinces\Details.cshtml" />
+    <Content Include="Views\Provinces\Edit.cshtml" />
+    <Content Include="Views\Provinces\Index.cshtml" />
+    <Content Include="Views\Maps\_mapPartial.cshtml" />
+    <Content Include="Views\Maps\_mapDialogs.cshtml" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Admin\CreateDownloadData.cshtml" />
+    <Content Include="Views\Maps\Help.cshtml" />
+    <Content Include="Views\Help\CalcEfficiency.cshtml" />
+    <Content Include="Views\Help\CalcEnergy.cshtml" />
+    <Content Include="Views\Maps\_mapHelp.cshtml" />
+    <Content Include="Views\Lesfondtypes\Create.cshtml" />
+    <Content Include="Views\Lesfondtypes\Delete.cshtml" />
+    <Content Include="Views\Lesfondtypes\Details.cshtml" />
+    <Content Include="Views\Lesfondtypes\Edit.cshtml" />
+    <Content Include="Views\Lesfondtypes\Index.cshtml" />
+    <Content Include="Views\LesfondOrgups\Create.cshtml" />
+    <Content Include="Views\LesfondOrgups\Delete.cshtml" />
+    <Content Include="Views\LesfondOrgups\Details.cshtml" />
+    <Content Include="Views\LesfondOrgups\Edit.cshtml" />
+    <Content Include="Views\LesfondOrgups\Index.cshtml" />
+    <Content Include="Views\Feedbacks\Create.cshtml" />
+    <Content Include="Views\Feedbacks\Delete.cshtml" />
+    <Content Include="Views\Feedbacks\Details.cshtml" />
+    <Content Include="Views\Feedbacks\Edit.cshtml" />
+    <Content Include="Views\Feedbacks\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Download\AnalizeTerrain\" />
+    <Folder Include="Download\csv\" />
+    <Folder Include="Download\Images\" />
+    <Folder Include="Help\" />
+    <Folder Include="Maps\" />
+    <Folder Include="Upload\" />
+    <Folder Include="Views\Test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701151113246_MeteoDataPeriodicity.resx">
+      <DependentUpon>201701151113246_MeteoDataPeriodicity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701151133080_MeteoDataSource.resx">
+      <DependentUpon>201701151133080_MeteoDataSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701151145410_MeteoDataType.resx">
+      <DependentUpon>201701151145410_MeteoDataType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701151153197_MeteoData.resx">
+      <DependentUpon>201701151153197_MeteoData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701151154177_MeteoData1.resx">
+      <DependentUpon>201701151154177_MeteoData1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701151158311_ApplianceType.resx">
+      <DependentUpon>201701151158311_ApplianceType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701151200275_Appliance.resx">
+      <DependentUpon>201701151200275_Appliance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701151205046_Option.resx">
+      <DependentUpon>201701151205046_Option.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701151207185_PVSystemMaterial.resx">
+      <DependentUpon>201701151207185_PVSystemMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701151207469_PVSystemMaterial1.resx">
+      <DependentUpon>201701151207469_PVSystemMaterial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701151227002_SystemLog.resx">
+      <DependentUpon>201701151227002_SystemLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701230323200_PVSystemMaterial2.resx">
+      <DependentUpon>201701230323200_PVSystemMaterial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701230330072_PVSystemMaterial3.resx">
+      <DependentUpon>201701230330072_PVSystemMaterial3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701310550581_MeteoDataType1.resx">
+      <DependentUpon>201701310550581_MeteoDataType1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702030249317_MeteoDataType2.resx">
+      <DependentUpon>201702030249317_MeteoDataType2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702060409531_SPPStatus.resx">
+      <DependentUpon>201702060409531_SPPStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702060453184_SPPPurpose.resx">
+      <DependentUpon>201702060453184_SPPPurpose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702060519337_PanelOrientation.resx">
+      <DependentUpon>201702060519337_PanelOrientation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702061032137_SPP.resx">
+      <DependentUpon>201702061032137_SPP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702070958109_SPP1.resx">
+      <DependentUpon>201702070958109_SPP1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702171535334_SPP2.resx">
+      <DependentUpon>201702171535334_SPP2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703050433564_Statistic.resx">
+      <DependentUpon>201703050433564_Statistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703050519456_Statistic1.resx">
+      <DependentUpon>201703050519456_Statistic1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704171743217_Leprng.resx">
+      <DependentUpon>201704171743217_Leprng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704180606504_Leps.resx">
+      <DependentUpon>201704180606504_Leps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704240349021_MapDescription.resx">
+      <DependentUpon>201704240349021_MapDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704240450505_MapDescription1.resx">
+      <DependentUpon>201704240450505_MapDescription1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705010543378_Province.resx">
+      <DependentUpon>201705010543378_Province.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705010547172_Province1.resx">
+      <DependentUpon>201705010547172_Province1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705091237161_Province2.resx">
+      <DependentUpon>201705091237161_Province2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705091238547_Province3.resx">
+      <DependentUpon>201705091238547_Province3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705290349293_Lesfond.resx">
+      <DependentUpon>201705290349293_Lesfond.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705300606176_Feedback.resx">
+      <DependentUpon>201705300606176_Feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Common.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Common.ru.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Common.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Common.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Common.kk.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Common.kk.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Errors.kk.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Errors.kk.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Errors.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Errors.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Errors.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Errors.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Info.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Info.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Info.kk.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Info.kk.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Info.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Info.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Layers.ru.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Layers.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Layers.kk.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Layers.kk.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Layers.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Layers.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50749</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50751/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\GDAL.Native.1.11.1\build\net40\GDAL.Native.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GDAL.Native.1.11.1\build\net40\GDAL.Native.targets'))" />
+    <Error Condition="!Exists('..\packages\GDAL.Plugins.1.11.1\build\net40\GDAL.Plugins.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GDAL.Plugins.1.11.1\build\net40\GDAL.Plugins.targets'))" />
+  </Target>
+  <Import Project="..\packages\GDAL.Native.1.11.1\build\net40\GDAL.Native.targets" Condition="Exists('..\packages\GDAL.Native.1.11.1\build\net40\GDAL.Native.targets')" />
+  <Import Project="..\packages\GDAL.Plugins.1.11.1\build\net40\GDAL.Plugins.targets" Condition="Exists('..\packages\GDAL.Plugins.1.11.1\build\net40\GDAL.Plugins.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

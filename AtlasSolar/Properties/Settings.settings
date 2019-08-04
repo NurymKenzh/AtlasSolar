@@ -1,0 +1,126 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AtlasSolar.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SystemLogActionStart" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Start</Value>
+    </Setting>
+    <Setting Name="SystemLogActionFinish" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Finish</Value>
+    </Setting>
+    <Setting Name="NASASSELongitudeMin" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">44.5</Value>
+    </Setting>
+    <Setting Name="NASASSELongitudeMax" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">95.5</Value>
+    </Setting>
+    <Setting Name="NASASSELatitudeMin" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">38.5</Value>
+    </Setting>
+    <Setting Name="NASASSELatitudeMax" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">56.5</Value>
+    </Setting>
+    <Setting Name="NASASSECoordinatesStep" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="NASASSECode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">NASA SSE</Value>
+    </Setting>
+    <Setting Name="Monthly" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">monthly</Value>
+    </Setting>
+    <Setting Name="Average" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">average</Value>
+    </Setting>
+    <Setting Name="NASASSEYearStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1983</Value>
+    </Setting>
+    <Setting Name="NASASSEYearFinish" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2005</Value>
+    </Setting>
+    <Setting Name="Daily" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">daily</Value>
+    </Setting>
+    <Setting Name="NASAPOWERLongitudeMin" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">44.75</Value>
+    </Setting>
+    <Setting Name="NASAPOWERLongitudeMax" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">95.25</Value>
+    </Setting>
+    <Setting Name="NASAPOWERLatitudeMin" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">38.75</Value>
+    </Setting>
+    <Setting Name="NASAPOWERLatitudeMax" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">56.25</Value>
+    </Setting>
+    <Setting Name="NASAPOWERCoordinatesStep" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="NASAPOWERYearStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1981</Value>
+    </Setting>
+    <Setting Name="NASAPOWERCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">NASA POWER</Value>
+    </Setting>
+    <Setting Name="SARAHECode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SARAH-E</Value>
+    </Setting>
+    <Setting Name="Hourly" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Hourly</Value>
+    </Setting>
+    <Setting Name="SARAHECoordinatesStep" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">0.05</Value>
+    </Setting>
+    <Setting Name="SARAHELongitudeMinOption" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SARAHELongitudeMin</Value>
+    </Setting>
+    <Setting Name="SARAHELongitudeMaxOption" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SARAHELongitudeMax</Value>
+    </Setting>
+    <Setting Name="SARAHELatitudeMinOption" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SARAHELatitudeMin</Value>
+    </Setting>
+    <Setting Name="SARAHELatitudeMaxOption" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SARAHELatitudeMax</Value>
+    </Setting>
+    <Setting Name="PanelOriantation2AxisCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PanelOriantation2Axis</Value>
+    </Setting>
+    <Setting Name="PanelOriantationVerticalCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PanelOriantationVertical</Value>
+    </Setting>
+    <Setting Name="PanelOriantationHorizontalCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PanelOriantationHorizontal</Value>
+    </Setting>
+    <Setting Name="PanelOriantationFixedCorrectableCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PanelOriantationFixedCorrectable</Value>
+    </Setting>
+    <Setting Name="PanelOriantationFixedCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PanelOriantationFixed</Value>
+    </Setting>
+    <Setting Name="PanelOriantationOptimalCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PanelOriantationOptimal</Value>
+    </Setting>
+    <Setting Name="CLARACoordinatesStep" Type="System.Decimal" Scope="Application">
+      <Value Profile="(Default)">0.25</Value>
+    </Setting>
+    <Setting Name="CLARALongitudeMinOption" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CLARALongitudeMin</Value>
+    </Setting>
+    <Setting Name="CLARALongitudeMaxOption" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CLARALongitudeMax</Value>
+    </Setting>
+    <Setting Name="CLARALatitudeMinOption" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CLARALatitudeMin</Value>
+    </Setting>
+    <Setting Name="CLARALatitudeMaxOption" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CLARALatitudeMax</Value>
+    </Setting>
+    <Setting Name="CLARACode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CLARA</Value>
+    </Setting>
+    <Setting Name="GeoServerPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\GeoServer 2.9.0</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

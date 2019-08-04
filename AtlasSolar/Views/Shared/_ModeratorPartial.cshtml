@@ -1,0 +1,8 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Moderator"))
+    {
+        <li>@Html.ActionLink(AtlasSolar.Resources.Common.Moderator, "Index", "Moderator")</li>
+    }
+}

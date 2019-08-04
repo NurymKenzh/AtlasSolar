@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Language;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.Language</h2>
+
+<ul>
+    <li>@Html.ActionLink("English", "Change", "Language", new { LanguageAbbrevation = "en" }, null)</li>
+    <li>@Html.ActionLink("Қазақ", "Change", "Language", new { LanguageAbbrevation = "kk" }, null)</li>
+    <li>@Html.ActionLink("Русский", "Change", "Language", new { LanguageAbbrevation = "ru" }, null)</li>
+</ul>

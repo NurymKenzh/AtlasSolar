@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Contact;
+}
+<h2>@ViewBag.Title.</h2>
+
+
+@{
+    if (System.Threading.Thread.CurrentThread.CurrentCulture != null)
+    {
+        if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "en")
+        {
+            <h4>Department of Renewable Energy, Ministry of Energy of the Republic of Kazakhstan</h4>
+
+            <address>
+                449 Office, 14 Porch, 8 Orynbor Street
+                <br />
+                010000, Astana, Kazakhstan<br />
+                <abbr title="Phone">Phone:</abbr>
+                +7 7172 740197
+            </address>
+
+            <address>
+                <strong>Website support:</strong>   <a href="mailto:atlassolarkz@gmail.com">atlassolarkz@gmail.com</a><br />
+            </address>
+        }
+        else if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "kk")
+        {
+            <h4>Жаңартылатын энергия көздері департаменті, Қазақстан Республиксы Энергетика Министрлігі</h4>
+
+            <address>
+                Орынбор көшесі 8, кіреберіс 14, офис 449
+                <br />
+                010000, Астана, Қазақстан<br />
+                <abbr title="Phone">Телефон:</abbr>
+                +7 7172 740197
+            </address>
+
+            <address>
+                <strong>Сайтты техникалық қолдау:</strong>   <a href="mailto:atlassolarkz@gmail.com">atlassolarkz@gmail.com</a><br />
+            </address>
+        }
+        else
+        {
+            <h4>Департамент по возобновляемым источникам энергии Министерства энергетики РК</h4>
+
+            <address>
+                Дом министерств, ул. Орынбор, 8, подъезд 14, офис 449
+                <br />
+                010000, Астана, Казахстан<br />
+                <abbr title="Phone">Телефон:</abbr>
+                +7 7172 740197
+            </address>
+
+            <address>
+                <strong>Техподдержка сайта:</strong>   <a href="mailto:atlassolarkz@gmail.com">atlassolarkz@gmail.com</a><br />
+            </address>
+        }
+    }
+}
+
+<br />
+<div>
+    @Html.ActionLink(AtlasSolar.Resources.Common.Feedback, "Create", "Feedbacks", null, new { @class = "btn btn-default right" })
+</div>

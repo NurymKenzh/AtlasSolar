@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = AtlasSolar.Resources.Common.About;
+}
+<h2>@ViewBag.Title</h2>
+
+<style>
+    ul {
+        list-style-type: disc;
+    }
+    li {
+        list-style-type: disc;
+    }
+    ul li {
+        list-style-type: disc;
+    }
+</style>
+
+@*<h4>@AtlasSolar.Resources.Info.AboutProject</h4>
+    <p style="white-space:pre-line;">@AtlasSolar.Resources.Info.AboutProjectText</p>
+    <h4>@AtlasSolar.Resources.Info.AboutAtlas</h4>
+    <p style="white-space:pre-line;">@AtlasSolar.Resources.Info.AboutAtlasText</p>*@
+
+@{
+    if (System.Threading.Thread.CurrentThread.CurrentCulture != null)
+    {
+        if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "ru")
+        {
+            <div style="text-align: justify;">
+                <p><strong><span style="font-family: Calibri; font-size: medium;">О проекте</span></strong></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Проект Министерства энергетики Республики Казахстан и Программы развития ООН «Оказание поддержки Правительству Республики Казахстан в реализации Концепции перехода к зеленой экономике и институционализации Программы Партнерства «Зеленый Мост»</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Концепция по переходу к «зеленой» экономике, утвержденная Указом Президента от 30 мая 2013 года № 577, определила перечень приоритетных задач, главным образом нацеленных на реформирование определенных отраслей экономики. В рамках перехода к «зеленой» экономике Республики Казахстан, предполагается повышение эффективности использования природных ресурсов, усовершенствование существующей инфраструктуры и улучшение благосостояния населения. Проект «Оказание поддержки Правительству Республики Казахстан в реализации Концепции перехода к зеленой экономике и институционализации Программы Партнерства «Зеленый Мост» направлен на оказание содействия в практической реализации Концепции по переходу к «зеленой экономике», путем предоставления поддержки в формировании институциональной и законодательной основы, необходимой для развития таких направлений «зеленой экономики», как солнечная энергетика, устойчивое рыболовство и аквакультура, а также путем усиления международного сотрудничества в рамках Программы Партнерства «Зеленый Мост».</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Одним из самых перспективных направлений возобновляемой энергетики на земле является развитие Солнечной энергетики. Солнце – это неисчерпаемый, постоянный, экологически устойчивый и доступный источник энергии, который позволяет удовлетворять потребности в получении энергии для отопления, электроснабжения и горячего водоснабжения.</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Высокая степень инсоляции, большое количество солнечных часов в году, позволяют относить Казахстан к числу перспективных регионов Земли в развитии Солнечной энергетики.</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Приняв к реализации Концепцию по переходу к «зеленой» экономике Казахстан принял решение по полномасштабному внедрению Возобновляемых источников энергии. Для достижения данной цели необходимо внедрять новые технологические процессы, повысить уровень знаний и осведомленности, способствующие развитию альтернативных источников энергии. Создание интерактивного Атласа солнечных ресурсов Республики Казахстан позволит расширить возможности использования солнечных ресурсов.</span></p>
+                <p><strong><span style="font-family: Calibri; font-size: medium;">Об Атласе</span></strong></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Атлас солнечных ресурсов Республики Казахстан - это интернет ресурс, который позволяет, в свободном доступе, получить знания для реализации идей по внедрению и использованию возобновляемых источников энергии в нашей стране.</span><span style="font-family: Calibri; font-size: medium;">&nbsp; </span><span style="font-family: Calibri; font-size: medium;">Атлас полезен инвесторам, органам государственного и местного управления, для институтов планирования, организациям, проектирующим энергогенерирующие станции и системы энергообеспечения территорий, компаниям, занимающимся продажами и установками фотоэлектрических станций, водонагревательных установок и их пользователям, научным организациям, магистрантам и студентам.</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Информация в Атласе солнечных ресурсов представлена в различных формах - интерактивные карты, выходные таблицы и графики: </span></p>
+                <ul>
+                    <li><span style="font-family: Calibri; font-size: medium;">ресурсные карты &ndash; карты многолетних среднегодовых значений показателей солнечной радиации;</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">карты для оценки потенциала солнечной энергии &ndash; карты среднемесячных показателей</span><span style="font-family: Calibri; font-size: medium;">&nbsp;&nbsp; </span><span style="font-family: Calibri; font-size: medium;">различных видов радиации на различно ориентированные поверхности, среднемесячные показатели геометрии Солнца (высота, азимут);</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">климатические карты - карты основных метеорологических характеристик;</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">карты объектов солнечных энергетики - карта с действующими и проектируемыми объектами солнечной энергетики;</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">карты ограничений и предпосылок размещения объектов солнечной энергетики &ndash; карты факторов, благоприятствующих или ограничивающих размещение объектов солнечной энергетики:</span></li>
+                    <ul>
+                        <li><span style="font-family: Calibri; font-size: medium;">Особо охраняемых природных территорий республиканского значения, </span></li>
+                        <li><span style="font-family: Calibri; font-size: medium;">Археологических памятников и других объектов историко-культурного наследия международного и республиканского значения;</span></li>
+                        <li><span style="font-family: Calibri; font-size: medium;">Территорий Лесных государственных учреждений </span></li>
+                        <li><span style="font-family: Calibri; font-size: medium;">Водоемов, водозащитных зон и полос водотоков,</span></li>
+                        <li><span style="font-family: Calibri; font-size: medium;">Линий электропередач, </span></li>
+                        <li><span style="font-family: Calibri; font-size: medium;">Автомобильных дорог,</span></li>
+                        <li><span style="font-family: Calibri; font-size: medium;">Населенных пунктов.</span></li>
+                    </ul>
+                    <li><span style="font-family: Calibri; font-size: medium;">вспомогательные слои - цифровая модель рельефа (ЦМР), уклонов местности, экспозиции склонов, административно-территориальное деление, метеостанции РГП &laquo;Казгидромет&raquo;.</span></li>
+                </ul>
+                <p><span style="font-family: Calibri; font-size: medium;">Функционал Атласа солнечных ресурсов:</span></p>
+                <ul>
+                    <li><span style="font-family: Calibri; font-size: medium;">Общий функционал (выбор и визуализация картографических слоев из набора атласа,</span><span style="font-family: Calibri; font-size: medium;">&nbsp; </span><span style="font-family: Calibri; font-size: medium;">выбор базовых слоев, функция навигации по карте, масштабирование, просмотр легенды, инструмент &laquo;идентификация&raquo;, инструмент измерений (расстояний, площадей), просмотр справочной информации о картографическом слое.</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">Выборка и экспорт данных по выбранной точке (таблица, график),</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">Сравнение исходных данных по нескольким выбранным точкам на карте (графики, диаграммы, таблицы)</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">Предварительное ранжирование пригодности территории для размещения объектов солнечной энергетики</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">Калькулятор &laquo;Расчет производительности фотогальванической системы&raquo; - расчет выработки энергии солнечных панелей проектируемой фотоэлектростанции выбранного типа для выбранного местоположения</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">Калькулятор &laquo;Расчет энергопотребления&raquo; - для расчета суммарного потребления электричества бытовыми электроприборами.</span></li>
+                </ul>
+                <p><span style="font-family: Calibri; font-size: medium;">&nbsp;</span></p>
+
+            </div>
+        }
+        else if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "kk")
+        {
+            <div style="text-align: justify;">
+                <p><strong><span style="font-family: Calibri; font-size: medium;">Жоба туралы</span></strong></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Қазақстан Республикасының Энергетика министрлігі мен Біріккен Ұлттар Ұйымының Даму бағдарламасының «Қазақстан Республикасының Үкіметіне Жасыл экономикаға көшу тұжырымдамасын жүзеге асыруда және “Жасыл көпір” серіктестік бағдарламасын институттандыруда қолдау көрсету» жобасы</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">«Жасыл экономикаға» көшу жөніндегі тұжырымдама, Қазақстан Республикасы Президентінің 2013 жылғы 30 мамырдағы № 577 "Қазақстан Республикасының "жасыл экономикаға" көшуі жөніндегі тұжырымдама туралы" жарлығы экономиканың белгілі салаларын реформалауға бағытталған негізгі басым міндеттерінің тізімін анықтады.  Қазақстан Республикасының "жасыл экономикаға" өтуі шеңберінде табиғи ресурстарды тиімді пайдалануды арттыру, қолда бар инфрақұрылымды жетілдіру және халықтың әл-ауқатын арттыру көзделуде.</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Жоба «Қазақстан Республикасының Үкіметіне Жасыл экономикаға көшу тұжырымдамасын жүзеге асыруда және “Жасыл көпір”серіктестік бағдарламасын институттандыруда қолдау көрсету»  «Жасыл экономиканың» күн энергетикасы, тұрақты балық шаруашылығы мен аквадақылдар бағыттарын дамытуына қажетті институционалды және заңнамалық негіздерін қалыптастыруға қолдауды көрсету негізінде, сонымен қатар «Жасыл көпір» Әріптестік бағдарламасынның шеңберінде халықаралық қарым - қатынасты нығайту «Жасыл экономикаға» көшу тұжырымдамасын нақты іске асыруға бағдарланған.</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Жер бетіндегі жаңартылатын энергетиканың ең тиімді бағыттарының бірі ретінде күн энергетикасын дамыту болып табылады.  Күн - жылытуға, электр және ыстық сумен қамтамасыз етуге керекті энергияға қажеттіліктердің орнын толтыруға мүмкіндік беретін,  сарқылмайтын, экологиялық тұрақты және қол жетімді энергияның көзі.Көп мөлшердегі инсоляция, жыл ішіндегі ашық күндер санының көп болуы, Қазақстан территориясын әлем бойынша Күн энергетикасын дамытуға қолайлы аудандардың қатарына жатқызуға болады.   Қазақстан «жасыл экономикаға» көшу тұжырымдамасын іске асыруды қабылдау негізінде жаңартылатын энергия көздерін толықмасштабты енгізу туралы шешім қабылдады.  Аталған мақсатқа жету, энергияның жанама көздерін дамытуға себеп болатын жаңа технологиялық процесстерді еңгізу, ақпаратпен қамтамасыздау және білім деңгейін жоғарылату қажет. Қазақстан Республикасының Күн ресурстарының Интерактивті Атласы күн ресурстарын пайдалану мүмкіндіктерін кеңейтуге негізгі септігін тигізеді.</span></p>
+                <p><strong><span style="font-family: Calibri; font-size: medium;">Атлас түралы</span></strong></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Қазақстан Республикасының күн ресурстарының атласы - біздің елімізде, еркін қолданыста болатын жаңартылатын энергия көздерін пайдалану және енгізу үшін идеяларды іске асыру және білім алуға мүмкіндік беретін интернет-ресурс болып табылады.</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Атлас инвесторларға, мемлекеттік және жергілікті басқару органдарына, жоспарлау институттарына, энергия өндіруші станцияларын және аймақтарды электрмен қамтамасыз ету жүйелерді жобалайтын мекемелерге, фотоэлектрлі станциялар мен су жылыту құрылғыларын орнату және сатумен айналысатын компанияларға, ғылыми-зерттеу ұйымдарға және магистранттар мен студенттерге пайдалы болып табылады. </span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Күн ресурстарының атласында мәліметтер келесідей әр түрлі формаларда берілген: интерактивті карталар, кестелер және графиктер:</span></p>
+                <ul>
+                    <li><span style="font-family: Calibri; font-size: medium;">ресурс карталары - күн радиациясының көпжылдық орташа көрсеткіштерінің карталары;</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">Күн энергиясының потенциалын бағалау карталары - бағдарланған беткейлерге келетін орташа айлық күн радиациясының әр түрлі көрсеткіштерінің картасы, Күн геометриясының орташа айлық көрсеткіштері (биіктігі, азимут);</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">Климаттық карталар &ndash; негізгі метеорологиялық көрсеткіштердің карталары;</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">Күн энергетикасы объектілерінің картасы &ndash; күн энергетикасының жұмыс атқаратын және жобаланған объектілердің картасы;</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">Күн энергетикасы объектілерін орналастыруға болатын және шектейтін факторлар карталары: </span></li>
+                    <ul>
+                        <li><span style="font-family: Calibri; font-size: medium;">Республикалық маңызы бар ерекше қорғалатын табиғи аумақтар;</span></li>
+                        <li><span style="font-family: Calibri; font-size: medium;">Республикалық және Халықаралық маңызы бар археологиялық ескерткіштер мен басқа да тарихи мәдени мұралар;</span><span><span style="font-family: Calibri; font-size: medium;">&nbsp; </span></span></li>
+                        <li><span style="font-family: Calibri; font-size: medium;">Мемлекеттік орман шаруашылығы мекемелерінің аумақтары;</span></li>
+                        <li><span style="font-family: Calibri; font-size: medium;">Су айдындары, су ағырлар мен олардың су қорғау аймақтары;</span></li>
+                        <li><span style="font-family: Calibri; font-size: medium;">Электр желілері;</span></li>
+                        <li><span style="font-family: Calibri; font-size: medium;">Автокөлік жолдары;</span></li>
+                        <li><span style="font-family: Calibri; font-size: medium;">Елді мекендер.</span></li>
+                    </ul>
+                    <li><span style="font-family: Calibri; font-size: medium;">Қосымша карталар &ndash; Жер бедерінің сандық моделі (ЖСМ), аумақтардың еңістігі мен беткейлердің экспозициясы, аумақтық-әкімшілік бөліністер, &laquo;Қазгидромет&raquo; РМК метеорологиялық станциялары.</span></li>
+                </ul>
+                <p><span style="font-family: Calibri; font-size: medium;">Күн ресурстарының Атласының функционалы:</span></p>
+                <ul>
+                    <li><span style="font-family: Calibri; font-size: medium;">Жалпы функционал (атлас жиынтығы бойынша картографиялық қабаттарын көрсету және таңдау, негізгі қабаттарды таңдау, карта бойынша бағдалау функциясы, масштабтау, шартты белгілерді көру, &laquo;идентификациялау&raquo; құрылғысы, өлшеу құрылғысы (қашықтық, аудан), картографиялық қабат туралы анықтамасын көру); </span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">Таңдалған нүкте бойынша мәліметтерді алу және экспорттау (кесте, график);</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">Картада таңдалған бірнеше нүкте бойынша бастапқы мәліметтерді салыстыру (графиктер, диаграммалар, кестелер);</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">Күн энергетикасы объектілерін орналатыру үшін аумақтың қолайлылығы бойынша алдын ала жіктеу;</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">&laquo;Фотоэлектрлік жүйенің энергия өндіру мөлшерін есептеу&raquo; калькуляторы &ndash; таңдалған аумаққа жобаланатын фотоэлектрлік станцияның күн панельдерінің энергия өндіру мөлшерін есептеу;</span></li>
+                    <li><span style="font-family: Calibri; font-size: medium;">&laquo;Энергия пайдалану мөлшерін анықтау&raquo; калькуляторы &ndash; тұрмыстық элетрқұрылғыларымен тұтынылатын жалпы электр энергиясын есептеу.</span></li>
+                </ul>
+
+            </div>
+        }
+        else
+        {
+            <div style="text-align: justify;">
+                <p><strong><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">About the project</span></span></strong></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Project of the Ministry of Energy of the Republic of Kazakhstan and the United Nations Development Program  «Providing Assistance to the Government of Republic of Kazakhstan to Implement the Green Economy Transition Concept of Republic of Kazakhstan and Institutionalize the Green Bridge Partnership Programme»</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">The concept of transition to a green economy, approved by Presidential Decree No. 577 of May 30, 2013, determined a list of priority tasks, mainly aimed at reforming certain sectors of the economy. As part of the transition to the Green Economy of the Republic of Kazakhstan, it is expected to increase the efficiency of the use of natural resources, improve the existing infrastructure and improve the well-being of the population. The project "Providing Assistance to the Government of Republic of Kazakhstan to Implement the Green Economy Transition Concept of Republic of Kazakhstan and Institutionalize the Green Bridge Partnership Programme”aims to assist in the practical implementation of the Concept for the transition to a Green Economy by providing support in developing the institutional and legislative framework necessary for the development of such areas of the green economy as solar energy, sustainable fisheries and aquaculture, and also by enhancing international cooperation within the framework of the “Green Bridge” Partnership Program.</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">One of the most promising areas of renewable energy is the development of Solar energy. The Sun is an inexhaustible, permanent, environmentally sustainable and freely available energy source, which can be used for providing energy for heating, electricity and hot water.</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Having a high degree of insolation and a large number of sunshine hours per year Kazakhstan is one of the promising regions of the Earth for the development of solar energy.</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">Having adopted the Concept for the transition to Green Economy, Kazakhstan have decided to fully implement Renewable Energy Sources.</span></p>
+                <p><span style="font-family: Calibri; font-size: medium;">To achieve this goal, it is necessary to introduce new technological processes, increase the level of knowledge and awareness, which promote the development of alternative energy sources. Creation of the Interactive Atlas of Solar Resources of the Republic of Kazakhstan will expand the potentials of using solar resources.</span></p>
+                <p><strong><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">About the Atlas</span></span></strong></p>
+                <p><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">The information in the Atlas of Solar Resources is presented in various forms - interactive maps, output tables and graphs:</span></span></p>
+                <ul>
+                    <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">the resource maps &ndash; maps of long-term average annual values of solar radiation data;</span></span></li>
+                    <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">the maps for assessing the potential of solar energy &ndash; maps of monthly averages of different types of radiation on differently oriented surfaces, monthly averages of the geometric parameters of the Sun (altitude, azimuth);</span></span></li>
+                    <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">the climatic maps &ndash;</span><span><span style="font-family: Calibri; font-size: medium;">&nbsp; </span></span><span style="font-family: Calibri; font-size: medium;">maps of basic meteorological characteristics;</span></span></li>
+                    <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">the maps of solar energy facilities &ndash; a map with existing and projected solar energy facilities;</span></span></li>
+                    <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">the maps of limitations and prerequisites for the location of solar energy facilities - maps of factors that favor or limit the deployment of solar energy facilities: </span></span></li>
+                    <ul>
+                        <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">Specially protected natural areas of national importance;</span></span></li>
+                        <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">Archaeological monuments and other objects of historical and cultural heritage of international and republican significance;</span></span></li>
+                        <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">Territories of forest state institutions;</span></span></li>
+                        <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">Water reservoirs, water protection zones and watercourse strips;</span></span></li>
+                        <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">Power lines;</span></span></li>
+                        <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">Automobile roads;</span></span></li>
+                        <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">Human settlements;</span></span></li>
+                    </ul>
+                    <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">auxiliary layers - digital relief model (DEM), terrain slopes, slope exposition, administrative-territorial division, meteorological stations of RSE "Kazhydromet"</span></span></li>
+                </ul>
+                <p><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">Functionality of the Atlas of Solar Resources:</span></span></p>
+                <p><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">General functionality (selection and visualization of cartographic layers from the atlas set, selection of base layers, map navigation function, scaling, legend viewing, &ldquo;identification&rdquo; tool, measuring tool (distances, areas), viewing reference information about the cartographic layer;</span></span></p>
+                <p><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">Selecting and exporting data for the selected point (table, graph);</span></span></p>
+                <ul>
+                    <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">Comparison of the initial data on several selected points on the map (graphs, diagrams, tables);</span></span></li>
+                    <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">Preliminary ranking of the suitability of the territory for the accommodation of solar energy facilities;</span></span></li>
+                    <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">Calculator "The calculation of the energy output of the PV system" &ndash; the calculation of the energy output of solar panels of the projected photovoltaic station of the selected type for the selected location;</span></span></li>
+                    <li><span lang="EN-US"><span style="font-family: Calibri; font-size: medium;">Calculator "The calculation of energy consumption" - for the calculation of the total electricity consumption by household electrical appliances.</span></span></li>
+                </ul>
+
+            </div>
+        }
+    }
+}
+

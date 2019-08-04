@@ -1,0 +1,36 @@
+﻿@model AtlasSolar.Models.Appliance
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Details;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.Details</h2>
+
+<div>
+    <h4>@AtlasSolar.Resources.Common.Appliance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Power)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Power)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = Model.Id }) |
+    @Html.ActionLink(AtlasSolar.Resources.Common.BackToList, "Index")
+</p>

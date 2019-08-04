@@ -1,0 +1,1134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Жоба жайлы</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Әрекет</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Қосу</value>
+  </data>
+  <data name="AdditionalEN" xml:space="preserve">
+    <value>Қосымша (Ағылшынша)</value>
+  </data>
+  <data name="AdditionalKZ" xml:space="preserve">
+    <value>Қосымша (Қазақша)</value>
+  </data>
+  <data name="AdditionalRU" xml:space="preserve">
+    <value>Қосымша (Орысша)</value>
+  </data>
+  <data name="AdditionalSettings" xml:space="preserve">
+    <value>Кеңейтілген т.зетулер</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Басқару</value>
+  </data>
+  <data name="AllowableSlopeOfTheTerrain" xml:space="preserve">
+    <value>Рұқсат етілген жер бедерінің еңістігі (градус, артық емес)</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Мөлшері</value>
+  </data>
+  <data name="AmountPcs" xml:space="preserve">
+    <value>Мөлшері, дана</value>
+  </data>
+  <data name="AnalizedTerrain" xml:space="preserve">
+    <value>Талдаңған  территория </value>
+  </data>
+  <data name="AnalizeTerrain" xml:space="preserve">
+    <value>Күн электр станциялары желісін орналастыру үшін аумақты талдау</value>
+  </data>
+  <data name="Analyze" xml:space="preserve">
+    <value>Талдау</value>
+  </data>
+  <data name="Appliance" xml:space="preserve">
+    <value>Құрылғы</value>
+  </data>
+  <data name="Appliances" xml:space="preserve">
+    <value>Құрылғылар</value>
+  </data>
+  <data name="ApplianceType" xml:space="preserve">
+    <value>Құрылғы түрі</value>
+  </data>
+  <data name="ApplianceTypes" xml:space="preserve">
+    <value>Құрылғылардың түрлері</value>
+  </data>
+  <data name="Appointment" xml:space="preserve">
+    <value>Мақсаты</value>
+  </data>
+  <data name="AppointmentEN" xml:space="preserve">
+    <value>Мақсаты (ағылшын)</value>
+  </data>
+  <data name="AppointmentKZ" xml:space="preserve">
+    <value>Мақсаты (қазақ)</value>
+  </data>
+  <data name="AppointmentRU" xml:space="preserve">
+    <value>Мақсаты (орыс)</value>
+  </data>
+  <data name="AverageAnnualOutputPowerOfThePVSystem" xml:space="preserve">
+    <value>Фотоэлектрлік станцияның (ФЭС) күндізгі орташа жылдық шығу куатты кВт/күн</value>
+  </data>
+  <data name="AverageMonthlyCalculatedValues" xml:space="preserve">
+    <value>Орташа айлық есептелген мәндер</value>
+  </data>
+  <data name="AverageMonthlyDurationOfASunnyDayInHours" xml:space="preserve">
+    <value>Орташа айлық күн ұзақтығы, сағат</value>
+  </data>
+  <data name="AverageMonthlyHourlyTotalRadiationOnTheOrientedPanel" xml:space="preserve">
+    <value>Бағдарланған беткейге келетін сағат бойынша орташа айлық жиынтық күн радияциясы, кВт∙сағ</value>
+  </data>
+  <data name="AverageMonthlyLossesDueToSnow" xml:space="preserve">
+    <value>Қарға байланысты орташа айлық шығындар</value>
+  </data>
+  <data name="AverageMonthlyOutputPowerOfThePVSystem" xml:space="preserve">
+    <value>Фотоэлектрлік станцияның (ФЭС)күндізгі орташа айлық  энергияны өндіріп шығаруы, кВт∙сағ/күн</value>
+  </data>
+  <data name="AverageMonthlyRequiredTotalAreaOfSolarPVSystems" xml:space="preserve">
+    <value>Қажетті Күн панельдерінің орташа айлық жалпы ауданы, м²</value>
+  </data>
+  <data name="AverageMonthlyTotalRadiationOnTheOrientedPanel" xml:space="preserve">
+    <value>Бағдарланған беткейге келетін орташа айлық жиынтық күн радияциясы, кВт∙сағ/м2/тәулік</value>
+  </data>
+  <data name="AzimuthPanels" xml:space="preserve">
+    <value>Күн панельдерінің азимуты, градус</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Тізімге қайта оралу</value>
+  </data>
+  <data name="BasicSettings" xml:space="preserve">
+    <value>Негізгі түзетулер</value>
+  </data>
+  <data name="BatteryEfficiency" xml:space="preserve">
+    <value>Аккумуляторлардың тиімділігі</value>
+  </data>
+  <data name="BetaTesting" xml:space="preserve">
+    <value>Бета тестілеу</value>
+  </data>
+  <data name="CalcArea" xml:space="preserve">
+    <value>Фотоэлектрлік панельдердің жалпы ауданын есептеу</value>
+  </data>
+  <data name="CalcEfficiency" xml:space="preserve">
+    <value>Фотоэлектрлік панельдердің өнімділігін есептеу</value>
+  </data>
+  <data name="CalcEnergy" xml:space="preserve">
+    <value>Энергия тұтыну мөлшерін есептеу</value>
+  </data>
+  <data name="CalcPVArea" xml:space="preserve">
+    <value>Фотоэлектрлік панельдердің жалпы ауданын есептеу</value>
+  </data>
+  <data name="Calculate" xml:space="preserve">
+    <value>Есептеп шығару</value>
+  </data>
+  <data name="CalculatingThePerformanceOfThePVSystem" xml:space="preserve">
+    <value>Фотоэлектрлік панельдердің өнімділігін есептеу</value>
+  </data>
+  <data name="Calculation" xml:space="preserve">
+    <value>Есептеу</value>
+  </data>
+  <data name="CalculationOfEnergyConsumption" xml:space="preserve">
+    <value>Энергия тұтыну мөлшерін есептеу</value>
+  </data>
+  <data name="CalculationPanelsSquare" xml:space="preserve">
+    <value>Панельдердің ауданын есептеу</value>
+  </data>
+  <data name="CapacityFactor" xml:space="preserve">
+    <value>Орнатылған қуаттылықты қолдану факторы, %</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Құпия сөзді өзгерту</value>
+  </data>
+  <data name="ChangePasswordForm" xml:space="preserve">
+    <value>Құпия сөзді өзгерту формасы</value>
+  </data>
+  <data name="ChangeYourAccountSettings" xml:space="preserve">
+    <value>Аккаунт параметрлерін өзгерту</value>
+  </data>
+  <data name="Chart" xml:space="preserve">
+    <value>Диаграмма</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Код</value>
+  </data>
+  <data name="ColumnName" xml:space="preserve">
+    <value>Баған атауы</value>
+  </data>
+  <data name="ColumnNameEN" xml:space="preserve">
+    <value>Баған атауы (Ағылшынша)</value>
+  </data>
+  <data name="ColumnNameKZ" xml:space="preserve">
+    <value>Баған атауы (Қазақша)</value>
+  </data>
+  <data name="ColumnNameRU" xml:space="preserve">
+    <value>Баған атауы (Орысша)</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Түсініктеме</value>
+  </data>
+  <data name="CommissioningYear" xml:space="preserve">
+    <value>Іске қосылған жылы</value>
+  </data>
+  <data name="Compare" xml:space="preserve">
+    <value>Салыстыру</value>
+  </data>
+  <data name="CompareDataInPoints" xml:space="preserve">
+    <value>Нүктелердегі мәліметтерді салыстыру</value>
+  </data>
+  <data name="ComparePoints" xml:space="preserve">
+    <value>Деректерді салыстыру</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Жаңа құпия сөзді растаңыз</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Құпия сөзді растау</value>
+  </data>
+  <data name="ConsiderMonthlyAverageLossesDueToSnowByMonths" xml:space="preserve">
+    <value>Қарға байланысты орташа айлық шығындар әр айға ескеру</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Байланыстар</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Өту</value>
+  </data>
+  <data name="ControllerEfficiency" xml:space="preserve">
+    <value>Контроллердің тиімділігі</value>
+  </data>
+  <data name="Coordinates" xml:space="preserve">
+    <value>Координаттары</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Құны</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Жасау</value>
+  </data>
+  <data name="CreateANewAccount" xml:space="preserve">
+    <value>Жаңадан тіркелу</value>
+  </data>
+  <data name="CreateSPP" xml:space="preserve">
+    <value>Күн электр станциясын жасау</value>
+  </data>
+  <data name="criticallyImportant" xml:space="preserve">
+    <value>Аса маңызды</value>
+  </data>
+  <data name="CurrentLanguage" xml:space="preserve">
+    <value>Қазақша</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Қолданыстағы құпия сөз</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Тапсырыс беруші</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Мәліметтер</value>
+  </data>
+  <data name="DataCount" xml:space="preserve">
+    <value>Деректер көлемі</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Күн</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Жою</value>
+  </data>
+  <data name="DescriptionEN" xml:space="preserve">
+    <value>Сипаттамасы (Ағылшынша)</value>
+  </data>
+  <data name="DescriptionForUser" xml:space="preserve">
+    <value>Идентификациялаудың сипаттамасы</value>
+  </data>
+  <data name="DescriptionKZ" xml:space="preserve">
+    <value>Сипаттамасы (Қазақша)</value>
+  </data>
+  <data name="DescriptionRU" xml:space="preserve">
+    <value>Сипаттамасы (Орысша)</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Толығырақ</value>
+  </data>
+  <data name="disregard" xml:space="preserve">
+    <value>Ескермеу</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>Аудан</value>
+  </data>
+  <data name="DoNotShowThisWindowAgain" xml:space="preserve">
+    <value>Бұл терезені қайта көрсетпеу</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Жүктеу</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Түзету</value>
+  </data>
+  <data name="EditSES" xml:space="preserve">
+    <value>Күн электр станциясын өзгерту</value>
+  </data>
+  <data name="Efficiency" xml:space="preserve">
+    <value>Тиімділік</value>
+  </data>
+  <data name="EfficiencyOfElectricalDevices" xml:space="preserve">
+    <value>Электр құрылғылардың тиімділігі</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailLink" xml:space="preserve">
+    <value>Электрондық поштаға сілтеме</value>
+  </data>
+  <data name="EnterName" xml:space="preserve">
+    <value>Атауын енгізіңіз!</value>
+  </data>
+  <data name="EnterPower" xml:space="preserve">
+    <value>Қуатын енгізіңіз!</value>
+  </data>
+  <data name="EnterValue" xml:space="preserve">
+    <value>Введите значение</value>
+  </data>
+  <data name="EnterYear" xml:space="preserve">
+    <value>Жылды енгізіңіз!</value>
+  </data>
+  <data name="EnterYourEmail" xml:space="preserve">
+    <value>Электрондық пошта мекенжайын енгізіңіз.</value>
+  </data>
+  <data name="Errors" xml:space="preserve">
+    <value>Қателер</value>
+  </data>
+  <data name="ExcludeForestLands" xml:space="preserve">
+    <value>Орман қоры жерлерін қоспау</value>
+  </data>
+  <data name="ExcludeHydrographyAndWaterProtectionZones" xml:space="preserve">
+    <value>Гидрография және су қорғау аймақтарын қоспау</value>
+  </data>
+  <data name="ExcludePAs" xml:space="preserve">
+    <value>Ерекше қорғалатын табиғи аумақтарды қоспау</value>
+  </data>
+  <data name="ExcludeProtectedAreasOfHistoricalAndCulturalMonuments" xml:space="preserve">
+    <value>Тарих және мәдениет ескерткіштерін қорғау аймақтарын қоспау</value>
+  </data>
+  <data name="ExcludeSettlements" xml:space="preserve">
+    <value>Елді мекендерді қоспау</value>
+  </data>
+  <data name="Executor" xml:space="preserve">
+    <value>Орындаушы</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Файлдар</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>Іздеу</value>
+  </data>
+  <data name="FindTerrain" xml:space="preserve">
+    <value>Сұрау конструкторы</value>
+  </data>
+  <data name="FindTerrainSuitableTerritories" xml:space="preserve">
+    <value>Таңдау шарттарына сәйкес келетін</value>
+  </data>
+  <data name="FindTerrainUnsuitableTerritories" xml:space="preserve">
+    <value>Таңдау шарттарына сәйкес келмейтін</value>
+  </data>
+  <data name="ForgotPasswordConfirmation" xml:space="preserve">
+    <value>Растау</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Құпия сөзіді ұмыттыңыз ба?</value>
+  </data>
+  <data name="Formula" xml:space="preserve">
+    <value>Формула</value>
+  </data>
+  <data name="FormulaAND" xml:space="preserve">
+    <value>ЖӘНЕ (&amp;&amp;)</value>
+  </data>
+  <data name="FormulaFALSE" xml:space="preserve">
+    <value>Жалған (false)</value>
+  </data>
+  <data name="FormulaNOT" xml:space="preserve">
+    <value>Емес (!)</value>
+  </data>
+  <data name="FormulaOR" xml:space="preserve">
+    <value>Немесе (||)</value>
+  </data>
+  <data name="FormulaTRUE" xml:space="preserve">
+    <value>Рас (true)</value>
+  </data>
+  <data name="GetMeteoData" xml:space="preserve">
+    <value>Метеорологиялық деректерді алу</value>
+  </data>
+  <data name="GroupEN" xml:space="preserve">
+    <value>Бөлім (Ағылшынша)</value>
+  </data>
+  <data name="GroupKZ" xml:space="preserve">
+    <value>Бөлім (Қазақша)</value>
+  </data>
+  <data name="GroupRU" xml:space="preserve">
+    <value>Бөлім (Орысша)</value>
+  </data>
+  <data name="HasAlready" xml:space="preserve">
+    <value>Бұрыңнан бар</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Ақпарат</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Бастапқы</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>Сағат</value>
+  </data>
+  <data name="important" xml:space="preserve">
+    <value>маңызды</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Көрсеткіш</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Ақпарат</value>
+  </data>
+  <data name="InvalidFormula" xml:space="preserve">
+    <value>Формула дұрыс емес</value>
+  </data>
+  <data name="InverterEfficiency" xml:space="preserve">
+    <value>Инвертердің тиімділігі</value>
+  </data>
+  <data name="Investor" xml:space="preserve">
+    <value>Инвестор</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Тіл</value>
+  </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Ендік</value>
+  </data>
+  <data name="Layers" xml:space="preserve">
+    <value>Қабаттар</value>
+  </data>
+  <data name="Legend" xml:space="preserve">
+    <value>Легенда</value>
+  </data>
+  <data name="Lepdtntr" xml:space="preserve">
+    <value>Іске қосылған жылы</value>
+  </data>
+  <data name="Lepelvt" xml:space="preserve">
+    <value>Тіреудің биіктігі</value>
+  </data>
+  <data name="Lepinsttp" xml:space="preserve">
+    <value>Орнату түрі</value>
+  </data>
+  <data name="Lepinsttps" xml:space="preserve">
+    <value>Орнату түрлері</value>
+  </data>
+  <data name="Leplnght" xml:space="preserve">
+    <value>Ұзындығы, км</value>
+  </data>
+  <data name="Lepmtrl" xml:space="preserve">
+    <value>Материал</value>
+  </data>
+  <data name="Lepmtrls" xml:space="preserve">
+    <value>Материалдар</value>
+  </data>
+  <data name="Leprng" xml:space="preserve">
+    <value>Дәреже</value>
+  </data>
+  <data name="Leprngs" xml:space="preserve">
+    <value>Дәрежелер</value>
+  </data>
+  <data name="Leprnzon" xml:space="preserve">
+    <value>Қожалық</value>
+  </data>
+  <data name="Leprnzons" xml:space="preserve">
+    <value>Қожалықтар</value>
+  </data>
+  <data name="Leptype" xml:space="preserve">
+    <value>Түрі</value>
+  </data>
+  <data name="Leptypes" xml:space="preserve">
+    <value>Түрлері</value>
+  </data>
+  <data name="Lepvltg" xml:space="preserve">
+    <value>Кернеуі, кВ</value>
+  </data>
+  <data name="Link" xml:space="preserve">
+    <value>Сілтеме</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Кіру </value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Шығу</value>
+  </data>
+  <data name="Longitude" xml:space="preserve">
+    <value>Бойлық</value>
+  </data>
+  <data name="LossesDueToNonconformities" xml:space="preserve">
+    <value>Сәйкесіздікке байланысты шығындар</value>
+  </data>
+  <data name="LossesDueToPollution" xml:space="preserve">
+    <value>Ластануға байланысты шығындар</value>
+  </data>
+  <data name="LossFromTheShadow" xml:space="preserve">
+    <value>Көлеңкеге байланысты шығындар</value>
+  </data>
+  <data name="MainPage" xml:space="preserve">
+    <value>Негізгі бет </value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Басқару</value>
+  </data>
+  <data name="MapDescription" xml:space="preserve">
+    <value>Картаның сипаттамасы</value>
+  </data>
+  <data name="MapDescriptions" xml:space="preserve">
+    <value>Карталардың сипаттамасы</value>
+  </data>
+  <data name="MeasureArea" xml:space="preserve">
+    <value>аудан</value>
+  </data>
+  <data name="MeasureClickDrawLine" xml:space="preserve">
+    <value>Сызықты салуды жалғастыру үшін басыңыз</value>
+  </data>
+  <data name="MeasureClickDrawPolygon" xml:space="preserve">
+    <value>Көпбұрыштың салуды жалғастыру үшін басыңыз</value>
+  </data>
+  <data name="MeasureClickStartDraw" xml:space="preserve">
+    <value>Сала бастау үшін басыңыз</value>
+  </data>
+  <data name="Measurekm" xml:space="preserve">
+    <value>км</value>
+  </data>
+  <data name="MeasureLength" xml:space="preserve">
+    <value>ұзындық</value>
+  </data>
+  <data name="Measurem" xml:space="preserve">
+    <value>м</value>
+  </data>
+  <data name="MeasureOnTheMap" xml:space="preserve">
+    <value>Картада Өлшеулер</value>
+  </data>
+  <data name="MeasureType" xml:space="preserve">
+    <value>өлшеу түрі</value>
+  </data>
+  <data name="MeasureUseGeodesic" xml:space="preserve">
+    <value>Геодезиялық шараларды қолданыңыз</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="MeteoData" xml:space="preserve">
+    <value>Метеорологиялық мәліметтер</value>
+  </data>
+  <data name="MeteoDataPeriodicities" xml:space="preserve">
+    <value>Метеорологиялық мәліметтердің мерзімділігі</value>
+  </data>
+  <data name="MeteoDataPeriodicity" xml:space="preserve">
+    <value>Метеорологиялық мәліметтердің мерзімі</value>
+  </data>
+  <data name="MeteoDataSource" xml:space="preserve">
+    <value>Метеорологиялық мәліметтердің көзі</value>
+  </data>
+  <data name="MeteoDataSources" xml:space="preserve">
+    <value>Метеорологиялық мәліметтердің көздері</value>
+  </data>
+  <data name="MeteoDataType" xml:space="preserve">
+    <value>Метеорологиялық мәліметтердің түрі</value>
+  </data>
+  <data name="MeteoDataTypes" xml:space="preserve">
+    <value>Метеорологиялық мәліметтердің түрлері</value>
+  </data>
+  <data name="MeteoDataTypesCount" xml:space="preserve">
+    <value>Метеорологиялық мәліметтердің саны</value>
+  </data>
+  <data name="Moderator" xml:space="preserve">
+    <value>Модератор</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Ай</value>
+  </data>
+  <data name="month01" xml:space="preserve">
+    <value>Қаңтар</value>
+  </data>
+  <data name="month02" xml:space="preserve">
+    <value>Ақпан</value>
+  </data>
+  <data name="month03" xml:space="preserve">
+    <value>Наурыз</value>
+  </data>
+  <data name="month04" xml:space="preserve">
+    <value>Сәуір</value>
+  </data>
+  <data name="month05" xml:space="preserve">
+    <value>Мамыр</value>
+  </data>
+  <data name="month06" xml:space="preserve">
+    <value>Маусым</value>
+  </data>
+  <data name="month07" xml:space="preserve">
+    <value>Шілде</value>
+  </data>
+  <data name="month08" xml:space="preserve">
+    <value>Тамыз</value>
+  </data>
+  <data name="month09" xml:space="preserve">
+    <value>Қыркүйек</value>
+  </data>
+  <data name="month10" xml:space="preserve">
+    <value>Қазан</value>
+  </data>
+  <data name="month11" xml:space="preserve">
+    <value>Қараша</value>
+  </data>
+  <data name="month12" xml:space="preserve">
+    <value>Желтоқсан</value>
+  </data>
+  <data name="MonthlyAverageOtherLossesOfPVPanels" xml:space="preserve">
+    <value>Орташа айлық өзге шығындар PV-панельдер</value>
+  </data>
+  <data name="Months" xml:space="preserve">
+    <value>Айлар</value>
+  </data>
+  <data name="mostSuitable" xml:space="preserve">
+    <value>Аса тиімді</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Атауы</value>
+  </data>
+  <data name="NameEN" xml:space="preserve">
+    <value>Атауы (Ағылшын)</value>
+  </data>
+  <data name="NameKZ" xml:space="preserve">
+    <value>Атауы (Қазақ)</value>
+  </data>
+  <data name="NameRU" xml:space="preserve">
+    <value>Атауы (Орыс)</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Жаңа құпия сөзді</value>
+  </data>
+  <data name="NewsMinEnergy" xml:space="preserve">
+    <value>Энергетика Министрлігінің жаңалықтары</value>
+  </data>
+  <data name="notVeryImportant" xml:space="preserve">
+    <value>Өте маңызды емес</value>
+  </data>
+  <data name="OnlyRegisteredUsers" xml:space="preserve">
+    <value>Тек тіркелген пайдаланушыларға қол жетімді</value>
+  </data>
+  <data name="Operands" xml:space="preserve">
+    <value>Операндтар</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Операция</value>
+  </data>
+  <data name="Option" xml:space="preserve">
+    <value>Опциясы</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Опциялар</value>
+  </data>
+  <data name="PanelEfficiency" xml:space="preserve">
+    <value>Күн панельдерінің тиімділігі</value>
+  </data>
+  <data name="PanelOrientation" xml:space="preserve">
+    <value>Күн панельдерінің бағдарлануы</value>
+  </data>
+  <data name="PanelOrientations" xml:space="preserve">
+    <value>Панельдердің бағдарлары</value>
+  </data>
+  <data name="PanelsCount" xml:space="preserve">
+    <value>Күн панельдерінің саны, дана</value>
+  </data>
+  <data name="PanelsSquare" xml:space="preserve">
+    <value>Панельдердің ауданы, ш.м.</value>
+  </data>
+  <data name="PanelTiltAngle" xml:space="preserve">
+    <value>Күн панельдерінің көлбеу бұрышы, градус</value>
+  </data>
+  <data name="ParametersOfThePVSystem" xml:space="preserve">
+    <value>Фотоэлектрлік жүйенің параметрлері</value>
+  </data>
+  <data name="Passport" xml:space="preserve">
+    <value>Паспорт</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Құпия сөз</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Қою</value>
+  </data>
+  <data name="Periodicity" xml:space="preserve">
+    <value>Мерзімділігі</value>
+  </data>
+  <data name="PermissibleAbsoluteMark" xml:space="preserve">
+    <value>Рұқсат етілген абсолюттік биіктік (метр, артық емес)</value>
+  </data>
+  <data name="PermissibleDistanceFromNP" xml:space="preserve">
+    <value>Елді мекендерге дейінгі қашықтық (км, артық емес) </value>
+  </data>
+  <data name="PermissibleDistanceFromPowerLines" xml:space="preserve">
+    <value>Электр беру желілеріне дейінгі қашықтық (км, артық емес)</value>
+  </data>
+  <data name="PermissibleDistanceFromRoads" xml:space="preserve">
+    <value>Автокөлік жолдарына дейінгі қашықтық (км, артық емес)</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Фото</value>
+  </data>
+  <data name="PleaseCheckYourEmailToResetYourPassword" xml:space="preserve">
+    <value>Құпия сөзді қалпына келтіру үшін электрондық пошта мекенжайын тексеріңіз.</value>
+  </data>
+  <data name="PointNumber1" xml:space="preserve">
+    <value>№1 нүкте</value>
+  </data>
+  <data name="PointNumber2" xml:space="preserve">
+    <value>№2 нүкте</value>
+  </data>
+  <data name="PointNumber3" xml:space="preserve">
+    <value>№3 нүкте</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>Қуат</value>
+  </data>
+  <data name="PowerMW" xml:space="preserve">
+    <value>Қуаты, МВт</value>
+  </data>
+  <data name="PowerW" xml:space="preserve">
+    <value>Қуаты, Вт</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>Облысы</value>
+  </data>
+  <data name="Provinces" xml:space="preserve">
+    <value>Облыстар</value>
+  </data>
+  <data name="PVSystemMaterial" xml:space="preserve">
+    <value>Күн панельдерінің материалы</value>
+  </data>
+  <data name="PVSystemMaterials" xml:space="preserve">
+    <value>PV жүйенің материалдары</value>
+  </data>
+  <data name="RatedOperatingTemperature" xml:space="preserve">
+    <value>Күн элементінің жұмыс істеуінің номиналды температурасы</value>
+  </data>
+  <data name="RatedPowerOfThePVPanel" xml:space="preserve">
+    <value>Фотоэлектрлік станцияның номиналды қуаты, Вт</value>
+  </data>
+  <data name="RefreshList" xml:space="preserve">
+    <value>Тізімді жаңарту</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Тіркеу</value>
+  </data>
+  <data name="RegisterAsANewUser" xml:space="preserve">
+    <value>Жаңа пайдаланушы ретінде тіркеліңіз</value>
+  </data>
+  <data name="relativelyFit" xml:space="preserve">
+    <value>Салыстырмалы тиімді</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Мені есте сақтау?</value>
+  </data>
+  <data name="RequiredMonthlyAverageEnergy" xml:space="preserve">
+    <value>Қажетті орташа айлық тәуліктік энергия кВт∙сағ /күн</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Қайтадан еңгізу</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Құпия сөзді жою</value>
+  </data>
+  <data name="ResetPasswordConfirmation" xml:space="preserve">
+    <value>Құпия сөзді жоюды растау</value>
+  </data>
+  <data name="ResetYourPassword" xml:space="preserve">
+    <value>Құпия сөзді жою</value>
+  </data>
+  <data name="Resolution" xml:space="preserve">
+    <value>Дәлдік</value>
+  </data>
+  <data name="ResolutionEN" xml:space="preserve">
+    <value>Дәлдік (ағылшын)</value>
+  </data>
+  <data name="ResolutionKZ" xml:space="preserve">
+    <value>Дәлдік (қазақ)</value>
+  </data>
+  <data name="ResolutionRU" xml:space="preserve">
+    <value>Дәлдік (орыс)</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Нәтиже</value>
+  </data>
+  <data name="RetrievingData" xml:space="preserve">
+    <value>Мәліметтерді алу</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Рөлдер</value>
+  </data>
+  <data name="RowNameEN" xml:space="preserve">
+    <value>Жолақ атауы (Ағылшынша)</value>
+  </data>
+  <data name="RowNameKZ" xml:space="preserve">
+    <value>Жолақ атауы (Қазақша)</value>
+  </data>
+  <data name="RowNameRU" xml:space="preserve">
+    <value>Жолақ атауы (Орысша)</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сақтау</value>
+  </data>
+  <data name="Schedule" xml:space="preserve">
+    <value>График</value>
+  </data>
+  <data name="SelectMeteoDataType" xml:space="preserve">
+    <value>Метеорологиялық дерек түрін таңдаңыз</value>
+  </data>
+  <data name="SelectPointOnTheMap" xml:space="preserve">
+    <value>Картадан нүктені таңдаңыз</value>
+  </data>
+  <data name="SelectWeatherDataType" xml:space="preserve">
+    <value>Метеорологиялық дерек түрін таңдаңыз</value>
+  </data>
+  <data name="ShowOnMap" xml:space="preserve">
+    <value>Картадан көрсету</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Дерек көзі</value>
+  </data>
+  <data name="SourceEN" xml:space="preserve">
+    <value>Дерек көзі (ағылшын)</value>
+  </data>
+  <data name="SourceKZ" xml:space="preserve">
+    <value>Дерек көзі (қазақ)</value>
+  </data>
+  <data name="SourceRU" xml:space="preserve">
+    <value>Дерек көзі (орыс)</value>
+  </data>
+  <data name="SpeciallyProtectedNaturalAreas" xml:space="preserve">
+    <value>Ерекше қорғалатын табиғи аумақтар</value>
+  </data>
+  <data name="SPP" xml:space="preserve">
+    <value>Күн электр станциясы</value>
+  </data>
+  <data name="SPPPurpose" xml:space="preserve">
+    <value>Күн электр станциясының мақсаты</value>
+  </data>
+  <data name="SPPPurposes" xml:space="preserve">
+    <value>Күн электр станцияларының мақсаттары</value>
+  </data>
+  <data name="SPPs" xml:space="preserve">
+    <value>Күн электр станциялары</value>
+  </data>
+  <data name="SPPStatus" xml:space="preserve">
+    <value>Күн электр станцияның жағдайы</value>
+  </data>
+  <data name="SPPStatuses" xml:space="preserve">
+    <value>Күн электр станцияларының статустары</value>
+  </data>
+  <data name="Statistic" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
+  <data name="SuitabilityOfTheTerritoryToAccommodateSES" xml:space="preserve">
+    <value>Күн электр станциясын орналастыру үшін аумақтың жарамдылығы, %</value>
+  </data>
+  <data name="suitable" xml:space="preserve">
+    <value>Тиімді</value>
+  </data>
+  <data name="SystemLog" xml:space="preserve">
+    <value>Жүйелік журналдың жазбасы</value>
+  </data>
+  <data name="SystemLogs" xml:space="preserve">
+    <value>Жүйе журналы</value>
+  </data>
+  <data name="SystemParameters" xml:space="preserve">
+    <value>Жүйе параметрлері</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Кесте</value>
+  </data>
+  <data name="TemperatureCoefficientOfPowerPanel" xml:space="preserve">
+    <value>Күн панельдерінің қуатының температура коэффициенті, °C</value>
+  </data>
+  <data name="TerrainAnalysis" xml:space="preserve">
+    <value>Күн электр станциялары желісін орналастыру үшін аумақты талдау</value>
+  </data>
+  <data name="TheAmountOfEnergyDay" xml:space="preserve">
+    <value>Энергия мөлшері,  кВт∙ч/тәулік</value>
+  </data>
+  <data name="TheAngleOfThePVPanel" xml:space="preserve">
+    <value>Күн панельдерінің көлбеу бұрышы, градус</value>
+  </data>
+  <data name="TheAverageDailyOutsideTemperature" xml:space="preserve">
+    <value>орташа тәуліктік сыртқы ауа температурасы (° C)</value>
+  </data>
+  <data name="TheAverageMonthlyEfficiencyCoefficientOfASolarPanelAtDifferentCellTemperatures" xml:space="preserve">
+    <value>түрлі жасуша температурада күн панельдер тиімділігін орташа коэффициенті</value>
+  </data>
+  <data name="TheAverageMonthlyEfficiencyCoefficientOfThePVSystem" xml:space="preserve">
+    <value>тиімділігі PV-жүйесінің орташа коэффициенті</value>
+  </data>
+  <data name="TheAverageMonthlySumOfTotalRadiationOnTheOrientedPanel" xml:space="preserve">
+    <value>бағдарланған панеліндегі жалпы радиацияның орташа айлық мөлшері (айына кВтс / м²)</value>
+  </data>
+  <data name="TheCellTemperatureInOperatingModeForEachMonth" xml:space="preserve">
+    <value>Әр айдың операциялық режимінде ұялы температура</value>
+  </data>
+  <data name="TheFieldIsNotAValidEmailAddress" xml:space="preserve">
+    <value>Берілген {0} жарамсыз электрондық пошта мекенжайы</value>
+  </data>
+  <data name="TheMinimumAllowableValueOfTotalRadiationOnTheHorizontalSurface" xml:space="preserve">
+    <value>Горизонталды беткейге келетін жиынтық күн радиациясының минималды рұқсат етілген мәні (жылдық соммасы) кВт/м² жылына</value>
+  </data>
+  <data name="TheNominalOperatingTemperatureOfTheSolarCell" xml:space="preserve">
+    <value>Күн ұяшықтарының номинальды жұмыс температурасы (NOCT), °C</value>
+  </data>
+  <data name="TheResultOfPointComparison" xml:space="preserve">
+    <value>Нүктелерді салыстыру нәтижесі</value>
+  </data>
+  <data name="TheResultOfTheCalculationOfPanelsSquare" xml:space="preserve">
+    <value>Панель ауданын есептеу нәтижесі</value>
+  </data>
+  <data name="ThermalPowerFactor" xml:space="preserve">
+    <value>Фотопанель қуатының температуралық коэффициенті</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Уақыт</value>
+  </data>
+  <data name="TotalAreaOccupiedByPVPanels" xml:space="preserve">
+    <value>Күн панелдерінің жалпы ауданы, м²</value>
+  </data>
+  <data name="TotalEnergyConsumptionPerDay" xml:space="preserve">
+    <value>Тәулігіне жалпы энергия тұтыну мөлшері, кВт*сағ:</value>
+  </data>
+  <data name="TotalRequiredRatedPowerOfSolarPVSystems" xml:space="preserve">
+    <value>Фотоэлектрлік станцияның қажетті жалпы номиналды қуаты, Вт</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Түрі</value>
+  </data>
+  <data name="TypeOfPanelMaterial" xml:space="preserve">
+    <value>Панель материалының түрі</value>
+  </data>
+  <data name="TypeOfPanelOrientation" xml:space="preserve">
+    <value>Панель бағдарлануының түрі</value>
+  </data>
+  <data name="unfit" xml:space="preserve">
+    <value>Тиімсіз</value>
+  </data>
+  <data name="unsuitable" xml:space="preserve">
+    <value>Аз тиімді</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Жүктеу</value>
+  </data>
+  <data name="UseALocalAccountToLogIn" xml:space="preserve">
+    <value>Кіру үшін локалды есеп жазбасын қолданыңыз</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Пайдаланушы</value>
+  </data>
+  <data name="UserId" xml:space="preserve">
+    <value>Пайдаланушы идентификаторы</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Пайдаланушылар</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Мәні</value>
+  </data>
+  <data name="veryImportant" xml:space="preserve">
+    <value>Өте маңызды</value>
+  </data>
+  <data name="WiringEfficiency" xml:space="preserve">
+    <value>Сымдардың тиімділігі</value>
+  </data>
+  <data name="WorkingTimePerDay" xml:space="preserve">
+    <value>Тәулік ішінде жұмыс істеу уақыты, сағ</value>
+  </data>
+  <data name="WrongYear" xml:space="preserve">
+    <value>Қате жыл!</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Жыл</value>
+  </data>
+  <data name="YourPasswordHasBeenChanged" xml:space="preserve">
+    <value>Құпия сөзіңіз өзгертілді.</value>
+  </data>
+  <data name="YourPasswordHasBeenResetPleaseClickHereToLogIn" xml:space="preserve">
+    <value>Құпия сөзіңіз жойылды. Кіру үшін басыңыз</value>
+  </data>
+  <data name="LesfondOrgup" xml:space="preserve">
+    <value>Ведомстволық бағыныстылығына орман</value>
+  </data>
+  <data name="LesfondOrgups" xml:space="preserve">
+    <value>Ведомстволық бағыныстылығына орман</value>
+  </data>
+  <data name="Lesfondtype" xml:space="preserve">
+    <value>Орман түрі</value>
+  </data>
+  <data name="Lesfondtypes" xml:space="preserve">
+    <value>Орман түрлері</value>
+  </data>
+  <data name="MeteoStation" xml:space="preserve">
+    <value>Метеостанциясы</value>
+  </data>
+  <data name="MeteoStations" xml:space="preserve">
+    <value>Метеобекеттер</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>Күні, уақыты</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Кері байланыс</value>
+  </data>
+  <data name="Feedbacks" xml:space="preserve">
+    <value>Пікірлер</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Мәтін</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Аты</value>
+  </data>
+  <data name="GetMeteoDataRegion" xml:space="preserve">
+    <value>Бағыттар бойынша метеорологиялық деректерді алу</value>
+  </data>
+  <data name="PanelsArea" xml:space="preserve">
+    <value>Күн панелдерінің жалпы ауданы, м²</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="ParameterValue" xml:space="preserve">
+    <value>параметр мәні</value>
+  </data>
+  <data name="SPPCostHint" xml:space="preserve">
+    <value>Компаниялардың деректері</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Барлығы</value>
+  </data>
+  <data name="MeteoDataGroup" xml:space="preserve">
+    <value>Топ</value>
+  </data>
+</root>

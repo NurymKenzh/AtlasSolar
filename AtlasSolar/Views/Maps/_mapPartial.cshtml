@@ -1,0 +1,1533 @@
+﻿<div id="loading"></div>
+
+<div id="fullscreen" class="fullscreen">
+    <div class="sidepanel">
+        <div id="tabs" style="height: 100%;">
+            <ul class="super">
+                <li><a href="#Layers">@AtlasSolar.Resources.Common.Layers</a></li>
+                <li><a href="#Legend">@AtlasSolar.Resources.Common.Legend</a></li>
+                <li><a href="#Data">@AtlasSolar.Resources.Common.Data</a></li>
+            </ul>
+            <div id="Layers" style="overflow-y: auto; overflow-x: hidden; height: calc(100% - 44px);">
+                <div id="jstree">
+                    <ul>
+                        <li id="oblasti" style="font-weight: bold;">@AtlasSolar.Resources.Layers.oblasti</li>
+                        <li id="spp">@AtlasSolar.Resources.Layers.spp</li>
+                        <li id="lep">@AtlasSolar.Resources.Layers.lep<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_lep'), $('#Description_lep'), $('#Appointment_lep'), $('#Resolution_lep'), $('#Source_lep'), $('#Additional_lep'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>
+                        <li id="lep2">@AtlasSolar.Resources.Layers.lep2</li>
+                        <li data-jstree='{"checkbox_disabled": true}'>
+                            <p>@AtlasSolar.Resources.Layers.MapsResources</p>
+                            <ul>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>NASA SSE</p>
+                                    <ul>
+                                        <li data-jstree='{"checkbox_disabled": true}'>
+                                            <p>@AtlasSolar.Resources.Layers.Tree_avg_dnr<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_avg_dnr'), $('#Description_avg_dnr'), $('#Appointment_avg_dnr'), $('#Resolution_avg_dnr'), $('#Source_avg_dnr'), $('#Additional_avg_dnr'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                            <ul>
+                                                <li id="avg_dnr_year">@AtlasSolar.Resources.Common.Year.ToLower()</li>
+                                                <li id="avg_dnr_01">@AtlasSolar.Resources.Common.month01</li>
+                                                <li id="avg_dnr_02">@AtlasSolar.Resources.Common.month02</li>
+                                                <li id="avg_dnr_03">@AtlasSolar.Resources.Common.month03</li>
+                                                <li id="avg_dnr_04">@AtlasSolar.Resources.Common.month04</li>
+                                                <li id="avg_dnr_05">@AtlasSolar.Resources.Common.month05</li>
+                                                <li id="avg_dnr_06">@AtlasSolar.Resources.Common.month06</li>
+                                                <li id="avg_dnr_07">@AtlasSolar.Resources.Common.month07</li>
+                                                <li id="avg_dnr_08">@AtlasSolar.Resources.Common.month08</li>
+                                                <li id="avg_dnr_09">@AtlasSolar.Resources.Common.month09</li>
+                                                <li id="avg_dnr_10">@AtlasSolar.Resources.Common.month10</li>
+                                                <li id="avg_dnr_11">@AtlasSolar.Resources.Common.month11</li>
+                                                <li id="avg_dnr_12">@AtlasSolar.Resources.Common.month12</li>
+                                            </ul>
+                                        </li>
+                                        <li data-jstree='{"checkbox_disabled": true}'>
+                                            <p>@AtlasSolar.Resources.Layers.Tree_swv_dwn<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_swv_dwn'), $('#Description_swv_dwn'), $('#Appointment_swv_dwn'), $('#Resolution_swv_dwn'), $('#Source_swv_dwn'), $('#Additional_swv_dwn'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                            <ul>
+                                                <li id="swv_dwn_year">@AtlasSolar.Resources.Common.Year.ToLower()</li>
+                                                <li id="swv_dwn_01">@AtlasSolar.Resources.Common.month01</li>
+                                                <li id="swv_dwn_02">@AtlasSolar.Resources.Common.month02</li>
+                                                <li id="swv_dwn_03">@AtlasSolar.Resources.Common.month03</li>
+                                                <li id="swv_dwn_04">@AtlasSolar.Resources.Common.month04</li>
+                                                <li id="swv_dwn_05">@AtlasSolar.Resources.Common.month05</li>
+                                                <li id="swv_dwn_06">@AtlasSolar.Resources.Common.month06</li>
+                                                <li id="swv_dwn_07">@AtlasSolar.Resources.Common.month07</li>
+                                                <li id="swv_dwn_08">@AtlasSolar.Resources.Common.month08</li>
+                                                <li id="swv_dwn_09">@AtlasSolar.Resources.Common.month09</li>
+                                                <li id="swv_dwn_10">@AtlasSolar.Resources.Common.month10</li>
+                                                <li id="swv_dwn_11">@AtlasSolar.Resources.Common.month11</li>
+                                                <li id="swv_dwn_12">@AtlasSolar.Resources.Common.month12</li>
+                                            </ul>
+                                        </li>
+                                        <li data-jstree='{"checkbox_disabled": true}'>
+                                            <p>@AtlasSolar.Resources.Layers.Tree_exp_dif<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_exp_dif'), $('#Description_exp_dif'), $('#Appointment_exp_dif'), $('#Resolution_exp_dif'), $('#Source_exp_dif'), $('#Additional_exp_dif'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p><ul>
+                                                <li id="exp_dif_year">@AtlasSolar.Resources.Common.Year.ToLower()</li>
+                                                <li id="exp_dif_01">@AtlasSolar.Resources.Common.month01</li>
+                                                <li id="exp_dif_02">@AtlasSolar.Resources.Common.month02</li>
+                                                <li id="exp_dif_03">@AtlasSolar.Resources.Common.month03</li>
+                                                <li id="exp_dif_04">@AtlasSolar.Resources.Common.month04</li>
+                                                <li id="exp_dif_05">@AtlasSolar.Resources.Common.month05</li>
+                                                <li id="exp_dif_06">@AtlasSolar.Resources.Common.month06</li>
+                                                <li id="exp_dif_07">@AtlasSolar.Resources.Common.month07</li>
+                                                <li id="exp_dif_08">@AtlasSolar.Resources.Common.month08</li>
+                                                <li id="exp_dif_09">@AtlasSolar.Resources.Common.month09</li>
+                                                <li id="exp_dif_10">@AtlasSolar.Resources.Common.month10</li>
+                                                <li id="exp_dif_11">@AtlasSolar.Resources.Common.month11</li>
+                                                <li id="exp_dif_12">@AtlasSolar.Resources.Common.month12</li>
+                                            </ul>
+                                        </li>
+                                        <li data-jstree='{"checkbox_disabled": true}'>
+                                            <p>@AtlasSolar.Resources.Layers.Tree_rettlt0opt<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_rettlt0opt'), $('#Description_rettlt0opt'), $('#Appointment_rettlt0opt'), $('#Resolution_rettlt0opt'), $('#Source_rettlt0opt'), $('#Additional_rettlt0opt'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p><ul>
+                                                <li id="rettlt0opt_year">@AtlasSolar.Resources.Common.Year.ToLower()</li>
+                                                <li id="rettlt0opt_01">@AtlasSolar.Resources.Common.month01</li>
+                                                <li id="rettlt0opt_02">@AtlasSolar.Resources.Common.month02</li>
+                                                <li id="rettlt0opt_03">@AtlasSolar.Resources.Common.month03</li>
+                                                <li id="rettlt0opt_04">@AtlasSolar.Resources.Common.month04</li>
+                                                <li id="rettlt0opt_05">@AtlasSolar.Resources.Common.month05</li>
+                                                <li id="rettlt0opt_06">@AtlasSolar.Resources.Common.month06</li>
+                                                <li id="rettlt0opt_07">@AtlasSolar.Resources.Common.month07</li>
+                                                <li id="rettlt0opt_08">@AtlasSolar.Resources.Common.month08</li>
+                                                <li id="rettlt0opt_09">@AtlasSolar.Resources.Common.month09</li>
+                                                <li id="rettlt0opt_10">@AtlasSolar.Resources.Common.month10</li>
+                                                <li id="rettlt0opt_11">@AtlasSolar.Resources.Common.month11</li>
+                                                <li id="rettlt0opt_12">@AtlasSolar.Resources.Common.month12</li>
+                                            </ul>
+                                        </li>
+                                        <li data-jstree='{"checkbox_disabled": true}'>
+                                            <p>@AtlasSolar.Resources.Layers.Tree_clrskyavrg<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_clrskyavrg'), $('#Description_clrskyavrg'), $('#Appointment_clrskyavrg'), $('#Resolution_clrskyavrg'), $('#Source_clrskyavrg'), $('#Additional_clrskyavrg'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p><ul>
+                                                <li id="clrskyavrg_year">@AtlasSolar.Resources.Common.Year.ToLower()</li>
+                                                <li id="clrskyavrg_01">@AtlasSolar.Resources.Common.month01</li>
+                                                <li id="clrskyavrg_02">@AtlasSolar.Resources.Common.month02</li>
+                                                <li id="clrskyavrg_03">@AtlasSolar.Resources.Common.month03</li>
+                                                <li id="clrskyavrg_04">@AtlasSolar.Resources.Common.month04</li>
+                                                <li id="clrskyavrg_05">@AtlasSolar.Resources.Common.month05</li>
+                                                <li id="clrskyavrg_06">@AtlasSolar.Resources.Common.month06</li>
+                                                <li id="clrskyavrg_07">@AtlasSolar.Resources.Common.month07</li>
+                                                <li id="clrskyavrg_08">@AtlasSolar.Resources.Common.month08</li>
+                                                <li id="clrskyavrg_09">@AtlasSolar.Resources.Common.month09</li>
+                                                <li id="clrskyavrg_10">@AtlasSolar.Resources.Common.month10</li>
+                                                <li id="clrskyavrg_11">@AtlasSolar.Resources.Common.month11</li>
+                                                <li id="clrskyavrg_12">@AtlasSolar.Resources.Common.month12</li>
+                                            </ul>
+                                        </li>
+                                        <li data-jstree='{"checkbox_disabled": true}'>
+                                            <p>@AtlasSolar.Resources.Layers.Tree_retesh0mim<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_retesh0mim'), $('#Description_retesh0mim'), $('#Appointment_retesh0mim'), $('#Resolution_retesh0mim'), $('#Source_retesh0mim'), $('#Additional_retesh0mim'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p><ul>
+                                                <li id="retesh0mim_year">@AtlasSolar.Resources.Common.Year.ToLower()</li>
+                                                <li id="retesh0mim_01">@AtlasSolar.Resources.Common.month01</li>
+                                                <li id="retesh0mim_02">@AtlasSolar.Resources.Common.month02</li>
+                                                <li id="retesh0mim_03">@AtlasSolar.Resources.Common.month03</li>
+                                                <li id="retesh0mim_04">@AtlasSolar.Resources.Common.month04</li>
+                                                <li id="retesh0mim_05">@AtlasSolar.Resources.Common.month05</li>
+                                                <li id="retesh0mim_06">@AtlasSolar.Resources.Common.month06</li>
+                                                <li id="retesh0mim_07">@AtlasSolar.Resources.Common.month07</li>
+                                                <li id="retesh0mim_08">@AtlasSolar.Resources.Common.month08</li>
+                                                <li id="retesh0mim_09">@AtlasSolar.Resources.Common.month09</li>
+                                                <li id="retesh0mim_10">@AtlasSolar.Resources.Common.month10</li>
+                                                <li id="retesh0mim_11">@AtlasSolar.Resources.Common.month11</li>
+                                                <li id="retesh0mim_12">@AtlasSolar.Resources.Common.month12</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>SARAH-E</p>
+                                    <ul>
+                                        <li data-jstree='{"checkbox_disabled": true}'>
+                                            <p>@AtlasSolar.Resources.Layers.Tree_dni<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_dni'), $('#Description_dni'), $('#Appointment_dni'), $('#Resolution_dni'), $('#Source_dni'), $('#Additional_dni'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                            <ul>
+                                                <li id="dni_year">@AtlasSolar.Resources.Common.Year.ToLower()</li>
+                                                <li id="dni_01">@AtlasSolar.Resources.Common.month01</li>
+                                                <li id="dni_02">@AtlasSolar.Resources.Common.month02</li>
+                                                <li id="dni_03">@AtlasSolar.Resources.Common.month03</li>
+                                                <li id="dni_04">@AtlasSolar.Resources.Common.month04</li>
+                                                <li id="dni_05">@AtlasSolar.Resources.Common.month05</li>
+                                                <li id="dni_06">@AtlasSolar.Resources.Common.month06</li>
+                                                <li id="dni_07">@AtlasSolar.Resources.Common.month07</li>
+                                                <li id="dni_08">@AtlasSolar.Resources.Common.month08</li>
+                                                <li id="dni_09">@AtlasSolar.Resources.Common.month09</li>
+                                                <li id="dni_10">@AtlasSolar.Resources.Common.month10</li>
+                                                <li id="dni_11">@AtlasSolar.Resources.Common.month11</li>
+                                                <li id="dni_12">@AtlasSolar.Resources.Common.month12</li>
+                                            </ul>
+                                        </li>
+                                        <li data-jstree='{"checkbox_disabled": true}'>
+                                            <p>@AtlasSolar.Resources.Layers.Tree_sic<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_sic'), $('#Description_sic'), $('#Appointment_sic'), $('#Resolution_sic'), $('#Source_sic'), $('#Additional_sic'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                            <ul>
+                                                <li id="sic_year">@AtlasSolar.Resources.Common.Year.ToLower()</li>
+                                                <li id="sic_01">@AtlasSolar.Resources.Common.month01</li>
+                                                <li id="sic_02">@AtlasSolar.Resources.Common.month02</li>
+                                                <li id="sic_03">@AtlasSolar.Resources.Common.month03</li>
+                                                <li id="sic_04">@AtlasSolar.Resources.Common.month04</li>
+                                                <li id="sic_05">@AtlasSolar.Resources.Common.month05</li>
+                                                <li id="sic_06">@AtlasSolar.Resources.Common.month06</li>
+                                                <li id="sic_07">@AtlasSolar.Resources.Common.month07</li>
+                                                <li id="sic_08">@AtlasSolar.Resources.Common.month08</li>
+                                                <li id="sic_09">@AtlasSolar.Resources.Common.month09</li>
+                                                <li id="sic_10">@AtlasSolar.Resources.Common.month10</li>
+                                                <li id="sic_11">@AtlasSolar.Resources.Common.month11</li>
+                                                <li id="sic_12">@AtlasSolar.Resources.Common.month12</li>
+                                            </ul>
+                                        </li>
+                                        <li data-jstree='{"checkbox_disabled": true}'>
+                                            <p>@AtlasSolar.Resources.Layers.Tree_sid<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_sid'), $('#Description_sid'), $('#Appointment_sid'), $('#Resolution_sid'), $('#Source_sid'), $('#Additional_sid'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                            <ul>
+                                                <li id="sid_year">@AtlasSolar.Resources.Common.Year.ToLower()</li>
+                                                <li id="sid_01">@AtlasSolar.Resources.Common.month01</li>
+                                                <li id="sid_02">@AtlasSolar.Resources.Common.month02</li>
+                                                <li id="sid_03">@AtlasSolar.Resources.Common.month03</li>
+                                                <li id="sid_04">@AtlasSolar.Resources.Common.month04</li>
+                                                <li id="sid_05">@AtlasSolar.Resources.Common.month05</li>
+                                                <li id="sid_06">@AtlasSolar.Resources.Common.month06</li>
+                                                <li id="sid_07">@AtlasSolar.Resources.Common.month07</li>
+                                                <li id="sid_08">@AtlasSolar.Resources.Common.month08</li>
+                                                <li id="sid_09">@AtlasSolar.Resources.Common.month09</li>
+                                                <li id="sid_10">@AtlasSolar.Resources.Common.month10</li>
+                                                <li id="sid_11">@AtlasSolar.Resources.Common.month11</li>
+                                                <li id="sid_12">@AtlasSolar.Resources.Common.month12</li>
+                                            </ul>
+                                        </li>
+                                        <li data-jstree='{"checkbox_disabled": true}'>
+                                            <p>@AtlasSolar.Resources.Layers.Tree_sis<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_sis'), $('#Description_sis'), $('#Appointment_sis'), $('#Resolution_sis'), $('#Source_sis'), $('#Additional_sis'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                            <ul>
+                                                <li id="sis_year">@AtlasSolar.Resources.Common.Year.ToLower()</li>
+                                                <li id="sis_01">@AtlasSolar.Resources.Common.month01</li>
+                                                <li id="sis_02">@AtlasSolar.Resources.Common.month02</li>
+                                                <li id="sis_03">@AtlasSolar.Resources.Common.month03</li>
+                                                <li id="sis_04">@AtlasSolar.Resources.Common.month04</li>
+                                                <li id="sis_05">@AtlasSolar.Resources.Common.month05</li>
+                                                <li id="sis_06">@AtlasSolar.Resources.Common.month06</li>
+                                                <li id="sis_07">@AtlasSolar.Resources.Common.month07</li>
+                                                <li id="sis_08">@AtlasSolar.Resources.Common.month08</li>
+                                                <li id="sis_09">@AtlasSolar.Resources.Common.month09</li>
+                                                <li id="sis_10">@AtlasSolar.Resources.Common.month10</li>
+                                                <li id="sis_11">@AtlasSolar.Resources.Common.month11</li>
+                                                <li id="sis_12">@AtlasSolar.Resources.Common.month12</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>CLARA</p>
+                                    <ul>
+                                        <li data-jstree='{"checkbox_disabled": true}'>
+                                            <p>@AtlasSolar.Resources.Layers.Tree_sis_klr<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_sis_klr'), $('#Description_sis_klr'), $('#Appointment_sis_klr'), $('#Resolution_sis_klr'), $('#Source_sis_klr'), $('#Additional_sis_klr'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                            <ul>
+                                                <li id="sis_klr_year">@AtlasSolar.Resources.Common.Year.ToLower()</li>
+                                                <li id="sis_klr_01">@AtlasSolar.Resources.Common.month01</li>
+                                                <li id="sis_klr_02">@AtlasSolar.Resources.Common.month02</li>
+                                                <li id="sis_klr_03">@AtlasSolar.Resources.Common.month03</li>
+                                                <li id="sis_klr_04">@AtlasSolar.Resources.Common.month04</li>
+                                                <li id="sis_klr_05">@AtlasSolar.Resources.Common.month05</li>
+                                                <li id="sis_klr_06">@AtlasSolar.Resources.Common.month06</li>
+                                                <li id="sis_klr_07">@AtlasSolar.Resources.Common.month07</li>
+                                                <li id="sis_klr_08">@AtlasSolar.Resources.Common.month08</li>
+                                                <li id="sis_klr_09">@AtlasSolar.Resources.Common.month09</li>
+                                                <li id="sis_klr_10">@AtlasSolar.Resources.Common.month10</li>
+                                                <li id="sis_klr_11">@AtlasSolar.Resources.Common.month11</li>
+                                                <li id="sis_klr_12">@AtlasSolar.Resources.Common.month12</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li data-jstree='{"checkbox_disabled": true}'>
+                            <p>@AtlasSolar.Resources.Layers.MapClimate</p>
+                            <ul>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>@AtlasSolar.Resources.Layers.Tree_rainavgesm<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_rainavgesm'), $('#Description_rainavgesm'), $('#Appointment_rainavgesm'), $('#Resolution_rainavgesm'), $('#Source_rainavgesm'), $('#Additional_rainavgesm'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                    <ul>
+                                        <li id="rainavgesm_year">@AtlasSolar.Resources.Common.Year.ToLower()</li>
+                                        <li id="rainavgesm_01">@AtlasSolar.Resources.Common.month01</li>
+                                        <li id="rainavgesm_02">@AtlasSolar.Resources.Common.month02</li>
+                                        <li id="rainavgesm_03">@AtlasSolar.Resources.Common.month03</li>
+                                        <li id="rainavgesm_04">@AtlasSolar.Resources.Common.month04</li>
+                                        <li id="rainavgesm_05">@AtlasSolar.Resources.Common.month05</li>
+                                        <li id="rainavgesm_06">@AtlasSolar.Resources.Common.month06</li>
+                                        <li id="rainavgesm_07">@AtlasSolar.Resources.Common.month07</li>
+                                        <li id="rainavgesm_08">@AtlasSolar.Resources.Common.month08</li>
+                                        <li id="rainavgesm_09">@AtlasSolar.Resources.Common.month09</li>
+                                        <li id="rainavgesm_10">@AtlasSolar.Resources.Common.month10</li>
+                                        <li id="rainavgesm_11">@AtlasSolar.Resources.Common.month11</li>
+                                        <li id="rainavgesm_12">@AtlasSolar.Resources.Common.month12</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>@AtlasSolar.Resources.Layers.Tree_t10m<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_t10m'), $('#Description_t10m'), $('#Appointment_t10m'), $('#Resolution_t10m'), $('#Source_t10m'), $('#Additional_t10m'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                    <ul>
+                                        <li id="t10m_01">@AtlasSolar.Resources.Common.month01</li>
+                                        <li id="t10m_02">@AtlasSolar.Resources.Common.month02</li>
+                                        <li id="t10m_03">@AtlasSolar.Resources.Common.month03</li>
+                                        <li id="t10m_04">@AtlasSolar.Resources.Common.month04</li>
+                                        <li id="t10m_05">@AtlasSolar.Resources.Common.month05</li>
+                                        <li id="t10m_06">@AtlasSolar.Resources.Common.month06</li>
+                                        <li id="t10m_07">@AtlasSolar.Resources.Common.month07</li>
+                                        <li id="t10m_08">@AtlasSolar.Resources.Common.month08</li>
+                                        <li id="t10m_09">@AtlasSolar.Resources.Common.month09</li>
+                                        <li id="t10m_10">@AtlasSolar.Resources.Common.month10</li>
+                                        <li id="t10m_11">@AtlasSolar.Resources.Common.month11</li>
+                                        <li id="t10m_12">@AtlasSolar.Resources.Common.month12</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>@AtlasSolar.Resources.Layers.Tree_t10mmax<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_t10mmax'), $('#Description_t10mmax'), $('#Appointment_t10mmax'), $('#Resolution_t10mmax'), $('#Source_t10mmax'), $('#Additional_t10mmax'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                    <ul>
+                                        <li id="t10mmax_01">@AtlasSolar.Resources.Common.month01</li>
+                                        <li id="t10mmax_02">@AtlasSolar.Resources.Common.month02</li>
+                                        <li id="t10mmax_03">@AtlasSolar.Resources.Common.month03</li>
+                                        <li id="t10mmax_04">@AtlasSolar.Resources.Common.month04</li>
+                                        <li id="t10mmax_05">@AtlasSolar.Resources.Common.month05</li>
+                                        <li id="t10mmax_06">@AtlasSolar.Resources.Common.month06</li>
+                                        <li id="t10mmax_07">@AtlasSolar.Resources.Common.month07</li>
+                                        <li id="t10mmax_08">@AtlasSolar.Resources.Common.month08</li>
+                                        <li id="t10mmax_09">@AtlasSolar.Resources.Common.month09</li>
+                                        <li id="t10mmax_10">@AtlasSolar.Resources.Common.month10</li>
+                                        <li id="t10mmax_11">@AtlasSolar.Resources.Common.month11</li>
+                                        <li id="t10mmax_12">@AtlasSolar.Resources.Common.month12</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>@AtlasSolar.Resources.Layers.Tree_t10m_min<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_t10m_min'), $('#Description_t10m_min'), $('#Appointment_t10m_min'), $('#Resolution_t10m_min'), $('#Source_t10m_min'), $('#Additional_t10m_min'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                    <ul>
+                                        <li id="t10m_min_01">@AtlasSolar.Resources.Common.month01</li>
+                                        <li id="t10m_min_02">@AtlasSolar.Resources.Common.month02</li>
+                                        <li id="t10m_min_03">@AtlasSolar.Resources.Common.month03</li>
+                                        <li id="t10m_min_04">@AtlasSolar.Resources.Common.month04</li>
+                                        <li id="t10m_min_05">@AtlasSolar.Resources.Common.month05</li>
+                                        <li id="t10m_min_06">@AtlasSolar.Resources.Common.month06</li>
+                                        <li id="t10m_min_07">@AtlasSolar.Resources.Common.month07</li>
+                                        <li id="t10m_min_08">@AtlasSolar.Resources.Common.month08</li>
+                                        <li id="t10m_min_09">@AtlasSolar.Resources.Common.month09</li>
+                                        <li id="t10m_min_10">@AtlasSolar.Resources.Common.month10</li>
+                                        <li id="t10m_min_11">@AtlasSolar.Resources.Common.month11</li>
+                                        <li id="t10m_min_12">@AtlasSolar.Resources.Common.month12</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>@AtlasSolar.Resources.Layers.Tree_tskinavg<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_tskinavg'), $('#Description_tskinavg'), $('#Appointment_tskinavg'), $('#Resolution_tskinavg'), $('#Source_tskinavg'), $('#Additional_tskinavg'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                    <ul>
+                                        <li id="tskinavg_01">@AtlasSolar.Resources.Common.month01</li>
+                                        <li id="tskinavg_02">@AtlasSolar.Resources.Common.month02</li>
+                                        <li id="tskinavg_03">@AtlasSolar.Resources.Common.month03</li>
+                                        <li id="tskinavg_04">@AtlasSolar.Resources.Common.month04</li>
+                                        <li id="tskinavg_05">@AtlasSolar.Resources.Common.month05</li>
+                                        <li id="tskinavg_06">@AtlasSolar.Resources.Common.month06</li>
+                                        <li id="tskinavg_07">@AtlasSolar.Resources.Common.month07</li>
+                                        <li id="tskinavg_08">@AtlasSolar.Resources.Common.month08</li>
+                                        <li id="tskinavg_09">@AtlasSolar.Resources.Common.month09</li>
+                                        <li id="tskinavg_10">@AtlasSolar.Resources.Common.month10</li>
+                                        <li id="tskinavg_11">@AtlasSolar.Resources.Common.month11</li>
+                                        <li id="tskinavg_12">@AtlasSolar.Resources.Common.month12</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>@AtlasSolar.Resources.Layers.Tree_srfalbavg<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_srfalbavg'), $('#Description_srfalbavg'), $('#Appointment_srfalbavg'), $('#Resolution_srfalbavg'), $('#Source_srfalbavg'), $('#Additional_srfalbavg'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                    <ul>
+                                        <li id="srfalbavg_01">@AtlasSolar.Resources.Common.month01</li>
+                                        <li id="srfalbavg_02">@AtlasSolar.Resources.Common.month02</li>
+                                        <li id="srfalbavg_03">@AtlasSolar.Resources.Common.month03</li>
+                                        <li id="srfalbavg_04">@AtlasSolar.Resources.Common.month04</li>
+                                        <li id="srfalbavg_05">@AtlasSolar.Resources.Common.month05</li>
+                                        <li id="srfalbavg_06">@AtlasSolar.Resources.Common.month06</li>
+                                        <li id="srfalbavg_07">@AtlasSolar.Resources.Common.month07</li>
+                                        <li id="srfalbavg_08">@AtlasSolar.Resources.Common.month08</li>
+                                        <li id="srfalbavg_09">@AtlasSolar.Resources.Common.month09</li>
+                                        <li id="srfalbavg_10">@AtlasSolar.Resources.Common.month10</li>
+                                        <li id="srfalbavg_11">@AtlasSolar.Resources.Common.month11</li>
+                                        <li id="srfalbavg_12">@AtlasSolar.Resources.Common.month12</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>@AtlasSolar.Resources.Layers.Tree_avg_kt_22<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_avg_kt_22'), $('#Description_avg_kt_22'), $('#Appointment_avg_kt_22'), $('#Resolution_avg_kt_22'), $('#Source_avg_kt_22'), $('#Additional_avg_kt_22'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                    <ul>
+                                        <li id="avg_kt_22_01">@AtlasSolar.Resources.Common.month01</li>
+                                        <li id="avg_kt_22_02">@AtlasSolar.Resources.Common.month02</li>
+                                        <li id="avg_kt_22_03">@AtlasSolar.Resources.Common.month03</li>
+                                        <li id="avg_kt_22_04">@AtlasSolar.Resources.Common.month04</li>
+                                        <li id="avg_kt_22_05">@AtlasSolar.Resources.Common.month05</li>
+                                        <li id="avg_kt_22_06">@AtlasSolar.Resources.Common.month06</li>
+                                        <li id="avg_kt_22_07">@AtlasSolar.Resources.Common.month07</li>
+                                        <li id="avg_kt_22_08">@AtlasSolar.Resources.Common.month08</li>
+                                        <li id="avg_kt_22_09">@AtlasSolar.Resources.Common.month09</li>
+                                        <li id="avg_kt_22_10">@AtlasSolar.Resources.Common.month10</li>
+                                        <li id="avg_kt_22_11">@AtlasSolar.Resources.Common.month11</li>
+                                        <li id="avg_kt_22_12">@AtlasSolar.Resources.Common.month12</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>@AtlasSolar.Resources.Layers.Tree_avg_nkt_22<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_avg_nkt_22'), $('#Description_avg_nkt_22'), $('#Appointment_avg_nkt_22'), $('#Resolution_avg_nkt_22'), $('#Source_avg_nkt_22'), $('#Additional_avg_nkt_22'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                    <ul>
+                                        <li id="avg_nkt_22_01">@AtlasSolar.Resources.Common.month01</li>
+                                        <li id="avg_nkt_22_02">@AtlasSolar.Resources.Common.month02</li>
+                                        <li id="avg_nkt_22_03">@AtlasSolar.Resources.Common.month03</li>
+                                        <li id="avg_nkt_22_04">@AtlasSolar.Resources.Common.month04</li>
+                                        <li id="avg_nkt_22_05">@AtlasSolar.Resources.Common.month05</li>
+                                        <li id="avg_nkt_22_06">@AtlasSolar.Resources.Common.month06</li>
+                                        <li id="avg_nkt_22_07">@AtlasSolar.Resources.Common.month07</li>
+                                        <li id="avg_nkt_22_08">@AtlasSolar.Resources.Common.month08</li>
+                                        <li id="avg_nkt_22_09">@AtlasSolar.Resources.Common.month09</li>
+                                        <li id="avg_nkt_22_10">@AtlasSolar.Resources.Common.month10</li>
+                                        <li id="avg_nkt_22_11">@AtlasSolar.Resources.Common.month11</li>
+                                        <li id="avg_nkt_22_12">@AtlasSolar.Resources.Common.month12</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>@AtlasSolar.Resources.Layers.Tree_day_cld_22<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_day_cld_22'), $('#Description_day_cld_22'), $('#Appointment_day_cld_22'), $('#Resolution_day_cld_22'), $('#Source_day_cld_22'), $('#Additional_day_cld_22'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                    <ul>
+                                        <li id="day_cld_22_01">@AtlasSolar.Resources.Common.month01</li>
+                                        <li id="day_cld_22_02">@AtlasSolar.Resources.Common.month02</li>
+                                        <li id="day_cld_22_03">@AtlasSolar.Resources.Common.month03</li>
+                                        <li id="day_cld_22_04">@AtlasSolar.Resources.Common.month04</li>
+                                        <li id="day_cld_22_05">@AtlasSolar.Resources.Common.month05</li>
+                                        <li id="day_cld_22_06">@AtlasSolar.Resources.Common.month06</li>
+                                        <li id="day_cld_22_07">@AtlasSolar.Resources.Common.month07</li>
+                                        <li id="day_cld_22_08">@AtlasSolar.Resources.Common.month08</li>
+                                        <li id="day_cld_22_09">@AtlasSolar.Resources.Common.month09</li>
+                                        <li id="day_cld_22_10">@AtlasSolar.Resources.Common.month10</li>
+                                        <li id="day_cld_22_11">@AtlasSolar.Resources.Common.month11</li>
+                                        <li id="day_cld_22_12">@AtlasSolar.Resources.Common.month12</li>
+                                    </ul>
+                                </li>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>@AtlasSolar.Resources.Layers.Tree_daylghtav<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_daylghtav'), $('#Description_daylghtav'), $('#Appointment_daylghtav'), $('#Resolution_daylghtav'), $('#Source_daylghtav'), $('#Additional_daylghtav'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></p>
+                                    <ul>
+                                        <li id="daylghtav_01">@AtlasSolar.Resources.Common.month01</li>
+                                        <li id="daylghtav_02">@AtlasSolar.Resources.Common.month02</li>
+                                        <li id="daylghtav_03">@AtlasSolar.Resources.Common.month03</li>
+                                        <li id="daylghtav_04">@AtlasSolar.Resources.Common.month04</li>
+                                        <li id="daylghtav_05">@AtlasSolar.Resources.Common.month05</li>
+                                        <li id="daylghtav_06">@AtlasSolar.Resources.Common.month06</li>
+                                        <li id="daylghtav_07">@AtlasSolar.Resources.Common.month07</li>
+                                        <li id="daylghtav_08">@AtlasSolar.Resources.Common.month08</li>
+                                        <li id="daylghtav_09">@AtlasSolar.Resources.Common.month09</li>
+                                        <li id="daylghtav_10">@AtlasSolar.Resources.Common.month10</li>
+                                        <li id="daylghtav_11">@AtlasSolar.Resources.Common.month11</li>
+                                        <li id="daylghtav_12">@AtlasSolar.Resources.Common.month12</li>
+                                    </ul>
+                                </li>
+                        </li>
+                    </ul>
+                        @*<li data-jstree='{"checkbox_disabled": true}'>
+                <p>@AtlasSolar.Resources.Layers.MapAuxiliary</p>
+                <ul>
+                    <li data-jstree='{"checkbox_disabled": true}'>
+                        <p>@AtlasSolar.Resources.Layers.lep</p>
+                        <ul><li id="lep">@AtlasSolar.Resources.Layers.lep</li></ul>
+                        <ul><li id="lep_bufer">@AtlasSolar.Resources.Layers.lep_bufer</li></ul>
+                    </li>
+
+                </ul>
+            </li>*@
+
+                        <li data-jstree='{"checkbox_disabled": true}'>
+                            <p>@AtlasSolar.Resources.Layers.MapFactors</p>
+                            <ul>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>@AtlasSolar.Resources.Layers.Relief</p>
+                                    <ul><li id="srtm">@AtlasSolar.Resources.Layers.Tree_srtm<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_srtm'), $('#Description_srtm'), $('#Appointment_srtm'), $('#Resolution_srtm'), $('#Source_srtm'), $('#Additional_srtm'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li></ul>
+                                    <ul><li id="aspect_srtm">@AtlasSolar.Resources.Layers.Tree_aspect_srtm<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_aspect_srtm'), $('#Description_aspect_srtm'), $('#Appointment_aspect_srtm'), $('#Resolution_aspect_srtm'), $('#Source_aspect_srtm'), $('#Additional_aspect_srtm'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li></ul>
+                                    <ul><li id="slope_srtm">@AtlasSolar.Resources.Layers.Tree_slope_srtm<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_slope_srtm'), $('#Description_slope_srtm'), $('#Appointment_slope_srtm'), $('#Resolution_slope_srtm'), $('#Source_slope_srtm'), $('#Additional_slope_srtm'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li></ul>
+                                </li>
+                                <li data-jstree='{"checkbox_disabled": true}'>
+                                    <p>@AtlasSolar.Resources.Layers.Tree_oopt</p>
+                                    <ul>
+                                        <li id="pamyatnikprirodypol">@AtlasSolar.Resources.Layers.Tree_pamyatnikprirodypol<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_pamyatnikprirodypol'), $('#Description_pamyatnikprirodypol'), $('#Appointment_pamyatnikprirodypol'), $('#Resolution_pamyatnikprirodypol'), $('#Source_pamyatnikprirodypol'), $('#Additional_pamyatnikprirodypol'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>
+                                        <li id="prirparki">@AtlasSolar.Resources.Layers.Tree_prirparki<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_prirparki'), $('#Description_prirparki'), $('#Appointment_prirparki'), $('#Resolution_prirparki'), $('#Source_prirparki'), $('#Additional_prirparki'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>
+                                        <li id="rezervaty">@AtlasSolar.Resources.Layers.Tree_rezervaty<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_rezervaty'), $('#Description_rezervaty'), $('#Appointment_rezervaty'), $('#Resolution_rezervaty'), $('#Source_rezervaty'), $('#Additional_rezervaty'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>
+                                        <li id="zakazniky">@AtlasSolar.Resources.Layers.Tree_zakazniky<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_zakazniky'), $('#Description_zakazniky'), $('#Appointment_zakazniky'), $('#Resolution_zakazniky'), $('#Source_zakazniky'), $('#Additional_zakazniky'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>
+                                        <li id="zapovedniki">@AtlasSolar.Resources.Layers.Tree_zapovedniki<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_zapovedniki'), $('#Description_zapovedniki'), $('#Appointment_zapovedniki'), $('#Resolution_zapovedniki'), $('#Source_zapovedniki'), $('#Additional_zapovedniki'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>
+                                        <li id="zapovedzony">@AtlasSolar.Resources.Layers.Tree_zapovedzony<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_zapovedzony'), $('#Description_zapovedzony'), $('#Appointment_zapovedzony'), $('#Resolution_zapovedzony'), $('#Source_zapovedzony'), $('#Additional_zapovedzony'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>
+                                    </ul>
+                                </li>
+                                @*<li id="arheopamyat">@AtlasSolar.Resources.Layers.Tree_arheopamyat<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_arheopamyat'), $('#Description_arheopamyat'), $('#Appointment_arheopamyat'), $('#Resolution_arheopamyat'), $('#Source_arheopamyat'), $('#Additional_arheopamyat'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>*@
+                                <li id="hidroohrzony">@AtlasSolar.Resources.Layers.Tree_hidroohrzony<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_hidroohrzony'), $('#Description_hidroohrzony'), $('#Appointment_hidroohrzony'), $('#Resolution_hidroohrzony'), $('#Source_hidroohrzony'), $('#Additional_hidroohrzony'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>
+                                <li id="kzcover">@AtlasSolar.Resources.Layers.Tree_kzcover<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_kzcover'), $('#Description_kzcover'), $('#Appointment_kzcover'), $('#Resolution_kzcover'), $('#Source_kzcover'), $('#Additional_kzcover'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>
+                                <li id="meteo_st">@AtlasSolar.Resources.Layers.meteo_st</li>
+                            </ul>
+
+                        </li>
+
+
+                    </ul>
+                </div>
+                <!--LiveInternet counter-->
+                <script type="text/javascript">
+                    document.write("<a href='//www.liveinternet.ru/click' " +
+                        "target=_blank><img src='//counter.yadro.ru/hit?t42.12;r" +
+                        escape(document.referrer) + ((typeof (screen) == "undefined") ? "" :
+                            ";s" + screen.width + "*" + screen.height + "*" + (screen.colorDepth ?
+                                screen.colorDepth : screen.pixelDepth)) + ";u" + escape(document.URL) +
+                        ";" + Math.random() +
+                        "' alt='' title='LiveInternet' " +
+                        "border='0' width='31' height='31'><\/a>")
+                </script><!--/LiveInternet-->
+            </div>
+            <div id="Legend" style="overflow-y: auto; overflow-x: hidden; height: calc(100% - 44px); line-height: 120%;">
+                <div id="legend_findterrain" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="findterrain_legend">@AtlasSolar.Resources.Common.FindTerrainSuitableTerritories</p>
+                    <table class="legend">
+                        <tr>
+                            <td>
+                                <div style="background-color: #d7191c;"></div>
+                            </td>
+                            <td>
+                                @AtlasSolar.Resources.Common.FindTerrainUnsuitableTerritories
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="background-color: #1a9641;"></div>
+                            </td>
+                            <td>
+                                @AtlasSolar.Resources.Common.FindTerrainSuitableTerritories
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="legend_analizeterrain" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="analizeterrain_legend">@AtlasSolar.Resources.Common.AnalizedTerrain</p>
+                    <table class="legend">
+                        <tr>
+                            <td>
+                                <div style="background-color: #d7191c;"></div>
+                            </td>
+                            <td>
+                                @AtlasSolar.Resources.Common.unfit
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="background-color: #fdae61;"></div>
+                            </td>
+                            <td>
+                                @AtlasSolar.Resources.Common.unsuitable
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="background-color: #ffffc0;"></div>
+                            </td>
+                            <td>
+                                @AtlasSolar.Resources.Common.relativelyFit
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="background-color: #a6d96a;"></div>
+                            </td>
+                            <td>
+                                @AtlasSolar.Resources.Common.suitable
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="background-color: #1a9641;"></div>
+                            </td>
+                            <td>
+                                @AtlasSolar.Resources.Common.mostSuitable
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="legend_avg_dnr_year" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="avg_dnr_year_legend">@AtlasSolar.Resources.Layers.Legend_avg_dnr_year</p>
+                    <table class="legend">
+                        <tr> <td> <div style="background-color: #4797b5;"></div> </td> <td><= 1350</td> </tr>
+                        <tr> <td> <div style="background-color: #64abb0;"></div> </td> <td>1350 - 1400</td> </tr>
+                        <tr> <td> <div style="background-color: #80bfac;"></div> </td> <td>1400 - 1450</td> </tr>
+                        <tr> <td> <div style="background-color: #9dd3a7;"></div> </td> <td>1450 - 1500</td> </tr>
+                        <tr> <td> <div style="background-color: #b5e1a7;"></div> </td> <td>1500 - 1550</td> </tr>
+                        <tr> <td> <div style="background-color: #c7e9ad;"></div> </td> <td>1550 - 1600</td> </tr>
+                        <tr> <td> <div style="background-color: #daf0b3;"></div> </td> <td>1600 - 1650</td> </tr>
+                        <tr> <td> <div style="background-color: #edf8b9;"></div> </td> <td>1650 - 1700</td> </tr>
+                        <tr> <td> <div style="background-color: #ffffbf;"></div> </td> <td>1700 - 1750</td> </tr>
+                        <tr> <td> <div style="background-color: #ffedaa;"></div> </td> <td>1750 - 1800</td> </tr>
+                        <tr> <td> <div style="background-color: #ffdb95;"></div> </td> <td>1800 - 1850</td> </tr>
+                        <tr> <td> <div style="background-color: #fec980;"></div> </td> <td>1850 - 1900</td> </tr>
+                        <tr> <td> <div style="background-color: #feb76b;"></div> </td> <td>1900 - 1950</td> </tr>
+                        <tr> <td> <div style="background-color: #f99e59;"></div> </td> <td>1950 - 2000</td> </tr>
+                        <tr> <td> <div style="background-color: #f17c4a;"></div> </td> <td>2000 - 2050</td> </tr>
+                        <tr> <td> <div style="background-color: #e85b3a;"></div> </td> <td>2050 - 2100</td> </tr>
+                        <tr> <td> <div style="background-color: #e03a2b;"></div> </td> <td>2100 - 2150</td> </tr>
+                        <tr> <td> <div style="background-color: #d7191c;"></div> </td> <td>> 2150</td> </tr>
+                    </table>
+                </div>
+                <div id="legend_avg_dnr_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="avg_dnr_month_legend">@AtlasSolar.Resources.Layers.Legend_avg_dnr_xx</p>
+                    <table class="legend">
+                        <tr> <td> <div style="background-color: #3f91b7;"></div> </td> <td><= 40</td> </tr>
+                        <tr> <td> <div style="background-color: #54a0b3;"></div> </td> <td>40 - 50</td> </tr>
+                        <tr> <td> <div style="background-color: #68aeb0;"></div> </td> <td>50 - 60</td> </tr>
+                        <tr> <td> <div style="background-color: #7dbdac;"></div> </td> <td>60 - 70</td> </tr>
+                        <tr> <td> <div style="background-color: #91cba9;"></div> </td> <td>70 - 80</td> </tr>
+                        <tr> <td> <div style="background-color: #a6daa5;"></div> </td> <td>80 - 90</td> </tr>
+                        <tr> <td> <div style="background-color: #b5e1a7;"></div> </td> <td>90 - 100</td> </tr>
+                        <tr> <td> <div style="background-color: #c3e7ac;"></div> </td> <td>100 - 110</td> </tr>
+                        <tr> <td> <div style="background-color: #d0ecb0;"></div> </td> <td>110 - 120</td> </tr>
+                        <tr> <td> <div style="background-color: #def2b4;"></div> </td> <td>120 - 130</td> </tr>
+                        <tr> <td> <div style="background-color: #ebf7b9;"></div> </td> <td>130 - 140</td> </tr>
+                        <tr> <td> <div style="background-color: #f9fdbd;"></div> </td> <td>140 - 150</td> </tr>
+                        <tr> <td> <div style="background-color: #fff9b8;"></div> </td> <td>150 - 160</td> </tr>
+                        <tr> <td> <div style="background-color: #ffeca9;"></div> </td> <td>160 - 170</td> </tr>
+                        <tr> <td> <div style="background-color: #ffdf9a;"></div> </td> <td>170 - 180</td> </tr>
+                        <tr> <td> <div style="background-color: #fed28a;"></div> </td> <td>180 - 190</td> </tr>
+                        <tr> <td> <div style="background-color: #fec57b;"></div> </td> <td>190 - 200</td> </tr>
+                        <tr> <td> <div style="background-color: #feb86c;"></div> </td> <td>200 - 210</td> </tr>
+                        <tr> <td> <div style="background-color: #fca85e;"></div> </td> <td>210 - 220</td> </tr>
+                        <tr> <td> <div style="background-color: #f69053;"></div> </td> <td>220 - 230</td> </tr>
+                        <tr> <td> <div style="background-color: #f07848;"></div> </td> <td>230 - 240</td> </tr>
+                        <tr> <td> <div style="background-color: #ea603d;"></div> </td> <td>240 - 250</td> </tr>
+                        <tr> <td> <div style="background-color: #e44832;"></div> </td> <td>250 - 260</td> </tr>
+                        <tr> <td> <div style="background-color: #dd3127;"></div> </td> <td>260 - 270</td> </tr>
+                        <tr> <td> <div style="background-color: #d7191c;"></div> </td> <td>> 270</td> </tr>
+                    </table>
+                </div>
+                <div id="legend_swv_dwn_year" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="swv_dwn_year_legend">@AtlasSolar.Resources.Layers.Legend_swv_dwn_year</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #59a4b2;"></div></td><td><= 1200</td></tr>
+                        <tr><td><div style="background-color: #88c5aa;"></div></td><td>1200 - 1250</td></tr>
+                        <tr><td><div style="background-color: #b3e0a7;"></div></td><td>1250 - 1300</td></tr>
+                        <tr><td><div style="background-color: #d2edb0;"></div></td><td>1300 - 1350</td></tr>
+                        <tr><td><div style="background-color: #f0f9ba;"></div></td><td>1350 - 1400</td></tr>
+                        <tr><td><div style="background-color: #fff1ae;"></div></td><td>1400 - 1450</td></tr>
+                        <tr><td><div style="background-color: #fed38c;"></div></td><td>1450 - 1500</td></tr>
+                        <tr><td><div style="background-color: #feb669;"></div></td><td>1500 - 1550</td></tr>
+                        <tr><td><div style="background-color: #f3854e;"></div></td><td>1550 - 1600</td></tr>
+                        <tr><td><div style="background-color: #e54f35;"></div></td><td>1600 - 1650</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 1650</td></tr>
+                    </table>
+                </div>
+                <div id="legend_swv_dwn_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="swv_dwn_month_legend">@AtlasSolar.Resources.Layers.Legend_swv_dwn_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #4193b6;"></div></td><td><= 20</td></tr>
+                        <tr><td><div style="background-color: #57a2b3;"></div></td><td>20 - 30</td></tr>
+                        <tr><td><div style="background-color: #6eb2af;"></div></td><td>30 - 40</td></tr>
+                        <tr><td><div style="background-color: #84c2ab;"></div></td><td>40 - 50</td></tr>
+                        <tr><td><div style="background-color: #9ad2a7;"></div></td><td>50 - 60</td></tr>
+                        <tr><td><div style="background-color: #afdfa5;"></div></td><td>60 - 70</td></tr>
+                        <tr><td><div style="background-color: #bee5aa;"></div></td><td>70 - 80</td></tr>
+                        <tr><td><div style="background-color: #ccebaf;"></div></td><td>80 - 90</td></tr>
+                        <tr><td><div style="background-color: #dbf1b3;"></div></td><td>90 - 100</td></tr>
+                        <tr><td><div style="background-color: #e9f7b8;"></div></td><td>100 - 110</td></tr>
+                        <tr><td><div style="background-color: #f8fdbd;"></div></td><td>110 - 120</td></tr>
+                        <tr><td><div style="background-color: #fff8b7;"></div></td><td>120 - 130</td></tr>
+                        <tr><td><div style="background-color: #ffeaa7;"></div></td><td>130 - 140</td></tr>
+                        <tr><td><div style="background-color: #ffdc96;"></div></td><td>140 - 150</td></tr>
+                        <tr><td><div style="background-color: #fece86;"></div></td><td>150 - 160</td></tr>
+                        <tr><td><div style="background-color: #fec075;"></div></td><td>160 - 170</td></tr>
+                        <tr><td><div style="background-color: #feb265;"></div></td><td>170 - 180</td></tr>
+                        <tr><td><div style="background-color: #f99b58;"></div></td><td>180 - 190</td></tr>
+                        <tr><td><div style="background-color: #f2814c;"></div></td><td>190 - 200</td></tr>
+                        <tr><td><div style="background-color: #eb6740;"></div></td><td>200 - 210</td></tr>
+                        <tr><td><div style="background-color: #e54d34;"></div></td><td>210 - 220</td></tr>
+                        <tr><td><div style="background-color: #de3328;"></div></td><td>220 - 230</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 230</td></tr>
+
+                    </table>
+                </div>
+                <div id="legend_exp_dif_year" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="exp_dif_year_legend">@AtlasSolar.Resources.Layers.Legend_exp_dif_year</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #4b9ab5;"></div></td><td><= 490</td></tr>
+                        <tr><td><div style="background-color: #6bb0af;"></div></td><td>490 - 500</td></tr>
+                        <tr><td><div style="background-color: #8bc7aa;"></div></td><td>500 - 510</td></tr>
+                        <tr><td><div style="background-color: #abdda4;"></div></td><td>510 - 520</td></tr>
+                        <tr><td><div style="background-color: #c0e6ab;"></div></td><td>520 - 530</td></tr>
+                        <tr><td><div style="background-color: #d5eeb2;"></div></td><td>530 - 540</td></tr>
+                        <tr><td><div style="background-color: #eaf7b8;"></div></td><td>540 - 550</td></tr>
+                        <tr><td><div style="background-color: #ffffbf;"></div></td><td>550 - 560</td></tr>
+                        <tr><td><div style="background-color: #ffeba8;"></div></td><td>560 - 570</td></tr>
+                        <tr><td><div style="background-color: #fed790;"></div></td><td>570 - 580</td></tr>
+                        <tr><td><div style="background-color: #fec378;"></div></td><td>580 - 590</td></tr>
+                        <tr><td><div style="background-color: #fdae61;"></div></td><td>590 - 600</td></tr>
+                        <tr><td><div style="background-color: #f48950;"></div></td><td>600 - 610</td></tr>
+                        <tr><td><div style="background-color: #ea633e;"></div></td><td>610 - 620</td></tr>
+                        <tr><td><div style="background-color: #e13e2d;"></div></td><td>620 - 630</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 630</td></tr>
+                    </table>
+                </div>
+                <div id="legend_exp_dif_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="exp_dif_month_legend">@AtlasSolar.Resources.Layers.Legend_exp_dif_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #4696b6;"></div></td><td><= 14</td></tr>
+                        <tr><td><div style="background-color: #61a9b1;"></div></td><td>14 - 18</td></tr>
+                        <tr><td><div style="background-color: #7cbcac;"></div></td><td>18 - 22</td></tr>
+                        <tr><td><div style="background-color: #97cfa8;"></div></td><td>22 - 26</td></tr>
+                        <tr><td><div style="background-color: #b0dfa6;"></div></td><td>26 - 30</td></tr>
+                        <tr><td><div style="background-color: #c1e6ab;"></div></td><td>30 - 34</td></tr>
+                        <tr><td><div style="background-color: #d3eeb1;"></div></td><td>34 - 38</td></tr>
+                        <tr><td><div style="background-color: #e5f5b7;"></div></td><td>38 - 42</td></tr>
+                        <tr><td><div style="background-color: #f7fcbc;"></div></td><td>42 - 46</td></tr>
+                        <tr><td><div style="background-color: #fff7b5;"></div></td><td>46 - 50</td></tr>
+                        <tr><td><div style="background-color: #ffe6a1;"></div></td><td>50 - 54</td></tr>
+                        <tr><td><div style="background-color: #fed58e;"></div></td><td>54 - 58</td></tr>
+                        <tr><td><div style="background-color: #fec47a;"></div></td><td>58 - 62</td></tr>
+                        <tr><td><div style="background-color: #feb266;"></div></td><td>62 - 66</td></tr>
+                        <tr><td><div style="background-color: #f79756;"></div></td><td>66 - 70</td></tr>
+                        <tr><td><div style="background-color: #ef7747;"></div></td><td>70 - 74</td></tr>
+                        <tr><td><div style="background-color: #e75839;"></div></td><td>74 - 78</td></tr>
+                        <tr><td><div style="background-color: #df382a;"></div></td><td>78 - 82</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 82</td></tr>
+                    </table>
+                </div>
+                <div id="legend_rettlt0opt_year" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="rettlt0opt_year_legend">@AtlasSolar.Resources.Layers.Legend_rettlt0opt_year</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #56a1b3;"></div></td><td><= 1450</td></tr>
+                        <tr><td><div style="background-color: #80bfac;"></div></td><td>1450 - 1500</td></tr>
+                        <tr><td><div style="background-color: #abdda4;"></div></td><td>1500 - 1550</td></tr>
+                        <tr><td><div style="background-color: #c7e9ad;"></div></td><td>1550 - 1600</td></tr>
+                        <tr><td><div style="background-color: #e3f4b6;"></div></td><td>1600 - 1650</td></tr>
+                        <tr><td><div style="background-color: #ffffbf;"></div></td><td>1650 - 1700</td></tr>
+                        <tr><td><div style="background-color: #ffe4a0;"></div></td><td>1700 - 1750</td></tr>
+                        <tr><td><div style="background-color: #fec980;"></div></td><td>1750 - 1800</td></tr>
+                        <tr><td><div style="background-color: #fdae61;"></div></td><td>1800 - 1850</td></tr>
+                        <tr><td><div style="background-color: #f17c4a;"></div></td><td>1850 - 1900</td></tr>
+                        <tr><td><div style="background-color: #e44a33;"></div></td><td>1900 - 1950</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 1950</td></tr>
+                    </table>
+                </div>
+                <div id="legend_rettlt0opt_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="rettlt0opt_month_legend">@AtlasSolar.Resources.Layers.Legend_rettlt0opt_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #4394b6;"></div></td><td><= 40</td></tr>
+                        <tr><td><div style="background-color: #5ca5b2;"></div></td><td>40 - 50</td></tr>
+                        <tr><td><div style="background-color: #74b7ae;"></div></td><td>50 - 60</td></tr>
+                        <tr><td><div style="background-color: #8dc8a9;"></div></td><td>60 - 70</td></tr>
+                        <tr><td><div style="background-color: #a5d9a5;"></div></td><td>70 - 80</td></tr>
+                        <tr><td><div style="background-color: #b7e2a8;"></div></td><td>80 - 90</td></tr>
+                        <tr><td><div style="background-color: #c7e9ad;"></div></td><td>90 - 100</td></tr>
+                        <tr><td><div style="background-color: #d7efb2;"></div></td><td>100 - 110</td></tr>
+                        <tr><td><div style="background-color: #e7f6b8;"></div></td><td>110 - 120</td></tr>
+                        <tr><td><div style="background-color: #f7fcbd;"></div></td><td>120 - 130</td></tr>
+                        <tr><td><div style="background-color: #fff8b6;"></div></td><td>130 - 140</td></tr>
+                        <tr><td><div style="background-color: #ffe8a4;"></div></td><td>> 140</td></tr>
+                    </table>
+                </div>
+                <div id="legend_clrskyavrg_year" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="clrskyavrg_year_legend">@AtlasSolar.Resources.Layers.Legend_clrskyavrg_year</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #529fb3;"></div></td><td><= 1600</td></tr>
+                        <tr><td><div style="background-color: #7abbad;"></div></td><td>1600 - 1650</td></tr>
+                        <tr><td><div style="background-color: #a1d6a6;"></div></td><td>1650 - 1700</td></tr>
+                        <tr><td><div style="background-color: #bfe5aa;"></div></td><td>1700 - 1750</td></tr>
+                        <tr><td><div style="background-color: #d9f0b3;"></div></td><td>1750 - 1800</td></tr>
+                        <tr><td><div style="background-color: #f3fabb;"></div></td><td>1800 - 1850</td></tr>
+                        <tr><td><div style="background-color: #fff3b1;"></div></td><td>1850 - 1900</td></tr>
+                        <tr><td><div style="background-color: #ffda94;"></div></td><td>1900 - 1950</td></tr>
+                        <tr><td><div style="background-color: #fec177;"></div></td><td>1950 - 2000</td></tr>
+                        <tr><td><div style="background-color: #fba35c;"></div></td><td>2000 - 2050</td></tr>
+                        <tr><td><div style="background-color: #ef7546;"></div></td><td>2050 - 2100</td></tr>
+                        <tr><td><div style="background-color: #e34731;"></div></td><td>2100 - 2150</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 2150</td></tr>
+                    </table>
+                </div>
+                <div id="legend_clrskyavrg_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="clrskyavrg_month_legend">@AtlasSolar.Resources.Layers.Legend_clrskyavrg_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #3e91b7;"></div></td><td><= 30</td></tr>
+                        <tr><td><div style="background-color: #529fb3;"></div></td><td>30 - 40</td></tr>
+                        <tr><td><div style="background-color: #66adb0;"></div></td><td>40 - 50</td></tr>
+                        <tr><td><div style="background-color: #7abbad;"></div></td><td>50 - 60</td></tr>
+                        <tr><td><div style="background-color: #8ec9a9;"></div></td><td>60 - 70</td></tr>
+                        <tr><td><div style="background-color: #a1d6a6;"></div></td><td>70 - 80</td></tr>
+                        <tr><td><div style="background-color: #b2e0a6;"></div></td><td>80 - 90</td></tr>
+                        <tr><td><div style="background-color: #bfe5aa;"></div></td><td>90 - 100</td></tr>
+                        <tr><td><div style="background-color: #cceaaf;"></div></td><td>100 - 110</td></tr>
+                        <tr><td><div style="background-color: #d9f0b3;"></div></td><td>110 - 120</td></tr>
+                        <tr><td><div style="background-color: #e6f5b7;"></div></td><td>120 - 130</td></tr>
+                        <tr><td><div style="background-color: #f3fabb;"></div></td><td>130 - 140</td></tr>
+                        <tr><td><div style="background-color: #ffffbf;"></div></td><td>140 - 150</td></tr>
+                        <tr><td><div style="background-color: #fff3b1;"></div></td><td>150 - 160</td></tr>
+                        <tr><td><div style="background-color: #ffe6a2;"></div></td><td>160 - 170</td></tr>
+                        <tr><td><div style="background-color: #ffda94;"></div></td><td>170 - 180</td></tr>
+                        <tr><td><div style="background-color: #fecd85;"></div></td><td>180 - 190</td></tr>
+                        <tr><td><div style="background-color: #fec177;"></div></td><td>190 - 200</td></tr>
+                        <tr><td><div style="background-color: #feb468;"></div></td><td>200 - 210</td></tr>
+                        <tr><td><div style="background-color: #fba35c;"></div></td><td>210 - 220</td></tr>
+                        <tr><td><div style="background-color: #f58c51;"></div></td><td>220 - 230</td></tr>
+                        <tr><td><div style="background-color: #ef7546;"></div></td><td>230 - 240</td></tr>
+                        <tr><td><div style="background-color: #e95e3c;"></div></td><td>240 - 250</td></tr>
+                        <tr><td><div style="background-color: #e34731;"></div></td><td>250 - 260</td></tr>
+                        <tr><td><div style="background-color: #dd3026;"></div></td><td>260 - 270</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 270</td></tr>
+                    </table>
+                </div>
+                <div id="legend_retesh0mim_year" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="retesh0mim_year_legend">@AtlasSolar.Resources.Layers.Legend_retesh0mim_year</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #5ea7b1;"></div></td><td><= 1000</td></tr>
+                        <tr><td><div style="background-color: #91cba9;"></div></td><td>1000 - 1050</td></tr>
+                        <tr><td><div style="background-color: #bce4aa;"></div></td><td>1050 - 1100</td></tr>
+                        <tr><td><div style="background-color: #def2b4;"></div></td><td>1100 - 1150</td></tr>
+                        <tr><td><div style="background-color: #ffffbf;"></div></td><td>1150 - 1200</td></tr>
+                        <tr><td><div style="background-color: #ffdf9a;"></div></td><td>1200 - 1250</td></tr>
+                        <tr><td><div style="background-color: #febe74;"></div></td><td>1250 - 1300</td></tr>
+                        <tr><td><div style="background-color: #f69053;"></div></td><td>1300 - 1350</td></tr>
+                        <tr><td><div style="background-color: #e75437;"></div></td><td>1350 - 1400</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 1400</td></tr>
+                    </table>
+                </div>
+                <div id="legend_retesh0mim_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="retesh0mim_month_legend">@AtlasSolar.Resources.Layers.Legend_retesh0mim_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #4394b6;"></div></td><td><= 20</td></tr>
+                        <tr><td><div style="background-color: #5ca5b2;"></div></td><td>20 - 30</td></tr>
+                        <tr><td><div style="background-color: #74b7ae;"></div></td><td>30 - 40</td></tr>
+                        <tr><td><div style="background-color: #8dc8a9;"></div></td><td>40 - 50</td></tr>
+                        <tr><td><div style="background-color: #a5d9a5;"></div></td><td>50 - 60</td></tr>
+                        <tr><td><div style="background-color: #b7e2a8;"></div></td><td>60 - 70</td></tr>
+                        <tr><td><div style="background-color: #c7e9ad;"></div></td><td>70 - 80</td></tr>
+                        <tr><td><div style="background-color: #d7efb2;"></div></td><td>80 - 90</td></tr>
+                        <tr><td><div style="background-color: #e7f6b8;"></div></td><td>90 - 100</td></tr>
+                        <tr><td><div style="background-color: #f7fcbd;"></div></td><td>100 - 110</td></tr>
+                        <tr><td><div style="background-color: #fff8b6;"></div></td><td>110 - 120</td></tr>
+                        <tr><td><div style="background-color: #ffe8a4;"></div></td><td>120 - 130</td></tr>
+                        <tr><td><div style="background-color: #ffd992;"></div></td><td>130 - 140</td></tr>
+                        <tr><td><div style="background-color: #fec980;"></div></td><td>140 - 150</td></tr>
+                        <tr><td><div style="background-color: #feba6e;"></div></td><td>150 - 160 </td></tr>
+                        <tr><td><div style="background-color: #fca75e;"></div></td><td>160  - 170</td></tr>
+                        <tr><td><div style="background-color: #f48b50;"></div></td><td>170 - 180</td></tr>
+                        <tr><td><div style="background-color: #ed6e43;"></div></td><td>180 - 190</td></tr>
+                        <tr><td><div style="background-color: #e65236;"></div></td><td>190 - 200</td></tr>
+                        <tr><td><div style="background-color: #df3529;"></div></td><td>200 - 210</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 210</td></tr>
+                    </table>
+                </div>
+                <div id="legend_dni_year" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="dni_year_legend">@AtlasSolar.Resources.Layers.Legend_dni_year</p>
+                    <table class="legend">
+                        <tr> <td> <div style="background-color: #4797b5;"></div> </td> <td><= 1350</td> </tr>
+                        <tr> <td> <div style="background-color: #64abb0;"></div> </td> <td>1350 - 1400</td> </tr>
+                        <tr> <td> <div style="background-color: #80bfac;"></div> </td> <td>1400 - 1450</td> </tr>
+                        <tr> <td> <div style="background-color: #9dd3a7;"></div> </td> <td>1450 - 1500</td> </tr>
+                        <tr> <td> <div style="background-color: #b5e1a7;"></div> </td> <td>1500 - 1550</td> </tr>
+                        <tr> <td> <div style="background-color: #c7e9ad;"></div> </td> <td>1550 - 1600</td> </tr>
+                        <tr> <td> <div style="background-color: #daf0b3;"></div> </td> <td>1600 - 1650</td> </tr>
+                        <tr> <td> <div style="background-color: #edf8b9;"></div> </td> <td>1650 - 1700</td> </tr>
+                        <tr> <td> <div style="background-color: #ffffbf;"></div> </td> <td>1700 - 1750</td> </tr>
+                        <tr> <td> <div style="background-color: #ffedaa;"></div> </td> <td>1750 - 1800</td> </tr>
+                        <tr> <td> <div style="background-color: #ffdb95;"></div> </td> <td>1800 - 1850</td> </tr>
+                        <tr> <td> <div style="background-color: #fec980;"></div> </td> <td>1850 - 1900</td> </tr>
+                        <tr> <td> <div style="background-color: #feb76b;"></div> </td> <td>1900 - 1950</td> </tr>
+                        <tr> <td> <div style="background-color: #f99e59;"></div> </td> <td>1950 - 2000</td> </tr>
+                        <tr> <td> <div style="background-color: #f17c4a;"></div> </td> <td>2000 - 2050</td> </tr>
+                        <tr> <td> <div style="background-color: #e85b3a;"></div> </td> <td>2050 - 2100</td> </tr>
+                        <tr> <td> <div style="background-color: #e03a2b;"></div> </td> <td>2100 - 2150</td> </tr>
+                        <tr> <td> <div style="background-color: #d7191c;"></div> </td> <td>> 2150</td> </tr>
+                    </table>
+                </div>
+                <div id="legend_dni_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="dni_month_legend">@AtlasSolar.Resources.Layers.Legend_dni_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #3e91b7;"></div></td><td><= 20</td></tr>
+                        <tr><td><div style="background-color: #529fb3;"></div></td><td>20 - 30</td></tr>
+                        <tr><td><div style="background-color: #66adb0;"></div></td><td>30 - 40</td></tr>
+                        <tr><td><div style="background-color: #7abbad;"></div></td><td>40 - 50</td></tr>
+                        <tr><td><div style="background-color: #8ec9a9;"></div></td><td>50 - 60</td></tr>
+                        <tr><td><div style="background-color: #a1d6a6;"></div></td><td>60 - 70</td></tr>
+                        <tr><td><div style="background-color: #b2e0a6;"></div></td><td>70 - 80</td></tr>
+                        <tr><td><div style="background-color: #bfe5aa;"></div></td><td>80 - 90</td></tr>
+                        <tr><td><div style="background-color: #cceaaf;"></div></td><td>90 - 100</td></tr>
+                        <tr><td><div style="background-color: #d9f0b3;"></div></td><td>100 - 110</td></tr>
+                        <tr><td><div style="background-color: #e6f5b7;"></div></td><td>110 - 120</td></tr>
+                        <tr><td><div style="background-color: #f3fabb;"></div></td><td>120 - 130</td></tr>
+                        <tr><td><div style="background-color: #ffffbf;"></div></td><td>130 - 140</td></tr>
+                        <tr><td><div style="background-color: #fff3b1;"></div></td><td>140 - 150</td></tr>
+                        <tr><td><div style="background-color: #ffe6a2;"></div></td><td>150 - 160</td></tr>
+                        <tr><td><div style="background-color: #ffda94;"></div></td><td>160 - 170</td></tr>
+                        <tr><td><div style="background-color: #fecd85;"></div></td><td>170 - 180</td></tr>
+                        <tr><td><div style="background-color: #fec177;"></div></td><td>180 - 190</td></tr>
+                        <tr><td><div style="background-color: #feb468;"></div></td><td>190 - 200</td></tr>
+                        <tr><td><div style="background-color: #fba35c;"></div></td><td>200 - 210</td></tr>
+                        <tr><td><div style="background-color: #f58c51;"></div></td><td>210 - 220</td></tr>
+                        <tr><td><div style="background-color: #ef7546;"></div></td><td>220 - 230</td></tr>
+                        <tr><td><div style="background-color: #e95e3c;"></div></td><td>230 - 240</td></tr>
+                        <tr><td><div style="background-color: #e34731;"></div></td><td>240 - 250</td></tr>
+                        <tr><td><div style="background-color: #dd3026;"></div></td><td>250 - 260</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 260</td></tr>
+                    </table>
+                </div>
+                <div id="legend_sic_year" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="sic_year_legend">@AtlasSolar.Resources.Layers.Legend_sic_year</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #56a1b3;"></div></td><td><= 1600</td></tr>
+                        <tr><td><div style="background-color: #80bfac;"></div></td><td>1600 - 1650</td></tr>
+                        <tr><td><div style="background-color: #abdda4;"></div></td><td>1650 - 1700</td></tr>
+                        <tr><td><div style="background-color: #c7e9ad;"></div></td><td>1700 - 1750</td></tr>
+                        <tr><td><div style="background-color: #e3f4b6;"></div></td><td>1750 - 1800</td></tr>
+                        <tr><td><div style="background-color: #ffffbf;"></div></td><td>1800 - 1850</td></tr>
+                        <tr><td><div style="background-color: #ffe4a0;"></div></td><td>1850 - 1900</td></tr>
+                        <tr><td><div style="background-color: #fec980;"></div></td><td>1900 - 1950</td></tr>
+                        <tr><td><div style="background-color: #fdae61;"></div></td><td>1950 - 2000</td></tr>
+                        <tr><td><div style="background-color: #f17c4a;"></div></td><td>2000 - 2050</td></tr>
+                        <tr><td><div style="background-color: #e44a33;"></div></td><td>2050 - 2100</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 2100</td></tr>
+                    </table>
+                </div>
+                <div id="legend_sic_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="sic_month_legend">@AtlasSolar.Resources.Layers.Legend_sic_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #3f91b7;"></div></td><td><= 30</td></tr>
+                        <tr><td><div style="background-color: #54a0b3;"></div></td><td>30 - 40</td></tr>
+                        <tr><td><div style="background-color: #68aeb0;"></div></td><td>40 - 50</td></tr>
+                        <tr><td><div style="background-color: #7dbdac;"></div></td><td>50 - 60</td></tr>
+                        <tr><td><div style="background-color: #91cba9;"></div></td><td>60 - 70</td></tr>
+                        <tr><td><div style="background-color: #a6daa5;"></div></td><td>70 - 80</td></tr>
+                        <tr><td><div style="background-color: #b5e1a7;"></div></td><td>80 - 90</td></tr>
+                        <tr><td><div style="background-color: #c3e7ac;"></div></td><td>90 - 100</td></tr>
+                        <tr><td><div style="background-color: #d0ecb0;"></div></td><td>100 - 110</td></tr>
+                        <tr><td><div style="background-color: #def2b4;"></div></td><td>110 - 120</td></tr>
+                        <tr><td><div style="background-color: #ebf7b9;"></div></td><td>120 - 130</td></tr>
+                        <tr><td><div style="background-color: #f9fdbd;"></div></td><td>130 - 140</td></tr>
+                        <tr><td><div style="background-color: #fff9b8;"></div></td><td>140 - 150</td></tr>
+                        <tr><td><div style="background-color: #ffeca9;"></div></td><td>150 - 160</td></tr>
+                        <tr><td><div style="background-color: #ffdf9a;"></div></td><td>160 - 170</td></tr>
+                        <tr><td><div style="background-color: #fed28a;"></div></td><td>170 - 180</td></tr>
+                        <tr><td><div style="background-color: #fec57b;"></div></td><td>180 - 190</td></tr>
+                        <tr><td><div style="background-color: #feb86c;"></div></td><td>190 - 200</td></tr>
+                        <tr><td><div style="background-color: #fca85e;"></div></td><td>200 - 210</td></tr>
+                        <tr><td><div style="background-color: #f69053;"></div></td><td>210 - 220</td></tr>
+                        <tr><td><div style="background-color: #f07848;"></div></td><td>220 - 230</td></tr>
+                        <tr><td><div style="background-color: #ea603d;"></div></td><td>230 - 240</td></tr>
+                        <tr><td><div style="background-color: #e44832;"></div></td><td>240 - 250</td></tr>
+                        <tr><td><div style="background-color: #dd3127;"></div></td><td>250 - 260</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 260</td></tr>
+                    </table>
+                </div>
+                <div id="legend_sid_year" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="sid_year_legend">@AtlasSolar.Resources.Layers.Legend_sid_year</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #4998b5;"></div></td><td><= 350</td></tr>
+                        <tr><td><div style="background-color: #67aeb0;"></div></td><td>350 - 400</td></tr>
+                        <tr><td><div style="background-color: #85c3ab;"></div></td><td>400 - 450</td></tr>
+                        <tr><td><div style="background-color: #a4d8a5;"></div></td><td>450 - 500</td></tr>
+                        <tr><td><div style="background-color: #bae3a9;"></div></td><td>500 - 550</td></tr>
+                        <tr><td><div style="background-color: #ceebaf;"></div></td><td>550 - 600</td></tr>
+                        <tr><td><div style="background-color: #e2f3b6;"></div></td><td>600 - 650</td></tr>
+                        <tr><td><div style="background-color: #f6fbbc;"></div></td><td>650 - 700</td></tr>
+                        <tr><td><div style="background-color: #fff6b4;"></div></td><td>700 - 750</td></tr>
+                        <tr><td><div style="background-color: #ffe39e;"></div></td><td>750 - 800</td></tr>
+                        <tr><td><div style="background-color: #fed088;"></div></td><td>800 - 850</td></tr>
+                        <tr><td><div style="background-color: #febd72;"></div></td><td>850 - 900</td></tr>
+                        <tr><td><div style="background-color: #fba55d;"></div></td><td>900 - 950</td></tr>
+                        <tr><td><div style="background-color: #f2824d;"></div></td><td>950 - 1000</td></tr>
+                        <tr><td><div style="background-color: #e95f3c;"></div></td><td>1000 - 1050</td></tr>
+                        <tr><td><div style="background-color: #e03c2c;"></div></td><td>1050 - 1100</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 1100</td></tr>
+                    </table>
+                </div>
+                <div id="legend_sid_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="sid_month_legend">@AtlasSolar.Resources.Layers.Legend_sid_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #4797b5;"></div></td><td><= 10</td></tr>
+                        <tr><td><div style="background-color: #64abb0;"></div></td><td>10 - 20</td></tr>
+                        <tr><td><div style="background-color: #80bfac;"></div></td><td>20 - 30</td></tr>
+                        <tr><td><div style="background-color: #9dd3a7;"></div></td><td>30 - 40</td></tr>
+                        <tr><td><div style="background-color: #b5e1a7;"></div></td><td>40 - 50</td></tr>
+                        <tr><td><div style="background-color: #c7e9ad;"></div></td><td>50 - 60</td></tr>
+                        <tr><td><div style="background-color: #daf0b3;"></div></td><td>60 - 70</td></tr>
+                        <tr><td><div style="background-color: #edf8b9;"></div></td><td>70 - 80</td></tr>
+                        <tr><td><div style="background-color: #ffffbf;"></div></td><td>80 - 90</td></tr>
+                        <tr><td><div style="background-color: #ffedaa;"></div></td><td>90 - 100</td></tr>
+                        <tr><td><div style="background-color: #ffdb95;"></div></td><td>100 - 110</td></tr>
+                        <tr><td><div style="background-color: #fec980;"></div></td><td>110 - 120</td></tr>
+                        <tr><td><div style="background-color: #feb76b;"></div></td><td>120 - 130</td></tr>
+                        <tr><td><div style="background-color: #f99e59;"></div></td><td>130 - 140</td></tr>
+                        <tr><td><div style="background-color: #f17c4a;"></div></td><td>140 - 150</td></tr>
+                        <tr><td><div style="background-color: #e85b3a;"></div></td><td>150 - 160</td></tr>
+                        <tr><td><div style="background-color: #e03a2b;"></div></td><td>160 - 170</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 170</td></tr>
+                    </table>
+                </div>
+                <div id="legend_sis_year" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="sis_year_legend">@AtlasSolar.Resources.Layers.Legend_sis_year</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #4b9ab5;"></div></td><td><= 1000</td></tr>
+                        <tr><td><div style="background-color: #6bb0af;"></div></td><td>1000 - 1050</td></tr>
+                        <tr><td><div style="background-color: #8bc7aa;"></div></td><td>1050 - 1100</td></tr>
+                        <tr><td><div style="background-color: #abdda4;"></div></td><td>1100 - 1150</td></tr>
+                        <tr><td><div style="background-color: #c0e6ab;"></div></td><td>1150 - 1200</td></tr>
+                        <tr><td><div style="background-color: #d5eeb2;"></div></td><td>1200 - 1250</td></tr>
+                        <tr><td><div style="background-color: #eaf7b8;"></div></td><td>1250 - 1300</td></tr>
+                        <tr><td><div style="background-color: #ffffbf;"></div></td><td>1300 - 1350</td></tr>
+                        <tr><td><div style="background-color: #ffeba8;"></div></td><td>1350 - 1400</td></tr>
+                        <tr><td><div style="background-color: #fed790;"></div></td><td>1400 - 1450</td></tr>
+                        <tr><td><div style="background-color: #fec378;"></div></td><td>1450 - 1500</td></tr>
+                        <tr><td><div style="background-color: #fdae61;"></div></td><td>1500 - 1550</td></tr>
+                        <tr><td><div style="background-color: #f48950;"></div></td><td>1550 - 1600</td></tr>
+                        <tr><td><div style="background-color: #ea633e;"></div></td><td>1600 - 1650</td></tr>
+                        <tr><td><div style="background-color: #e13e2d;"></div></td><td>1650 - 1700</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 1700</td></tr>
+                    </table>
+                </div>
+                <div id="legend_sis_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="sis_month_legend">@AtlasSolar.Resources.Layers.Legend_sis_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #3f91b7;"></div></td><td><= 10</td></tr>
+                        <tr><td><div style="background-color: #54a0b3;"></div></td><td>10 - 20</td></tr>
+                        <tr><td><div style="background-color: #68aeb0;"></div></td><td>20 - 30</td></tr>
+                        <tr><td><div style="background-color: #7dbdac;"></div></td><td>30 - 40</td></tr>
+                        <tr><td><div style="background-color: #91cba9;"></div></td><td>40 - 50</td></tr>
+                        <tr><td><div style="background-color: #a6daa5;"></div></td><td>50 - 60</td></tr>
+                        <tr><td><div style="background-color: #b5e1a7;"></div></td><td>60 - 70</td></tr>
+                        <tr><td><div style="background-color: #c3e7ac;"></div></td><td>70 - 80</td></tr>
+                        <tr><td><div style="background-color: #d0ecb0;"></div></td><td>80 - 90</td></tr>
+                        <tr><td><div style="background-color: #def2b4;"></div></td><td>90 - 100</td></tr>
+                        <tr><td><div style="background-color: #ebf7b9;"></div></td><td>100 - 110</td></tr>
+                        <tr><td><div style="background-color: #f9fdbd;"></div></td><td>110 - 120</td></tr>
+                        <tr><td><div style="background-color: #fff9b8;"></div></td><td>120 - 130</td></tr>
+                        <tr><td><div style="background-color: #ffeca9;"></div></td><td>130 - 140</td></tr>
+                        <tr><td><div style="background-color: #ffdf9a;"></div></td><td>140 - 150</td></tr>
+                        <tr><td><div style="background-color: #fed28a;"></div></td><td>150 - 160</td></tr>
+                        <tr><td><div style="background-color: #fec57b;"></div></td><td>160 - 170</td></tr>
+                        <tr><td><div style="background-color: #feb86c;"></div></td><td>170 - 180</td></tr>
+                        <tr><td><div style="background-color: #fca85e;"></div></td><td>180 - 190</td></tr>
+                        <tr><td><div style="background-color: #f69053;"></div></td><td>190 - 200</td></tr>
+                        <tr><td><div style="background-color: #f07848;"></div></td><td>200 - 210</td></tr>
+                        <tr><td><div style="background-color: #ea603d;"></div></td><td>210 - 220</td></tr>
+                        <tr><td><div style="background-color: #e44832;"></div></td><td>220 - 230</td></tr>
+                        <tr><td><div style="background-color: #dd3127;"></div></td><td>230 - 240</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 240</td></tr>
+                    </table>
+                </div>
+                <div id="legend_sis_klr_year" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="sis_klr_year_legend">@AtlasSolar.Resources.Layers.Legend_sis_klr_year</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #529fb3;"></div></td><td><= 1100</td></tr>
+                        <tr><td><div style="background-color: #7abbad;"></div></td><td>1100 - 1150</td></tr>
+                        <tr><td><div style="background-color: #a1d6a6;"></div></td><td>1150 - 1200</td></tr>
+                        <tr><td><div style="background-color: #bfe5aa;"></div></td><td>1200 - 1250</td></tr>
+                        <tr><td><div style="background-color: #d9f0b3;"></div></td><td>1250 - 1300</td></tr>
+                        <tr><td><div style="background-color: #f3fabb;"></div></td><td>1300 - 1350</td></tr>
+                        <tr><td><div style="background-color: #fff3b1;"></div></td><td>1350 - 1400</td></tr>
+                        <tr><td><div style="background-color: #ffda94;"></div></td><td>1400 - 1450</td></tr>
+                        <tr><td><div style="background-color: #fec177;"></div></td><td>1450 - 1500</td></tr>
+                        <tr><td><div style="background-color: #fba35c;"></div></td><td>1500 - 1550</td></tr>
+                        <tr><td><div style="background-color: #ef7546;"></div></td><td>1550 - 1600</td></tr>
+                        <tr><td><div style="background-color: #e34731;"></div></td><td>1600 - 1650</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 1650</td></tr>
+                    </table>
+                </div>
+                <div id="legend_sis_klr_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="sis_klr_month_legend">@AtlasSolar.Resources.Layers.Legend_sis_klr_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #4092b7;"></div></td><td><= 10</td></tr>
+                        <tr><td><div style="background-color: #56a1b3;"></div></td><td>10 - 20</td></tr>
+                        <tr><td><div style="background-color: #6bb0af;"></div></td><td>20 - 30</td></tr>
+                        <tr><td><div style="background-color: #80bfac;"></div></td><td>30 - 40</td></tr>
+                        <tr><td><div style="background-color: #96cea8;"></div></td><td>40 - 50</td></tr>
+                        <tr><td><div style="background-color: #abdda4;"></div></td><td>50 - 60</td></tr>
+                        <tr><td><div style="background-color: #b9e3a9;"></div></td><td>60 - 70</td></tr>
+                        <tr><td><div style="background-color: #c7e9ad;"></div></td><td>70 - 80</td></tr>
+                        <tr><td><div style="background-color: #d5eeb2;"></div></td><td>80 - 90</td></tr>
+                        <tr><td><div style="background-color: #e3f4b6;"></div></td><td>90 - 100</td></tr>
+                        <tr><td><div style="background-color: #f1fabb;"></div></td><td>100 - 110</td></tr>
+                        <tr><td><div style="background-color: #ffffbf;"></div></td><td>110 - 120</td></tr>
+                        <tr><td><div style="background-color: #fff2b0;"></div></td><td>120 - 130</td></tr>
+                        <tr><td><div style="background-color: #ffe4a0;"></div></td><td>130 - 140</td></tr>
+                        <tr><td><div style="background-color: #fed790;"></div></td><td>140 - 150</td></tr>
+                        <tr><td><div style="background-color: #fec980;"></div></td><td>150 - 160</td></tr>
+                        <tr><td><div style="background-color: #febc71;"></div></td><td>160 - 170</td></tr>
+                        <tr><td><div style="background-color: #fdae61;"></div></td><td>170 - 180</td></tr>
+                        <tr><td><div style="background-color: #f79555;"></div></td><td>180 - 190</td></tr>
+                        <tr><td><div style="background-color: #f17c4a;"></div></td><td>190 - 200</td></tr>
+                        <tr><td><div style="background-color: #ea633e;"></div></td><td>200 - 210</td></tr>
+                        <tr><td><div style="background-color: #e44a33;"></div></td><td>210 - 220</td></tr>
+                        <tr><td><div style="background-color: #de3227;"></div></td><td>220 - 230</td></tr>
+                        <tr><td><div style="background-color: #d7191c;"></div></td><td>> 230</td></tr>
+                    </table>
+                </div>
+                <div id="legend_rainavgesm_year" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="rainavgesm_month_legend">@AtlasSolar.Resources.Layers.Legend_rainavgesm_year</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #d58c0a;"></div></td><td><= 200</td></tr>
+                        <tr><td><div style="background-color: #bd9908;"></div></td><td>200 - 250</td></tr>
+                        <tr><td><div style="background-color: #a5a607;"></div></td><td>250 - 300</td></tr>
+                        <tr><td><div style="background-color: #8eb306;"></div></td><td>300 - 350</td></tr>
+                        <tr><td><div style="background-color: #76bf05;"></div></td><td>350 - 400</td></tr>
+                        <tr><td><div style="background-color: #5ecc04;"></div></td><td>400 - 450</td></tr>
+                        <tr><td><div style="background-color: #47d903;"></div></td><td>450 - 500</td></tr>
+                        <tr><td><div style="background-color: #2fe602;"></div></td><td>500 - 550</td></tr>
+                        <tr><td><div style="background-color: #17f301;"></div></td><td>550 - 600</td></tr>
+                        <tr><td><div style="background-color: #00ff00;"></div></td><td>> 600</td></tr>
+                    </table>
+                </div>
+                <div id="legend_rainavgesm_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="rainavgesm_month_legend">@AtlasSolar.Resources.Layers.Legend_rainavgesm_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #dd880a;"></div></td><td><= 5</td></tr>
+                        <tr><td><div style="background-color: #cd9009;"></div></td><td>5 - 10</td></tr>
+                        <tr><td><div style="background-color: #bd9908;"></div></td><td>10 - 15</td></tr>
+                        <tr><td><div style="background-color: #ada108;"></div></td><td>15 - 20</td></tr>
+                        <tr><td><div style="background-color: #9daa07;"></div></td><td>20 - 25</td></tr>
+                        <tr><td><div style="background-color: #8eb306;"></div></td><td>25 - 30</td></tr>
+                        <tr><td><div style="background-color: #7ebb05;"></div></td><td>30 - 35</td></tr>
+                        <tr><td><div style="background-color: #6ec405;"></div></td><td>35 - 40</td></tr>
+                        <tr><td><div style="background-color: #5ecc04;"></div></td><td>40 - 45</td></tr>
+                        <tr><td><div style="background-color: #4ed503;"></div></td><td>45 - 50</td></tr>
+                        <tr><td><div style="background-color: #3fdd02;"></div></td><td>50 - 55</td></tr>
+                        <tr><td><div style="background-color: #2fe602;"></div></td><td>55 - 60</td></tr>
+                        <tr><td><div style="background-color: #1fee01;"></div></td><td>60 - 65</td></tr>
+                        <tr><td><div style="background-color: #0ff700;"></div></td><td>65 - 70</td></tr>
+                        <tr><td><div style="background-color: #00ff00;"></div></td><td>> 70</td></tr>
+                    </table>
+                </div>
+                <div id="legend_t10m_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="t10m_month_legend">@AtlasSolar.Resources.Layers.Legend_t10m_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #267bff;"></div></td><td><= -20</td></tr>
+                        <tr><td><div style="background-color: #3490ff;"></div></td><td>-20 - -18</td></tr>
+                        <tr><td><div style="background-color: #41a4ff;"></div></td><td>-18 - -16</td></tr>
+                        <tr><td><div style="background-color: #4eb9ff;"></div></td><td>-16 - -14</td></tr>
+                        <tr><td><div style="background-color: #5cceff;"></div></td><td>-14 - -12</td></tr>
+                        <tr><td><div style="background-color: #0ee08c;"></div></td><td>-12 - -10</td></tr>
+                        <tr><td><div style="background-color: #2be794;"></div></td><td>-10 - -8</td></tr>
+                        <tr><td><div style="background-color: #48ed9c;"></div></td><td>-8 - -6</td></tr>
+                        <tr><td><div style="background-color: #66f3a4;"></div></td><td>-6 - -4</td></tr>
+                        <tr><td><div style="background-color: #83f9ab;"></div></td><td>-4 - -2</td></tr>
+                        <tr><td><div style="background-color: #a0ffb3;"></div></td><td>-2 - 0</td></tr>
+                        <tr><td><div style="background-color: #fffe9f;"></div></td><td>0 - 2</td></tr>
+                        <tr><td><div style="background-color: #fff59b;"></div></td><td>2 - 4</td></tr>
+                        <tr><td><div style="background-color: #ffeb96;"></div></td><td>4 - 6</td></tr>
+                        <tr><td><div style="background-color: #ffe292;"></div></td><td>6 - 8</td></tr>
+                        <tr><td><div style="background-color: #ffd98d;"></div></td><td>8 - 10</td></tr>
+                        <tr><td><div style="background-color: #ffcf89;"></div></td><td>10 - 12</td></tr>
+                        <tr><td><div style="background-color: #ffc684;"></div></td><td>12 - 14</td></tr>
+                        <tr><td><div style="background-color: #ffbc80;"></div></td><td>14 - 16</td></tr>
+                        <tr><td><div style="background-color: #ffb37b;"></div></td><td>16 - 18</td></tr>
+                        <tr><td><div style="background-color: #ffaa77;"></div></td><td>18 - 20</td></tr>
+                        <tr><td><div style="background-color: #ffa072;"></div></td><td>20 - 22</td></tr>
+                        <tr><td><div style="background-color: #ff976e;"></div></td><td>22 - 24</td></tr>
+                        <tr><td><div style="background-color: #ff8e69;"></div></td><td>24 - 26</td></tr>
+                        <tr><td><div style="background-color: #ff8465;"></div></td><td>26 - 28</td></tr>
+                        <tr><td><div style="background-color: #ff7b60;"></div></td><td>28 - 30</td></tr>
+                        <tr><td><div style="background-color: #ff725c;"></div></td><td>> 30</td></tr>
+                    </table>
+                </div>
+                <div id="legend_t10mmax_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="t10mmax_month_legend">@AtlasSolar.Resources.Layers.Legend_t10mmax_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #2f89ff;"></div></td><td><= -16</td></tr>
+                        <tr><td><div style="background-color: #45abff;"></div></td><td>-16 - -14</td></tr>
+                        <tr><td><div style="background-color: #5cceff;"></div></td><td>-14 - -12</td></tr>
+                        <tr><td><div style="background-color: #0ee08c;"></div></td><td>-12 - -10</td></tr>
+                        <tr><td><div style="background-color: #2be794;"></div></td><td>-10 - -8</td></tr>
+                        <tr><td><div style="background-color: #48ed9c;"></div></td><td>-8 - -6</td></tr>
+                        <tr><td><div style="background-color: #66f3a4;"></div></td><td>-6 - -4</td></tr>
+                        <tr><td><div style="background-color: #83f9ab;"></div></td><td>-4 - -2</td></tr>
+                        <tr><td><div style="background-color: #a0ffb3;"></div></td><td>-2 - 0</td></tr>
+                        <tr><td><div style="background-color: #fffe9f;"></div></td><td>0 - 2</td></tr>
+                        <tr><td><div style="background-color: #fff69b;"></div></td><td>2 - 4</td></tr>
+                        <tr><td><div style="background-color: #ffed97;"></div></td><td>4 - 6</td></tr>
+                        <tr><td><div style="background-color: #ffe593;"></div></td><td>6 - 8</td></tr>
+                        <tr><td><div style="background-color: #ffdd8f;"></div></td><td>8 - 10</td></tr>
+                        <tr><td><div style="background-color: #ffd58b;"></div></td><td>10 - 12</td></tr>
+                        <tr><td><div style="background-color: #ffcc87;"></div></td><td>12 - 14</td></tr>
+                        <tr><td><div style="background-color: #ffc483;"></div></td><td>14 - 16</td></tr>
+                        <tr><td><div style="background-color: #ffbc7f;"></div></td><td>16 - 18</td></tr>
+                        <tr><td><div style="background-color: #ffb47c;"></div></td><td>18 - 20</td></tr>
+                        <tr><td><div style="background-color: #ffab78;"></div></td><td>20 - 22</td></tr>
+                        <tr><td><div style="background-color: #ffa374;"></div></td><td>22 - 24</td></tr>
+                        <tr><td><div style="background-color: #ff9b70;"></div></td><td>24 - 26</td></tr>
+                        <tr><td><div style="background-color: #ff936c;"></div></td><td>26 - 28</td></tr>
+                        <tr><td><div style="background-color: #ff8a68;"></div></td><td>28 - 30</td></tr>
+                        <tr><td><div style="background-color: #ff8264;"></div></td><td>30 - 32</td></tr>
+                        <tr><td><div style="background-color: #ff7a60;"></div></td><td>32 - 34</td></tr>
+                        <tr><td><div style="background-color: #ff725c;"></div></td><td>> 34</td></tr>
+                    </table>
+                </div>
+                <div id="legend_t10m_min_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="t10m_min_month_legend">@AtlasSolar.Resources.Layers.Legend_t10m_min_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #2173ff;"></div></td><td><= -26</td></tr>
+                        <tr><td><div style="background-color: #2980ff;"></div></td><td>-26 - -24</td></tr>
+                        <tr><td><div style="background-color: #328dff;"></div></td><td>-24 - -22</td></tr>
+                        <tr><td><div style="background-color: #3a9aff;"></div></td><td>-22 - -20</td></tr>
+                        <tr><td><div style="background-color: #43a7ff;"></div></td><td>-20 - -18</td></tr>
+                        <tr><td><div style="background-color: #4bb4ff;"></div></td><td>-18 - -16</td></tr>
+                        <tr><td><div style="background-color: #53c1ff;"></div></td><td>-16 - -14</td></tr>
+                        <tr><td><div style="background-color: #5cceff;"></div></td><td>-14 - -12</td></tr>
+                        <tr><td><div style="background-color: #0ee08c;"></div></td><td>-12 - -10</td></tr>
+                        <tr><td><div style="background-color: #2be794;"></div></td><td>-10 - -8</td></tr>
+                        <tr><td><div style="background-color: #48ed9c;"></div></td><td>-8 - -6</td></tr>
+                        <tr><td><div style="background-color: #66f3a4;"></div></td><td>-6 - -4</td></tr>
+                        <tr><td><div style="background-color: #83f9ab;"></div></td><td>-4 - -2</td></tr>
+                        <tr><td><div style="background-color: #a0ffb3;"></div></td><td>-2 - 0</td></tr>
+                        <tr><td><div style="background-color: #fffe9f;"></div></td><td>0 - 2</td></tr>
+                        <tr><td><div style="background-color: #fff39a;"></div></td><td>2 - 4</td></tr>
+                        <tr><td><div style="background-color: #ffe895;"></div></td><td>4 - 6</td></tr>
+                        <tr><td><div style="background-color: #ffde90;"></div></td><td>6 - 8</td></tr>
+                        <tr><td><div style="background-color: #ffd38a;"></div></td><td>8 - 10</td></tr>
+                        <tr><td><div style="background-color: #ffc885;"></div></td><td>10 - 12</td></tr>
+                        <tr><td><div style="background-color: #ffbd80;"></div></td><td>12 - 14</td></tr>
+                        <tr><td><div style="background-color: #ffb27b;"></div></td><td>14 - 16</td></tr>
+                        <tr><td><div style="background-color: #ffa876;"></div></td><td>16 - 18</td></tr>
+                        <tr><td><div style="background-color: #ff9d71;"></div></td><td>18 - 20</td></tr>
+                        <tr><td><div style="background-color: #ff926b;"></div></td><td>20 - 22</td></tr>
+                        <tr><td><div style="background-color: #ff8766;"></div></td><td>22 - 24</td></tr>
+                        <tr><td><div style="background-color: #ff7c61;"></div></td><td>24 - 26</td></tr>
+                        <tr><td><div style="background-color: #ff725c;"></div></td><td>> 26</td></tr>
+                    </table>
+                </div>
+                <div id="legend_tskinavg_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="tskinavg_month_legend">@AtlasSolar.Resources.Layers.Legend_tskinavg_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #2f89ff;"></div></td><td><= -20</td></tr>
+                        <tr><td><div style="background-color: #45abff;"></div></td><td>-20 - -16</td></tr>
+                        <tr><td><div style="background-color: #5cceff;"></div></td><td>-16 - -12</td></tr>
+                        <tr><td><div style="background-color: #0ee08c;"></div></td><td>-12 - -8</td></tr>
+                        <tr><td><div style="background-color: #57f0a0;"></div></td><td>-8 - -4</td></tr>
+                        <tr><td><div style="background-color: #a0ffb3;"></div></td><td>-4 - 0</td></tr>
+                        <tr><td><div style="background-color: #fffe9f;"></div></td><td>0 - 4</td></tr>
+                        <tr><td><div style="background-color: #ffee98;"></div></td><td>4 - 8</td></tr>
+                        <tr><td><div style="background-color: #ffdf90;"></div></td><td>8 - 12</td></tr>
+                        <tr><td><div style="background-color: #ffcf89;"></div></td><td>12 - 16</td></tr>
+                        <tr><td><div style="background-color: #ffc081;"></div></td><td>16 - 20</td></tr>
+                        <tr><td><div style="background-color: #ffb07a;"></div></td><td>20 - 24</td></tr>
+                        <tr><td><div style="background-color: #ffa072;"></div></td><td>24 - 28</td></tr>
+                        <tr><td><div style="background-color: #ff916b;"></div></td><td>28 - 32</td></tr>
+                        <tr><td><div style="background-color: #ff8163;"></div></td><td>32 - 36</td></tr>
+                        <tr><td><div style="background-color: #ff725c;"></div></td><td>> 36</td></tr>
+                    </table>
+                </div>
+                <div id="legend_srfalbavg_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="srfalbavg_month_legend">@AtlasSolar.Resources.Layers.Legend_srfalbavg_xx</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #2a4f99;"></div></td><td><= 0.06</td></tr>
+                        <tr><td><div style="background-color: #32559d;"></div></td><td>0.06 - 0.08</td></tr>
+                        <tr><td><div style="background-color: #3a5ca1;"></div></td><td>0.08 - 0.1</td></tr>
+                        <tr><td><div style="background-color: #4263a5;"></div></td><td>0.1 - 0.12</td></tr>
+                        <tr><td><div style="background-color: #4a69a9;"></div></td><td>0.12 - 0.14</td></tr>
+                        <tr><td><div style="background-color: #5270ad;"></div></td><td>0.14 - 0.16</td></tr>
+                        <tr><td><div style="background-color: #5977b1;"></div></td><td>0.16 - 0.18</td></tr>
+                        <tr><td><div style="background-color: #617eb5;"></div></td><td>0.18 - 0.2</td></tr>
+                        <tr><td><div style="background-color: #6984b9;"></div></td><td>0.2 - 0.22</td></tr>
+                        <tr><td><div style="background-color: #718bbd;"></div></td><td>0.22 - 0.24</td></tr>
+                        <tr><td><div style="background-color: #7992c1;"></div></td><td>0.24 - 0.26</td></tr>
+                        <tr><td><div style="background-color: #8099c5;"></div></td><td>0.26 - 0.28</td></tr>
+                        <tr><td><div style="background-color: #889fc9;"></div></td><td>0.28 - 0.3</td></tr>
+                        <tr><td><div style="background-color: #90a6cd;"></div></td><td>0.3 - 0.32</td></tr>
+                        <tr><td><div style="background-color: #98add1;"></div></td><td>0.32 - 0.34</td></tr>
+                        <tr><td><div style="background-color: #a0b4d5;"></div></td><td>0.34 - 0.36</td></tr>
+                        <tr><td><div style="background-color: #a7bad9;"></div></td><td>0.36 - 0.38</td></tr>
+                        <tr><td><div style="background-color: #afc1dd;"></div></td><td>0.38 - 0.4</td></tr>
+                        <tr><td><div style="background-color: #b7c8e1;"></div></td><td>0.4 - 0.42</td></tr>
+                        <tr><td><div style="background-color: #bfcee5;"></div></td><td>0.42 - 0.44</td></tr>
+                        <tr><td><div style="background-color: #c7d5e9;"></div></td><td>0.44 - 0.46</td></tr>
+                        <tr><td><div style="background-color: #cedced;"></div></td><td>0.46 - 0.48</td></tr>
+                        <tr><td><div style="background-color: #d6e3f1;"></div></td><td>0.48 - 0.5</td></tr>
+                        <tr><td><div style="background-color: #dee9f4;"></div></td><td>0.5 - 0.52</td></tr>
+                        <tr><td><div style="background-color: #e6f0f8;"></div></td><td>> 0.52</td></tr>
+                    </table>
+                </div>
+                <div id="legend_avg_kt_22_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="avg_kt_22_month_legend">@AtlasSolar.Resources.Layers.Legend_avg_kt_22</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #66553a;"></div></td><td><= 0.34</td></tr>
+                        <tr><td><div style="background-color: #5f5f46;"></div></td><td>0.34 - 0.36</td></tr>
+                        <tr><td><div style="background-color: #596852;"></div></td><td>0.36 - 0.38</td></tr>
+                        <tr><td><div style="background-color: #52725f;"></div></td><td>0.38 - 0.4</td></tr>
+                        <tr><td><div style="background-color: #4c7c6b;"></div></td><td>0.4 - 0.42</td></tr>
+                        <tr><td><div style="background-color: #468578;"></div></td><td>0.42 - 0.44</td></tr>
+                        <tr><td><div style="background-color: #3f8f84;"></div></td><td>0.44 - 0.46</td></tr>
+                        <tr><td><div style="background-color: #399890;"></div></td><td>0.46 - 0.48</td></tr>
+                        <tr><td><div style="background-color: #33a29d;"></div></td><td>0.48 - 0.5</td></tr>
+                        <tr><td><div style="background-color: #2caba9;"></div></td><td>0.5 - 0.52</td></tr>
+                        <tr><td><div style="background-color: #26b5b5;"></div></td><td>0.52 - 0.54</td></tr>
+                        <tr><td><div style="background-color: #1fbfc2;"></div></td><td>0.54 - 0.56</td></tr>
+                        <tr><td><div style="background-color: #19c8ce;"></div></td><td>0.56 - 0.58</td></tr>
+                        <tr><td><div style="background-color: #13d2da;"></div></td><td>0.58 - 0.6</td></tr>
+                        <tr><td><div style="background-color: #0cdbe7;"></div></td><td>0.6 - 0.62</td></tr>
+                        <tr><td><div style="background-color: #06e5f3;"></div></td><td>0.62 - 0.64</td></tr>
+                        <tr><td><div style="background-color: #00eeff;"></div></td><td>> 0.64</td></tr>
+                    </table>
+                </div>
+                <div id="legend_avg_nkt_22_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="avg_nkt_22_month_legend">@AtlasSolar.Resources.Layers.Legend_avg_nkt_22</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #65563a;"></div></td><td><= 0.3</td></tr>
+                        <tr><td><div style="background-color: #5e6047;"></div></td><td>0.3 - 0.32</td></tr>
+                        <tr><td><div style="background-color: #586a54;"></div></td><td>0.32 - 0.34</td></tr>
+                        <tr><td><div style="background-color: #517461;"></div></td><td>0.34 - 0.36</td></tr>
+                        <tr><td><div style="background-color: #4a7f6f;"></div></td><td>0.36 - 0.38</td></tr>
+                        <tr><td><div style="background-color: #43897c;"></div></td><td>0.38 - 0.4</td></tr>
+                        <tr><td><div style="background-color: #3c9389;"></div></td><td>0.4 - 0.42</td></tr>
+                        <tr><td><div style="background-color: #369d96;"></div></td><td>0.42 - 0.44</td></tr>
+                        <tr><td><div style="background-color: #2fa7a3;"></div></td><td>0.44 - 0.46</td></tr>
+                        <tr><td><div style="background-color: #28b1b0;"></div></td><td>0.46 - 0.48</td></tr>
+                        <tr><td><div style="background-color: #21bcbe;"></div></td><td>0.48 - 0.5</td></tr>
+                        <tr><td><div style="background-color: #1bc6cb;"></div></td><td>0.5 - 0.52</td></tr>
+                        <tr><td><div style="background-color: #14d0d8;"></div></td><td>0.52 - 0.54</td></tr>
+                        <tr><td><div style="background-color: #0ddae5;"></div></td><td>0.54 - 0.56</td></tr>
+                        <tr><td><div style="background-color: #06e4f2;"></div></td><td>0.56 - 0.58</td></tr>
+                        <tr><td><div style="background-color: #00eeff;"></div></td><td>> 0.58</td></tr>
+                    </table>
+                </div>
+                <div id="legend_day_cld_22_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="day_cld_22_month_legend">@AtlasSolar.Resources.Layers.Legend_day_cld_22</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #539af1;"></div></td><td><= 25</td></tr>
+                        <tr><td><div style="background-color: #5192e2;"></div></td><td>25 - 30</td></tr>
+                        <tr><td><div style="background-color: #508bd4;"></div></td><td>30 - 35</td></tr>
+                        <tr><td><div style="background-color: #4e83c5;"></div></td><td>35 - 40</td></tr>
+                        <tr><td><div style="background-color: #4c7cb7;"></div></td><td>40 - 45</td></tr>
+                        <tr><td><div style="background-color: #4a74a8;"></div></td><td>45 - 50</td></tr>
+                        <tr><td><div style="background-color: #486c99;"></div></td><td>50 - 55</td></tr>
+                        <tr><td><div style="background-color: #47658b;"></div></td><td>55 - 60</td></tr>
+                        <tr><td><div style="background-color: #455d7c;"></div></td><td>60 - 65</td></tr>
+                        <tr><td><div style="background-color: #43566e;"></div></td><td>65 - 70</td></tr>
+                        <tr><td><div style="background-color: #414e5f;"></div></td><td>70 - 75</td></tr>
+                        <tr><td><div style="background-color: #404650;"></div></td><td>75 - 80</td></tr>
+                        <tr><td><div style="background-color: #3e3f42;"></div></td><td>> 80</td></tr>
+                    </table>
+                </div>
+                <div id="legend_daylghtav_xx" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="daylghtav_month_legend">@AtlasSolar.Resources.Layers.Legend_daylghtav</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #9c5bc9;"></div></td><td><= 7.5</td></tr>
+                        <tr><td><div style="background-color: #a162bf;"></div></td><td>7.5 - 8</td></tr>
+                        <tr><td><div style="background-color: #a669b6;"></div></td><td>8 - 8.5</td></tr>
+                        <tr><td><div style="background-color: #ab71ac;"></div></td><td>8.5 - 9</td></tr>
+                        <tr><td><div style="background-color: #b078a3;"></div></td><td>9 - 9.5</td></tr>
+                        <tr><td><div style="background-color: #b57f99;"></div></td><td>9.5 - 10</td></tr>
+                        <tr><td><div style="background-color: #ba8690;"></div></td><td>10 - 10.5</td></tr>
+                        <tr><td><div style="background-color: #bf8d86;"></div></td><td>10.5 - 11</td></tr>
+                        <tr><td><div style="background-color: #c4957d;"></div></td><td>11 - 11.5</td></tr>
+                        <tr><td><div style="background-color: #c99c73;"></div></td><td>11.5 - 12</td></tr>
+                        <tr><td><div style="background-color: #cea36a;"></div></td><td>12 - 12.5</td></tr>
+                        <tr><td><div style="background-color: #d3aa60;"></div></td><td>12.5 - 13</td></tr>
+                        <tr><td><div style="background-color: #d8b157;"></div></td><td>13 - 13.5</td></tr>
+                        <tr><td><div style="background-color: #ddb94d;"></div></td><td>13.5 - 14</td></tr>
+                        <tr><td><div style="background-color: #e2c044;"></div></td><td>14 - 14.5</td></tr>
+                        <tr><td><div style="background-color: #e7c73a;"></div></td><td>14.5 - 15</td></tr>
+                        <tr><td><div style="background-color: #ecce31;"></div></td><td>15 - 15.5</td></tr>
+                        <tr><td><div style="background-color: #f1d527;"></div></td><td>15.5 - 16</td></tr>
+                        <tr><td><div style="background-color: #f6dd1e;"></div></td><td>16 - 16.5</td></tr>
+                        <tr><td><div style="background-color: #fbe414;"></div></td><td>16.5 - 17</td></tr>
+                        <tr><td><div style="background-color: #ffeb0b;"></div></td><td>> 17</td></tr>
+                    </table>
+                </div>
+                <div id="legend_lep" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="lep_legend">@AtlasSolar.Resources.Layers.lep_legend</p>
+                    <table class="legend">
+                        <tr><td><div style="width: 30px; height: 2px; border-width: 0px 0px 4px 0px; margin-top: -5px; border-color: #d20f3d"></div></td><td>1150</td></tr>
+                        <tr><td><div style="width: 30px; height: 2px; border-width: 0px 0px 4px 0px; margin-top: -5px; border-color: #9848d1"></div></td><td>500</td></tr>
+                        <tr><td><div style="width: 30px; height: 2px; border-width: 0px 0px 4px 0px; margin-top: -5px; border-color: #ee7a31"></div></td><td>330</td></tr>
+                        <tr><td><div style="width: 30px; height: 2px; border-width: 0px 0px 4px 0px; margin-top: -5px; border-color: #064d1f"></div></td><td>220</td></tr>
+                    </table>
+                </div>
+                <div id="legend_lep2" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="lep2_legend">@AtlasSolar.Resources.Layers.lep2_legend</p>
+                    <table class="legend">
+                        <tr><td><div style="width: 30px; height: 2px; border-width: 0px 0px 1px 0px; margin-top: -5px; border-color: #13cbcb"></div></td><td>110</td></tr>
+                        <tr><td><div style="width: 30px; height: 2px; border-width: 0px 0px 1px 0px; margin-top: -5px; border-color: #22e214"></div></td><td>35</td></tr>
+                        <tr><td><div style="width: 30px; height: 2px; border-width: 0px 0px 1px 0px; margin-top: -5px; border-color: #a5e7b9"></div></td><td>20</td></tr>
+                        <tr><td><div style="width: 30px; height: 2px; border-width: 0px 0px 1px 0px; margin-top: -5px; border-color: #b95102"></div></td><td>10</td></tr>
+                        <tr><td><div style="width: 30px; height: 2px; border-width: 0px 0px 1px 0px; margin-top: -5px; border-color: #000000"></div></td><td>-Другие-</td></tr>
+                    </table>
+                </div>
+                <div id="legend_spp" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="spp_legend">@AtlasSolar.Resources.Layers.spp</p>
+                    <table class="legend">
+                        <tr>
+                            <td>
+                                @*<div style="background-color: #ffffb2;"></div>*@
+                                <img src="~/Images/Legend/spp1.png" style="height: 19px;" />
+                            </td>
+                            <td>
+                                @AtlasSolar.Resources.Layers.Active
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @*<div style="background-color: #fff6a2;"></div>*@
+                                <img src="~/Images/Legend/spp2.png" style="height: 19px;" />
+                            </td>
+                            <td>
+                                @AtlasSolar.Resources.Layers.Projected
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="legend_srtm" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="srtm_legend">@AtlasSolar.Resources.Layers.Legend_srtm</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #8dc48d;"></div></td><td><= 0</td></tr>
+                        <tr><td><div style="background-color: #9ccf8d;"></div></td><td>0 - 50</td></tr>
+                        <tr><td><div style="background-color: #bcd697;"></div></td><td>50 - 100</td></tr>
+                        <tr><td><div style="background-color: #d0e49d;"></div></td><td>100 - 150</td></tr>
+                        <tr><td><div style="background-color: #f1e495;"></div></td><td>150 - 200</td></tr>
+                        <tr><td><div style="background-color: #f8e599;"></div></td><td>200 - 300</td></tr>
+                        <tr><td><div style="background-color: #f5da97;"></div></td><td>300 - 400</td></tr>
+                        <tr><td><div style="background-color: #eec992;"></div></td><td>400 - 600</td></tr>
+                        <tr><td><div style="background-color: #fcc795;"></div></td><td>600 - 1000</td></tr>
+                        <tr><td><div style="background-color: #f9b590;"></div></td><td>1000 - 2000</td></tr>
+                        <tr><td><div style="background-color: #e0ae93;"></div></td><td>2000 - 3000</td></tr>
+                        <tr><td><div style="background-color: #d5a68c;"></div></td><td>3000 - 4000</td></tr>
+                        <tr><td><div style="background-color: #d5a68c;"></div></td><td>> 4000</td></tr>
+                    </table>
+                </div>
+                <div id="legend_aspect_srtm" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="aspect_srtm_legend">@AtlasSolar.Resources.Layers.Legend_aspect_srtm</p>
+                    <table class="legend">
+                        <tr> <td> <div style="background-color: #afafaf;"></div> </td> <td>@AtlasSolar.Resources.Layers.Plane</td> </tr>
+                        <tr> <td> <div style="background-color: #ff0205;"></div> </td> <td>@AtlasSolar.Resources.Layers.North</td> </tr>
+                        <tr> <td> <div style="background-color: #ffa705;"></div> </td> <td>@AtlasSolar.Resources.Layers.Northeast</td> </tr>
+                        <tr> <td> <div style="background-color: #ffff0a;"></div> </td> <td>@AtlasSolar.Resources.Layers.East</td> </tr>
+                        <tr> <td> <div style="background-color: #00ff02;"></div> </td> <td>@AtlasSolar.Resources.Layers.Southeast</td> </tr>
+                        <tr> <td> <div style="background-color: #00fbfb;"></div> </td> <td>@AtlasSolar.Resources.Layers.South</td> </tr>
+                        <tr> <td> <div style="background-color: #00a5fd;"></div> </td> <td>@AtlasSolar.Resources.Layers.Southwest</td> </tr>
+                        <tr> <td> <div style="background-color: #0000fa;"></div> </td> <td>@AtlasSolar.Resources.Layers.West</td> </tr>
+                        <tr> <td> <div style="background-color: #ff00ff;"></div> </td> <td>@AtlasSolar.Resources.Layers.Northwest</td> </tr>
+                    </table>
+                </div>
+                <div id="legend_slope_srtm" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="slope_srtm_legend">@AtlasSolar.Resources.Layers.Legend_slope_srtm</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #38a800;"></div></td><td><= 0.5</td></tr>
+                        <tr><td><div style="background-color: #56b800;"></div></td><td>0.5 - 2</td></tr>
+                        <tr><td><div style="background-color: #79c900;"></div></td><td>2 - 5</td></tr>
+                        <tr><td><div style="background-color: #a1db00;"></div></td><td>5 - 10</td></tr>
+                        <tr><td><div style="background-color: #ceed00;"></div></td><td>10 - 15</td></tr>
+                        <tr><td><div style="background-color: #ffff00;"></div></td><td>15 - 20</td></tr>
+                        <tr><td><div style="background-color: #ffcc00;"></div></td><td>20 - 25</td></tr>
+                        <tr><td><div style="background-color: #ff9900;"></div></td><td>25 - 30</td></tr>
+                        <tr><td><div style="background-color: #ff6600;"></div></td><td>30 - 40</td></tr>
+                        <tr><td><div style="background-color: #ff6600;"></div></td><td>40 - 45</td></tr>
+                        <tr><td><div style="background-color: #ff0000;"></div></td><td>> 45</td></tr>
+                    </table>
+                </div>
+                <div id="legend_oopt" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="oopt_legend">@AtlasSolar.Resources.Layers.Legend_oopt</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #e69800;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_pamyatnikprirodypol_1</td></tr>
+                        @*<tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_pamyatnikprirodypol_2</td></tr>*@
+                        <tr><td><div style="background-color: #d1ff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_prirparki_1</td></tr>
+                        <tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_prirparki_2</td></tr>
+                        <tr><td><div style="background-color: #aaff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_rezervaty_1</td></tr>
+                        <tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_rezervaty_2</td></tr>
+                        <tr><td><div style="background-color: #ffd37f;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_zakazniky_1</td></tr>
+                        @*<tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_zakazniky_2</td></tr>*@
+                        <tr><td><div style="background-color: #3bd625;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_zapovedniki_1</td></tr>
+                        <tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_zapovedniki_2</td></tr>
+                        <tr><td><div style="background-color: #55ff00;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_zapovedzony_1</td></tr>
+                        @*<tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_zapovedzony_2</td></tr>*@
+                    </table>
+                </div>
+                <div id="legend_arheopamyat" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="arheopamyat_legend">@AtlasSolar.Resources.Layers.Tree_arheopamyat</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_arheopamyat_1</td></tr>
+                    </table>
+                </div>
+                <div id="legend_hidroohrzony" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="hidroohrzony_legend">@AtlasSolar.Resources.Layers.Tree_hidroohrzony</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #97dbf2;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_hidroohrzony_1</td></tr>
+                        <tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_hidroohrzony_2</td></tr>
+                    </table>
+                </div>
+                <div id="legend_kzcover" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
+                    <p id="kzcover_legend">@AtlasSolar.Resources.Layers.Legend_kzcover</p>
+                    <table class="legend">
+                        <tr><td><div style="background-color: #000000;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_kzcover_1</td></tr>
+                        <tr><td><div style="background-color: #ed7a93;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_kzcover_2</td></tr>
+                        <tr><td><div style="background-color: #287909;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_kzcover_3</td></tr>
+                        <tr><td><div style="background-color: #67ff08;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_kzcover_4</td></tr>
+                        <tr><td><div style="background-color: #70e1f5;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_kzcover_5</td></tr>
+                        <tr><td><div style="background-color: #7a7e09;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_kzcover_6</td></tr>
+                        <tr><td><div style="background-color: #eaea26;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_kzcover_7</td></tr>
+                        <tr><td><div style="background-color: #b629a6;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_kzcover_8</td></tr>
+                        <tr><td><div style="background-color: #dd110a;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_kzcover_9</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div id="Data" align="center">
+                @{
+                    if (!string.IsNullOrEmpty(ViewBag.Role))
+                    {
+                        <input id="tool_get_meteo_data" type="button" value="@AtlasSolar.Resources.Common.GetMeteoData" class="calc_button" onclick="ChangeTool('getmeteodata')" style="width: 95%; margin: 5px; font-weight: normal; word-wrap: break-word; word-break: break-all;" />
+                        <input id="tool_get_meteo_data_region" type="button" value="@AtlasSolar.Resources.Common.GetMeteoDataRegion" class="calc_button" onclick="ChangeTool('getmeteodataregion')" style="width: 95%; margin: 5px; font-weight: normal; word-wrap: break-word; word-break: break-all;" />
+                        if (ViewBag.Role == "Admin" || ViewBag.Role == "Moderator")
+                        {
+                            <input id="tool_create_spp" type="button" value="@AtlasSolar.Resources.Common.CreateSPP" class="calc_button" onclick="ChangeTool('createspp')" style="width: 95%; margin: 5px; font-weight: normal; word-wrap: break-word; word-break: break-all;" />
+                        }
+                    }
+                    else
+                    {
+                        <p style="padding-top: 5px;">@AtlasSolar.Resources.Common.OnlyRegisteredUsers</p>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div style="height: 100%;">
+        <div id="toolbar" style="height:44px; background-color: darkgrey; ">
+            <div class="navbar-collapse collapse" style="padding-right: 0;">
+                <div class="tools" style="padding: 0px;">
+                    <ul class="nav navbar-nav" style="float: left;">
+                        <li><a id="tool_calc_energy" href="#" onclick="ChangeTool('calcenergy')" title="@AtlasSolar.Resources.Common.CalcEnergy" class="icon1"></a></li>
+                        <li><a id="tool_calc_efficiency" href="#" onclick="ChangeTool('calcefficiency')" title="@AtlasSolar.Resources.Common.CalcEfficiency" class="icon2"></a></li>
+                        @*<li><a id="tool_calc_area" href="#" onclick="ChangeTool('calcarea')" title="@AtlasSolar.Resources.Common.CalcArea" class="icon3"></a></li>*@
+                        <li><a id="tool_compare_points" href="#" onclick="ChangeTool('comparepoints')" title="@AtlasSolar.Resources.Common.ComparePoints" class="icon5"></a></li>
+                        <li><a id="tool_analize_terrain" href="#" onclick="ChangeTool('analizeterrain')" title="@AtlasSolar.Resources.Common.AnalizeTerrain" class="icon6"></a></li>
+                        <li><a id="tool_find_terrain" href="#" onclick="ChangeTool('findterrain')" title="@AtlasSolar.Resources.Common.FindTerrain" class="icon7"></a></li>
+                        <li><a id="tool_measure" href="#" onclick="ChangeTool('measure')" title="@AtlasSolar.Resources.Common.MeasureOnTheMap" class="icon8"></a></li>
+                        @Html.DropDownList("MapSources", null, htmlAttributes: new { @onchange = "ChangeMapSource(this.value)", style = "margin: 15px 15px 0px 15px;" })
+                    </ul>
+                    @*<label style="padding-top: 15px;"><b>@AtlasSolar.Resources.Common.BetaTesting</b></label>*@
+                    <ul class="nav navbar-nav" style="float: right; width: auto;">
+                        <li style="float: right;">@Html.DropDownList("Languages", null, htmlAttributes: new { @onchange = "ChangeCookie('Language',this.value)", style = "margin: 15px 15px 0px 15px;" })</li>
+                        <li style="float: right;">@Html.ActionLink(AtlasSolar.Resources.Common.Contact, "Contact", "Home", null, new { style = "padding-bottom: 9px; color: #333333;" })</li>
+                        <li style="float: right;">@Html.ActionLink(AtlasSolar.Resources.Common.About, "About", "Home", null, new { style = "padding-bottom: 9px; color: #333333;" })</li>
+                        <li style="float: right;">@Html.ActionLink(AtlasSolar.Resources.Common.Home, "Index", "Home", null, new { style = "padding-bottom: 9px; color: #333333;" })</li>
+                    </ul>
+                </div>
+
+                @*<input id="tool_calc_energy" type="button" title="-Расчет энергопотребления-" class="btn btn-default" onclick="ChangeTool('calcenergy')" style="background: url(../Images/Buttons/calcenergy.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
+                    <input id="tool_calc_area" type="button" title="@AtlasSolar.Resources.Common.CalcArea" class="btn btn-default" onclick="ChangeTool('calcarea')" style="background: url(../Images/Buttons/calcarea.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
+                    <input id="tool_calc_efficiency" type="button" title="-Расчет производительности PV-системы-" class="btn btn-default" onclick="ChangeTool('calcefficiency')" style="background: url(../Images/Buttons/calcefficiency.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
+                    <input id="tool_compare_points" type="button" title="-Сравнить данные по точкам-" class="btn btn-default" onclick="ChangeTool('comparepoints')" style="background: url(../Images/Buttons/calcefficiency.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
+                    <input id="tool_analize_terrain" type="button" title="-Анализ местности-" class="btn btn-default" onclick="ChangeTool('analizeterrain')" style="background: url(../Images/Buttons/calcefficiency.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
+                    @if (!string.IsNullOrEmpty(ViewBag.Role))
+                    {
+                        <input id="tool_get_meteo_data" type="button" title="-Получение метеорологических данных-" class="btn btn-default" onclick="ChangeTool('getmeteodata')" style="background: url(../Images/Buttons/getmeteodata.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
+                    }
+                    @if (ViewBag.Role == "Admin" || ViewBag.Role == "Moderator")
+                    {
+                        <input id="tool_create_spp" type="button" title="-Создать СЭС-" class="btn btn-default" onclick="ChangeTool('createspp')" hidden="hidden" style="background: url(../Images/Buttons/getmeteodata.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
+                    }
+
+                    <ul class="nav navbar-nav" style="float: right;">
+                        <li>@Html.ActionLink(AtlasSolar.Resources.Common.Home, "Index", "Home", null, new { style = "padding-bottom: 9px; color: #333333;" })</li>
+                        <li>@Html.ActionLink(AtlasSolar.Resources.Common.About, "About", "Home", null, new { style = "padding-bottom: 9px; color: #333333;" })</li>
+                        <li>@Html.ActionLink(AtlasSolar.Resources.Common.Contact, "Contact", "Home", null, new { style = "padding-bottom: 9px; color: #333333;" })</li>
+                        <li>@Html.DropDownList("Languages", null, htmlAttributes: new { @onchange = "ChangeCookie('Language',this.value)", style = "margin: 15px 15px 0px 15px;" })</li>
+                    </ul>*@
+            </div>
+        </div>
+        <div class="map">
+            <div id="map" class="map" style="width: 100%; height: calc(100% - 10px);">
+
+            </div>
+            <input id="swipe" type="range" style="width: 100%; height: 10px;" value="100">
+        </div>        
+    </div>
+</div>

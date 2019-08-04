@@ -1,0 +1,59 @@
+﻿@model AtlasSolar.Models.Statistic
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Details;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.Details</h2>
+
+<div>
+    <h4>@AtlasSolar.Resources.Common.Statistic</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MeteoDataPeriodicity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeteoDataPeriodicity.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeteoDataSource)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeteoDataSource.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeteoDataTypesCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeteoDataTypesCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink(AtlasSolar.Resources.Common.BackToList, "Index")
+</p>

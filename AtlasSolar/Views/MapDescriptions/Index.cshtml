@@ -1,0 +1,70 @@
+﻿@model PagedList.IPagedList<AtlasSolar.Models.MapDescription>
+@using PagedList.Mvc
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.MapDescriptions;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.MapDescriptions</h2>
+
+@if (ViewBag.Role.Contains("Admin"))
+{
+    <p>
+        @Html.ActionLink(AtlasSolar.Resources.Common.Create, "Create")
+    </p>
+}
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, LayersCode = ViewBag.LayersCodeFilter, DescriptionForUser = ViewBag.DescriptionForUserFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })
+
+@using (Html.BeginForm("Index", "MapDescriptions", new { LayersCode = ViewBag.LayersCodeFilter, DescriptionForUser = ViewBag.DescriptionForUserFilter }, FormMethod.Get))
+{
+    <table class="table">
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.LayersCode)*@
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().LayersCode).ToString(), "Index", new { LayersCode = ViewBag.LayersCodeFilter, DescriptionForUser = ViewBag.DescriptionForUserFilter })
+                <br />
+                @Html.Editor("LayersCode", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.DescriptionForUser)*@
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().DescriptionForUser).ToString(), "Index", new { LayersCode = ViewBag.LayersCodeFilter, DescriptionForUser = ViewBag.DescriptionForUserFilter })
+                <br />
+                @Html.Editor("LayersCode", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LayersCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescriptionForUser)
+                </td>
+                @if (ViewBag.Role.Contains("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = item.Id }) |
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id }) |
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Delete, "Delete", new { id = item.Id })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = item.Id }) |
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id })
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+}
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, LayersCode = ViewBag.LayersCodeFilter, DescriptionForUser = ViewBag.DescriptionForUserFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })

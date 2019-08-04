@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "ParseNASADaily";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ParseNASADaily</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ParseNASADaily</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <input type="submit" value="Parse" class="btn btn-default" />
+
+    </div>
+}
+
+@if (ViewBag.Report != null)
+{
+    if (ViewBag.Report != "")
+    {
+        @Html.Raw(ViewBag.Report)
+    }
+}

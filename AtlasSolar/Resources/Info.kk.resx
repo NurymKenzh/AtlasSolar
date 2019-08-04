@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutAtlas" xml:space="preserve">
+    <value>Атлас түралы</value>
+  </data>
+  <data name="AboutAtlasText" xml:space="preserve">
+    <value>Қазақстан Республикасының күн ресурстарының атласы - біздің елімізде, еркін қолданыста болатын жаңартылатын энергия көздерін пайдалану және енгізу үшін идеяларды іске асыру және білім алуға мүмкіндік беретін интернет-ресурс болып табылады.
+Атлас инвесторларға, мемлекеттік және жергілікті басқару органдарына, жоспарлау институттарына, энергия өндіруші станцияларын және аймақтарды электрмен қамтамасыз ету жүйелерді жобалайтын мекемелерге, фотоэлектрлі станциялар мен су жылыту құрылғыларын орнату және сатумен айналысатын компанияларға, ғылыми-зерттеу ұйымдарға және магистранттар мен студенттерге пайдалы болып табылады. 
+Күн ресурстарының атласында мәліметтер келесідей әр түрлі формаларда берілген: интерактивті карталар, кестелер және графиктер:
+•	ресурс карталары - күн радиациясының көпжылдық орташа көрсеткіштерінің карталары;
+• Күн энергиясының потенциалын бағалау карталары - бағдарланған беткейлерге келетін орташа айлық күн радиациясының әр түрлі көрсеткіштерінің картасы, Күн геометриясының орташа айлық көрсеткіштері (биіктігі, азимут);
+•	Климаттық карталар – негізгі метеорологиялық көрсеткіштердің карталары;
+•	Күн энергетикасы объектілерінің картасы – күн энергетикасының жұмыс атқаратын және жобаланған объектілердің картасы;
+•	Күн энергетикасы объектілерін орналастыруға болатын және шектейтін факторлар карталары: 
+	Республикалық маңызы бар ерекше қорғалатын табиғи аумақтар;
+	Республикалық және Халықаралық маңызы бар археологиялық ескерткіштер мен басқа да тарихи мәдени мұралар;  
+	Мемлекеттік орман шаруашылығы мекемелерінің аумақтары;
+	Су айдындары, су ағырлар мен олардың су қорғау аймақтары;
+	Электр желілері;
+	Автокөлік жолдары;
+	Елді мекендер.
+
+•	Қосымша карталар – Жер бедерінің сандық моделі (ЖСМ), аумақтардың еңістігі мен беткейлердің экспозициясы, аумақтық-әкімшілік бөліністер, «Қазгидромет» РМК метеорологиялық станциялары.
+
+Күн ресурстарының Атласының функционалы:
+	Жалпы функционал (атлас жиынтығы бойынша картографиялық қабаттарын көрсету және таңдау, негізгі қабаттарды таңдау, карта бойынша бағдалау функциясы, масштабтау, шартты белгілерді көру, «идентификациялау» құрылғысы, өлшеу құрылғысы (қашықтық, аудан), картографиялық қабат туралы анықтамасын көру); 
+	Таңдалған нүкте бойынша мәліметтерді алу және экспорттау (кесте, график);
+	Картада таңдалған бірнеше нүкте бойынша бастапқы мәліметтерді салыстыру (графиктер, диаграммалар, кестелер);
+	 Күн энергетикасы объектілерін орналатыру үшін аумақтың қолайлылығы бойынша алдын ала жіктеу;
+	«Фотоэлектрлік жүйенің ауданын есептеу» калькуляторы – жобаланатын фотоэлектрлік станцияның күн панельдерінің ауданын есептеу;
+	«Фотоэлектрлік жүйенің энергия өндіру мөлшерін есептеу» калькуляторы – таңдалған аумаққа жобаланатын фотоэлектрлік станцияның күн панельдерінің энергия өндіру мөлшерін есептеу;
+	«Энергия пайдалану мөлшерін анықтау» калькуляторы – тұрмыстық элетрқұрылғыларымен тұтынылатын жалпы электр энергиясын есептеу.</value>
+  </data>
+  <data name="AboutProject" xml:space="preserve">
+    <value>Жоба туралы</value>
+  </data>
+  <data name="AboutProjectText" xml:space="preserve">
+    <value>«Жасыл экономикаға» көшу жөніндегі тұжырымдама, Қазақстан Республикасы Президентінің 2013 жылғы 30 мамырдағы № 577 "Қазақстан Республикасының "жасыл экономикаға" көшуі жөніндегі тұжырымдама туралы" жарлығы экономиканың белгілі салаларын реформалауға бағытталған негізгі басым міндеттерінің тізімін анықтады.  Қазақстан Республикасының "жасыл экономикаға" өтуі шеңберінде табиғи ресурстарды тиімді пайдалануды арттыру, қолда бар инфрақұрылымды жетілдіру және халықтың әл-ауқатын арттыру көзделуде. 
+Жоба «Жасыл экономиканың» күн энергетикасы, тұрақты балық шаруашылығы мен аквадақылдар бағыттарын дамытуына қажетті  институционалды және заңнамалық негіздерін қалыптастыруға қолдауды көрсету негізінде, сонымен қатар «Жасыл көпір» Әріптестік бағдарламасынның шеңберінде халықаралық қарым-қатынасты нығайту «Жасыл экономикаға» көшу тұжырымдамасын нақты іске асыруға бағдарланған.  
+
+Жер бетіндегі жаңартылатын энергетиканың ең тиімді бағыттарының бірі ретінде күн энергетикасын дамыту болып табылады.  Күн - жылытуға, электр және ыстық сумен қамтамасыз етуге керекті энергияға қажеттіліктердің орнын толтыруға мүмкіндік беретін,  сарқылмайтын, экологиялық тұрақты және қол жетімді энергияның көзі. Көп мөлшердегі инсоляция, жыл ішіндегі ашық күндердің санының көп болуы, Қазақстан территориясын әлем бойынша Күн энергетикасын дамытуға қолайлы аудандардың қатарына жатқызуға болады.   Қазақстан «жасыл экономикаға» көшу тұжырымдамасын іске асыруды қабылдау негізінде жаңартылатын энергия көздерін толықмасштабты енгізу туралы шешім қабылдады.  Аталған мақсатқа жету, энергияның жанама көздерін дамытуға себеп болатын жаңа технологиялық процесстерді еңгізу, ақпаратпен қамтамасыздау және білім деңгейін жоғарылату қажет. Қазақстан Республикасының Күн ресурстарының Интерактивті Атласы күн ресурстарын пайдалану мүмкіндіктерін кеңейтуге негізгі септігін тигізеді.</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Сипаттамасы</value>
+  </data>
+  <data name="DescriptionText" xml:space="preserve">
+    <value>Қазақстан Күн ресурстарының атласы – Қазақстан Республикасының Энергетика министрлігі мен Біріккен Ұлттар Ұйымының Даму бағдарламасының «Жасыл экономикаға көшу тұжырымдамасын іске асыруда және «Жасыл көпір» Әріптестік бағдарламасын институционалдандыруда Қазақстан Республикасы Үкіметіне қолдау көрсету» жобасының шеңберінде жасалған.</value>
+  </data>
+  <data name="Map1Description" xml:space="preserve">
+    <value>Еркін қолданыстағы климаттық базаларға негізделген (NASA SSE, Sustainable Buildings, SARAH-E) күн радиациясы көрсеткіштерінің (тіке, шашыранды, жиынтық және т.б.) карталары</value>
+  </data>
+  <data name="Map1Title" xml:space="preserve">
+    <value>Күн ресурстары</value>
+  </data>
+  <data name="Map2Description" xml:space="preserve">
+    <value>Негізгі метеорологиялық көрсеткіштердің (ауа температурасы, төселме беткей температусы, бұлттылық, атмосфералық жауын-шашырдар, альбедо және т.б.) карталары</value>
+  </data>
+  <data name="Map2Title" xml:space="preserve">
+    <value>Климат</value>
+  </data>
+  <data name="Map3Description" xml:space="preserve">
+    <value>Электр станцияларын салу мүмкіндігіне әсер ететін факторлардың (ерекше қорғалатын аумақтар, инфроқұрылым және т.б.) карталары келтірілген</value>
+  </data>
+  <data name="Map3Title" xml:space="preserve">
+    <value>Күн энергетикасының желілік объектілерін орналастыру факторлары</value>
+  </data>
+  <data name="Map4Description" xml:space="preserve">
+    <value>Күн энергетикасының жұмыс атқаратын және жобаланатын объектілерінің; электр жүйелерінің карталары</value>
+  </data>
+  <data name="Map4Title" xml:space="preserve">
+    <value>Күн энергиясының объектілері</value>
+  </data>
+  <data name="Slogan1" xml:space="preserve">
+    <value>Таяу жылдарда Интернет технология мен жаңартылған энергия көздері бірге пайдаланылады. Н. Назарбаев</value>
+  </data>
+  <data name="Slogan2" xml:space="preserve">
+    <value>«Жасыл» энергетикаға көшу және «жасыл» технологияларды &lt;br /&gt;еңгізу – ғаламдық экономиканың даму векторы.&lt;br /&gt; Н. Назарбаев</value>
+  </data>
+  <data name="Slogan3" xml:space="preserve">
+    <value>«Бесінші сын-қатер - жаһандық энергетикалық қауіпсіздік» Н. Назарбаев</value>
+  </data>
+</root>

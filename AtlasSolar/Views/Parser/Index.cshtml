@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <p>
+            @Html.ActionLink("ParseNASADaily", "ParseNASADaily", "Parser", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <p>
+            @Html.ActionLink("ParseNASA1983Daily", "ParseNASA1983Daily", "Parser", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <p>
+            @Html.ActionLink("ParseNASA1983Monthly", "ParseNASA1983Monthly", "Parser", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <p>
+            @Html.ActionLink("EraseMeteoData", "EraseMeteoData", "Parser", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <p>
+            @Html.ActionLink("ParseMeteoDataTypes", "ParseMeteoDataTypes", "Parser", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <p>
+            @Html.ActionLink("EraseMeteoDataTypes", "EraseMeteoDataTypes", "Parser", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <p>
+            @Html.ActionLink("Test", "Test", "Parser", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+</div>

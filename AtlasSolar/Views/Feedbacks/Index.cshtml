@@ -1,0 +1,56 @@
+﻿@model PagedList.IPagedList<AtlasSolar.Models.Feedback>
+@using PagedList.Mvc
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Feedbacks;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.Feedbacks</h2>
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortOrder = Request.QueryString["SortOrder"], Name = ViewBag.NameFilter, Email = ViewBag.EmailFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })
+
+@using (Html.BeginForm("Index", "Feedbacks", new { SortOrder = Request.QueryString["SortOrder"], Name = ViewBag.NameFilter, Email = ViewBag.EmailFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = Request.QueryString["SortOrder"] })
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(f => f.FirstOrDefault().DateTime).ToString(), "Index", new { SortOrder = ViewBag.DateTimeSort, Name = ViewBag.NameFilter, Email = ViewBag.EmailFilter })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(f => f.FirstOrDefault().Name).ToString(), "Index", new { SortOrder = ViewBag.NameSort, Name = ViewBag.NameFilter, Email = ViewBag.EmailFilter })
+                <br />
+                @Html.Editor("Name", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(f => f.FirstOrDefault().Email).ToString(), "Index", new { SortOrder = ViewBag.EmailSort, Name = ViewBag.NameFilter, Email = ViewBag.EmailFilter })
+                <br />
+                @Html.Editor("Email", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id }) |
+                    @Html.ActionLink(AtlasSolar.Resources.Common.Delete, "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortOrder = Request.QueryString["SortOrder"], Name = ViewBag.NameFilter, Email = ViewBag.EmailFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })

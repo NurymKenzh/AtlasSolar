@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - AtlasSolar</title>
+    <link href="~/Content/reset.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/dopstyle.css" rel="stylesheet" />
+    <link href="img/ico/favicon.ico" rel="shortcut icon" type="image/x-icon">
+</head>
+<body>
+    <div class="header">
+        <div class="wrap1">
+            @{
+                if (System.Threading.Thread.CurrentThread.CurrentCulture != null)
+                {
+                    if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "ru")
+                    {
+                        <div style="float:left;">
+                            <a href="@string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"))" _blank"><img src="~/img/logo.png" alt="" width="100%" height="100%" /></a>
+                        </div>
+                        <div style="float:right;  padding-right: 30px">
+                            <a href="http://www.kz.undp.org/content/kazakhstan/ru/home/" _blank"><img src="~/img/UNDP_Logo_En.png" alt="" width="100%" height="100%" title="UNDP" /></a>
+                        </div>
+                        <div style="float:right;  padding-right: 10px">
+                            <a href="http://energo.gov.kz/index.php?id=1 " _blank"><img src="~/img/gerb_rk.png" alt="" width="100%" height="100%" title="Министерство энергетики Республики Казахстан" /></a>
+                        </div>
+                    }
+                    else if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "kk")
+                    {
+                        <div style="float:left;">
+                            <a href="@string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"))" _blank"><img src="~/img/logo_kz.png" alt="" width="100%" height="100%" /></a>
+                        </div>
+                        <div style="float:right;  padding-right: 30px">
+                            <a href="http://www.kz.undp.org/content/kazakhstan/ru/home/" _blank"><img src="~/img/UNDP_Logo_En.png" alt="" width="100%" height="100%" title="UNDP" /></a>
+                        </div>
+                        <div style="float:right;  padding-right: 10px">
+                            <a href="http://energo.gov.kz/index.php?id=1 " _blank"><img src="~/img/gerb_rk.png" alt="" width="100%" height="100%" title="Қазақстан Республикасы Энергетика министрлігі"/></a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="float:left;">
+                            <a href="@string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"))" _blank"><img src="~/img/logo_gb.png" alt="" width="100%" height="100%" /></a>
+                        </div>
+                        <div style="float:right;  padding-right: 30px">
+                            <a href="http://www.kz.undp.org/content/kazakhstan/ru/home/" _blank"><img src="~/img/UNDP_Logo_En.png" alt="" width="100%" height="100%" title="UNDP" /></a>
+                        </div>
+                        <div style="float:right;  padding-right: 10px">
+                            <a href="http://energo.gov.kz/index.php?id=1 " _blank"><img src="~/img/gerb_rk.png" alt="" width="100%" height="100%" title="Ministry of Energy of the Republic of Kazakhstan" /></a>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+    <nav class="navbar navbar-default  navbar-fixed" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" />
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="wrap1">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            @Html.ActionLink(AtlasSolar.Resources.Common.Home, "Index", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink(AtlasSolar.Resources.Common.About, "About", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink(AtlasSolar.Resources.Common.Contact, "Contact", "Home")
+                        </li>
+                        @Html.Partial("_AdminPartial")
+                        @Html.Partial("_ModeratorPartial")
+                    </ul>
+
+                    @*<ul class="nav navbar-nav navbar-right">
+                <li class="dropdown" style="padding-left: 15px;">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@AtlasSolar.Resources.Common.Language<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("English", "Change", "Language", new { LanguageAbbrevation = "en" }, null)</li>
+                        <li>@Html.ActionLink("Қазақ", "Change", "Language", new { LanguageAbbrevation = "kk" }, null)</li>
+                        <li>@Html.ActionLink("Русский", "Change", "Language", new { LanguageAbbrevation = "ru" }, null)</li>
+                    </ul>
+                </li>
+            </ul>*@
+                    <a href='@Url.Action("Change", "Language", new { LanguageAbbrevation = "kk" })' style="padding: 14px 5px 0px 2px; float: right;">
+                        <img src="~/img/kz.png" alt="Қазақша" title="Қазақша" />
+                    </a>
+                    <a href='@Url.Action("Change", "Language", new { LanguageAbbrevation = "ru" })' style="padding: 14px 5px 0px 2px; float: right;">
+                        <img src="~/img/ru.png" alt="Русский" title="Русский" />
+                    </a>
+                    <a href='@Url.Action("Change", "Language", new { LanguageAbbrevation = "en" })' style="padding: 14px 5px 0px 40px; float: right;">
+                        <img src="~/img/gb.png" alt="English" title="English" />
+                    </a>
+                    <ul class="nav navbar-nav navbar-right" style="display: inline;">
+                        @Html.Partial("_LoginPartial")
+                        @*<li class="dropdown" style="display: inline;">
+                            
+                        </li>*@
+                    </ul>
+
+
+                    
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    @Html.Partial("_Slider")
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <h4>&copy; @DateTime.Now.Year - AtlasSolar</h4>
+            <!--LiveInternet counter-->
+            <script type="text/javascript">
+                document.write("<a href='//www.liveinternet.ru/click' " +
+                    "target=_blank><img src='//counter.yadro.ru/hit?t42.12;r" +
+                    escape(document.referrer) + ((typeof (screen) == "undefined") ? "" :
+                        ";s" + screen.width + "*" + screen.height + "*" + (screen.colorDepth ?
+                            screen.colorDepth : screen.pixelDepth)) + ";u" + escape(document.URL) +
+                    ";" + Math.random() +
+                    "' alt='' title='LiveInternet' " +
+                    "border='0' width='31' height='31'><\/a>")
+            </script><!--/LiveInternet-->
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/slide.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿@model AtlasSolar.Models.LesfondOrgup
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Delete;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.Delete</h2>
+
+<h3>@AtlasSolar.Resources.Common.Delete?</h3>
+<div>
+    <h4>@AtlasSolar.Resources.Common.LesfondOrgup</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameKZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameKZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameRU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameRU)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="@AtlasSolar.Resources.Common.Delete" class="btn btn-default" /> |
+            @Html.ActionLink(AtlasSolar.Resources.Common.BackToList, "Index")
+        </div>
+    }
+</div>

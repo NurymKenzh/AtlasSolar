@@ -1,0 +1,128 @@
+﻿@model PagedList.IPagedList<AtlasSolar.Models.MeteoDataType>
+@using PagedList.Mvc
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.MeteoDataTypes;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.MeteoDataTypes</h2>
+
+@if (ViewBag.Role.Contains("Admin"))
+{
+    <p>
+        @Html.ActionLink(AtlasSolar.Resources.Common.Create, "Create")
+    </p>
+}
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortOrder = Request.QueryString["SortOrder"], MeteoDataSourceId = ViewBag.MeteoDataSourceIdFilter, MeteoDataPeriodicityId = ViewBag.MeteoDataPeriodicityIdFilter, Code = ViewBag.CodeFilter, NameEN = ViewBag.NameENFilter, NameKZ = ViewBag.NameKZFilter, NameRU = ViewBag.NameRUFilter, GroupEN = ViewBag.GroupENFilter, GroupKZ = ViewBag.GroupKZFilter, GroupRU = ViewBag.GroupRUFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })
+
+@using (Html.BeginForm("Index", "MeteoDataTypes", new { SortOrder = Request.QueryString["SortOrder"], MeteoDataSourceId = ViewBag.MeteoDataSourceIdFilter, MeteoDataPeriodicityId = ViewBag.MeteoDataPeriodicityIdFilter, Code = ViewBag.CodeFilter, NameEN = ViewBag.NameENFilter, NameKZ = ViewBag.NameKZFilter, NameRU = ViewBag.NameRUFilter, GroupEN = ViewBag.GroupENFilter, GroupKZ = ViewBag.GroupKZFilter, GroupRU = ViewBag.GroupRUFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = Request.QueryString["SortOrder"] })
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().MeteoDataSource).ToString(), "Index", new { SortOrder = ViewBag.MeteoDataSourceSort, MeteoDataSourceId = ViewBag.MeteoDataSourceIdFilter, MeteoDataPeriodicityId = ViewBag.MeteoDataPeriodicityIdFilter, Code = ViewBag.CodeFilter, NameEN = ViewBag.NameENFilter, NameKZ = ViewBag.NameKZFilter, NameRU = ViewBag.NameRUFilter, GroupEN = ViewBag.GroupENFilter, GroupKZ = ViewBag.GroupKZFilter, GroupRU = ViewBag.GroupRUFilter })
+                <br />
+                @Html.DropDownList("MeteoDataSourceId", (IEnumerable<SelectListItem>)ViewBag.MeteoDataSources, "", htmlAttributes: new { @class = "form-control" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().MeteoDataPeriodicity).ToString(), "Index", new { SortOrder = ViewBag.MeteoDataPeriodicitySort, MeteoDataSourceId = ViewBag.MeteoDataSourceIdFilter, MeteoDataPeriodicityId = ViewBag.MeteoDataPeriodicityIdFilter, Code = ViewBag.CodeFilter, NameEN = ViewBag.NameENFilter, NameKZ = ViewBag.NameKZFilter, NameRU = ViewBag.NameRUFilter, GroupEN = ViewBag.GroupENFilter, GroupKZ = ViewBag.GroupKZFilter, GroupRU = ViewBag.GroupRUFilter })
+                <br />
+                @Html.DropDownList("MeteoDataPeriodicityId", (IEnumerable<SelectListItem>)ViewBag.MeteoDataPeriodicities, "", htmlAttributes: new { @class = "form-control" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().Code).ToString(), "Index", new { SortOrder = ViewBag.CodeSort, MeteoDataSourceId = ViewBag.MeteoDataSourceIdFilter, MeteoDataPeriodicityId = ViewBag.MeteoDataPeriodicityIdFilter, NameEN = ViewBag.NameENFilter, Code = ViewBag.CodeFilter, NameKZ = ViewBag.NameKZFilter, NameRU = ViewBag.NameRUFilter, GroupEN = ViewBag.GroupENFilter, GroupKZ = ViewBag.GroupKZFilter, GroupRU = ViewBag.GroupRUFilter })
+                <br />
+                @Html.Editor("Code", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().GroupEN).ToString(), "Index", new { SortOrder = ViewBag.GroupENSort, MeteoDataSourceId = ViewBag.MeteoDataSourceIdFilter, MeteoDataPeriodicityId = ViewBag.MeteoDataPeriodicityIdFilter, NameEN = ViewBag.NameENFilter, Code = ViewBag.CodeFilter, NameKZ = ViewBag.NameKZFilter, NameRU = ViewBag.NameRUFilter, GroupEN = ViewBag.GroupENFilter, GroupKZ = ViewBag.GroupKZFilter, GroupRU = ViewBag.GroupRUFilter })
+                <br />
+                @Html.Editor("GroupEN", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().GroupKZ).ToString(), "Index", new { SortOrder = ViewBag.GroupKZSort, MeteoDataSourceId = ViewBag.MeteoDataSourceIdFilter, MeteoDataPeriodicityId = ViewBag.MeteoDataPeriodicityIdFilter, NameEN = ViewBag.NameENFilter, Code = ViewBag.CodeFilter, NameKZ = ViewBag.NameKZFilter, NameRU = ViewBag.NameRUFilter, GroupEN = ViewBag.GroupENFilter, GroupKZ = ViewBag.GroupKZFilter, GroupRU = ViewBag.GroupRUFilter })
+                <br />
+                @Html.Editor("GroupKZ", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().GroupRU).ToString(), "Index", new { SortOrder = ViewBag.GroupRUSort, MeteoDataSourceId = ViewBag.MeteoDataSourceIdFilter, MeteoDataPeriodicityId = ViewBag.MeteoDataPeriodicityIdFilter, NameEN = ViewBag.NameENFilter, Code = ViewBag.CodeFilter, NameKZ = ViewBag.NameKZFilter, NameRU = ViewBag.NameRUFilter, GroupEN = ViewBag.GroupENFilter, GroupKZ = ViewBag.GroupKZFilter, GroupRU = ViewBag.GroupRUFilter })
+                <br />
+                @Html.Editor("GroupRU", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().NameEN).ToString(), "Index", new { SortOrder = ViewBag.NameENSort, MeteoDataSourceId = ViewBag.MeteoDataSourceIdFilter, MeteoDataPeriodicityId = ViewBag.MeteoDataPeriodicityIdFilter, NameEN = ViewBag.NameENFilter, Code = ViewBag.CodeFilter, NameKZ = ViewBag.NameKZFilter, NameRU = ViewBag.NameRUFilter, GroupEN = ViewBag.GroupENFilter, GroupKZ = ViewBag.GroupKZFilter, GroupRU = ViewBag.GroupRUFilter })
+                <br />
+                @Html.Editor("NameEN", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().NameKZ).ToString(), "Index", new { SortOrder = ViewBag.NameKZSort, MeteoDataSourceId = ViewBag.MeteoDataSourceIdFilter, MeteoDataPeriodicityId = ViewBag.MeteoDataPeriodicityIdFilter, NameEN = ViewBag.NameENFilter, Code = ViewBag.CodeFilter, NameKZ = ViewBag.NameKZFilter, NameRU = ViewBag.NameRUFilter, GroupEN = ViewBag.GroupENFilter, GroupKZ = ViewBag.GroupKZFilter, GroupRU = ViewBag.GroupRUFilter })
+                <br />
+                @Html.Editor("NameKZ", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().NameRU).ToString(), "Index", new { SortOrder = ViewBag.NameRUSort, MeteoDataSourceId = ViewBag.MeteoDataSourceIdFilter, MeteoDataPeriodicityId = ViewBag.MeteoDataPeriodicityIdFilter, NameEN = ViewBag.NameENFilter, Code = ViewBag.CodeFilter, NameKZ = ViewBag.NameKZFilter, NameRU = ViewBag.NameRUFilter, GroupEN = ViewBag.GroupENFilter, GroupKZ = ViewBag.GroupKZFilter, GroupRU = ViewBag.GroupRUFilter })
+                <br />
+                @Html.Editor("NameRU", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                <br />
+                <input type="submit" value="@AtlasSolar.Resources.Common.Find" class="btn btn-default">
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeteoDataSource.NameEN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeteoDataPeriodicity.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GroupEN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GroupKZ)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GroupRU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameEN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameKZ)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameRU)
+                </td>
+                @if (ViewBag.Role.Contains("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = item.Id }) |
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id }) |
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Delete, "Delete", new { id = item.Id })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = item.Id }) |
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id })
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+}
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortOrder = Request.QueryString["SortOrder"], MeteoDataSourceId = ViewBag.MeteoDataSourceIdFilter, MeteoDataPeriodicityId = ViewBag.MeteoDataPeriodicityIdFilter, Code = ViewBag.CodeFilter, NameEN = ViewBag.NameENFilter, NameKZ = ViewBag.NameKZFilter, NameRU = ViewBag.NameRUFilter, AdditionalEN = ViewBag.AdditionalENFilter, AdditionalKZ = ViewBag.AdditionalKZFilter, AdditionalRU = ViewBag.AdditionalRUFilter, GroupEN = ViewBag.GroupENFilter, GroupKZ = ViewBag.GroupKZFilter, GroupRU = ViewBag.GroupRUFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })

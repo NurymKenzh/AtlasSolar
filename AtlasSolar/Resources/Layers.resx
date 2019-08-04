@@ -1,0 +1,652 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Active" xml:space="preserve">
+    <value>Operating</value>
+  </data>
+  <data name="AnalizeTerrainExcludeAgri" xml:space="preserve">
+    <value>Exclude agricultural lands (arable land, plantations, orchards)</value>
+  </data>
+  <data name="AnalizeTerrainExcludeBush" xml:space="preserve">
+    <value>Exclude the natural shrubby vegetations</value>
+  </data>
+  <data name="AnalizeTerrainExcludeDesert" xml:space="preserve">
+    <value>Exclude sands (including mobile and fixed grass and semi-shrub)</value>
+  </data>
+  <data name="AnalizeTerrainExcludeHydro" xml:space="preserve">
+    <value>Exclude hydrographic objects (lakes, reservoirs, rivers, streams, flooded areas, swamps)</value>
+  </data>
+  <data name="AnalizeTerrainExcludeNatres" xml:space="preserve">
+    <value>Exclude natural reserves</value>
+  </data>
+  <data name="AnalizeTerrainExcludePark" xml:space="preserve">
+    <value>Exclude natural parks</value>
+  </data>
+  <data name="AnalizeTerrainExcludePreserve" xml:space="preserve">
+    <value>Exclude wildlife sanctuaries</value>
+  </data>
+  <data name="AnalizeTerrainExcludeProtect" xml:space="preserve">
+    <value>Exclude protected areas</value>
+  </data>
+  <data name="AnalizeTerrainExcludeReserve" xml:space="preserve">
+    <value>Exclude natural reserves</value>
+  </data>
+  <data name="AnalizeTerrainExcludeSettlement" xml:space="preserve">
+    <value>Exclude human settlements</value>
+  </data>
+  <data name="AnalizeTerrainExcludeSolon" xml:space="preserve">
+    <value>Exclude solonchaks and sors</value>
+  </data>
+  <data name="AnalizeTerrainExcludeStone" xml:space="preserve">
+    <value>Exclude stony surfaces and placers, rock outcrops</value>
+  </data>
+  <data name="AnalizeTerrainExcludeTakyr" xml:space="preserve">
+    <value>Exclude takyrs</value>
+  </data>
+  <data name="AnalizeTerrainExcludeWood" xml:space="preserve">
+    <value>To exclude natural woody vegetation (forest, including saxaul, stlanik, woodlands)</value>
+  </data>
+  <data name="East" xml:space="preserve">
+    <value>East</value>
+  </data>
+  <data name="FindTerrainAGRI" xml:space="preserve">
+    <value>Agricultural areas (arable land, plantations, orchards) (AGRI)</value>
+  </data>
+  <data name="FindTerrainALTITUDE" xml:space="preserve">
+    <value>Altitude, m (ALTITUDE)</value>
+  </data>
+  <data name="FindTerrainBUSH" xml:space="preserve">
+    <value>Natural scrub vegetation (BUSH)</value>
+  </data>
+  <data name="FindTerrainDESERT" xml:space="preserve">
+    <value>Sands (including mobile and fixed herbaceous and semi-shrubby) (DESERT)</value>
+  </data>
+  <data name="FindTerrainHYDRO" xml:space="preserve">
+    <value>Objects hydrography (lakes, reservoirs, rivers, streams, flooded areas, swamps) (HYDRO)</value>
+  </data>
+  <data name="FindTerrainNATRES" xml:space="preserve">
+    <value>Natural Reserves (NATRES)</value>
+  </data>
+  <data name="FindTerrainPARK" xml:space="preserve">
+    <value>Natural parks (PARK)</value>
+  </data>
+  <data name="FindTerrainPOWERDIST" xml:space="preserve">
+    <value>Distance to power lines, km (POWERDIST)</value>
+  </data>
+  <data name="FindTerrainPRESERVE" xml:space="preserve">
+    <value>Wildlife sanctuaries (PRESERVE)</value>
+  </data>
+  <data name="FindTerrainPROTECT" xml:space="preserve">
+    <value>Protected areas (PROTECT)</value>
+  </data>
+  <data name="FindTerrainRADIATIONNASA" xml:space="preserve">
+    <value>Solar radiation of NASA, kW/m² per year (RADIATIONNASA)</value>
+  </data>
+  <data name="FindTerrainRESERVE" xml:space="preserve">
+    <value>Nature reserves (RESERVE)</value>
+  </data>
+  <data name="FindTerrainROADDIST" xml:space="preserve">
+    <value>Distance to motorways, km (ROADDIST)</value>
+  </data>
+  <data name="FindTerrainSETTLEDIST" xml:space="preserve">
+    <value>Distance to settlements, km (SETTLEDIST)</value>
+  </data>
+  <data name="FindTerrainSETTLEMENT" xml:space="preserve">
+    <value>Territory of settlements (SETTLEMENT)</value>
+  </data>
+  <data name="FindTerrainSLOPE" xml:space="preserve">
+    <value>Slopes of terrain, degree (SLOPE)</value>
+  </data>
+  <data name="FindTerrainSOLON" xml:space="preserve">
+    <value>Solonchaks and sors (SOLON)</value>
+  </data>
+  <data name="FindTerrainSTONE" xml:space="preserve">
+    <value>Rocky surfaces and placers, rock outcrops (STONE)</value>
+  </data>
+  <data name="FindTerrainTAKYR" xml:space="preserve">
+    <value>Takyrs (TAKYR)</value>
+  </data>
+  <data name="FindTerrainWOOD" xml:space="preserve">
+    <value>Natural woody vegetation (forest, including saxaul, woodland, woodlands) (WOOD)</value>
+  </data>
+  <data name="Info_aspect_srtm" xml:space="preserve">
+    <value>Exposure of slopes, compass headings</value>
+  </data>
+  <data name="Info_avg_dnr_xx" xml:space="preserve">
+    <value>kWh/m²/month</value>
+  </data>
+  <data name="Info_avg_dnr_year" xml:space="preserve">
+    <value>kWh/m²/year</value>
+  </data>
+  <data name="Info_clrskyavrg" xml:space="preserve">
+    <value>Averaged Clear Sky Insolation Incident On A Horizontal Surface  (kWh/m²)</value>
+  </data>
+  <data name="Info_kzcover" xml:space="preserve">
+    <value>Unsuitable and useless land types</value>
+  </data>
+  <data name="Info_OPTANG" xml:space="preserve">
+    <value>The angle relative to the horizontal for which the monthly averaged total solar radiation is a maximum (degrees)</value>
+  </data>
+  <data name="Info_rainavgesm" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="Info_retesh0mim" xml:space="preserve">
+    <value>Minimum Radiation Incident On Tilted Surface (kWh/m²)</value>
+  </data>
+  <data name="Info_rettlt0opt" xml:space="preserve">
+    <value>Monthly Averaged Radiation Incident On Tilted Surface (kWh/m²)</value>
+  </data>
+  <data name="Info_sis_klr" xml:space="preserve">
+    <value>kWh/m²</value>
+  </data>
+  <data name="Info_slope_srtm" xml:space="preserve">
+    <value>Terrain slope map, degrees</value>
+  </data>
+  <data name="Info_srfalbavg" xml:space="preserve">
+    <value>Monthly Averaged Surface Albedo (0 to 1.0)</value>
+  </data>
+  <data name="Info_srtm" xml:space="preserve">
+    <value>Digital relief model, m</value>
+  </data>
+  <data name="Info_t10mmax" xml:space="preserve">
+    <value>Monthly Averaged Maximum Air Temperature At 10 m Above The Surface Of The Earth (°C)</value>
+  </data>
+  <data name="Info_t10m_min" xml:space="preserve">
+    <value>Monthly Averaged Minimum Air Temperature At 10 m Above The Surface Of The Earth (°C)</value>
+  </data>
+  <data name="Info_tskinavg" xml:space="preserve">
+    <value>Monthly Averaged Earth Skin Temperature (°C)</value>
+  </data>
+  <data name="Legend_arheopamyat_1" xml:space="preserve">
+    <value>Monuments of archeology and culture</value>
+  </data>
+  <data name="Legend_arheopamyat_2" xml:space="preserve">
+    <value>Guard zones of monuments of archeology and culture</value>
+  </data>
+  <data name="Legend_aspect_srtm" xml:space="preserve">
+    <value>Exposure of slopes, compass headings</value>
+  </data>
+  <data name="Legend_avg_dnr_xx" xml:space="preserve">
+    <value>Direct Normal Radiation (source - NASA SSE), кWh/m²/month</value>
+  </data>
+  <data name="Legend_avg_dnr_year" xml:space="preserve">
+    <value>Direct Normal Radiation (source - NASA SSE), кWh/m²/year</value>
+  </data>
+  <data name="Legend_clrskyavrg_xx" xml:space="preserve">
+    <value>Averaged Clear Sky Insolation Incident On A Horizontal Surface  (kWh/m²/month)</value>
+  </data>
+  <data name="Legend_clrskyavrg_year" xml:space="preserve">
+    <value>Averaged Clear Sky Insolation Incident On A Horizontal Surface  (kWh/m²/year)</value>
+  </data>
+  <data name="Legend_dni_xx" xml:space="preserve">
+    <value>Monthly averaged Direct Normal Irradiance at surface (DNI) (kWh/m²)</value>
+  </data>
+  <data name="Legend_dni_year" xml:space="preserve">
+    <value>Annual Direct Normal Irradiance at surface (DNI) (kWh/m²)</value>
+  </data>
+  <data name="Legend_exp_dif_xx" xml:space="preserve">
+    <value>Diffuse radiation (source - NASA SSE), кWh/m²/month</value>
+  </data>
+  <data name="Legend_exp_dif_year" xml:space="preserve">
+    <value>Diffuse radiation (source - NASA SSE), кWh/m²/year</value>
+  </data>
+  <data name="Legend_hidroohrzony_1" xml:space="preserve">
+    <value>Hydrography and water protection zones</value>
+  </data>
+  <data name="Legend_hidroohrzony_2" xml:space="preserve">
+    <value>Security zones of hydrography and water protection zones</value>
+  </data>
+  <data name="Legend_kzcover" xml:space="preserve">
+    <value>Unsuitable and useless land types</value>
+  </data>
+  <data name="Legend_kzcover_1" xml:space="preserve">
+    <value>territories of settlements</value>
+  </data>
+  <data name="Legend_kzcover_2" xml:space="preserve">
+    <value>agricultural areas (arable land, plantations, gardens)</value>
+  </data>
+  <data name="Legend_kzcover_3" xml:space="preserve">
+    <value>natural woody vegetation (forest, including saxaul, elfin wood, woodlands)</value>
+  </data>
+  <data name="Legend_kzcover_4" xml:space="preserve">
+    <value>natural shrubby vegetation</value>
+  </data>
+  <data name="Legend_kzcover_5" xml:space="preserve">
+    <value>hydrography objects (lakes, reservoirs, rivers, streams, flooding areas, swamps)</value>
+  </data>
+  <data name="Legend_kzcover_6" xml:space="preserve">
+    <value>takyrs</value>
+  </data>
+  <data name="Legend_kzcover_7" xml:space="preserve">
+    <value>sands (including mobile and fixed herbaceous and semi-shrubby</value>
+  </data>
+  <data name="Legend_kzcover_8" xml:space="preserve">
+    <value>salines and sors</value>
+  </data>
+  <data name="Legend_kzcover_9" xml:space="preserve">
+    <value>rocky surfaces and alluvials, outcrops</value>
+  </data>
+  <data name="Legend_oopt" xml:space="preserve">
+    <value>Specially Protected Natural Areas</value>
+  </data>
+  <data name="Legend_pamyatnikprirodypol_1" xml:space="preserve">
+    <value>State nature monuments </value>
+  </data>
+  <data name="Legend_pamyatnikprirodypol_2" xml:space="preserve">
+    <value>Buffer zone of state nature monuments</value>
+  </data>
+  <data name="Legend_prirparki_1" xml:space="preserve">
+    <value>State national nature parks and their protection zones</value>
+  </data>
+  <data name="Legend_prirparki_2" xml:space="preserve">
+    <value>Protected areas of state national natural parks</value>
+  </data>
+  <data name="Legend_rainavgesm_xx" xml:space="preserve">
+    <value>Average Amount of Precipitation (mm/month)</value>
+  </data>
+  <data name="Legend_rainavgesm_year" xml:space="preserve">
+    <value>Average Amount of Precipitation (mm/year)</value>
+  </data>
+  <data name="Legend_retesh0mim_xx" xml:space="preserve">
+    <value>Minimum Radiation Incident On Tilted Surface (kWh/m²/month)</value>
+  </data>
+  <data name="Legend_retesh0mim_year" xml:space="preserve">
+    <value>Minimum Radiation Incident On Tilted Surface (kWh/m²/year)</value>
+  </data>
+  <data name="Legend_rettlt0opt_xx" xml:space="preserve">
+    <value>Monthly Averaged Radiation Incident On Tilted Surface (kWh/m²/month)</value>
+  </data>
+  <data name="Legend_rettlt0opt_year" xml:space="preserve">
+    <value>Monthly Averaged Radiation Incident On Tilted Surface (kWh/m²/year)</value>
+  </data>
+  <data name="Legend_rezervaty_1" xml:space="preserve">
+    <value>State nature reserves and their protection zones.</value>
+  </data>
+  <data name="Legend_rezervaty_2" xml:space="preserve">
+    <value>Protected areas of state nature reserves</value>
+  </data>
+  <data name="Legend_sic_xx" xml:space="preserve">
+    <value>Monthly averaged Total Radiation under the clear sky (SIC) (kWh/m²)</value>
+  </data>
+  <data name="Legend_sic_year" xml:space="preserve">
+    <value>Annual Total Radiation under the clear sky (SIC) (kWh/m²)</value>
+  </data>
+  <data name="Legend_sid_xx" xml:space="preserve">
+    <value>Monthly averaged Surface Incoming Direct Irradiance (SID) (kWh/m²)</value>
+  </data>
+  <data name="Legend_sid_year" xml:space="preserve">
+    <value>Annual Surface Incoming Direct Irradiance (SID) (kWh/m²)</value>
+  </data>
+  <data name="Legend_sis_klr_xx" xml:space="preserve">
+    <value>Average Surface Incoming  Irradiance (SIS) (kWh/m²/month)</value>
+  </data>
+  <data name="Legend_sis_klr_year" xml:space="preserve">
+    <value>Average Surface Incoming  Irradiance (SIS) (kWh/m²/year)</value>
+  </data>
+  <data name="Legend_sis_xx" xml:space="preserve">
+    <value>Monthly averaged Surface Incoming Irradiance (SIS) (kWh/m²)</value>
+  </data>
+  <data name="Legend_sis_year" xml:space="preserve">
+    <value>Annual Surface Incoming  Irradiance (SIS) (kWh/m²)</value>
+  </data>
+  <data name="Legend_slope_srtm" xml:space="preserve">
+    <value>Terrain slope map, degrees</value>
+  </data>
+  <data name="Legend_srfalbavg_xx" xml:space="preserve">
+    <value>Monthly Averaged Surface Albedo (0 to 1.0)</value>
+  </data>
+  <data name="Legend_srtm" xml:space="preserve">
+    <value>Height above sea level, m</value>
+  </data>
+  <data name="Legend_swv_dwn_xx" xml:space="preserve">
+    <value>Total Insolation Incident On A Horizontal Surface (source - NASA SSE), kWh/m²/month</value>
+  </data>
+  <data name="Legend_swv_dwn_year" xml:space="preserve">
+    <value>Total Insolation Incident On A Horizontal Surface (source - NASA SSE), kWh/m²/year</value>
+  </data>
+  <data name="Legend_t10mmax_xx" xml:space="preserve">
+    <value>Monthly Averaged Maximum Air Temperature At 10 m Above The Surface Of The Earth (°C)</value>
+  </data>
+  <data name="Legend_t10m_min_xx" xml:space="preserve">
+    <value>Monthly Averaged Minimum Air Temperature At 10 m Above The Surface Of The Earth (°C)</value>
+  </data>
+  <data name="Legend_t10m_xx" xml:space="preserve">
+    <value>The average monthly air temperature (source - NASA SSE), °С</value>
+  </data>
+  <data name="Legend_tskinavg_xx" xml:space="preserve">
+    <value>Monthly Averaged Earth Skin Temperature (°C)</value>
+  </data>
+  <data name="Legend_zakazniky_1" xml:space="preserve">
+    <value>State nature sanctuaries </value>
+  </data>
+  <data name="Legend_zakazniky_2" xml:space="preserve">
+    <value>Protected areas of state nature reserves</value>
+  </data>
+  <data name="Legend_zapovedniki_1" xml:space="preserve">
+    <value>Natural reserves and their protection zones</value>
+  </data>
+  <data name="Legend_zapovedniki_2" xml:space="preserve">
+    <value>Protected areas of reserves</value>
+  </data>
+  <data name="Legend_zapovedzony_1" xml:space="preserve">
+    <value>State preserved areas</value>
+  </data>
+  <data name="Legend_zapovedzony_2" xml:space="preserve">
+    <value>Protected areas of state protected areas</value>
+  </data>
+  <data name="lep" xml:space="preserve">
+    <value>Power lines</value>
+  </data>
+  <data name="lep2" xml:space="preserve">
+    <value>Power Lines (Secondary)</value>
+  </data>
+  <data name="lep2_legend" xml:space="preserve">
+    <value>Power Lines (Secondary), V</value>
+  </data>
+  <data name="lep_bufer" xml:space="preserve">
+    <value>Protection zones of power lines</value>
+  </data>
+  <data name="lep_legend" xml:space="preserve">
+    <value>Power lines, V</value>
+  </data>
+  <data name="MapAuxiliary" xml:space="preserve">
+    <value>Solar power stations</value>
+  </data>
+  <data name="MapClimate" xml:space="preserve">
+    <value>Climate</value>
+  </data>
+  <data name="MapFactors" xml:space="preserve">
+    <value>Factors affecting the building of grid-connected solar power stations</value>
+  </data>
+  <data name="MapsResources" xml:space="preserve">
+    <value>Solar resources</value>
+  </data>
+  <data name="North" xml:space="preserve">
+    <value>North</value>
+  </data>
+  <data name="Northeast" xml:space="preserve">
+    <value>Northeast</value>
+  </data>
+  <data name="Northwest" xml:space="preserve">
+    <value>Northwest</value>
+  </data>
+  <data name="oblasti" xml:space="preserve">
+    <value>Administrative Areas</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Plane" xml:space="preserve">
+    <value>Plane</value>
+  </data>
+  <data name="Projected" xml:space="preserve">
+    <value>Projected</value>
+  </data>
+  <data name="p_clr_cky" xml:space="preserve">
+    <value>Average Clear Sky Insolation Incident On A Horizontal Surface  (kWh/m²)</value>
+  </data>
+  <data name="p_swv_dwn" xml:space="preserve">
+    <value>Average Insolation Incident On A Horizontal Surface  (kWh/m²)</value>
+  </data>
+  <data name="p_toa_dwn" xml:space="preserve">
+    <value>The sums of the average monthly solar radiation arriving at the upper atmosphere boundary (kWh/m²)</value>
+  </data>
+  <data name="Relief" xml:space="preserve">
+    <value>Relief</value>
+  </data>
+  <data name="South" xml:space="preserve">
+    <value>South</value>
+  </data>
+  <data name="Southeast" xml:space="preserve">
+    <value>Southeast</value>
+  </data>
+  <data name="Southwest" xml:space="preserve">
+    <value>Southwest</value>
+  </data>
+  <data name="spp" xml:space="preserve">
+    <value>Solar power stations</value>
+  </data>
+  <data name="Tree_arheopamyat" xml:space="preserve">
+    <value>Monuments of archeology and culture</value>
+  </data>
+  <data name="Tree_aspect_srtm" xml:space="preserve">
+    <value>Exposure of slopes, compass headings  </value>
+  </data>
+  <data name="Tree_avg_dnr" xml:space="preserve">
+    <value>Average Direct Normal Radiation (kWh/m²)</value>
+  </data>
+  <data name="Tree_clrskyavrg" xml:space="preserve">
+    <value>Average Clear Sky Insolation Incident On A Horizontal Surface  (kWh/m²)</value>
+  </data>
+  <data name="Tree_dni" xml:space="preserve">
+    <value>Average Direct Normal Irradiance at surface (DNI) (kWh/m²)</value>
+  </data>
+  <data name="Tree_exp_dif" xml:space="preserve">
+    <value>Average Diffuse Radiation Incident On A Horizontal Surface  (kWh/m²)</value>
+  </data>
+  <data name="Tree_hidroohrzony" xml:space="preserve">
+    <value>Hydrography and water protection zones</value>
+  </data>
+  <data name="Tree_kzcover" xml:space="preserve">
+    <value>Unsuitable and little avail
+ land types</value>
+  </data>
+  <data name="Tree_oopt" xml:space="preserve">
+    <value>Specially Protected Natural Areas</value>
+  </data>
+  <data name="Tree_pamyatnikprirodypol" xml:space="preserve">
+    <value>Natural monuments of nature</value>
+  </data>
+  <data name="Tree_prirparki" xml:space="preserve">
+    <value>Natural Parks</value>
+  </data>
+  <data name="Tree_rainavgesm" xml:space="preserve">
+    <value>Averaged Amount of Precipitation (mm)</value>
+  </data>
+  <data name="Tree_retesh0mim" xml:space="preserve">
+    <value>Minimum Radiation Incident On Tilted Surface (kWh/m²)</value>
+  </data>
+  <data name="Tree_rettlt0opt" xml:space="preserve">
+    <value>Monthly Averaged Radiation Incident On Tilted Surface (kWh/m²)</value>
+  </data>
+  <data name="Tree_rezervaty" xml:space="preserve">
+    <value>Natural Reserves</value>
+  </data>
+  <data name="Tree_sic" xml:space="preserve">
+    <value>Average Clear Sky Insolation Incident On A Horizontal Surface (SIC) (kWh/m²)</value>
+  </data>
+  <data name="Tree_sid" xml:space="preserve">
+    <value>Average Direct Horizontal Irradiance at surface  (SID) (kWh/m²)</value>
+  </data>
+  <data name="Tree_sis" xml:space="preserve">
+    <value>Average Surface Incoming  Irradiance (SIS) (kWh/m²)</value>
+  </data>
+  <data name="Tree_sis_klr" xml:space="preserve">
+    <value>Average Surface Incoming  Irradiance (SIS) (kWh/m²)</value>
+  </data>
+  <data name="Tree_slope_srtm" xml:space="preserve">
+    <value>Terrain slope map</value>
+  </data>
+  <data name="Tree_srfalbavg" xml:space="preserve">
+    <value>Monthly Averaged Surface Albedo (0 to 1.0)</value>
+  </data>
+  <data name="Tree_srtm" xml:space="preserve">
+    <value>Height above sea level</value>
+  </data>
+  <data name="Tree_swv_dwn" xml:space="preserve">
+    <value>Average Insolation Incident On A Horizontal Surface  (kWh/m²)</value>
+  </data>
+  <data name="Tree_t10m" xml:space="preserve">
+    <value>Monthly Averaged Air Temperature At 10 m Above The Surface Of The Earth (°C)</value>
+  </data>
+  <data name="Tree_t10mmax" xml:space="preserve">
+    <value>Monthly Averaged Maximum Air Temperature At 10 m Above The Surface Of The Earth (°C)</value>
+  </data>
+  <data name="Tree_t10m_min" xml:space="preserve">
+    <value>Monthly Averaged Minimum Air Temperature At 10 m Above The Surface Of The Earth (°C)</value>
+  </data>
+  <data name="Tree_tskinavg" xml:space="preserve">
+    <value>Monthly Averaged Earth Skin Temperature (°C)</value>
+  </data>
+  <data name="Tree_zakazniky" xml:space="preserve">
+    <value>Natural wildlife sanctuaries</value>
+  </data>
+  <data name="Tree_zapovedniki" xml:space="preserve">
+    <value>Natural reserves</value>
+  </data>
+  <data name="Tree_zapovedzony" xml:space="preserve">
+    <value>Natural protected areas</value>
+  </data>
+  <data name="West" xml:space="preserve">
+    <value>West</value>
+  </data>
+  <data name="Info_daylghtav" xml:space="preserve">
+    <value>hours</value>
+  </data>
+  <data name="Info_day_cld_22" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="Legend_avg_kt_22" xml:space="preserve">
+    <value>The average monthly value of the atmospheric transparency index (from 0 to 1.0)</value>
+  </data>
+  <data name="Legend_avg_nkt_22" xml:space="preserve">
+    <value>The average monthly normalized value of the atmospheric transparency index (from 0 to 1.0)</value>
+  </data>
+  <data name="Legend_daylghtav" xml:space="preserve">
+    <value>Average monthly duration of daylight hours (hours)</value>
+  </data>
+  <data name="Legend_day_cld_22" xml:space="preserve">
+    <value>Average monthly daytime cloud cover (%)</value>
+  </data>
+  <data name="Tree_avg_kt_22" xml:space="preserve">
+    <value>The average monthly value of the atmospheric transparency index (from 0 to 1.0)</value>
+  </data>
+  <data name="Tree_avg_nkt_22" xml:space="preserve">
+    <value>The average monthly normalized value of the atmospheric transparency index (from 0 to 1.0)</value>
+  </data>
+  <data name="Tree_daylghtav" xml:space="preserve">
+    <value>Average monthly duration of daylight hours (hours)</value>
+  </data>
+  <data name="Tree_day_cld_22" xml:space="preserve">
+    <value>Average monthly daytime cloud cover (%)</value>
+  </data>
+  <data name="meteo_st" xml:space="preserve">
+    <value>Weather stations</value>
+  </data>
+</root>

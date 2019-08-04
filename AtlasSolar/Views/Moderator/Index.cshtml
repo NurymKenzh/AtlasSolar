@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Moderator;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.Moderator</h2>
+
+@*<hr />
+    <p class="lead">-Энергетика-</p>
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.ApplianceTypes, "Index", "ApplianceTypes", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Appliances, "Index", "Appliances", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.PVSystemMaterials, "Index", "PVSystemMaterials", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.PanelOrientations, "Index", "PanelOrientations", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    </div>
+    <hr />
+    <p class="lead">-Метеорология-</p>
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.MeteoDataTypes, "Index", "MeteoDataTypes", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Statistics, "Index", "Statistics", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    </div>
+    <hr />
+    <p class="lead">-Слои-</p>
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.SPPs, "Index", "SPPs", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    </div>*@
+
+<legend>Энергетика</legend>
+<div class="table-content">
+    <table>
+        <tr>
+            <td>
+                <form action="/ApplianceTypes">
+                    <button type="submit">Типы приборов</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Типы приборов</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Appliances">
+                    <button type="submit">Приборы</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Приборы</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/PVSystemMaterials">
+                    <button type="submit">Материалы PV систем</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Материалы PV систем</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/PanelOrientations">
+                    <button type="submit">Ориентации панелей</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Ориентации панелей</p>
+            </td>
+        </tr>
+    </table>
+</div>
+<legend>Метеорология</legend>
+<div class="table-content">
+    <table>
+        <tr>
+            <td>
+                <form action="/MeteoDataTypes">
+                    <button type="submit">Типы метеоданных</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Типы метеоданных</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Statistics">
+                    <button type="submit">Статистика</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Статистика</p>
+            </td>
+        </tr>
+
+    </table>
+</div>
+<legend>Слои</legend>
+<div class="table-content b">
+    <table>
+        <tr>
+            <td>
+                <form action="/SPPs">
+                    <button type="submit">Солнечные электростанции</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Солнечные электростанции</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/MapDescriptions">
+                    <button type="submit">@AtlasSolar.Resources.Common.MapDescriptions</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>@AtlasSolar.Resources.Common.MapDescriptions</p>
+            </td>
+        </tr>
+    </table>
+</div>

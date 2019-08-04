@@ -1,0 +1,179 @@
+﻿@model AtlasSolar.Models.MapDescription
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Details;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.Details</h2>
+
+<div>
+    <h4>@AtlasSolar.Resources.Common.MapDescription</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LayersCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LayersCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionForUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionForUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameKZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameKZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameRU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameRU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionKZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionKZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionRU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionRU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppointmentEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppointmentEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppointmentKZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppointmentKZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppointmentRU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppointmentRU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SourceEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceKZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SourceKZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceRU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SourceRU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdditionalEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalKZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdditionalKZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalRU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdditionalRU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResolutionEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResolutionEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResolutionKZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResolutionKZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResolutionRU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResolutionRU)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = Model.Id }) |
+    @Html.ActionLink(AtlasSolar.Resources.Common.BackToList, "Index")
+</p>

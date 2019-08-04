@@ -1,0 +1,67 @@
+﻿@model PagedList.IPagedList<AtlasSolar.Models.SystemLog>
+@using PagedList.Mvc
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.SystemLogs;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.SystemLogs</h2>
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortOrder = Request.QueryString["SortOrder"], User = ViewBag.UserFilter, Operation = ViewBag.OperationFilter, ActionName = ViewBag.ActionNameFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })
+
+@using (Html.BeginForm("Index", "SystemLogs", new { SortOrder = Request.QueryString["SortOrder"], User = ViewBag.UserFilter, Operation = ViewBag.OperationFilter, ActionName = ViewBag.ActionNameFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = Request.QueryString["SortOrder"] })
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(s => s.FirstOrDefault().DateTime).ToString(), "Index", new { SortOrder = ViewBag.DateTimeSort, User = ViewBag.UserFilter, Operation = ViewBag.OperationFilter, ActionName = ViewBag.ActionNameFilter })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(s => s.FirstOrDefault().User).ToString(), "Index", new { SortOrder = ViewBag.UserSort, User = ViewBag.UserFilter, Operation = ViewBag.OperationFilter, ActionName = ViewBag.ActionNameFilter })
+                <br />
+                @Html.Editor("User", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(s => s.FirstOrDefault().Operation).ToString(), "Index", new { SortOrder = ViewBag.OperationSort, User = ViewBag.UserFilter, Operation = ViewBag.OperationFilter, ActionName = ViewBag.ActionNameFilter })
+                <br />
+                @Html.Editor("Operation", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(s => s.FirstOrDefault().Action).ToString(), "Index", new { SortOrder = ViewBag.ActionNameSort, User = ViewBag.UserFilter, Operation = ViewBag.OperationFilter, ActionName = ViewBag.ActionNameFilter })
+                <br />
+                @Html.Editor("ActionName", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                <br />
+                <input type="submit" value="@AtlasSolar.Resources.Common.Find" class="btn btn-default">
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Operation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Action)
+                </td>
+                <td>
+                    @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortOrder = Request.QueryString["SortOrder"], User = ViewBag.UserFilter, Operation = ViewBag.OperationFilter, ActionName = ViewBag.ActionNameFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })

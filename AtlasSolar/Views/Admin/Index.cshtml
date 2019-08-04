@@ -1,0 +1,597 @@
+﻿
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Admin;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.Admin</h2>
+
+<legend>Система</legend>
+<div class="table-content">
+    <table>
+        <tr>
+            <td>
+                <form action="/Admin/Init">
+                    <button type="submit">Инициализация</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Инициализация системы, запускается один раз</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Users/Index">
+                    <button type="submit">Пользователи</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Пользователи</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/SystemLogs/Index">
+                    <button type="submit">Системный журнал</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Системный журнал</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Statistics/Index">
+                    <button type="submit">Статистика</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Статистика</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Admin/RefreshStatistics">
+                    <button type="submit">Обновить статистику</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Обновить статистику</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Feedbacks/Index">
+                    <button type="submit">Отзывы</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Отзывы</p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<legend>Метеорология</legend>
+<div class="table-content">
+    <table>
+        <tr>
+            <td>
+                <form action="/MeteoDataSources/Index">
+                    <button type="submit">Источники метеоданных</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Источники метеоданных</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/MeteoDataPeriodicities/Index">
+                    <button type="submit">Периодичности метеоданных</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Периодичности метеоданных</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/MeteoDataTypes/Index">
+                    <button type="submit">Типы метеоданных</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Типы метеоданных</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Admin/ParseMeteoDataTypes">
+                    <button type="submit">Парсинг типов метеоданных</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Парсинг типов метеоданных</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Admin/ParseMeteoDataNASASSEMonthlyAverage">
+                    <button type="submit">Парсинг среднемесячных метеоданных NASA SSE</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Парсинг среднемесячных метеоданных NASA SSE</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Admin/ParseMeteoDataNASAPOWERMonthlyAverage">
+                    <button type="submit">Парсинг среднемесячных метеоданных NASA POWER</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Парсинг среднемесячных метеоданных NASA POWER</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Admin/ParseMeteoDataNASASSEDaily">
+                    <button type="submit">Парсинг ежедневных метеоданных NASA SSE</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Парсинг ежедневных метеоданных NASA SSE</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Admin/ParseMeteoDataNASAPOWERDaily">
+                    <button type="submit">Парсинг ежедневных метеоданных NASA POWER</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Парсинг ежедневных метеоданных NASA POWER</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Admin/UploadSARAHE">
+                    <button type="submit">Загрузка данных SARAH-E</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Загрузка данных SARAH-E</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Admin/UploadCLARA">
+                    <button type="submit">Загрузка данных CLARA</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Загрузка данных CLARA</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Options/Index">
+                    <button type="submit">Опции</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Опции</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Admin/Average">
+                    <button type="submit">Осреднение метеоданных</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Осреднение метеоданных</p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<legend>Карты</legend>
+<div class="table-content">
+    <table>
+        <tr>
+            <td>
+                <form action="/MapDescriptions/Index">
+                    <button type="submit">Описания карт</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Описания карт</p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<legend>Области</legend>
+<div class="table-content">
+    <table>
+        <tr>
+            <td>
+                <form action="/Provinces/Index">
+                    <button type="submit">Области</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Области</p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<legend>СЭС</legend>
+<div class="table-content">
+    <table>
+        <tr>
+            <td>
+                <form action="/SPPStatuses/Index">
+                    <button type="submit">Статусы СЭС</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Статусы СЭС</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/SPPPurposes/Index">
+                    <button type="submit">Назначения СЭС</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Назначения СЭС</p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<legend>Панели</legend>
+<div class="table-content">
+    <table>
+        <tr>
+            <td>
+                <form action="/PanelOrientations/Index">
+                    <button type="submit">Ориентации панелей</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Ориентации панелей</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/PVSystemMaterials/Index">
+                    <button type="submit">Материалы панелей</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Материалы панелей</p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<legend>Приборы</legend>
+<div class="table-content">
+    <table>
+        <tr>
+            <td>
+                <form action="/ApplianceTypes/Index">
+                    <button type="submit">Типы приборов</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Типы приборов</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Appliances/Index">
+                    <button type="submit">Приборы</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Приборы</p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<legend>ЛЭП</legend>
+<div class="table-content">
+    <table>
+        <tr>
+            <td>
+                <form action="/Leprngs/Index">
+                    <button type="submit">Ранги</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Ранги</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Leptypes/Index">
+                    <button type="submit">Типы</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Типы</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Lepmtrls/Index">
+                    <button type="submit">Материалы</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Материалы</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Lepinsttps/Index">
+                    <button type="submit">Типы установки</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Типы установки</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/Leprnzons/Index">
+                    <button type="submit">Зоны</button>
+                </form>
+            </td>
+            <td id="descrip">
+                <p>Зоны</p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+    @*<hr />
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("Init", "Init", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("ParseMeteoDataTypes", "ParseMeteoDataTypes", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("ParseMeteoDataNASASSEMonthlyAverage", "ParseMeteoDataNASASSEMonthlyAverage", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("ParseMeteoDataNASAPOWERMonthlyAverage", "ParseMeteoDataNASAPOWERMonthlyAverage", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("ParseMeteoDataNASASSEDaily", "ParseMeteoDataNASASSEDaily", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("ParseMeteoDataNASAPOWERDaily", "ParseMeteoDataNASAPOWERDaily", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("UploadSARAHE", "UploadSARAHE", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("UploadCLARA", "UploadCLARA", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("Average", "Average", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.SystemLogs, "Index", "SystemLogs", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.SPPStatuses, "Index", "SPPStatuses", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.SPPPurposes, "Index", "SPPPurposes", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.PanelOrientations, "Index", "PanelOrientations", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.SPPs, "Index", "SPPs", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("CreateLayerData", "CreateLayerData", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Statistics, "Index", "Statistics", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("RefreshStatistics", "RefreshStatistics", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("UploadRayon", "UploadRayon", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Leprngs, "Index", "Leprngs", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Leptypes, "Index", "Leptypes", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Lepmtrls, "Index", "Lepmtrls", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Lepinsttps, "Index", "Lepinsttps", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Leprnzons, "Index", "Leprnzons", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.MapDescriptions, "Index", "MapDescriptions", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Provinces, "Index", "Provinces", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("CreateDownloadData", "CreateDownloadData", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Lesfondtypes, "Index", "Lesfondtypes", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.LesfondOrgups, "Index", "LesfondOrgups", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Feedbacks, "Index", "Feedbacks", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    </div>
+    <hr />
+    <hr />
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Options, "Index", "Options", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Users, "Index", "Users", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.ApplianceTypes, "Index", "ApplianceTypes", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.Appliances, "Index", "Appliances", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.PVSystemMaterials, "Index", "PVSystemMaterials", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.MeteoDataSources, "Index", "MeteoDataSources", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.MeteoDataPeriodicities, "Index", "MeteoDataPeriodicities", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.MeteoDataTypes, "Index", "MeteoDataTypes", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink(AtlasSolar.Resources.Common.MeteoData, "Index", "MeteoData", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("Parser", "Index", "Parser", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("MeteoUploader", "Index", "MeteoUploader", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("UploadNewMeteoDataTypes", "UploadNewMeteoDataTypes", "Admin", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+                @Html.ActionLink("Averager", "Index", "Averager", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    </div>*@

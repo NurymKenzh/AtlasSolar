@@ -1,0 +1,90 @@
+﻿@if (ViewContext.RouteData.Values["action"] == "Index" && ViewContext.RouteData.Values["controller"] == "Home")
+{
+    @*<div class="slider">
+        <div class="slider-wrap">
+            <div class="in-slide">
+                <ul class="slider-div" style="padding: 0px;">
+                    <li>
+                        <div id="sl1">
+                            <div class="slogan">
+                                <p>@AtlasSolar.Resources.Info.Slogan1</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+
+                        <div id="sl2">
+                            <div class="slogan">
+                                <p>@AtlasSolar.Resources.Info.Slogan2</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div id="sl3">
+                            <div class="slogan">
+                                <p>@AtlasSolar.Resources.Info.Slogan3</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <a class="prev"></a>
+            <a class="next"></a>
+            <ul class="index-li" style="padding: 0px;">
+                <li id="0">
+                    <a></a>
+                </li>
+                <li id="1">
+                    <a></a>
+                </li>
+                <li id="2">
+                    <a></a>
+                </li>
+            </ul>
+        </div>
+    </div>*@
+    <div class="wrapper col3">
+        <div id="intro">
+            <div class="fl_left">
+                <a href="#"><img src="img/sl1-01.jpg" alt="" /></a>
+                <p>
+                    @Html.Raw(AtlasSolar.Resources.Info.Slogan2)
+                </p>
+            </div>
+            <div class="fl_right">
+                @{
+                    if (System.Threading.Thread.CurrentThread.CurrentCulture != null)
+                    {
+                        if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "ru")
+                        {
+                            <h2>АТЛАС СОЛНЕЧНЫХ РЕСУРСОВ РЕСПУБЛИКИ КАЗАХСТАН</h2>
+                            <p>Атлас солнечных ресурсов Казахстана создан в рамках Проекта <span class="colortext">Министерства энергетики Республики Казахстан и Программы развития ООН</span> «Оказание поддержки Правительству Республики Казахстан в реализации Концепции перехода к зеленой экономике и институционализации Программы Партнерства «Зеленый Мост».</p>
+                            <p>
+                                Атлас солнечных ресурсов Республики Казахстан разработан компанией <span class="colortext">«Sapa Pro&Tech».</span>
+                            </p>
+                        }
+                        else if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "kk")
+                        {
+                            <h2>ҚАЗАҚСТАН РЕСПУБЛИКАСЫ КҮН РЕСУРСТАРЫНЫҢ АТЛАСЫ</h2>
+                            <p>Қазақстан Республикасы Күн ресурстарының атласы – <span class="colortext">Қазақстан Республикасының Энергетика министрлігі мен Біріккен Ұлттар Ұйымының Даму бағдарламасының</span> «Қазақстан Республикасының Үкіметіне Жасыл экономикаға көшу тұжырымдамасын жүзеге асыруда және “Жасыл көпір” серіктестік бағдарламасын институттандыруда қолдау көрсету» жобасының шеңберінде жасалған.</p>
+                            <p>
+                                ҚР Күн ресурстарының атласы  <span class="colortext">«Sapa Pro&Tech»</span> компаниясы әзірледі
+                            </p>
+                        }
+                        else
+                        {
+                            <h2>THE ATLAS OF SOLAR RESOURCES OF KAZAKHSTAN</h2>
+                            <p>The Atlas of Solar Resources of Kazakhstan has been created within the framework of the Project of <span class="colortext">Kazakhstan’s Ministry of Energy and United Nations Development Program</span> ""Providing Assistance to the Government of Republic of Kazakhstan to Implement the Green Economy Transition Concept of Republic of Kazakhstan and Institutionalize the Green Bridge Partnership Programme”</p>
+                            <p>
+                                The Solar Resources Atlas of Kazakhstan is developed by the company <span class="colortext">«Sapa Pro&Tech»</span>
+                            </p>
+                        }
+                    }
+                }
+
+
+            </div>
+            <br class="clear" />
+        </div>
+    </div>
+                    }

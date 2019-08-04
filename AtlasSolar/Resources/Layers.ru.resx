@@ -1,0 +1,651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Active" xml:space="preserve">
+    <value>Действующие</value>
+  </data>
+  <data name="AnalizeTerrainExcludeAgri" xml:space="preserve">
+    <value>Исключить сельскохозяйственные территории (пашни, плантации, сады)</value>
+  </data>
+  <data name="AnalizeTerrainExcludeBush" xml:space="preserve">
+    <value>Исключить естественную кустарниковую растительность</value>
+  </data>
+  <data name="AnalizeTerrainExcludeDesert" xml:space="preserve">
+    <value>Исключить пески (в том числе подвижные и закрепленные травянистой и полукустарниковой)</value>
+  </data>
+  <data name="AnalizeTerrainExcludeHydro" xml:space="preserve">
+    <value>Исключить объекты гидрографии (озера, водохранилища, реки, ручьи, зоны затопления, болота)</value>
+  </data>
+  <data name="AnalizeTerrainExcludeNatres" xml:space="preserve">
+    <value>Исключить природные резерваты</value>
+  </data>
+  <data name="AnalizeTerrainExcludePark" xml:space="preserve">
+    <value>Исключить природные парки</value>
+  </data>
+  <data name="AnalizeTerrainExcludePreserve" xml:space="preserve">
+    <value>Исключить заказники</value>
+  </data>
+  <data name="AnalizeTerrainExcludeProtect" xml:space="preserve">
+    <value>Исключить заповедные зоны</value>
+  </data>
+  <data name="AnalizeTerrainExcludeReserve" xml:space="preserve">
+    <value>Исключить природные заповедники</value>
+  </data>
+  <data name="AnalizeTerrainExcludeSettlement" xml:space="preserve">
+    <value>Исключить территории населенных пунктов</value>
+  </data>
+  <data name="AnalizeTerrainExcludeSolon" xml:space="preserve">
+    <value>Исключить солончаки и соры</value>
+  </data>
+  <data name="AnalizeTerrainExcludeStone" xml:space="preserve">
+    <value>Исключить каменистые поверхности и россыпи, выходы пород</value>
+  </data>
+  <data name="AnalizeTerrainExcludeTakyr" xml:space="preserve">
+    <value>Исключить такыры</value>
+  </data>
+  <data name="AnalizeTerrainExcludeWood" xml:space="preserve">
+    <value>Исключить естественную древесную растительность (лес, в том числе саксаул, стланик, редколесья)</value>
+  </data>
+  <data name="East" xml:space="preserve">
+    <value>Восток</value>
+  </data>
+  <data name="FindTerrainAGRI" xml:space="preserve">
+    <value>Сельскохозяйственные территории (пашни, плантации, сады) (AGRI)</value>
+  </data>
+  <data name="FindTerrainALTITUDE" xml:space="preserve">
+    <value>Высота местности, м (ALTITUDE)</value>
+  </data>
+  <data name="FindTerrainBUSH" xml:space="preserve">
+    <value>Естественная кустарниковая растительность (BUSH)</value>
+  </data>
+  <data name="FindTerrainDESERT" xml:space="preserve">
+    <value>Пески (в том числе подвижные и закрепленные травянистой и полукустарниковой) (DESERT)</value>
+  </data>
+  <data name="FindTerrainHYDRO" xml:space="preserve">
+    <value>Объекты гидрографии (озера, водохранилища, реки, ручьи, зоны затопления, болота) (HYDRO)</value>
+  </data>
+  <data name="FindTerrainNATRES" xml:space="preserve">
+    <value>Природные резерваты (NATRES)</value>
+  </data>
+  <data name="FindTerrainPARK" xml:space="preserve">
+    <value>Природные парки (PARK)</value>
+  </data>
+  <data name="FindTerrainPOWERDIST" xml:space="preserve">
+    <value>Расстояние до линий электропередач, км (POWERDIST)</value>
+  </data>
+  <data name="FindTerrainPRESERVE" xml:space="preserve">
+    <value>Заказники (PRESERVE)</value>
+  </data>
+  <data name="FindTerrainPROTECT" xml:space="preserve">
+    <value>Заповедные зоны (PROTECT)</value>
+  </data>
+  <data name="FindTerrainRADIATIONNASA" xml:space="preserve">
+    <value>Солнечная радиация НАСА, кВт∙ч/м² в год (RADIATIONNASA)</value>
+  </data>
+  <data name="FindTerrainRESERVE" xml:space="preserve">
+    <value>Природные заповедники (RESERVE)</value>
+  </data>
+  <data name="FindTerrainROADDIST" xml:space="preserve">
+    <value>Расстояние до автодорог, км (ROADDIST)</value>
+  </data>
+  <data name="FindTerrainSETTLEDIST" xml:space="preserve">
+    <value>Расстояние до населенных пунктов, км (SETTLEDIST)</value>
+  </data>
+  <data name="FindTerrainSETTLEMENT" xml:space="preserve">
+    <value>Территории населенных пунктов (SETTLEMENT)</value>
+  </data>
+  <data name="FindTerrainSLOPE" xml:space="preserve">
+    <value>Уклоны местности, градус (SLOPE)</value>
+  </data>
+  <data name="FindTerrainSOLON" xml:space="preserve">
+    <value>Солончаки и соры (SOLON)</value>
+  </data>
+  <data name="FindTerrainSTONE" xml:space="preserve">
+    <value>Каменистые поверхности и россыпи, выходы пород (STONE)</value>
+  </data>
+  <data name="FindTerrainTAKYR" xml:space="preserve">
+    <value>Такыры (TAKYR)</value>
+  </data>
+  <data name="FindTerrainWOOD" xml:space="preserve">
+    <value>Естественная древесная растительность (лес, в том числе саксаул, стланик, редколесья) (WOOD)</value>
+  </data>
+  <data name="Info_aspect_srtm" xml:space="preserve">
+    <value>Экспозиция склонов, стороны света</value>
+  </data>
+  <data name="Info_avg_dnr_xx" xml:space="preserve">
+    <value>кВт∙ч/м²/месяц</value>
+  </data>
+  <data name="Info_avg_dnr_year" xml:space="preserve">
+    <value>кВт∙ч/м²/год</value>
+  </data>
+  <data name="Info_clrskyavrg" xml:space="preserve">
+    <value>Средние суммы суммарной солнечной радиации на горизонтальную поверхность при ясном небе (кВт∙ч/м²)</value>
+  </data>
+  <data name="Info_kzcover" xml:space="preserve">
+    <value>Непригодные и малопригодные типы земель</value>
+  </data>
+  <data name="Info_OPTANG" xml:space="preserve">
+    <value>Среднее месячное значение оптимального угла наклонной поверхности (градусы)</value>
+  </data>
+  <data name="Info_rainavgesm" xml:space="preserve">
+    <value>мм</value>
+  </data>
+  <data name="Info_retesh0mim" xml:space="preserve">
+    <value>Средняя месячная минимальная суммарная солнечная радиация, приходящая  на наклонную поверхность под оптимальным углом (кВт∙ч/м²) </value>
+  </data>
+  <data name="Info_rettlt0opt" xml:space="preserve">
+    <value>Средняя месячная суммарная солнечная радиация, приходящая  на наклонную поверхность под оптимальным углом (кВт∙ч/м²) </value>
+  </data>
+  <data name="Info_sis_klr" xml:space="preserve">
+    <value>кВт∙ч/м²</value>
+  </data>
+  <data name="Info_slope_srtm" xml:space="preserve">
+    <value>Карта уклонов местности, градусы</value>
+  </data>
+  <data name="Info_srfalbavg" xml:space="preserve">
+    <value>Среднее месячное альбедо поверхности (от 0 до 1.0)</value>
+  </data>
+  <data name="Info_srtm" xml:space="preserve">
+    <value>Высота над уровнем моря, м</value>
+  </data>
+  <data name="Info_t10mmax" xml:space="preserve">
+    <value>Средние месячные максимальные температуры воздуха на высоте 10 м над поверхностью земли (°С)</value>
+  </data>
+  <data name="Info_t10m_min" xml:space="preserve">
+    <value>Средняя месячная минимальная температура воздуха на уровне 10 м над поверхностью земли (°C)</value>
+  </data>
+  <data name="Info_tskinavg" xml:space="preserve">
+    <value>Средняя месячная температура подстилающей поверхности (°C)</value>
+  </data>
+  <data name="Legend_arheopamyat_1" xml:space="preserve">
+    <value>Памятники археологии и культуры</value>
+  </data>
+  <data name="Legend_arheopamyat_2" xml:space="preserve">
+    <value>Охранные зоны памятников археологии и культуры</value>
+  </data>
+  <data name="Legend_aspect_srtm" xml:space="preserve">
+    <value>Экспозиция склонов, стороны света</value>
+  </data>
+  <data name="Legend_avg_dnr_xx" xml:space="preserve">
+    <value>Прямая солнечная радиация на перпендикулярную к лучу (нормальную) поверхность (источник - NASA SSE), кВт∙ч/м²/месяц</value>
+  </data>
+  <data name="Legend_avg_dnr_year" xml:space="preserve">
+    <value>Прямая солнечная радиация на перпендикулярную к лучу (нормальную) поверхность (источник - NASA SSE),кВт∙ч/м²/год</value>
+  </data>
+  <data name="Legend_clrskyavrg_xx" xml:space="preserve">
+    <value>Средние суммы суммарной солнечной радиации на горизонтальную поверхность при ясном небе (кВт∙ч/м²/месяц)</value>
+  </data>
+  <data name="Legend_clrskyavrg_year" xml:space="preserve">
+    <value>Средние суммы суммарной солнечной радиации на горизонтальную поверхность при ясном небе кВт∙ч/м²/год)</value>
+  </data>
+  <data name="Legend_dni_xx" xml:space="preserve">
+    <value>Средняя месячная прямая солнечная радиация на нормальную поверхность (DNI) (кВт∙ч/м²)</value>
+  </data>
+  <data name="Legend_dni_year" xml:space="preserve">
+    <value>Средняя годовая прямая солнечная радиация на нормальную поверхность (DNI) (кВт∙ч/м²)</value>
+  </data>
+  <data name="Legend_exp_dif_xx" xml:space="preserve">
+    <value>Рассеянная радиация (источник - NASA SSE), кВт∙ч/м²/месяц</value>
+  </data>
+  <data name="Legend_exp_dif_year" xml:space="preserve">
+    <value>Рассеянная радиация (источник - NASA SSE), кВт∙ч/м²/год</value>
+  </data>
+  <data name="Legend_hidroohrzony_1" xml:space="preserve">
+    <value>Гидрография и водоохранные зоны</value>
+  </data>
+  <data name="Legend_hidroohrzony_2" xml:space="preserve">
+    <value>Водоохранные зоны</value>
+  </data>
+  <data name="Legend_kzcover" xml:space="preserve">
+    <value>Непригодные и малопригодные типы земель</value>
+  </data>
+  <data name="Legend_kzcover_1" xml:space="preserve">
+    <value>территории населенных пунктов</value>
+  </data>
+  <data name="Legend_kzcover_2" xml:space="preserve">
+    <value>сельскохозяйственные территории (пашни, плантации, сады)</value>
+  </data>
+  <data name="Legend_kzcover_3" xml:space="preserve">
+    <value>естественная древесная растительность (лес, в том числе саксаул, стланик, редколесья)</value>
+  </data>
+  <data name="Legend_kzcover_4" xml:space="preserve">
+    <value>естественная кустарниковая растительность</value>
+  </data>
+  <data name="Legend_kzcover_5" xml:space="preserve">
+    <value>объекты гидрографии (озера, водохранилища, реки, ручьи, зоны затопления, болота)</value>
+  </data>
+  <data name="Legend_kzcover_6" xml:space="preserve">
+    <value>такыры</value>
+  </data>
+  <data name="Legend_kzcover_7" xml:space="preserve">
+    <value>пески (в том числе подвижные и закрепленные травянистой и полукустарниковой</value>
+  </data>
+  <data name="Legend_kzcover_8" xml:space="preserve">
+    <value>солончаки и соры</value>
+  </data>
+  <data name="Legend_kzcover_9" xml:space="preserve">
+    <value>каменистые поверхности и россыпи, выходы пород</value>
+  </data>
+  <data name="Legend_oopt" xml:space="preserve">
+    <value>Особо охраняемые природные территории</value>
+  </data>
+  <data name="Legend_pamyatnikprirodypol_1" xml:space="preserve">
+    <value>Государственные памятники природы</value>
+  </data>
+  <data name="Legend_pamyatnikprirodypol_2" xml:space="preserve">
+    <value>Буферная зона государственных памятников природы</value>
+  </data>
+  <data name="Legend_prirparki_1" xml:space="preserve">
+    <value>Государственные национальные природные парки и их охранные зоны</value>
+  </data>
+  <data name="Legend_prirparki_2" xml:space="preserve">
+    <value>Охранные зоны государственных национальных природных парков</value>
+  </data>
+  <data name="Legend_rainavgesm_xx" xml:space="preserve">
+    <value>Средние суммы количества осадков (мм/месяц)</value>
+  </data>
+  <data name="Legend_rainavgesm_year" xml:space="preserve">
+    <value>Средние суммы количества осадков (мм/год)</value>
+  </data>
+  <data name="Legend_retesh0mim_xx" xml:space="preserve">
+    <value>Средняя месячная минимальная суммарная солнечная радиация, приходящая  на наклонную поверхность под оптимальным углом (кВт∙ч/м²/месяц) </value>
+  </data>
+  <data name="Legend_retesh0mim_year" xml:space="preserve">
+    <value>Средняя месячная минимальная суммарная солнечная радиация, приходящая  на наклонную поверхность под оптимальным углом (кВт∙ч/м²/год) </value>
+  </data>
+  <data name="Legend_rettlt0opt_xx" xml:space="preserve">
+    <value>Средняя месячная суммарная солнечная радиация, приходящая  на наклонную поверхность под оптимальным углом (кВт∙ч/м²/месяц) </value>
+  </data>
+  <data name="Legend_rettlt0opt_year" xml:space="preserve">
+    <value>Средняя месячная суммарная солнечная радиация, приходящая  на наклонную поверхность под оптимальным углом (кВт∙ч/м²/год) </value>
+  </data>
+  <data name="Legend_rezervaty_1" xml:space="preserve">
+    <value>Государственные природные резерваты и их охранные зоны</value>
+  </data>
+  <data name="Legend_rezervaty_2" xml:space="preserve">
+    <value>Охранные зоны государственных природных резерватов</value>
+  </data>
+  <data name="Legend_sic_xx" xml:space="preserve">
+    <value>Средняя месячная суммарная солнечная радиация при при ясном небе (SIC) (кВт∙ч/м²)</value>
+  </data>
+  <data name="Legend_sic_year" xml:space="preserve">
+    <value>Средняя годовая суммарная солнечная радиация при ясном небе (SIC) (кВт∙ч/м²)</value>
+  </data>
+  <data name="Legend_sid_xx" xml:space="preserve">
+    <value>Средняя месячная прямая солнечная радиация на горизонтальную поверхность (SID) (кВт∙ч/м²)</value>
+  </data>
+  <data name="Legend_sid_year" xml:space="preserve">
+    <value>Средняя годовая прямая солнечная радиация на горизонтальную поверхность (SID) (кВт∙ч/м²)</value>
+  </data>
+  <data name="Legend_sis_klr_xx" xml:space="preserve">
+    <value>Средние суммы суммарной солнечной радиации на горизонтальную поверхность при средних условиях облачности (SIS) (кВт∙ч/м²/месяц)</value>
+  </data>
+  <data name="Legend_sis_klr_year" xml:space="preserve">
+    <value>Средние суммы суммарной солнечной радиации на горизонтальную поверхность при средних условиях облачности (SIS) (кВт∙ч/м²/год)</value>
+  </data>
+  <data name="Legend_sis_xx" xml:space="preserve">
+    <value>Средняя месячная суммарная солнечная радиация при средних условиях неба (SIS) (кВт∙ч/м²)</value>
+  </data>
+  <data name="Legend_sis_year" xml:space="preserve">
+    <value>Средняя годовая суммарная солнечная радиация при средних условиях неба (SIS) (кВт∙ч/м²)</value>
+  </data>
+  <data name="Legend_slope_srtm" xml:space="preserve">
+    <value>Карта уклонов местности, градусы</value>
+  </data>
+  <data name="Legend_srfalbavg_xx" xml:space="preserve">
+    <value>Среднее месячное альбедо поверхности (от 0 до 1.0)</value>
+  </data>
+  <data name="Legend_srtm" xml:space="preserve">
+    <value>Высота над уровнем моря, м</value>
+  </data>
+  <data name="Legend_swv_dwn_xx" xml:space="preserve">
+    <value>Суммарная радиация на горизонтальную поверхность (источник - NASA SSE),  кВт∙ч/м²/месяц</value>
+  </data>
+  <data name="Legend_swv_dwn_year" xml:space="preserve">
+    <value>Суммарная радиация на горизонтальную поверхность (источник - NASA SSE),  кВт∙ч/м²/год</value>
+  </data>
+  <data name="Legend_t10mmax_xx" xml:space="preserve">
+    <value>Средние месячные максимальные температуры воздуха на высоте 10 м над поверхностью земли (°С)</value>
+  </data>
+  <data name="Legend_t10m_min_xx" xml:space="preserve">
+    <value>Средняя месячная минимальная температура воздуха на уровне 10 м над поверхностью земли (°C)</value>
+  </data>
+  <data name="Legend_t10m_xx" xml:space="preserve">
+    <value>Средняя месячная температура воздуха (источник - NASA SSE), °С</value>
+  </data>
+  <data name="Legend_tskinavg_xx" xml:space="preserve">
+    <value>Средняя месячная температура подстилающей поверхности (°C)</value>
+  </data>
+  <data name="Legend_zakazniky_1" xml:space="preserve">
+    <value>Государственные природные заказники</value>
+  </data>
+  <data name="Legend_zakazniky_2" xml:space="preserve">
+    <value>Охранные зоны государственных природных заказников</value>
+  </data>
+  <data name="Legend_zapovedniki_1" xml:space="preserve">
+    <value>Заповедники и их охранные зоны</value>
+  </data>
+  <data name="Legend_zapovedniki_2" xml:space="preserve">
+    <value>Охранные зоны заповедников</value>
+  </data>
+  <data name="Legend_zapovedzony_1" xml:space="preserve">
+    <value>Государственные заповедные зоны</value>
+  </data>
+  <data name="Legend_zapovedzony_2" xml:space="preserve">
+    <value>Охранные зоны государственных заповедных зон</value>
+  </data>
+  <data name="lep" xml:space="preserve">
+    <value>Линии электропередач</value>
+  </data>
+  <data name="lep2" xml:space="preserve">
+    <value>Линии электропередач (второстепенные)</value>
+  </data>
+  <data name="lep2_legend" xml:space="preserve">
+    <value>Линии электропередач (второстепенные), В</value>
+  </data>
+  <data name="lep_bufer" xml:space="preserve">
+    <value>Охранные зоны линий электропередач</value>
+  </data>
+  <data name="lep_legend" xml:space="preserve">
+    <value>Линии электропередач, В</value>
+  </data>
+  <data name="MapAuxiliary" xml:space="preserve">
+    <value>Солнечные электростанции</value>
+  </data>
+  <data name="MapClimate" xml:space="preserve">
+    <value>Климат</value>
+  </data>
+  <data name="MapFactors" xml:space="preserve">
+    <value>Факторы влияющие на размещение сетевых солнечных электростанций</value>
+  </data>
+  <data name="MapsResources" xml:space="preserve">
+    <value>Солнечные ресурсы</value>
+  </data>
+  <data name="North" xml:space="preserve">
+    <value>Север</value>
+  </data>
+  <data name="Northeast" xml:space="preserve">
+    <value>Северо-восток</value>
+  </data>
+  <data name="Northwest" xml:space="preserve">
+    <value>Северо-запад</value>
+  </data>
+  <data name="oblasti" xml:space="preserve">
+    <value>Административные области</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Другие</value>
+  </data>
+  <data name="Plane" xml:space="preserve">
+    <value>Плоскость</value>
+  </data>
+  <data name="Projected" xml:space="preserve">
+    <value>Проектируемые</value>
+  </data>
+  <data name="p_clr_cky" xml:space="preserve">
+    <value>Средние суммы суммарной солнечной радиации на горизонтальную поверхность при ясном небе (кВт∙ч/м²)</value>
+  </data>
+  <data name="p_swv_dwn" xml:space="preserve">
+    <value>Средние суммы суммарной солнечной радиации на горизонтальную поверхность при средних условиях облачности (кВт∙ч/м²)</value>
+  </data>
+  <data name="p_toa_dwn" xml:space="preserve">
+    <value>Суммы средней месячной солнечной радиации приходящей на верхнюю границу атмосферы (кВт∙ч/м2)</value>
+  </data>
+  <data name="Relief" xml:space="preserve">
+    <value>Рельеф</value>
+  </data>
+  <data name="South" xml:space="preserve">
+    <value>Юг</value>
+  </data>
+  <data name="Southeast" xml:space="preserve">
+    <value>Юго-восток</value>
+  </data>
+  <data name="Southwest" xml:space="preserve">
+    <value>Юго-запад</value>
+  </data>
+  <data name="spp" xml:space="preserve">
+    <value>Солнечные электростанции</value>
+  </data>
+  <data name="Tree_arheopamyat" xml:space="preserve">
+    <value>Памятники археологии и культуры</value>
+  </data>
+  <data name="Tree_aspect_srtm" xml:space="preserve">
+    <value>Экспозиция склонов, стороны света</value>
+  </data>
+  <data name="Tree_avg_dnr" xml:space="preserve">
+    <value>Средние суммы прямой солнечной радиации на перпендикулярную поверхность при средних условиях облачности (кВт∙ч/м²) </value>
+  </data>
+  <data name="Tree_clrskyavrg" xml:space="preserve">
+    <value>Средние суммы суммарной солнечной радиации на горизонтальную поверхность при ясном небе (кВт∙ч/м²)</value>
+  </data>
+  <data name="Tree_dni" xml:space="preserve">
+    <value>Средние суммы прямой солнечной радиации на перпендикулярную поверхность при средних условиях облачности (DNI) (кВт∙ч/м2)</value>
+  </data>
+  <data name="Tree_exp_dif" xml:space="preserve">
+    <value>Средние суммы рассеянной солнечной  радиации на горизонтальную поверхность (кВт∙ч/м²) </value>
+  </data>
+  <data name="Tree_hidroohrzony" xml:space="preserve">
+    <value>Гидрография и водоохранные зоны</value>
+  </data>
+  <data name="Tree_kzcover" xml:space="preserve">
+    <value>Непригодные и малопригодные типы земель</value>
+  </data>
+  <data name="Tree_oopt" xml:space="preserve">
+    <value>Особо охраняемые природные территории</value>
+  </data>
+  <data name="Tree_pamyatnikprirodypol" xml:space="preserve">
+    <value>Природные памятники природы</value>
+  </data>
+  <data name="Tree_prirparki" xml:space="preserve">
+    <value>Природные национальные парки</value>
+  </data>
+  <data name="Tree_rainavgesm" xml:space="preserve">
+    <value>Средние суммы количества осадков (мм)</value>
+  </data>
+  <data name="Tree_retesh0mim" xml:space="preserve">
+    <value>Средняя месячная минимальная суммарная солнечная радиация, приходящая  на наклонную поверхность под оптимальным углом (кВт∙ч/м²) </value>
+  </data>
+  <data name="Tree_rettlt0opt" xml:space="preserve">
+    <value>Средняя месячная суммарная солнечная радиация, приходящая  на наклонную поверхность под оптимальным углом (кВт∙ч/м²) </value>
+  </data>
+  <data name="Tree_rezervaty" xml:space="preserve">
+    <value>Природные резерваты</value>
+  </data>
+  <data name="Tree_sic" xml:space="preserve">
+    <value>Средние суммы суммарной солнечной радиации на горизонтальную поверхность при ясном небе (SIC) (кВт∙ч/м²)</value>
+  </data>
+  <data name="Tree_sid" xml:space="preserve">
+    <value>Средние суммы прямой солнечной радиации на горизонтальную поверхность при средних условиях облачности (SID) (кВт∙ч/м²)</value>
+  </data>
+  <data name="Tree_sis" xml:space="preserve">
+    <value>Средние суммы суммарной солнечной радиации на горизонтальную поверхность при средних условиях облачности (SIS) (кВт∙ч/м2)</value>
+  </data>
+  <data name="Tree_sis_klr" xml:space="preserve">
+    <value>Средние суммы суммарной солнечной радиации на горизонтальную поверхность при средних условиях облачности (SIS) (кВт∙ч/м2)</value>
+  </data>
+  <data name="Tree_slope_srtm" xml:space="preserve">
+    <value>Карта уклонов местности</value>
+  </data>
+  <data name="Tree_srfalbavg" xml:space="preserve">
+    <value>Среднее месячное альбедо поверхности (от 0 до 1.0)</value>
+  </data>
+  <data name="Tree_srtm" xml:space="preserve">
+    <value>Высота над уровнем моря</value>
+  </data>
+  <data name="Tree_swv_dwn" xml:space="preserve">
+    <value>Средние суммы суммарной солнечной радиации на горизонтальную поверхность при средних условиях облачности (кВт∙ч/м²)</value>
+  </data>
+  <data name="Tree_t10m" xml:space="preserve">
+    <value>Средние месячные температуры воздуха на высоте 10 м  (°С)</value>
+  </data>
+  <data name="Tree_t10mmax" xml:space="preserve">
+    <value>Средние месячные максимальные температуры воздуха на высоте 10 м над поверхностью земли (°С)</value>
+  </data>
+  <data name="Tree_t10m_min" xml:space="preserve">
+    <value>Средняя месячная минимальная температура воздуха на уровне 10 м над поверхностью земли (°C)</value>
+  </data>
+  <data name="Tree_tskinavg" xml:space="preserve">
+    <value>Средняя месячная температура подстилающей поверхности (°C)</value>
+  </data>
+  <data name="Tree_zakazniky" xml:space="preserve">
+    <value>Природные заказники</value>
+  </data>
+  <data name="Tree_zapovedniki" xml:space="preserve">
+    <value>Природные заповедники</value>
+  </data>
+  <data name="Tree_zapovedzony" xml:space="preserve">
+    <value>Природные заповедные зоны</value>
+  </data>
+  <data name="West" xml:space="preserve">
+    <value>Запад</value>
+  </data>
+  <data name="Info_daylghtav" xml:space="preserve">
+    <value>часы</value>
+  </data>
+  <data name="Info_day_cld_22" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="Legend_avg_kt_22" xml:space="preserve">
+    <value>Среднее месячное значение индекса прозрачности атмосферы (от 0 д 1.0)</value>
+  </data>
+  <data name="Legend_avg_nkt_22" xml:space="preserve">
+    <value>Среднее месячное нормализированное значение индекса прозрачности атмосферы (от 0 д 1.0)</value>
+  </data>
+  <data name="Legend_daylghtav" xml:space="preserve">
+    <value>Средняя месячная продолжительность светового дня (часы)</value>
+  </data>
+  <data name="Legend_day_cld_22" xml:space="preserve">
+    <value>Среднее месячное дневное количество облачности  (%)</value>
+  </data>
+  <data name="Tree_avg_kt_22" xml:space="preserve">
+    <value>Среднее месячное значение индекса прозрачности атмосферы (от 0 д 1.0)</value>
+  </data>
+  <data name="Tree_avg_nkt_22" xml:space="preserve">
+    <value>Среднее месячное нормализированное значение индекса прозрачности атмосферы (от 0 д 1.0)</value>
+  </data>
+  <data name="Tree_daylghtav" xml:space="preserve">
+    <value>Средняя месячная продолжительность светового дня (часы)</value>
+  </data>
+  <data name="Tree_day_cld_22" xml:space="preserve">
+    <value>Среднее месячное дневное количество облачности  (%)</value>
+  </data>
+  <data name="meteo_st" xml:space="preserve">
+    <value>Метеостанции</value>
+  </data>
+</root>

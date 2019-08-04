@@ -1,0 +1,109 @@
+﻿@model PagedList.IPagedList<AtlasSolar.Models.MeteoData>
+@using PagedList.Mvc
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.MeteoData;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.MeteoData</h2>
+
+@if (ViewBag.Role.Contains("Admin"))
+{
+    <p>
+        @Html.ActionLink(AtlasSolar.Resources.Common.Create, "Create")
+    </p>
+}
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortOrder = Request.QueryString["SortOrder"], MeteoDataTypeId = ViewBag.MeteoDataTypeIdFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter, Longitude = ViewBag.LongitudeFilter, Latitude = ViewBag.LatitudeFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })
+
+@using (Html.BeginForm("Index", "MeteoData", new { SortOrder = Request.QueryString["SortOrder"], MeteoDataTypeId = ViewBag.MeteoDataTypeIdFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter, Longitude = ViewBag.LongitudeFilter, Latitude = ViewBag.LatitudeFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = Request.QueryString["SortOrder"] })
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().MeteoDataType).ToString(), "Index", new { SortOrder = ViewBag.MeteoDataTypeSort, MeteoDataTypeId = ViewBag.MeteoDataTypeIdFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter, Longitude = ViewBag.LongitudeFilter, Latitude = ViewBag.LatitudeFilter })
+                <br />
+                @Html.DropDownList("MeteoDataTypeId", (IEnumerable<SelectListItem>)ViewBag.MeteoDataTypes, "", htmlAttributes: new { @class = "form-control" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().Year).ToString(), "Index", new { SortOrder = ViewBag.YearSort, MeteoDataTypeId = ViewBag.MeteoDataTypeIdFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter, Longitude = ViewBag.LongitudeFilter, Latitude = ViewBag.LatitudeFilter })
+                <br />
+                @Html.Editor("Year", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().Month).ToString(), "Index", new { SortOrder = ViewBag.MonthSort, MeteoDataTypeId = ViewBag.MeteoDataTypeIdFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter, Longitude = ViewBag.LongitudeFilter, Latitude = ViewBag.LatitudeFilter })
+                <br />
+                @Html.Editor("Month", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().Day).ToString(), "Index", new { SortOrder = ViewBag.DaySort, MeteoDataTypeId = ViewBag.MeteoDataTypeIdFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter, Longitude = ViewBag.LongitudeFilter, Latitude = ViewBag.LatitudeFilter })
+                <br />
+                @Html.Editor("Day", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().Longitude).ToString(), "Index", new { SortOrder = ViewBag.LongitudeSort, MeteoDataTypeId = ViewBag.MeteoDataTypeIdFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter, Longitude = ViewBag.LongitudeFilter, Latitude = ViewBag.LatitudeFilter })
+                <br />
+                @Html.Editor("Longitude", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().Latitude).ToString(), "Index", new { SortOrder = ViewBag.LatitudeSort, MeteoDataTypeId = ViewBag.MeteoDataTypeIdFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter, Longitude = ViewBag.LongitudeFilter, Latitude = ViewBag.LatitudeFilter })
+                <br />
+                @Html.Editor("Latitude", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().Value).ToString(), "Index", new { SortOrder = ViewBag.ValueSort, MeteoDataTypeId = ViewBag.MeteoDataTypeIdFilter, Year = ViewBag.YearFilter, Month = ViewBag.MonthFilter, Day = ViewBag.DayFilter, Longitude = ViewBag.LongitudeFilter, Latitude = ViewBag.LatitudeFilter })
+                <br />
+                @Html.Editor("Value", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                <br />
+                <input type="submit" value="@AtlasSolar.Resources.Common.Find" class="btn btn-default">
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeteoDataType.NameAdditional)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Longitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Latitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                @if (ViewBag.Role.Contains("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = item.Id }) |
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id }) |
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Delete, "Delete", new { id = item.Id })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id })
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+}

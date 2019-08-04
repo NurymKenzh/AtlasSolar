@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "UploadSARAHE";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UploadSARAHE</h2>
+
+@using (Html.BeginForm("UploadSARAHE", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <h4>UploadSARAHE</h4>
+        <hr />
+
+        <div class="form-group">
+            @Html.Label(AtlasSolar.Resources.Common.Files, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" class="multiple" name="Files" multiple />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@AtlasSolar.Resources.Common.Upload" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@if (ViewBag.Report != null)
+{
+    if (ViewBag.Report != "")
+    {
+        @Html.Raw(ViewBag.Report)
+    }
+}

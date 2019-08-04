@@ -1,0 +1,185 @@
+﻿@model AtlasSolar.Models.Province
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Delete;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.Delete</h2>
+
+<h3>@AtlasSolar.Resources.Common.Delete?</h3>
+<div>
+    <h4>@AtlasSolar.Resources.Common.Province</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameKZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameKZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameRU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameRU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Max_auto_dist)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Max_auto_dist)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Min_auto_dist)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Min_auto_dist)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Max_lep_dist)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Max_lep_dist)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Min_lep_dist)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Min_lep_dist)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Max_np_dist)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Max_np_dist)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Min_np_dist)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Min_np_dist)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Max_slope_srtm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Max_slope_srtm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Min_slope_srtm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Min_slope_srtm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Max_srtm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Max_srtm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Min_srtm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Min_srtm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Max_swvdwnyear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Max_swvdwnyear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Min_swvdwnyear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Min_swvdwnyear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Max_longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Max_longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Min_longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Min_longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Max_latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Max_latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Min_latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Min_latitude)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="@AtlasSolar.Resources.Common.Delete" class="btn btn-default" /> |
+            @Html.ActionLink(AtlasSolar.Resources.Common.BackToList, "Index")
+        </div>
+    }
+</div>

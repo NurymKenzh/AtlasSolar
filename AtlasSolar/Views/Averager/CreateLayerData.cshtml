@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "CreateLayerData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreateLayerData</h2>
+
+@if (string.IsNullOrEmpty(ViewBag.Report))
+{
+    using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "MainForm" }))
+    {
+        <p>
+            @Html.Raw("From:")
+        </p>
+
+        <p>
+            @Html.DropDownList("MeteoDataPeriodicityId", (IEnumerable<SelectListItem>)ViewBag.MeteoDataPeriodicities, "", htmlAttributes: new { @class = "form-control" })
+        </p>
+
+        <p>
+            @Html.DropDownList("MeteoDataSourceId", (IEnumerable<SelectListItem>)ViewBag.MeteoDataSources, "", htmlAttributes: new { @class = "form-control" })
+        </p>
+
+        if (ViewBag.MeteoDataTypes != null)
+        {
+            <p>
+                @Html.DropDownList("MeteoDataTypeId", (IEnumerable<SelectListItem>)ViewBag.MeteoDataTypes, "", htmlAttributes: new { @class = "form-control" })
+            </p>
+        }
+
+        <p>
+            <input type="button" value="Change" name="Action" class="form-control" id="Change">
+        </p>
+
+        <p>
+            <input type="submit" value="OK" name="Action" class="form-control" id="OK">
+        </p>
+    }
+}
+else
+{
+    @Html.Raw(ViewBag.Report)
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+
+    <script>
+        $("#Change").click(function () {
+            var input = $("<input>")
+                .attr("type", "hidden")
+                .attr("name", "Action").val("Change");
+            $('#MainForm').append($(input));
+            $('#MainForm').submit();
+        });
+    </script>
+}

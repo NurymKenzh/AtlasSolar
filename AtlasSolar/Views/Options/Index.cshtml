@@ -1,0 +1,71 @@
+﻿@model PagedList.IPagedList<AtlasSolar.Models.Option>
+@using PagedList.Mvc
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = AtlasSolar.Resources.Common.Options;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@AtlasSolar.Resources.Common.Options</h2>
+
+<p>
+    @Html.ActionLink(AtlasSolar.Resources.Common.Create, "Create")
+</p>
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortOrder = Request.QueryString["SortOrder"], Code = ViewBag.CodeFilter, DescriptionKZ = ViewBag.DescriptionKZFilter, DescriptionRU = ViewBag.DescriptionRUFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })
+
+@using (Html.BeginForm("Index", "Options", new { SortOrder = Request.QueryString["SortOrder"], Code = ViewBag.CodeFilter, DescriptionKZ = ViewBag.DescriptionKZFilter, DescriptionRU = ViewBag.DescriptionRUFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = Request.QueryString["SortOrder"] })
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().Code).ToString(), "Index", new { SortOrder = ViewBag.CodeSort, Code = ViewBag.CodeFilter, DescriptionKZ = ViewBag.DescriptionKZFilter, DescriptionRU = ViewBag.DescriptionRUFilter })
+                <br />
+                @Html.Editor("Code", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().DescriptionKZ).ToString(), "Index", new { SortOrder = ViewBag.DescriptionKZSort, Code = ViewBag.CodeFilter, DescriptionKZ = ViewBag.DescriptionKZFilter, DescriptionRU = ViewBag.DescriptionRUFilter })
+                <br />
+                @Html.Editor("DescriptionKZ", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().DescriptionRU).ToString(), "Index", new { SortOrder = ViewBag.DescriptionRUSort, Code = ViewBag.CodeFilter, DescriptionKZ = ViewBag.DescriptionKZFilter, DescriptionRU = ViewBag.DescriptionRUFilter })
+                <br />
+                @Html.Editor("DescriptionRU", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.FirstOrDefault().Value)
+            </th>
+            <th>
+                <br />
+                <input type="submit" value="@AtlasSolar.Resources.Common.Find" class="btn btn-default">
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescriptionKZ)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescriptionRU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                <td>
+                    @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = item.Id }) |
+                    @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id }) |
+                    @Html.ActionLink(AtlasSolar.Resources.Common.Delete, "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+}

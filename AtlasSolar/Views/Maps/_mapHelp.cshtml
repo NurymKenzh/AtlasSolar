@@ -1,0 +1,514 @@
+﻿<div id="help_CalcEnergy" class="modalinfo modal">
+    <div>
+        <span class="close" id="help_CalcEnergy_close">&times;</span>
+        <h4 align="left">@AtlasSolar.Resources.Common.CalcEnergy</h4>
+        @{
+            if (System.Threading.Thread.CurrentThread.CurrentCulture != null)
+            {
+                if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "ru")
+                {
+                    <p align="justify" style="margin-top: 10px;"><span><strong><em>Калькулятор &laquo;Расчет энергопотребления&raquo; -</em></strong> это инструмент для расчета потребления электроэнергии домохозяйствами (ферма, дача, дом и т. д.). С помощью этого калькулятора вы можете рассчитать, сколько энергии потребляет ваш дом, и этот расчетявляется первым и важным шагом при разработке плана установки солнечных фотоэлектрических панелей.</span></p>
+                    <br />
+                    <p align="justify"><span>Чтобы пользоваться этим калькулятором, введите свои данные потребления энергии для различных бытовых приборов, которые вы можете выбрать из выпадающего меню. В меню приведены наиболее общие значения основных бытовых электроприборов. Выберите мощность в ваттах рядом с названием приборов. Как правило, мощность прибора указана на специальной этикетке, расположенной на задней или нижней стенке прибора. Введите приблизительное &nbsp;суточное продолжительность использования каждого прибора (в первом ячейке укажите &laquo;часы&raquo; и на втором ячейке &laquo;минуты&raquo;). Чтобы добавить устройства, щелкните по значку &laquo;Добавить&raquo;. После добавления всех приборов вы можете увидеть общее энергопотребление вашего дома в правом нижнем углу окна.</span></p>
+                }
+                else if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "kk")
+                {
+                    <p align="justify" style="margin-top: 10px;"><strong><em><span>&laquo;Энергия</span></em></strong><strong><em><span style="">тұтыну</span></em></strong><strong><em><span style="">мөлшерін есептеу</span></em></strong><strong><em><span style="">&raquo;</span></em></strong><strong><em><span style=""> калькуляторы</span></em></strong><span style=""> - үй шаруашылықтарының (ферма, үй</span><span style="">және т.б.</span><span style="">)</span><span style=""> энергия тұтынуын есептеу құралы. Бұл калькулятор көмегімен сіздің үйіңіздің қаншалықты энергия тұтынатының есептеуге болады. Бұл өз кезегінде күн фотоэлектр панельдерін орнату жоспарын дамыту барысындағы бірінші және маңызды қадам болып табылады. </span></p>
+                    <br />
+                    <p align="justify"><span>Бұл калькуляторды пайдалану үшін, түрлі тұрмыстық техника үшін сіздің энергия тұтыну мәліметтеріңізді енгізіңіз. Негізгі және көп пайдаланылатын тұрмыстық техникалар тізімін ашылмалы мәзірден таңдаңыз және оған сәйкес қуатың таңдаңыз. Әдетте, тұрмыстық техникалардың қуаты құрылғының артқы немесе астыңғы жағында орналасқан арнайы заттаңбадан табуға болады. Келесі, әрбір құралдың тәуліктік пайдалану уақыты туралы ақпаратты енгізіңіз (бірінші ұяшыққа &laquo;сағат&raquo; сандарын, екінші ұяшықта &laquo;минут&raquo; мәндерін көрсетіңіз. Құрылғыны тізімге қосу үшін, &laquo;Қосу&raquo; белгішесін басыңыз. Барлық құрылғыларды қосқаннан кейін сіз терезенің төменгі оң жақ бұрышынан сіздің үйіңіздің жалпы электр энергия тұтыну мөлшерін көре аласыз.</span></p>
+                }
+                else
+                {
+                    <p align="justify" style="margin-top: 10px;"><strong><em><span>Calculation of energy consumption</span></em></strong><span style=""> is a tool for calculating the household electricity consumption (farm, country house, home etc.). With the help of this calculator, you can calculate how much energy your house is consuming, which is the first and foremost step for developing the plan for installation of solar PV panels. </span></p>
+                    <br />
+                    <p align="justify"><span>To use this calculator enter your energy consumption data for different household appliances, which you can select from the pull-out menu. In the menu the most common values of the basic household electrical appliances are given. Select the power in watts next to the name of appliances. Typically, the power of the appliance is indicated on a special label located behind the back or bottom wall of the appliance. Enter approximately the usage duration for each appliance diring one day (in the first cell "hours" and on the second cell "minutes"). To add devices, click the "Add" icon. After adding all the appliances you can see the total energy consumption of your house on the lower right corner of the window.</span></p>
+                }
+            }
+        }
+    </div>
+</div>
+
+<div id="help_CalcEfficiency" class="modalinfo modal">
+    <div>
+        <span class="close" id="help_CalcEfficiency_close">&times;</span>
+        <h4 align="left">@AtlasSolar.Resources.Common.CalcEfficiency</h4>
+        @{
+            if (System.Threading.Thread.CurrentThread.CurrentCulture != null)
+            {
+                if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "ru")
+                {
+                    <p align="justify" style="margin-top: 10px;"><strong><em><span style="">Калькулятор &laquo;Расчет производительности ФЭС&raquo; - </span></em></strong><span style="">я</span><span style="">вляется инструментом для расчета выработки электрической энергии проектируемой фотоэлектрической станции, а также оценивает суммарное солнечное излучение, поступающее на любых ориентированных и следящих поверхностей.</span></p>
+                    <br />
+                    <p align="justify"><strong><em><span style="">Угол наклона солнечных панелей</span></em></strong><span style=""> -</span><span style="">&nbsp; </span><span style="">угол</span><span style="">&nbsp; </span><span style="">наклона солнечный панели к горизонтальной поверхности. Угол наклона</span><span style="">&nbsp; </span><span style="">рассматриваемой плоскости к горизонту изменяется от 0 до 90 градусов. Горизонтальное расположение соответствует 0 градусу, </span><span style="">а</span><span style=""> вертикальное расположение 90 градусу. Ввод значения угла наклона доступен и обязателен для &laquo;Фиксированной&raquo; и для &laquo;Следящих по вертикальной оси&raquo; систем. Для остальных систем рассчитывается калькулятором. </span></p>
+                    <br />
+                    <p align="justify"><span style="">Часто пользователи устанавливают угол наклона равного широте выбранного местоположения. Тем не менее, установка наклона, равного широте, не обязательно максимизирует годовой выпуск энергии системы, поскольку меньшие углы наклона благоприятствуют пиковой продукции в летние месяцы, а более высокие углы наклона благоприятствуют более низким условиям облучения в зимние месяцы. </span></p>
+                    <br />
+                    <p align="justify"><strong><em><span style="">Азимут солнечных панелей</span></em></strong><span style=""> - угол показывающий ориентацию солнечных панелей</span><span style="">&nbsp; </span><span style="">на стороны света. Азимут равен 0 градусов при ориентации солнечной панели</span><span style="">&nbsp; </span><span style="">на юг, 180 градусов при ориентации на север. Ввод значения азимута обязателен и доступен только для типа ориентации &laquo;Фиксированная&raquo;. </span><span style="">&nbsp;</span><span style="">Для типов ориентации панелей &laquo;Фиксированные корректируемые 2 раза в год&raquo; и &laquo;Следящая по горизонтальной оси&raquo; значения по умолчанию равны нулю, при этом корректировка значений данного поля, возможно. Для других типов ориентации панелей</span><span style="">&nbsp; </span><span style="">рассчитывается калькулятором.</span></p>
+                    <br />
+                    <p align="justify"><span style="">Значение по умолчанию является азимутальным углом 0&deg; (ориентация панелей на юг), это значения, как правило, максимизировать производство электроэнергии за год. </span><span style="">&nbsp;</span><span style="">Изменение значение угла азимута положительную сторону, т.е. западу способствует повышению выработки энергии во второй половине дня, а изменение значение угла азимута отрицательную сторону, т.е. востоку способствует повышению выработки энергии утром.</span></p>
+                    <br />
+                    <p align="center"><span style="">Углы азимута для различных сторон света</span></p>
+                    <br />
+                    <table border="1" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><em><span style="">Углы азимута </span></em></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><em><span style="">Стороны света</span></em></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">-180&deg; </span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">север</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">-135&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">северо-восток</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">-90&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">восток</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">-45&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">юго-восток</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">0&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">юг</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">45&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">юго-запад</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">90&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">запад</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">135&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">северо-запад</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">180&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">север</span></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+                else if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "kk")
+                {
+                    <p align="justify" style="margin-top: 10px;"><strong><em><span style="">&laquo;ФЭС-тің энергия өндірісн есептеу&raquo; калькуляторы &ndash; </span></em></strong><span style="">жобадағы фотоэлектрлік станцияның электр энергия өндіру мөлшерін есептеуге және кез келген бағдарланған беткейге келетін жиынтық күн радиация мөлшерін есетеуге арналған құрал болып табылады.</span></p>
+                    <br />
+                    <p align="justify"><strong><em><span style="">Күн панелінің көлбеу бұрышы</span></em></strong><span style=""> - көлденең беткеймен күн панельдерінің арасындағы бұрыш. Көлбеу бұрышы 0 мен 90 градус аралығында өзгеріп отырады. Көлденең орналасқан күн панелінің бұрышы 0 градусқа, ал тікке орнатылған күн панелінің бұрышы 90 градусқа сәйкес келеді. Бұрыштың мәндерін енгізу &laquo;Тұрақты&raquo; және &laquo;Вертикальді осьті бақылау&raquo; жүйелері үшін қажетті болып табылады. Басқа жүйелер үшін калькулятормен автоматты түрде есептелінеді.</span></p>
+                    <br />
+                    <p align="justify"><span style="">Әдетте, көлбеу бұрышын пайдаланушылар орналасқан мекеннің ендігіне тең қылып алады. Алайда, ендікке тең етіп алынған көлбеу бұрышы міндетті түрде жүйенің максимум жылдық энергия өндірісін бермейді.</span><span style="">&nbsp; </span><span style="">Жаз айларында энергия өндірісін арттыру үшін орналасқан мекеннің ендігінен төмен бұрыштарды, ал қысқы айлар үшін орналасқан мекеннің ендігінен жоғары бұрыштарды таңдау күн электр станциясының энергия өндірісін арттырады. </span></p>
+                    <br />
+                    <p align="justify"><strong><em><span style="">Күн панельдерінің азимуты</span></em></strong><span style=""> - күн панельдерінің компас бойынша бағытын көрсететін бұрыш. Күн панелі оңтүстікке бағытталғанда азимут бұрышы 180 градусқа, ал солтүстікке бағдарланғанда азимут 0 градусқа сәйкес келеді. Азимут мәнің енгізу &laquo;Тұрақты&raquo; жүйеге міндетті болып табылады. &laquo;Тұрақты, күн панельдерінің бұрышы жылына 2 рет өзгертілетін&raquo; және &laquo;Горизонтальді осьті бақылау&raquo; жүйелеріне азимут бұрышының әдепкі мәні 0 градусқа тең, бірақ пайдаланушымен өзгертуге болады. Басқа күн панельдерінің бағдарлану түрлері үшін калькулятормен автоматты түрде есептелінеді.</span></p>
+                    <br />
+                    <p align="justify"><span style="">Азимут бұрышының әдепкі мәнде 0&deg; болуы (оңтүстікке бағдарланған панель) жыл бойғы энергия өндірісін барынша арттырады. Азимут бұрышының мәнін оң жаққа өзгерту, яғни, батыс бағытқа энергия өндірісін күннің екінші жартысында арттырады, ал азимут бұрышын теріс жаққа өзгерту, яғни, шығыс бағытқа таңертеңгі энергия өндірісінің өсуіне ықпал етеді.</span></p>
+                    <br />
+                    <p align="center"><span style="">Әр түрлі компас бағыттарына сәйкес азимут бұрыштары</span></p>
+                    <br />
+                    <table border="1" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td valign="top" width="225">
+                                        <p align="center"><em><span style="">Азимут бұрыштары</span></em></p>
+                                    </td>
+                                    <td valign="top" width="413">
+                                        <p align="center"><em><span style="">Бағыттар</span></em></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" width="225">
+                                        <p align="center"><span style="">-180&deg; </span></p>
+                                    </td>
+                                    <td valign="top" width="413">
+                                        <p align="center"><span style="">солтүстік</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" width="225">
+                                        <p align="center"><span style="">-135&deg;</span></p>
+                                    </td>
+                                    <td valign="top" width="413">
+                                        <p align="center"><span style="">солтүстік</span> -<span style=""> шығыс</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" width="225">
+                                        <p align="center"><span style="">-90&deg;</span></p>
+                                    </td>
+                                    <td valign="top" width="413">
+                                        <p align="center"><span style="">шығыс</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" width="225">
+                                        <p align="center"><span style="">-45&deg;</span></p>
+                                    </td>
+                                    <td valign="top" width="413">
+                                        <p align="center"><span style="">оңтүстік</span><span style=""> -</span><span style=""> шығыс</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" width="225">
+                                        <p align="center"><span style="">0&deg;</span></p>
+                                    </td>
+                                    <td valign="top" width="413">
+                                        <p align="center"><span style="">оңтүстік</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" width="225">
+                                        <p align="center"><span style="">45&deg;</span></p>
+                                    </td>
+                                    <td valign="top" width="413">
+                                        <p align="center"><span style="">оңтүстік</span><span style=""> -</span><span style=""> батыс</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" width="225">
+                                        <p align="center"><span style="">90&deg;</span></p>
+                                    </td>
+                                    <td valign="top" width="413">
+                                        <p align="center"><span style="">батыс</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" width="225">
+                                        <p align="center"><span style="">135&deg;</span></p>
+                                    </td>
+                                    <td valign="top" width="413">
+                                        <p align="center"><span style="">солтүстік</span><span style="">-</span><span style=""> батыс</span></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" width="225">
+                                        <p align="center"><span style="">180&deg;</span></p>
+                                    </td>
+                                    <td valign="top" width="413">
+                                        <p align="center"><span style="">солтүстік</span></p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                }
+                else
+                {
+                    <p align="justify" style="margin-top: 10px;"><strong><em><span style="">Calculation of energy output of PV station &ndash; </span></em></strong><span style="">is a tool for the calculation of the electrical energy output of the projected PV station, and it also estimates total solar radiation coming to any orientated and tracking surfaces. </span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+                    <br />
+                    <p align="justify"><strong><em><span style="">Tilt of solar panel</span></em></strong><span style=""> is the angle of the solar panel to the horizontal surface. The tilt angle varies from 0 to 90 degrees. The horizontal arrangement corresponds to 0 degrees, and the vertical arrangement is 90 degrees. Entering the angle is available and mandatory for "Fixed" and "Vertical axis tracking" systems. For other systems it is determined by the calculator.</span></p>
+                    <br />
+                    <p align="justify"><span style="">Often, users set the tilt angle equal to the latitude of the location. However, setting the tilt angle equal to the latitude does not necessarily maximize the annual output of the system's energy, since smaller tilt angles favor peak production in the summer months, and higher tilt angles favor lower exposure conditions in the winter months.</span></p>
+                    <br />
+                    <p align="justify"><strong><em><span style="">The azimuth of solar panels</span></em></strong><span style=""> is the angle showing the orientation of the solar panels to the sides of the world. The azimuth angle is 0 degrees when the solar panel is oriented to the &ldquo;south&rdquo;, 180 degrees with the orientation to the &ldquo;north&rdquo;. Entering the azimuth value is mandatory and is only available for the "Fixed" orientation type. For the orientation types of the panels "Fixed Adjustable 2 times per year" and "Horizontal axis tracking" the default values ​​are zero, and correction of the values ​​of this field is possible. For other types of orientation panels is calculated by the calculator.</span></p>
+                    <br />
+                    <p align="justify"><span style="">The default value of azimuth angle is 0 &deg; (south orientation), these values tend to maximize the production of electricity for the year. Changing the value of the azimuth angle to the positive side, i.e. &ldquo;west&rdquo; contributes to increased energy production in the second half of the day, and the change in the value of the azimuth angle to the negative side, i.e. &ldquo;east&rdquo; contributes to increased energy production in the morning.</span></p>
+                    <br />
+                    <p align="center"><span style="">Angles of azimuth for different compass headings</span></p>
+                    <br />
+                    <table border="1" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><em><span style="">Azimuth angles</span></em></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><em><span style="">Headings</span></em></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">-180&deg; </span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">North</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">-135&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center">Northeast</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">-90&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">East</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">-45&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">Southeast</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">0&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">South</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">45&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">Southwest</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">90&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">West</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">135&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">Northwest</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="225">
+                                    <p align="center"><span style="">180&deg;</span></p>
+                                </td>
+                                <td valign="top" width="413">
+                                    <p align="center"><span style="">North</span></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+            }
+        }
+    </div>
+</div>
+
+<div id="help_AnalizeTerrain" class="modalinfo modal">
+    <div>
+        <span class="close" id="help_AnalizeTerrain_close">&times;</span>
+        <h4 align="left">@AtlasSolar.Resources.Common.AnalizeTerrain</h4>
+        @{
+            if (System.Threading.Thread.CurrentThread.CurrentCulture != null)
+            {
+                if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "ru")
+                {
+                    <p align="justify" style="margin-top: 10px;">Функция «Анализ пригодности территории для размещения солнечных электростанций (СЭС)» предназначена для оценки пригодности территории административного района для размещения сетевых СЭС.Для работы с инструментом пользователь должен иметь знания о факторах влияющих на размещение СЭС.</p>
+                    <br />
+                    <p align="justify">Разработанный инструмент позволяет интерактивно назначать степень влияния и зону действия как антропогенных так и природных факторов.  Для этого пользователь: 1) выбирает административный район, источник данных по суммарной радиации (NASA SSE, SARAH-E); 2) определяет важность (вес) параметра, допустимые значения входных параметров; 3) выбирает земли, исключаемые из ранжирования; 4) Производится пересчет каждого значения пикселей. Находящихся за пределами допустимых значений приравниваются к нулю, значения для пикселей с положительным влиянием интерполируются от исключаемых 0 до максимальных значений 100 % (по мере возрастания значения), значения с отрицательным влиянием интерполируются от исключаемых 0 до минимальных значений 100 % (по мере уменьшения значений);  5) Итоговый растр формируется по пригодности в процентах. Итоговый результирующий растр отображается в виде шкалы процентов:  75-100 % наиболее пригодный;  50-75 % пригодный;  25-50% относительно пригодный; 0-25 % малопригодный; 0 - непригодный.</p>
+                }
+                else if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "kk")
+                {
+                    <p align="justify" style="margin-top: 10px;">"Күн электр станцияларын (КЭС) орналастыруға қолайлы аумақты таңдау функциясы" желілік КЭС орналастыру үшін әкімшілік аудандар аумақтарының қолайлылығын бағалауға арналған. Құрылғымен жұмыс жасау үшін пайдаланушы КЭС орналастыруға әсер етуші факторлар жайлы ақпараттарды білуі керек.</p>
+                    <br />
+                    <p align="justify">Құрылғы табиғи және антпропогенді факторлардың аймақтарын және әсер ету деңгейлерін интерактивті түрде белгілеу мүмкіндігіне ие. Бұл үшін тұтынушы: 1) әкімшілік ауданды таңдайды, жиынтық радиация бойынша дерек көзін көрсетеді (NASA SSE, SARAH-E); 2) параметрдің маңыздылығын, қолданылатын мәліметтердің шектік мәндерін анықтайды; 3) Талдауда қолданылмайтын жерлерді көрсетеді; 4) Пиксельдердің әрбір мәндеріне есептеулер жүргізіледі. Шекті мәннен асқан аумақтар мәні нөлге теңеледі, оң ықпал ететін пиксельдер мәндері шектелген 0-ден максималды мәніне дейін 100  % -ға жоғарылау реті  бойынша интерполяцияланады,  теріс ықпал ететін пиксельдер мәндері шектелген 0-ден минималды мәніне дейін 100  % -ға төмендеу реті бойынша интерполяцияланады; 5) Қорытынды растр тиімділігіне сәйкес пайыз бойынша құрастырылады. Қорытынды растр пайыздық шкала ретінде безендіріледі: 75-100 % ең тиімді;  50-75 % тиімді;  25-50% салыстырмалы тиімді; 0-25 % аз тиімді; 0 - тиімсіз.</p>
+                }
+                else
+                {
+                    <p align="justify" style="margin-top: 10px;">The function "Analysis of the suitability of the territory for the placement of Solar power station (SPS)" is designed to assess the suitability of the administrative area for the placement of network SPS. To work with the tool, the user must have knowledge of the factors affecting the placement of (SPS).</p>
+                    <br />
+                    <p align="justify">The developed tool allows you to interactively assign the degree of influence and the scope of both anthropogenic and natural factors. For this, the user: 1) selects the administrative area, the source of data on total radiation (NASA SSE, SARAH-E), 2) determines the importance (weight) of the parameter , Admissible values ​​of the input parameters, 3) selects the lands excluded from the ranking, 4) Recalculates each pixel value, those outside the allowed values ​​are equal to zero, the values ​​for the pixels with the positive influence of interploation from the excluded 0 to the maximum values ​​of 100% (as the value increases), the values ​​with negative influence are interpolated from the excluded 0 to the minimum values ​​of 100% (as the values ​​decrease), 5) The final raster is formed according to the availability in percent. The resulting resulting raster is displayed in the form of a percent scale: 75-100% -most suitable; 50-75% - suitable; 25-50% - relatively usable; 0-25% - of little use; 0 - unusable. </p>
+                }
+            }
+        }
+    </div>
+</div>
+
+<div id="help_CompareDataInPoints" class="modalinfo modal">
+    <div>
+        <span class="close" id="help_CompareDataInPoints_close">&times;</span>
+        <h4 align="left">@AtlasSolar.Resources.Common.CompareDataInPoints</h4>
+        @{
+            if (System.Threading.Thread.CurrentThread.CurrentCulture != null)
+            {
+                if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "ru")
+                {
+                    <p align="justify" style="margin-top: 10px;">Функция «Сравнение данных» позволяет проводить сравнение параметров одновременно в нескольких точках на карте.</p>
+                    <br />
+                    <p align="justify">Для сравнения данных пользователю необходимо: Выбрать точки для сравнения на карте (не более 3 точек); источник данных, а также интересуемый метеорологический параметр и провести сравнение. Данные представляются в виде таблицы, графика годового хода или же при выборе месяца месячного хода метеопараметра.</p>
+                }
+                else if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "kk")
+                {
+                    <p align="justify" style="margin-top: 10px;">"Мәліметтерді салыстыру" функциясы картада бір мезетте бірнеше нүктедегі параметрлерді салыстыруға мүмкіндік береді. </p>
+                    <br />
+                    <p align="justify">Пайдаланушы мәліметтерді салыстыру үшін: Картадан салыстыру үшін нүктелерді белгілеуі (3-тен артық емес); дерек көзін таңдауы, қажетті метеорологиялық параметрді көрсетуі және салыстыруды жүргізуі керек. Мәліметтер кесте түрінде, жылдық және айлық жүрісінң графигі түрінде көрсетіледі. </p>
+                }
+                else
+                {
+                    <p align="justify" style="margin-top: 10px;">The "Comparison of the data" function allows you to compare parameters simultaneously in several points on the map.</p>
+                    <br />
+                    <p align="justify">To compare the data, the user needs: Select points for comparison on the map (no more than 3 points); The data source, as well as the meteorological parameter of interest, and compare. The data is presented in the form of a table, the annual progress chart or when the month of the monthly course of the meteorological parameter is selected.</p>
+                }
+            }
+        }
+    </div>
+</div>
+
+<div id="help_GetMeteoData" class="modalinfo modal">
+    <div>
+        <span class="close" id="help_GetMeteoData_close">&times;</span>
+        <h4 align="left">@AtlasSolar.Resources.Common.GetMeteoData</h4>
+        @{
+            if (System.Threading.Thread.CurrentThread.CurrentCulture != null)
+            {
+                if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "ru")
+                {
+                    <p align="justify" style="margin-top: 10px;">Инструмент «Выгрузка метеорологических данных» предназначен для выгрузки метеорологических данных из используемых климатических баз (NASA SSE, SARAH-E,)</p>
+                    <br />
+                    <p align="justify">Пользователь может выбрать местоположение на карте или занести координаты вручную. Выходными параметрами являются файлы формирующиеся из названия источника, периодичности, значения параметра и координат точки</p>
+                }
+                else if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "kk")
+                {
+                    <p align="justify" style="margin-top: 10px;">"Метеорологиялық мәліметтерді жүктеу" құрылғысы қолданыстағы климаттық мәліметтер базаларынан (NASA SSE, SARAH-E) метеорологиялық мәліметтерді жүктеуге арналған.</p>
+                    <br />
+                    <p align="justify">Пайдаланушы картадан орналасу орнын көрсетуіне немесе координаттарын еңгізуіне болады. Шығыс мәліметтері ретінде дерек көзінің аты, кезеңі және нүкте координаттары мен мәндерінен құралған файлдар болып табылады. </p>
+                }
+                else
+                {
+                    <p align="justify" style="margin-top: 10px;">The Meteorological Data Uploading tool is designed for uploading meteorological data from used climatic bases (NASA SSE, SARAH-E)</p>
+                    <br />
+                    <p align="justify">The user can select a location on the map or manually enter coordinates.The output parameters are files formed from the source name, periodicity, parameter value and point coordinates</p>
+                }
+            }
+        }
+    </div>
+</div>
+
+<div id="help_FindTerrain" class="modalinfo modal">
+    <div>
+        <span class="close" id="help_FindTerrain_close">&times;</span>
+        <h4 align="left">@AtlasSolar.Resources.Common.FindTerrain</h4>
+        @{
+            if (System.Threading.Thread.CurrentThread.CurrentCulture != null)
+            {
+                if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "ru")
+                {
+                    <p align="justify" style="margin-top: 10px;">Инструмент «Конструктор запросов» предназначен для того чтобы, по приведенному перечню запросов, выделить пригодные территории для размещения СЭС. Для работы с инструментом пользователь должен иметь знания о факторах влияющих на размещение СЭС.   </p>
+                    <br />
+                    <p align="justify">Инструмент позволяет просмотреть каждый фактор, влияющий на размещение СЭС, в отдельности и в совокупности с другим фактором. Данная функции реализована в виде вызываемого окна, конструктора запроса с возможностью выбора слоя, выбора поля слоя, предварительного просмотра значений поля слоя, выбора условий при помощи математических  (>, <, =,+ , -, *, / ) и логических (И (&&), Или (II), Не (!) операндов. Результаты представлены в виде  карт с возможностью просмотра влияния каждого фактора на размещение СЭС.</p>
+                }
+                else if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "kk")
+                {
+                    <p align="justify" style="margin-top: 10px;">"Сұрау конструкторы" құрылғысы конструктор бойынша Күн электр станцияларын (КЭС) орналастыруға қолайлы аумақтарды белгілеуге арналған. Құрылғымен жұмыс жасау үшін пайдаланушы КЭС орналастыруға әсер етуші факторлар жайлы ақпараттарды білуі керек.</p>
+                    <br />
+                    <p align="justify">Құрылғы Күн электр станцияларын (КЭС) орналастыруға әсер ететін әрбір факторды жекелей немесе өзге факторлармен бірге қарастыруға мүмкіндік береді. Берілген функция қабатты, қабаттың өрісін таңдау, қабат өрісі мәндерін алдын ала көру,  математикалық  (>, <, =,+ , -, *, / ) және логикалық (Және (&&), Немесе (II), Емес (!) операндтар көмегімен шарттарды  таңдау мүмкіндігімен сұрау конструктор шығарылатын терезе түрінде жүзеге асырылады. Қорытынды мәліметтер КЭС орналастыруға әсер ететін әрбір факторды қарастыру мүмкіндігіне ие карталар ретінде келтірілген. </p>
+                }
+                else
+                {
+                    <p align="justify" style="margin-top: 10px;">The "Query Builder" tool is designed to allocate suitable territories for placement of SPS by the given designer of queries. To work with the tool, the user must have knowledge of the factors affecting the placement of SPS.</p>
+                    <br />
+                    <p align="justify">The tool allows you to view each factor affecting the placement of the SPS individually and in combination with another factor.This function is implemented as a callable query designer window with the ability to select a layer, select a layer field, preview the values ​​of the layer field, select conditions (mathematical operands (>, <, =,+ , -, *, / , and logical (AND (&&), OR (II), NO (!). The results are presented in the form of maps with the ability to view the influence of each factor on the placement of SPS.</p>
+                }
+            }
+        }
+    </div>
+</div>
+
+<script>
+    var help_CalcEnergy = document.getElementById('help_CalcEnergy');
+    var help_CalcEnergy_span = document.getElementById('help_CalcEnergy_close');
+    help_CalcEnergy_span.onclick = function () {
+        help_CalcEnergy.style.display = "none";
+    }
+    function ShowHelpCalcEnergy() {
+        help_CalcEnergy.style.display = "block";
+    }
+
+    var help_CalcEfficiency = document.getElementById('help_CalcEfficiency');
+    var help_CalcEfficiency_span = document.getElementById('help_CalcEfficiency_close');
+    help_CalcEfficiency_span.onclick = function () {
+        help_CalcEfficiency.style.display = "none";
+    }
+    function ShowHelpCalcEfficiency() {
+        help_CalcEfficiency.style.display = "block";
+    }
+
+    var help_AnalizeTerrain = document.getElementById('help_AnalizeTerrain');
+    var help_AnalizeTerrain_span = document.getElementById('help_AnalizeTerrain_close');
+    help_AnalizeTerrain_span.onclick = function () {
+        help_AnalizeTerrain.style.display = "none";
+    }
+    function ShowHelpAnalizeTerrain() {
+        help_AnalizeTerrain.style.display = "block";
+    }
+
+    var help_CompareDataInPoints = document.getElementById('help_CompareDataInPoints');
+    var help_CompareDataInPoints_span = document.getElementById('help_CompareDataInPoints_close');
+    help_CompareDataInPoints_span.onclick = function () {
+        help_CompareDataInPoints.style.display = "none";
+    }
+    function ShowHelpCompareDataInPoints() {
+        help_CompareDataInPoints.style.display = "block";
+    }
+
+    var help_GetMeteoData = document.getElementById('help_GetMeteoData');
+    var help_GetMeteoData_span = document.getElementById('help_GetMeteoData_close');
+    help_GetMeteoData_span.onclick = function () {
+        help_GetMeteoData.style.display = "none";
+    }
+    function ShowHelpGetMeteoData() {
+        help_GetMeteoData.style.display = "block";
+    }
+
+    var help_FindTerrain = document.getElementById('help_FindTerrain');
+    var help_FindTerrain_span = document.getElementById('help_FindTerrain_close');
+    help_FindTerrain_span.onclick = function () {
+        help_FindTerrain.style.display = "none";
+    }
+    function ShowHelpFindTerrain() {
+        help_FindTerrain.style.display = "block";
+    }
+</script>

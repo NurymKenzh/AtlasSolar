@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutAtlas" xml:space="preserve">
+    <value>Об Атласе</value>
+  </data>
+  <data name="AboutAtlasText" xml:space="preserve">
+    <value>Атлас солнечных ресурсов Республики Казахстан - это интернет ресурс, который позволяет, в свободном доступе, получить знания для реализации идей по внедрению и использованию возобновляемых источников энергии в нашей стране.  Атлас полезен инвесторам, органам государственного и местного управления, для институтов планирования, организациям, проектирующим энергогенерирующие станции и системы энергообеспечения территорий, компаниям, занимающимся продажами и установками фотоэлектрических станций, водонагревательных установок и их пользователям, научным организациям, магистрантам и студентам.
+Информация в Атласе солнечных ресурсов представлена в различных формах - интерактивные карты, выходные таблицы и графики: 
+•	ресурсные карты – карты многолетних среднегодовых значений показателей солнечной радиации;
+•	карты для оценки потенциала солнечной энергии – карты среднемесячных показателей   различных видов радиации на различно ориентированные поверхности, среднемесячные показатели геометрии Солнца (высота, азимут);
+•	климатические карты - карты основных метеорологических характеристик;
+•	карты объектов солнечных энергетики - карта с действующими и проектируемыми объектами солнечной энергетики;
+•	карты ограничений и предпосылок размещения объектов солнечной энергетики – карты факторов, благоприятствующих или ограничивающих размещение объектов солнечной энергетики:
+	Особо охраняемых природных территорий республиканского значения, 
+	Археологических памятников и других объектов историко-культурного наследия международного и республиканского значения;
+	Территорий Лесных государственных учреждений 
+	Водоемов, водозащитных зон и полос водотоков,
+	Линий электропередач, 
+	Автомобильных дорог,
+	Населенных пунктов.
+•	вспомогательные слои - цифровая модель рельефа (ЦМР), уклонов местности, экспозиции склонов, административно-территориальное деление, метеостанции РГП «Казгидромет».
+Функционал Атласа солнечных ресурсов:
+	Общий функционал (выбор и визуализация картографических слоев из набора атласа,  выбор базовых слоев, функция навигации по карте, масштабирование, просмотр легенды, инструмент «идентификация», инструмент измерений (расстояний, площадей), просмотр справочной информации о картографическом слое.
+	Выборка и экспорт данных по выбранной точке (таблица, график),
+	Сравнение исходных данных по нескольким выбранным точкам на карте (графики, диаграммы, таблицы)
+	Предварительное ранжирование пригодности территории для размещения объектов солнечной энергетики
+	Калькулятор «Расчет площади фотогальванической системы» - расчет площади солнечных панелей проектируемой фотоэлектростанции выбранного типа 
+	Калькулятор «Расчет производительности фотогальванической системы» - расчет выработки энергии солнечных панелей проектируемой фотоэлектростанции выбранного типа для выбранного местоположения
+	Калькулятор «Расчет энергопотребления» - для расчета суммарного потребления электричества бытовыми электроприборами.</value>
+  </data>
+  <data name="AboutProject" xml:space="preserve">
+    <value>О проекте</value>
+  </data>
+  <data name="AboutProjectText" xml:space="preserve">
+    <value>Концепция по переходу к «зеленой» экономике, утвержденная Указом Президента от 30 мая 2013 года № 577, определила перечень приоритетных задач, главным образом нацеленных на реформирование определенных отраслей экономики. В рамках перехода к «зеленой» экономике Республики Казахстан, предполагается повышение эффективности использования природных ресурсов, усовершенствование существующей инфраструктуры и улучшение благосостояния населения. Проект направлен на оказание содействия в практической реализации Концепции по переходу к «зеленой экономике», путем предоставления поддержки в формировании институциональной и законодательной основы, необходимой для развития таких направлений «зеленой экономики», как солнечная энергетика, устойчивое рыболовство и аквакультура, а также путем усиления международного сотрудничества в рамках Программы Партнерства «Зеленый Мост». 
+Одним из самых перспективных направлений возобновляемой энергетики на земле является развитие Солнечной энергетики. Солнце – это неисчерпаемый, постоянный, экологически устойчивый и доступный источник энергии, который позволяет удовлетворять потребности в получении энергии для отопления, электроснабжения и горячего водоснабжения. 
+Высокая степень инсоляции, большое количество солнечных часов в году, позволяют относить Казахстан к числу перспективных регионов Земли в развитии Солнечной энергетики. 
+Приняв к реализации Концепцию по переходу к «зеленой» экономике Казахстан принял решение по полномасштабному внедрению Возобновляемых источников энергии. Для достижения данной цели необходимо внедрять новые технологические процессы, повысить уровень знаний и осведомленности, способствующие развитию альтернативных источников энергии. Создание интерактивного Атласа солнечных ресурсов Республики Казахстан позволит расширить возможности использования солнечных ресурсов.</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="DescriptionText" xml:space="preserve">
+    <value>Атлас солнечных ресурсов Казахстана создан в рамках Проекта Министерства энергетики Республики Казахстан и Программы развития ООН «Оказание поддержки Правительству Республики Казахстан в реализации Концепции перехода к зеленой экономике и институционализации Программы Партнерства «Зеленый Мост».</value>
+  </data>
+  <data name="Map1Description" xml:space="preserve">
+    <value>Представлены карты показателей солнечной радиации (прямая, рассеянная, суммарная и т.д.) построенные на основе климатических баз, находящихся в открытом доступе (NASA SSE, Sustainable Buildings, SARAH-Е)</value>
+  </data>
+  <data name="Map1Title" xml:space="preserve">
+    <value>Солнечные ресурсы</value>
+  </data>
+  <data name="Map2Description" xml:space="preserve">
+    <value>Представлены карты основных метеорологических характеристик (температура воздуха, температура подстилающей поверхности, облачность, атмосферные осадки, альбедо и т.д.)</value>
+  </data>
+  <data name="Map2Title" xml:space="preserve">
+    <value>Климат</value>
+  </data>
+  <data name="Map3Description" xml:space="preserve">
+    <value>Представлены карты факторов, влияющих на возможность строительства солнечных электростанций (особо охраняемые природные территории, инфраструктура и др.)</value>
+  </data>
+  <data name="Map3Title" xml:space="preserve">
+    <value>Факторы размещения сетевых объектов солнечной энергетики</value>
+  </data>
+  <data name="Map4Description" xml:space="preserve">
+    <value>Карты с действующими и проектируемыми объектами солнечной энергетики; линий электропередач.</value>
+  </data>
+  <data name="Map4Title" xml:space="preserve">
+    <value>Объекты солнечной энергетики</value>
+  </data>
+  <data name="Slogan1" xml:space="preserve">
+    <value>«В ближайшие годы Интернет технологии и возобновляемые источники сольются» Н. Назарбаев</value>
+  </data>
+  <data name="Slogan2" xml:space="preserve">
+    <value>Переход к «зеленой» энергетике и внедрение «зеленых» &lt;br /&gt;технологий – это растущий вектор глобальной экономики.&lt;br /&gt; Н. Назарбаев</value>
+  </data>
+  <data name="Slogan3" xml:space="preserve">
+    <value>«Пятый вызов – глобальная энергетическая безопасность» Н. Назарбаев</value>
+  </data>
+</root>

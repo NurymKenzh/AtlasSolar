@@ -1,0 +1,1751 @@
+﻿<div id="dialog_menu" title="@AtlasSolar.Resources.Common.Menu" hidden="hidden" style="box-sizing: content-box;">
+    <table>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Coordinates
+            </td>
+            <td id="coordinates" style="padding-left: 10px;"></td>
+        </tr>
+    </table>
+    <br />
+    <input type="button" value="-Расчет площади pv системы-" onclick="CalcPVDialog();" class="btn btn-default" />
+    <br />
+    <br />
+    <input type="button" value="-Расчет электроэнергии-" onclick="CalcEnergyDialog();" class="btn btn-default" />
+    <br />
+    <br />
+    <input type="button" value="-Просмотр метеорологических данных-" onclick="LookMeteoDataDialog();" class="btn btn-default" />
+</div>
+
+<div id="dialog_info" title="@AtlasSolar.Resources.Common.Information" hidden="hidden" style="box-sizing: content-box;">
+    <table id="dialog_table" class="infotable">
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Coordinates
+            </td>
+            <td id="info_coordinates" style="padding-left: 10px;"></td>
+        </tr>
+    </table>
+</div>
+
+<div id="dialog_calc" title="@AtlasSolar.Resources.Common.Calculation" hidden="hidden" style="box-sizing: content-box;">
+    <table>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Coordinates
+            </td>
+            <td id="calc_coordinates" style="padding-left: 10px;"></td>
+        </tr>
+    </table>
+    <br />
+    <input type="button" value="-Расчет площади pv системы-" name="Action" onclick="CalcPVDialog();" class="btn btn-default" />
+    <br />
+    <br />
+    <input type="button" value="-Расчет электроэнергии-" name="Action" onclick="CalcEnergyDialog();" class="btn btn-default" />
+</div>
+
+<div id="dialog_selectpoint" title="@AtlasSolar.Resources.Common.Information" hidden="hidden" style="box-sizing: content-box;">
+    <p>@AtlasSolar.Resources.Common.SelectPointOnTheMap</p>
+    <input id="dontshow_selectpoint" type="checkbox" onclick="DontShowSelectPoint();">
+    <label class="simplelabel" for="dontshow_selectpoint">@AtlasSolar.Resources.Common.DoNotShowThisWindowAgain</label>
+    <br />
+    <br />
+    <input type="button" value="OK" onclick="CloseSelectPointDialog();" class="calc_button" />
+</div>
+
+<div id="dialog_calcpv" title="@AtlasSolar.Resources.Common.CalcPVArea" hidden="hidden" style="box-sizing: content-box;" class="calc-table">
+    <div id="dialog_calcpv_tab">
+        <ul class="super">
+            <li><a href="#calcpv_main">@AtlasSolar.Resources.Common.BasicSettings</a></li>
+            <li><a href="#calcpv_add">@AtlasSolar.Resources.Common.AdditionalSettings</a></li>
+        </ul>
+        <div id="calcpv_main" style="margin: 5px;">
+            <table>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.Longitude
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_longitude" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.Latitude
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_latitude" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.MeteoDataSource
+                    </td>
+                    <td style="padding-left: 10px;">
+                        @Html.DropDownList("MeteoDataSourceId", (IEnumerable<SelectListItem>)ViewBag.CalcMeteoDataSources, htmlAttributes: new { @id = "calcpv_MeteoDataSourceId" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.RequiredMonthlyAverageEnergy
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_wload" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.SPPPurpose
+                    </td>
+                    <td style="padding-left: 10px;">
+                        @Html.DropDownList("SPPPurposeId", (IEnumerable<SelectListItem>)ViewBag.SPPPurposes, htmlAttributes: new { @id = "calcpv_SPPPurposeId" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.PanelOrientation
+                    </td>
+                    <td style="padding-left: 10px;">
+                        @Html.DropDownList("PanelOrientationId", (IEnumerable<SelectListItem>)ViewBag.PanelOrientationsWithCode, htmlAttributes: new { @id = "calcpv_PanelOrientationId", @onchange = "CalcPVChangePanelOrientation(this.value)" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.PVSystemMaterial
+                    </td>
+                    <td style="padding-left: 10px;">
+                        @Html.DropDownList("PVSystemMaterialId", (IEnumerable<SelectListItem>)ViewBag.PVSystemMaterials, htmlAttributes: new { @id = "calcpv_PVSystemMaterialId", @onchange = "CalcPVChangePVSystemMaterial(this.value)" })
+                    </td>
+                </tr>
+                <tr style="display:none;">
+                    <td>
+                        @AtlasSolar.Resources.Common.RatedPowerOfThePVPanel
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_rated_power" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr style="display:none;">
+                    <td>
+                        @AtlasSolar.Resources.Common.PanelsCount
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_panels_count" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.PanelEfficiency
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_panel_efficiency" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.TheNominalOperatingTemperatureOfTheSolarCell
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_rated_operating_temperature" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.TemperatureCoefficientOfPowerPanel
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_thermal_power_factor" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.AzimuthPanels
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_azimuth" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.PanelTiltAngle
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_tilt" class="calc-table-control" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="calcpv_add" style="margin: 5px;">
+            <table>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.WiringEfficiency
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_wiringefficiency" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.ControllerEfficiency
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_controllerefficiency" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.InverterEfficiency
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_inverterefficiency" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.BatteryEfficiency
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_batteryefficiency" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.LossesDueToPollution
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_lossessoil" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.AverageMonthlyLossesDueToSnow
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_lossessnow" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.ConsiderMonthlyAverageLossesDueToSnowByMonths
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcpv_lossessnow_month" value="12" checked="checked">12</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcpv_lossessnow_month" value="11">11</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcpv_lossessnow_month" value="10">10</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcpv_lossessnow_month" value="9">9</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcpv_lossessnow_month" value="8">8</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcpv_lossessnow_month" value="7">7</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcpv_lossessnow_month" value="6">6</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcpv_lossessnow_month" value="5">5</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcpv_lossessnow_month" value="4">4</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcpv_lossessnow_month" value="3">3</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcpv_lossessnow_month" value="2" checked="checked">2</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcpv_lossessnow_month" value="1" checked="checked">1</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.LossFromTheShadow
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_lossesshad" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.LossesDueToNonconformities
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcpv_lossesmis" class="calc-table-control" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <input type="button" value="@AtlasSolar.Resources.Common.Calculate" name="Action" onclick="CalcPV();" class="calc_button" />
+</div>
+
+<div id="dialog_calcpvresult" title="@AtlasSolar.Resources.Common.Result" hidden="hidden" style="box-sizing: content-box;">
+    <div id="CalcPVResult" style="height:100%;">
+        <table class="infotable">
+            <tr>
+                <th style="padding-left: 10px;">
+                    @AtlasSolar.Resources.Common.Index
+                </th>
+                <th id="calcpvresult_month01" style="padding-left: 10px;">
+                </th>
+                <th id="calcpvresult_month02" style="padding-left: 10px;">
+                </th>
+                <th id="calcpvresult_month03" style="padding-left: 10px;">
+                </th>
+                <th id="calcpvresult_month04" style="padding-left: 10px;">
+                </th>
+                <th id="calcpvresult_month05" style="padding-left: 10px;">
+                </th>
+                <th id="calcpvresult_month06" style="padding-left: 10px;">
+                </th>
+                <th id="calcpvresult_month07" style="padding-left: 10px;">
+                </th>
+                <th id="calcpvresult_month08" style="padding-left: 10px;">
+                </th>
+                <th id="calcpvresult_month09" style="padding-left: 10px;">
+                </th>
+                <th id="calcpvresult_month10" style="padding-left: 10px;">
+                </th>
+                <th id="calcpvresult_month11" style="padding-left: 10px;">
+                </th>
+                <th id="calcpvresult_month12" style="padding-left: 10px;">
+                </th>
+            </tr>
+            <tr>
+                <td style="padding-left: 10px;">
+                    @AtlasSolar.Resources.Common.AverageMonthlyRequiredTotalAreaOfSolarPVSystems
+                </td>
+                <td id="calcpvresult_S_pv01" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_S_pv02" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_S_pv03" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_S_pv04" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_S_pv05" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_S_pv06" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_S_pv07" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_S_pv08" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_S_pv09" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_S_pv10" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_S_pv11" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_S_pv12" style="padding-left: 10px;"></td>
+            </tr>
+            <tr>
+                <td style="padding-left: 10px;">
+                    @AtlasSolar.Resources.Common.TotalRequiredRatedPowerOfSolarPVSystems
+                </td>
+                <td id="calcpvresult_P_tpv01" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_P_tpv02" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_P_tpv03" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_P_tpv04" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_P_tpv05" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_P_tpv06" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_P_tpv07" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_P_tpv08" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_P_tpv09" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_P_tpv10" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_P_tpv11" style="padding-left: 10px;"></td>
+                <td id="calcpvresult_P_tpv12" style="padding-left: 10px;"></td>
+            </tr>
+        </table>
+        <div style="width: calc(100% - 10px); height: calc(100% - 170px);">
+            <div id="calcpvresult_chart" style="width: 100%; height: 100%;">
+            </div>
+        </div>
+        <input type="button" value="@AtlasSolar.Resources.Common.Download" name="Action" onclick="DownloadCalcPVChart();" class="calc_button" />
+        <img id="calcpvresult_chart_download" src="" hidden="hidden" />
+
+    </div>
+</div>
+
+<div id="dialog_calcefficiency" title="@AtlasSolar.Resources.Common.CalculatingThePerformanceOfThePVSystem" hidden="hidden" style="box-sizing: content-box;" class="calc-table">
+    <div id="dialog_calcefficiency_tab">
+        <ul class="super">
+            <li><a href="#calcefficiency_main">@AtlasSolar.Resources.Common.BasicSettings</a></li>
+            <li><a href="#calcefficiency_add">@AtlasSolar.Resources.Common.AdditionalSettings</a></li>
+        </ul>
+        <div id="calcefficiency_main" style="margin: 5px;">
+            <table>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.Longitude
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_longitude" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.Latitude
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_latitude" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.MeteoDataSource
+                    </td>
+                    <td style="padding-left: 10px;">
+                        @Html.DropDownList("MeteoDataSourceId", (IEnumerable<SelectListItem>)ViewBag.CalcMeteoDataSources, htmlAttributes: new { @id = "calcefficiency_MeteoDataSourceId" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.SPPPurpose
+                    </td>
+                    <td style="padding-left: 10px;">
+                        @Html.DropDownList("SPPPurposeId", (IEnumerable<SelectListItem>)ViewBag.SPPPurposes, htmlAttributes: new { @id = "calcefficiency_SPPPurposeId" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.PanelOrientation
+                    </td>
+                    <td style="padding-left: 10px;">
+                        @Html.DropDownList("PanelOrientationId", (IEnumerable<SelectListItem>)ViewBag.PanelOrientationsWithCode, htmlAttributes: new { @id = "calcefficiency_PanelOrientationId", @onchange = "CalcEfficiencyChangePanelOrientation(this.value)" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.PVSystemMaterial
+                    </td>
+                    <td style="padding-left: 10px;">
+                        @Html.DropDownList("PVSystemMaterialId", (IEnumerable<SelectListItem>)ViewBag.PVSystemMaterials, htmlAttributes: new { @id = "calcefficiency_PVSystemMaterialId", @onchange = "CalcEfficiencyChangePVSystemMaterial(this.value)" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.PanelsArea
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_panels_area" class="calc-table-control" />
+                    </td>
+                </tr>
+                @*<tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.RatedPowerOfThePVPanel
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_rated_power" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.PanelsCount
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_panels_count" class="calc-table-control" />
+                    </td>
+                </tr>*@
+
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.PanelEfficiency
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_panel_efficiency" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.TheNominalOperatingTemperatureOfTheSolarCell
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_rated_operating_temperature" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.TemperatureCoefficientOfPowerPanel
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_thermal_power_factor" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.AzimuthPanels
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_azimuth" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.TheAngleOfThePVPanel
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_tilt" class="calc-table-control" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="calcefficiency_add" style="margin: 5px;">
+            <table>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.WiringEfficiency
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_wiringefficiency" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.ControllerEfficiency
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_controllerefficiency" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.InverterEfficiency
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_inverterefficiency" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.BatteryEfficiency
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_batteryefficiency" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.LossesDueToPollution
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_lossessoil" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.AverageMonthlyLossesDueToSnow
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_lossessnow" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.ConsiderMonthlyAverageLossesDueToSnowByMonths
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcefficiency_lossessnow_month" value="12" checked="checked">12</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcefficiency_lossessnow_month" value="11">11</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcefficiency_lossessnow_month" value="10">10</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcefficiency_lossessnow_month" value="9">9</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcefficiency_lossessnow_month" value="8">8</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcefficiency_lossessnow_month" value="7">7</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcefficiency_lossessnow_month" value="6">6</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcefficiency_lossessnow_month" value="5">5</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcefficiency_lossessnow_month" value="4">4</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcefficiency_lossessnow_month" value="3">3</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcefficiency_lossessnow_month" value="2" checked="checked">2</label>
+                        <label style="font-weight: normal;"><input type="checkbox" name="calcefficiency_lossessnow_month" value="1" checked="checked">1</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.LossFromTheShadow
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_lossesshad" class="calc-table-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @AtlasSolar.Resources.Common.LossesDueToNonconformities
+                    </td>
+                    <td style="padding-left: 10px;">
+                        <input type="text" id="calcefficiency_lossesmis" class="calc-table-control" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <input type="button" value="@AtlasSolar.Resources.Common.Calculate" name="Action" onclick="CalcEfficiency();" class="calc_button" />
+    @*<input type="button" value="@AtlasSolar.Resources.Common.Help" name="Action" onclick="window.open('@Url.Action("CalcEfficiency","Help",null)')" class="calc_button" />*@
+    <input type="button" value="@AtlasSolar.Resources.Common.Help" name="Action" onclick="ShowHelpCalcEfficiency()" class="calc_button" />
+</div>
+
+<div id="dialog_calcefficiencyresult" title="@AtlasSolar.Resources.Common.Result" hidden="hidden" style="box-sizing: content-box;">
+    <div id="CalcEfficiencyResult" style="height:100%;">
+        <table class="infotable">
+            <tr>
+                <th style="padding-left: 10px;">
+                    @AtlasSolar.Resources.Common.Index
+                </th>
+                <th id="calcefficiencyresult_month01" style="padding-left: 10px;">
+                </th>
+                <th id="calcefficiencyresult_month02" style="padding-left: 10px;">
+                </th>
+                <th id="calcefficiencyresult_month03" style="padding-left: 10px;">
+                </th>
+                <th id="calcefficiencyresult_month04" style="padding-left: 10px;">
+                </th>
+                <th id="calcefficiencyresult_month05" style="padding-left: 10px;">
+                </th>
+                <th id="calcefficiencyresult_month06" style="padding-left: 10px;">
+                </th>
+                <th id="calcefficiencyresult_month07" style="padding-left: 10px;">
+                </th>
+                <th id="calcefficiencyresult_month08" style="padding-left: 10px;">
+                </th>
+                <th id="calcefficiencyresult_month09" style="padding-left: 10px;">
+                </th>
+                <th id="calcefficiencyresult_month10" style="padding-left: 10px;">
+                </th>
+                <th id="calcefficiencyresult_month11" style="padding-left: 10px;">
+                </th>
+                <th id="calcefficiencyresult_month12" style="padding-left: 10px;">
+                </th>
+                <th id="calcefficiencyresult_year" style="padding-left: 10px;">
+                </th>
+            </tr>
+            <tr>
+                <td style="padding-left: 10px;">
+                    @AtlasSolar.Resources.Common.AverageMonthlyOutputPowerOfThePVSystem
+                </td>
+                <td id="calcefficiencyresult_W_PV01" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_W_PV02" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_W_PV03" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_W_PV04" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_W_PV05" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_W_PV06" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_W_PV07" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_W_PV08" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_W_PV09" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_W_PV10" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_W_PV11" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_W_PV12" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_W_PVyear" style="padding-left: 10px;"></td>
+            </tr>
+            <tr>
+                <td style="padding-left: 10px;">
+                    @AtlasSolar.Resources.Common.AverageMonthlyTotalRadiationOnTheOrientedPanel
+                </td>
+                <td id="calcefficiencyresult_H_td01" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_H_td02" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_H_td03" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_H_td04" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_H_td05" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_H_td06" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_H_td07" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_H_td08" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_H_td09" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_H_td10" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_H_td11" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_H_td12" style="padding-left: 10px;"></td>
+                <td id="calcefficiencyresult_H_tdyear" style="padding-left: 10px;"></td>
+            </tr>
+        </table>
+        <div style="width: calc(100% - 10px); height: calc(100% - 160px);">
+            <div id="calcefficiencyresult_chart" style="width: 100%; height: 100%;">
+            </div>
+        </div>
+        <input type="button" value="@AtlasSolar.Resources.Common.Download" name="Action" onclick="DownloadCalcEfficiencyChart();" class="calc_button" />
+        <img id="calcefficiencyresult_chart_download" src="" />
+    </div>
+</div>
+
+<div id="dialog_passport" title="-Паспорт ФЭС-" hidden="hidden" style="box-sizing: content-box;">
+    <span style="margin:auto; display:table;">
+        -ПАСПОРТ ФЭС,-
+    </span>
+    <span style="margin:auto; display:table;">
+        -обеспечивающей выработку <span id="passport_energy"></span> кВт в сутки.-
+    </span>
+
+    @*<div id="tab2" style="width:100%; min-height: 200px;">
+            <div id="test" style="width: 500px; height: 300px; background-color: chartreuse;">
+            </div>
+        </div>*@
+</div>
+
+<div id="dialog_get_meteo_data" title="@AtlasSolar.Resources.Common.GetMeteoData" hidden="hidden" style="box-sizing: content-box;" class="calc-table">
+    <table>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Longitude
+            </td>
+            <td style="padding-left: 10px;">
+                <input type="text" id="get_meteo_data_longitude" class="calc-table-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Latitude
+            </td>
+            <td style="padding-left: 10px;">
+                <input type="text" id="get_meteo_data_latitude" class="calc-table-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Source
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("MeteoDataSourceId", (IEnumerable<SelectListItem>)ViewBag.MeteoDataSources, htmlAttributes: new { @id = "get_meteo_data_meteodatasourceid", @onchange = "GetMeteoDataPeriodicitiesBySource()" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Periodicity
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("MeteoDataPeriodicityId", (IEnumerable<SelectListItem>)ViewBag.MeteoDataPeriodicities, "", htmlAttributes: new { @id = "get_meteo_data_meteodataperiodicityid", @onchange = "GetMeteoDataTypesBySourcePeriodicity()" })
+            </td>
+        </tr>
+        @*<tr>
+            <td><input type="button" value="@AtlasSolar.Resources.Common.RefreshList" class="calc_button" onclick="GetMeteoDataRefreshMeteoDataTypeIds()"></td>
+            <td style="padding-left: 10px;"></td>
+        </tr>*@
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.MeteoDataType
+            </td>
+            <td style="padding-left: 10px;">
+                <select id="get_meteo_data_meteodatatypeid" class="calc-table-control"></select>
+            </td>
+        </tr>
+        @*<tr>
+                <td></td>
+                <td style="padding-left: 10px;">
+
+                </td>
+            </tr>*@
+    </table>
+    <input type="button" value="OK" class="calc_button" onclick="GetMeteoData()">
+    <input type="button" value="@AtlasSolar.Resources.Common.Help" name="Action" onclick="ShowHelpGetMeteoData()" class="calc_button" />
+</div>
+
+<div id="dialog_get_meteo_data_region" title="@AtlasSolar.Resources.Common.GetMeteoDataRegion" hidden="hidden" style="box-sizing: content-box;" class="calc-table">
+    <table>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Province
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("OblastId", (IEnumerable<SelectListItem>)ViewBag.Provinces, htmlAttributes: new { @id = "get_meteo_data_region_OblastId", @style = "width: 400px;" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Source
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("MeteoDataSourceId", (IEnumerable<SelectListItem>)ViewBag.MeteoDataSources, htmlAttributes: new { @id = "get_meteo_data_region_meteodatasourceid", @onchange = "GetMeteoDataRegionPeriodicitiesBySource()" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Periodicity
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("MeteoDataPeriodicityId", (IEnumerable<SelectListItem>)ViewBag.MeteoDataPeriodicities, "", htmlAttributes: new { @id = "get_meteo_data_region_meteodataperiodicityid", @onchange = "GetMeteoDataRegionTypesBySourcePeriodicity()" })
+            </td>
+        </tr>        
+        @*<tr>
+            <td><input type="button" value="@AtlasSolar.Resources.Common.RefreshList" class="calc_button" onclick="GetMeteoDataRefreshMeteoDataTypeIds()"></td>
+            <td style="padding-left: 10px;"></td>
+        </tr>*@
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.MeteoDataType
+            </td>
+            <td style="padding-left: 10px;">
+                <select id="get_meteo_data_region_meteodatatypeid" class="calc-table-control"></select>
+            </td>
+        </tr>
+        @*<tr>
+                <td></td>
+                <td style="padding-left: 10px;">
+
+                </td>
+            </tr>*@
+    </table>
+    <input type="button" value="OK" class="calc_button" onclick="GetMeteoDataRegion()">
+    @*<input type="button" value="@AtlasSolar.Resources.Common.Help" name="Action" onclick="" class="calc_button" />*@
+</div>
+
+<div id="dialog_create_spp" title="@AtlasSolar.Resources.Common.CreateSPP" hidden="hidden" style="box-sizing: content-box;" class="calc-table">
+    <form id="uploader">
+        <table>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Longitude
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="create_spp_longitude" class="calc-table-control" />
+                    <input type="hidden" id="create_spp_longitude3857" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Latitude
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="create_spp_latitude" class="calc-table-control" />
+                    <input type="hidden" id="create_spp_latitude3857" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Name
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="create_spp_Name" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.PanelsCount
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="number" id="create_spp_Count" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.PowerMW
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="create_spp_Power" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Cost
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="create_spp_Cost" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.CommissioningYear
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="number" id="create_spp_Startup" min="2000" max="2050" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Link
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="create_spp_Link" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Customer
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="create_spp_Customer" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Investor
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="create_spp_Investor" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Executor
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="create_spp_Executor" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.CapacityFactor
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="create_spp_CapacityFactor" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.SPPStatus
+                </td>
+                <td style="padding-left: 10px;">
+                    @Html.DropDownList("SPPStatusId", (IEnumerable<SelectListItem>)ViewBag.SPPStatuses, htmlAttributes: new { @id = "create_spp_SPPStatusId" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.SPPPurpose
+                </td>
+                <td style="padding-left: 10px;">
+                    @Html.DropDownList("SPPPurposeId", (IEnumerable<SelectListItem>)ViewBag.SPPPurposes, htmlAttributes: new { @id = "create_spp_SPPPurposeId" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.PanelOrientation
+                </td>
+                <td style="padding-left: 10px;">
+                    @Html.DropDownList("PanelOrientationId", (IEnumerable<SelectListItem>)ViewBag.PanelOrientations, htmlAttributes: new { @id = "create_spp_PanelOrientationId" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Photo
+                </td>
+                <td style="padding-left: 10px;">
+                    @Html.TextBox("Photo", "", new { type = "file", @id = "create_spp_Photo", @class = "calc-table-control" })
+                </td>
+            </tr>
+            @*<tr>
+                    <td></td>
+                    <td style="padding-left: 10px;">
+                        <input type="submit" value="@AtlasSolar.Resources.Common.Create" class="calc_button">
+                    </td>
+                </tr>*@
+        </table>
+        <input type="submit" value="@AtlasSolar.Resources.Common.Create" class="calc_button">
+    </form>
+</div>
+
+<div id="dialog_info_spp" title="@AtlasSolar.Resources.Common.SPP" hidden="hidden" style="box-sizing: content-box;">
+    <input type="text" hidden="hidden" id="info_spp_id">
+    <table class="infotable">
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Longitude
+            </td>
+            <td style="padding-left: 10px;" id="info_spp_longitude"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Latitude
+            </td>
+            <td style="padding-left: 10px;" id="info_spp_latitude"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Name
+            </td>
+            <td style="padding-left: 10px;" id="info_spp_Name"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.PanelsCount
+            </td>
+            <td style="padding-left: 10px;" id="info_spp_Count"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.PowerMW
+            </td>
+            <td style="padding-left: 10px;" id="info_spp_Power"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Cost
+            </td>
+            <td style="padding-left: 10px;" id="info_spp_Cost" title="@AtlasSolar.Resources.Common.SPPCostHint"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.CommissioningYear
+            </td>
+            <td style="padding-left: 10px;" min="2000" max="2050" id="info_spp_Startup"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Link
+            </td>
+            <td style="padding-left: 10px;" id="info_spp_Link"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Customer
+            </td>
+            <td style="padding-left: 10px;" id="info_spp_Customer"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Investor
+            </td>
+            <td style="padding-left: 10px;" id="info_spp_Investor"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Executor
+            </td>
+            <td style="padding-left: 10px;" id="info_spp_Executor"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.CapacityFactor
+            </td>
+            <td style="padding-left: 10px;" id="info_spp_CapacityFactor"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.SPPStatus
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("SPPStatusId", (IEnumerable<SelectListItem>)ViewBag.SPPStatuses, htmlAttributes: new { @class = "form-control", @id = "info_spp_SPPStatusId", @disabled = "disabled" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.SPPPurpose
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("SPPPurposeId", (IEnumerable<SelectListItem>)ViewBag.SPPPurposes, htmlAttributes: new { @class = "form-control", @id = "info_spp_SPPPurposeId", @disabled = "disabled" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.PanelOrientation
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("PanelOrientationId", (IEnumerable<SelectListItem>)ViewBag.PanelOrientations, htmlAttributes: new { @class = "form-control", @id = "info_spp_PanelOrientationId", @disabled = "disabled" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Photo
+            </td>
+            <td style="padding-left: 10px;">
+                <img src="" id="info_spp_Photo" width="400" />
+            </td>
+        </tr>
+    </table>
+    @if (ViewBag.Role == "Admin" || ViewBag.Role == "Moderator")
+    {
+        <input type="button" value="@AtlasSolar.Resources.Common.Edit" class="btn btn-default" onclick="EditSPP()" />
+    }
+</div>
+
+<div id="dialog_edit_spp" title="@AtlasSolar.Resources.Common.EditSES" hidden="hidden" style="box-sizing: content-box;" class="calc-table">
+    <form id="edit_spp">
+        <table>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Longitude
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="edit_spp_longitude" class="calc-table-control" />
+                    <input type="hidden" id="edit_spp_longitude3857" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Latitude
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="edit_spp_latitude" class="calc-table-control" />
+                    <input type="hidden" id="edit_spp_latitude3857" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Name
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="edit_spp_Name" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.PanelsCount
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="number" id="edit_spp_Count" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.PowerMW
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="edit_spp_Power" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Cost
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="edit_spp_Cost" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.CommissioningYear
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="number" id="edit_spp_Startup" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Link
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="edit_spp_Link" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Customer
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="edit_spp_Customer" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Investor
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="edit_spp_Investor" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Executor
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="edit_spp_Executor" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.CapacityFactor
+                </td>
+                <td style="padding-left: 10px;">
+                    <input type="text" id="edit_spp_CapacityFactor" class="calc-table-control" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.SPPStatus
+                </td>
+                <td style="padding-left: 10px;">
+                    @Html.DropDownList("SPPStatusId", (IEnumerable<SelectListItem>)ViewBag.SPPStatuses, htmlAttributes: new { @id = "edit_spp_SPPStatusId" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.SPPPurpose
+                </td>
+                <td style="padding-left: 10px;">
+                    @Html.DropDownList("SPPPurposeId", (IEnumerable<SelectListItem>)ViewBag.SPPPurposes, htmlAttributes: new { @id = "edit_spp_SPPPurposeId" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.PanelOrientation
+                </td>
+                <td style="padding-left: 10px;">
+                    @Html.DropDownList("PanelOrientationId", (IEnumerable<SelectListItem>)ViewBag.PanelOrientations, htmlAttributes: new { @id = "edit_spp_PanelOrientationId" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @AtlasSolar.Resources.Common.Photo
+                </td>
+                <td style="padding-left: 10px;">
+                    @Html.TextBox("Photo", "", new { type = "file", @id = "edit_spp_Photo", @class = "calc-table-control" })
+                </td>
+            </tr>
+            @*<tr>
+                    <td></td>
+                    <td style="padding-left: 10px;">
+                        <input type="submit" value="@AtlasSolar.Resources.Common.Save" class="calc-table-control">
+                    </td>
+                </tr>*@
+        </table>
+        <input type="submit" value="@AtlasSolar.Resources.Common.Save" class="calc_button">
+    </form>
+</div>
+
+<div id="dialog_compare_points" title="@AtlasSolar.Resources.Common.CompareDataInPoints" hidden="hidden" style="box-sizing: content-box;" class="calc-table">
+    <table>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Longitude: <label id="compare_points_p1_longitude" style="font-weight: normal; margin: 0px; float: none;"></label>
+                <br />
+                @AtlasSolar.Resources.Common.Latitude: <label id="compare_points_p1_latitude" style="font-weight: normal; margin: 0px; float: none;"></label>
+            </td>
+            <td style="padding-left: 10px;">
+                <input type="button" value="@AtlasSolar.Resources.Common.ShowOnMap" class="creat_button" onclick="ComparePointsSet(1)" style="color: #ff0000; width:auto;" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Longitude: <label id="compare_points_p2_longitude" style="font-weight: normal; margin: 0px; float: none;"></label>
+                <br />
+                @AtlasSolar.Resources.Common.Latitude: <label id="compare_points_p2_latitude" style="font-weight: normal; margin: 0px; float: none;"></label>
+            </td>
+            <td style="padding-left: 10px;">
+                <input type="button" value="@AtlasSolar.Resources.Common.ShowOnMap" class="creat_button" onclick="ComparePointsSet(2)" style="color: #00ff00; width:auto;" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Longitude: <label id="compare_points_p3_longitude" style="font-weight: normal; margin: 0px; float: none;"></label>
+                <br />
+                @AtlasSolar.Resources.Common.Latitude: <label id="compare_points_p3_latitude" style="font-weight: normal; margin: 0px; float: none;"></label>
+            </td>
+            <td style="padding-left: 10px;">
+                <input type="button" value="@AtlasSolar.Resources.Common.ShowOnMap" class="creat_button" onclick="ComparePointsSet(3)" style="color: #0000ff; width:auto;" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Source
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("MeteoDataSourceId", (IEnumerable<SelectListItem>)ViewBag.MeteoDataSources, htmlAttributes: new { @id = "compare_points_meteodatasourceid", @onchange = "ComparePointsPeriodicitiesBySource()" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Periodicity
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("MeteoDataPeriodicityId", (IEnumerable<SelectListItem>)ViewBag.MeteoDataPeriodicities, "", htmlAttributes: new { @id = "compare_points_meteodataperiodicityid", @onchange = "ComparePointsTypesBySourcePeriodicity()" })
+            </td>
+        </tr>
+        @*<tr>
+            <td></td>
+            <td style="padding-left: 10px;">
+                <input type="button" value="@AtlasSolar.Resources.Common.RefreshList" class="calc_button" onclick="ComparePointsRefreshMeteoDataTypeIds()" style="float: right;">
+            </td>
+        </tr>*@
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.MeteoDataGroup
+            </td>
+            <td style="padding-left: 10px;">
+                <select id="compare_points_meteodatagroup" class="calc-table-control" onchange = "ComparePointsTypesBySourcePeriodicityGroup()"></select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.MeteoDataType
+            </td>
+            <td style="padding-left: 10px;">
+                <select id="compare_points_meteodatatypeid" class="calc-table-control"></select>
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="@AtlasSolar.Resources.Common.Compare" class="calc_button" onclick="ComparePoints()">
+    <input type="button" value="@AtlasSolar.Resources.Common.Help" name="Action" onclick="ShowHelpCompareDataInPoints()" class="calc_button" />
+</div>
+
+<div id="dialog_compare_pointsresult" title="@AtlasSolar.Resources.Common.TheResultOfPointComparison" hidden="hidden" style="box-sizing: content-box;">
+    <div id="ComparePointsResult" style="height:100%;">
+        <ul class="super">
+            <li><a href="#ComparePointsResult">@AtlasSolar.Resources.Common.Result</a></li>
+            @*<li><a href="#ComparePointsResultTable">-Таблица-</a></li>
+                <li><a href="#ComparePointsResultChart">@AtlasSolar.Resources.Common.Chart</a></li>*@
+        </ul>
+        @*<div id="ComparePointsResult" style="margin: 5px; overflow: auto; height: calc(100% - 44px);">
+
+            </div>
+            <div id="ComparePointsResultTable" style="margin: 5px; overflow: auto; height: calc(100% - 44px);">
+
+            </div>*@
+        <div id="ComparePointsResultChart" style="margin: 5px; overflow: auto; height: calc(100% - 30px);">
+            <div id="compare_pointsresult_chart" style="width: 100%; height: 100%;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dialog_calc_energy" title="@AtlasSolar.Resources.Common.CalculationOfEnergyConsumption" hidden="hidden" style="box-sizing: content-box;" class="calc-table">
+    
+    <table>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Appliance
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("ApplianceId", (IEnumerable<SelectListItem>)ViewBag.Appliances, htmlAttributes: new { @id = "calc_energy_ApplianceId", @onchange = "ChangeAppliance()" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.PowerW
+            </td>
+            <td style="padding-left: 10px;">
+                <input type="text" id="calcpv_power" class="calc-table-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.AmountPcs
+            </td>
+            <td style="padding-left: 10px;">
+                <input type="text" id="calcpv_energy_count" class="calc-table-control" placeholder="@AtlasSolar.Resources.Common.EnterValue" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.WorkingTimePerDay
+            </td>
+            <td style="padding-left: 10px;">
+                <input type="text" id="calcpv_energy_minutes" class="calc-table-control" placeholder="@AtlasSolar.Resources.Common.EnterValue" style="width: 92px;" />
+                <label>:</label>                
+                <input type="text" id="calcpv_energy_hours" class="calc-table-control" placeholder="@AtlasSolar.Resources.Common.EnterValue" style="width: 92px;" />
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="@AtlasSolar.Resources.Common.Add" class="calc_button" onclick="AddAppliance()">
+    <table id="calcpv_energy_table">
+        <tr style="background-color: #f2f2f2;">
+            <td style="font-weight: bold;">
+                @AtlasSolar.Resources.Common.Appliance
+            </td>
+            <td style="padding-left: 10px; font-weight: bold;">
+                @AtlasSolar.Resources.Common.PowerW
+            </td>
+            <td style="padding-left: 10px; font-weight: bold;">
+                @AtlasSolar.Resources.Common.AmountPcs
+            </td>
+            <td style="padding-left: 10px; font-weight: bold;">
+                @AtlasSolar.Resources.Common.WorkingTimePerDay
+            </td>
+            <td style="padding-left: 10px;"></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.TotalEnergyConsumptionPerDay
+            </td>
+            <td style="padding-left: 10px;">
+                <mark id="calc_energy_result" style="float:right;"></mark>
+            </td>
+        </tr>
+    </table>
+    @*<input type="button" value="@AtlasSolar.Resources.Common.Help" name="Action" onclick="window.open('@Url.Action("CalcEnergy","Help",null)')" class="calc_button" />*@
+    <input type="button" value="@AtlasSolar.Resources.Common.Help" name="Action" onclick="ShowHelpCalcEnergy()" class="calc_button" />
+</div>
+
+<div id="dialog_analize_terrain" title="@AtlasSolar.Resources.Common.TerrainAnalysis" hidden="hidden" style="box-sizing: content-box;" class="calc-table">
+    <table>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Province
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("OblastId", (IEnumerable<SelectListItem>)ViewBag.Provinces, htmlAttributes: new { @id = "analize_terrain_OblastId" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.TheMinimumAllowableValueOfTotalRadiationOnTheHorizontalSurface
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("Importances", (List<SelectListItem>)ViewBag.Importances, htmlAttributes: new { @id = "analize_terrain_swvdwnyear_importance" })
+                <input type="text" id="analize_terrain_swvdwnyear_min" class="calc-table-control" style="margin-right: 1px;" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.PermissibleDistanceFromNP
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("Importances", (List<SelectListItem>)ViewBag.Importances, htmlAttributes: new { @id = "analize_terrain_np_dist_importance" })
+                <input type="text" id="analize_terrain_np_dist_max" class="calc-table-control" style="margin-right: 1px;" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.PermissibleDistanceFromPowerLines
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("Importances", (List<SelectListItem>)ViewBag.Importances, htmlAttributes: new { @id = "analize_terrain_lep_dist_importance" })
+                <input type="text" id="analize_terrain_lep_dist_max" class="calc-table-control" style="margin-right: 1px;" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.PermissibleDistanceFromRoads
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("Importances", (List<SelectListItem>)ViewBag.Importances, htmlAttributes: new { @id = "analize_terrain_auto_dist_importance" })
+                <input type="text" id="analize_terrain_auto_dist_max" class="calc-table-control" style="margin-right: 1px;" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.AllowableSlopeOfTheTerrain
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("Importances", (List<SelectListItem>)ViewBag.Importances, htmlAttributes: new { @id = "analize_terrain_slope_srtm_importance" })
+                <input type="text" id="analize_terrain_slope_srtm_max" class="calc-table-control" style="margin-right: 1px;" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.PermissibleAbsoluteMark
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("Importances", (List<SelectListItem>)ViewBag.Importances, htmlAttributes: new { @id = "analize_terrain_srtm_importance" })
+                <input type="text" id="analize_terrain_srtm_max" class="calc-table-control" style="margin-right: 1px;" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludeSettlement
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_settlement_exclude" value="analize_terrain_settlement_exclude">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludeAgri
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_agri_exclude" value="analize_terrain_agri_exclude">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludeWood
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_wood_exclude" value="analize_terrain_wood_exclude">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludeBush
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_bush_exclude" value="analize_terrain_bush_exclude">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludeHydro
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_hydro_exclude" value="analize_terrain_hydro_exclude">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludeTakyr
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_takyr_exclude" value="analize_terrain_takyr_exclude">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludeDesert
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_desert_exclude" value="analize_terrain_desert_exclude">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludeSolon
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_solon_exclude" value="analize_terrain_solon_exclude">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludeStone
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_stone_exclude" value="analize_terrain_stone_exclude">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludeProtect
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_protect_exclude" value="analize_terrain_protect_exclude">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludeReserve
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_reserve_exclude" value="analize_terrain_reserve_exclude">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludePark
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_park_exclude" value="analize_terrain_park_exclude">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludeNatres
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_natres_exclude" value="analize_terrain_natres_exclude">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Layers.AnalizeTerrainExcludePreserve
+            </td>
+            <td style="padding-left: 10px;" class="td-center">
+                <input type="checkbox" name="analize_terrain_preserve_exclude" value="analize_terrain_preserve_exclude">
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="@AtlasSolar.Resources.Common.Analyze" class="calc_button" onclick="AnalizeTerrain()">
+    <input type="button" value="@AtlasSolar.Resources.Common.Help" name="Action" onclick="ShowHelpAnalizeTerrain()" class="calc_button" />
+    @Html.ActionLink(AtlasSolar.Resources.Common.Download, "DownloadMap", "Maps", null, new { @target = "_blank", @id = "analize_terrain_downloadlink", @style = "margin: 10px; display: none;" })
+</div>
+
+<div id="dialog_find_terrain" title="@AtlasSolar.Resources.Common.FindTerrain" hidden="hidden" style="box-sizing: content-box;" class="calc-table">
+    <table>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Province
+            </td>
+            <td style="padding-left: 10px;">
+                @Html.DropDownList("OblastId", (IEnumerable<SelectListItem>)ViewBag.Provinces, htmlAttributes: new { @id = "find_terrain_OblastId", @style = "width: 400px;" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Formula
+            </td>
+            <td style="padding-left: 10px;">
+                <input type="text" id="find_terrain_formula" class="calc-table-control" style="margin-right: 1px; width: 400px;" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Operands
+            </td>
+            <td>
+                <input type="button" value="@AtlasSolar.Resources.Common.Paste" class="calc_button" onclick="FindTerrainAddOperand()" style="float: right;" />
+                <select id="operands" size="10" style="height: auto; float: right;">
+                    <option>=</option>
+                    <option>></option>
+                    <option><</option>
+                    <option>+</option>
+                    <option>-</option>
+                    <option>*</option>
+                    <option>/</option>
+                    <option value="&&">@AtlasSolar.Resources.Common.FormulaAND</option>
+                    <option value="||">@AtlasSolar.Resources.Common.FormulaOR</option>
+                    <option value="!">@AtlasSolar.Resources.Common.FormulaNOT</option>
+                    <option value="true">@AtlasSolar.Resources.Common.FormulaTRUE</option>
+                    <option value="false">@AtlasSolar.Resources.Common.FormulaFALSE</option>
+                    <option>(</option>
+                    <option>)</option>
+                </select>
+                
+            </td>
+        </tr>
+        <tr>
+        <td>
+            @AtlasSolar.Resources.Common.Layers
+        </td>
+        <td>
+            <input type="button" value="@AtlasSolar.Resources.Common.Paste" class="calc_button" onclick="FindTerrainAddLayer()" style="float: right;" />
+            <select id="formulas" size="10" style="height: auto; width: 500px; float: right; overflow-x: auto;" >
+                <option value="RADIATIONNASA">@AtlasSolar.Resources.Layers.FindTerrainRADIATIONNASA</option>
+                <option value="SETTLEDIST">@AtlasSolar.Resources.Layers.FindTerrainSETTLEDIST</option>
+                <option value="POWERDIST">@AtlasSolar.Resources.Layers.FindTerrainPOWERDIST</option>
+                <option value="ROADDIST">@AtlasSolar.Resources.Layers.FindTerrainROADDIST</option>
+                <option value="SLOPE">@AtlasSolar.Resources.Layers.FindTerrainSLOPE</option>
+                <option value="ALTITUDE">@AtlasSolar.Resources.Layers.FindTerrainALTITUDE</option>
+                <option value="SETTLEMENT">@AtlasSolar.Resources.Layers.FindTerrainSETTLEMENT</option>
+                <option value="AGRI">@AtlasSolar.Resources.Layers.FindTerrainAGRI</option>
+                <option value="WOOD">@AtlasSolar.Resources.Layers.FindTerrainWOOD</option>
+                <option value="BUSH">@AtlasSolar.Resources.Layers.FindTerrainBUSH</option>
+                <option value="HYDRO">@AtlasSolar.Resources.Layers.FindTerrainHYDRO</option>
+                <option value="TAKYR">@AtlasSolar.Resources.Layers.FindTerrainTAKYR</option>
+                <option value="DESERT">@AtlasSolar.Resources.Layers.FindTerrainDESERT</option>
+                <option value="SOLON">@AtlasSolar.Resources.Layers.FindTerrainSOLON</option>
+                <option value="STONE">@AtlasSolar.Resources.Layers.FindTerrainSTONE</option>
+                <option value="PROTECT">@AtlasSolar.Resources.Layers.FindTerrainPROTECT</option>
+                <option value="RESERVE">@AtlasSolar.Resources.Layers.FindTerrainRESERVE</option>
+                <option value="PARK">@AtlasSolar.Resources.Layers.FindTerrainPARK</option>
+                <option value="NATRES">@AtlasSolar.Resources.Layers.FindTerrainNATRES</option>
+                <option value="PRESERVE">@AtlasSolar.Resources.Layers.FindTerrainPRESERVE</option>
+            </select>
+        </td>
+    </tr>
+    </table>
+    <input type="button" value="@AtlasSolar.Resources.Common.Find" class="calc_button" onclick="FindTerrain()">
+    <input type="button" value="@AtlasSolar.Resources.Common.Help" name="Action" onclick="ShowHelpFindTerrain()" class="calc_button" />
+    @Html.ActionLink(AtlasSolar.Resources.Common.Download, "DownloadMap", "Maps", null, new { @target = "_blank", @id = "find_terrain_downloadlink", @style  = "margin: 10px; display: none;"})
+</div>
+
+<div id="dialog_info_lep" title="@AtlasSolar.Resources.Layers.lep" hidden="hidden" style="box-sizing: content-box;">
+    <table class="infotable">
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Name
+            </td>
+            <td style="padding-left: 10px;" id="info_lep_name_rs"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Lepvltg
+            </td>
+            <td style="padding-left: 10px;" id="info_lep_vltg"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Leprng
+            </td>
+            <td style="padding-left: 10px;" id="info_lep_rng"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Leptype
+            </td>
+            <td style="padding-left: 10px;" id="info_lep_type"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Lepdtntr
+            </td>
+            <td style="padding-left: 10px;" id="info_lep_dtntr"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Lepelvt
+            </td>
+            <td style="padding-left: 10px;" id="info_lep_elvt"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Lepmtrl
+            </td>
+            <td style="padding-left: 10px;" id="info_lep_mtrl"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Lepinsttp
+            </td>
+            <td style="padding-left: 10px;" id="info_lep_insttp"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Leplnght
+            </td>
+            <td style="padding-left: 10px;" id="info_lep_lnght"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Leprnzon
+            </td>
+            <td style="padding-left: 10px;" id="info_lep_rnzon"></td>
+        </tr>
+    </table>
+</div>
+
+<div id="dialog_measure" title="@AtlasSolar.Resources.Common.MeasureOnTheMap" hidden="hidden" style="box-sizing: content-box;">
+    <label>@AtlasSolar.Resources.Common.MeasureType</label>
+    <select id="measure_type">
+        <option value="length">@AtlasSolar.Resources.Common.MeasureLength</option>
+        <option value="area">@AtlasSolar.Resources.Common.MeasureArea</option>
+    </select>
+    <label class="checkbox">
+        <input type="checkbox" id="geodesic" style="margin: 0px; position: initial;">
+        @AtlasSolar.Resources.Common.MeasureUseGeodesic
+    </label>
+</div>
+
+<div id="dialog_OPTANG" title="@AtlasSolar.Resources.Common.Information" hidden="hidden" style="box-sizing: content-box;">
+    <label>@AtlasSolar.Resources.Layers.Info_OPTANG</label>
+    <table class="infotable">
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.month01
+            </td>
+            <td id="dialog_OPTANG_01"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.month02
+            </td>
+            <td id="dialog_OPTANG_02"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.month03
+            </td>
+            <td id="dialog_OPTANG_03"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.month04
+            </td>
+            <td id="dialog_OPTANG_04"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.month05
+            </td>
+            <td id="dialog_OPTANG_05"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.month06
+            </td>
+            <td id="dialog_OPTANG_06"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.month07
+            </td>
+            <td id="dialog_OPTANG_07"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.month08
+            </td>
+            <td id="dialog_OPTANG_08"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.month09
+            </td>
+            <td id="dialog_OPTANG_09"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.month10
+            </td>
+            <td id="dialog_OPTANG_10"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.month11
+            </td>
+            <td id="dialog_OPTANG_11"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.month12
+            </td>
+            <td id="dialog_OPTANG_12"></td>
+        </tr>
+        <tr>
+            <td>
+                @AtlasSolar.Resources.Common.Year
+            </td>
+            <td id="dialog_OPTANG_year"></td>
+        </tr>
+    </table>
+</div>

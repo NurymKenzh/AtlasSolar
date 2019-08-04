@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutAtlas" xml:space="preserve">
+    <value>About the Atlas</value>
+  </data>
+  <data name="AboutAtlasText" xml:space="preserve">
+    <value>The information in the Atlas of Solar Resources is presented in various forms - interactive maps, output tables and graphs:
+•	the resource maps – maps of long-term average annual values of solar radiation data;
+•	the maps for assessing the potential of solar energy – maps of monthly averages of different types of radiation on differently oriented surfaces, monthly averages of the geometric parameters of the Sun (altitude, azimuth);
+•	the climatic maps –  maps of basic meteorological characteristics;
+•	the maps of solar energy facilities – a map with existing and projected solar energy facilities;
+•	the maps of limitations and prerequisites for the location of solar energy facilities - maps of factors that favor or limit the deployment of solar energy facilities: 
+	Specially protected natural areas of national importance;
+	Archaeological monuments and other objects of historical and cultural heritage of international and republican significance;
+	Territories of forest state institutions;
+	Water reservoirs, water protection zones and watercourse strips;
+	Power lines;
+	Automobile roads;
+	Human settlements;
+•	auxiliary layers - digital relief model (DEM), terrain slopes, slope exposition, administrative-territorial division, meteorological stations of RSE "Kazhydromet"
+Functionality of the Atlas of Solar Resources:
+•	General functionality (selection and visualization of cartographic layers from the atlas set, selection of base layers, map navigation function, scaling, legend viewing, “identification” tool, measuring tool (distances, areas), viewing reference information about the cartographic layer;
+•	Selecting and exporting data for the selected point (table, graph);
+•	Comparison of the initial data on several selected points on the map (graphs, diagrams, tables);
+•	Preliminary ranking of the suitability of the territory for the accommodation of solar energy facilities;
+•	Calculator "The calculation of the PV system area" – the calculation of the areas of solar panels for the selected type of projected photovoltaic station;
+•	Calculator "The calculation of the energy output of the PV system" – the calculation of the energy output of solar panels of the projected photovoltaic station of the selected type for the selected location;
+•	Calculator "The calculation of energy consumption" - for the calculation of the total electricity consumption by household electrical appliances.</value>
+  </data>
+  <data name="AboutProject" xml:space="preserve">
+    <value>About the project</value>
+  </data>
+  <data name="AboutProjectText" xml:space="preserve">
+    <value>The concept of transition to a green economy, approved by Presidential Decree No. 577 of May 30, 2013, determined a list of priority tasks, mainly aimed at reforming certain sectors of the economy. As part of the transition to the Green Economy of the Republic of Kazakhstan, it is expected to increase the efficiency of the use of natural resources, improve the existing infrastructure and improve the well-being of the population. The project aims to assist in the practical implementation of the Concept for the transition to a Green Economy by providing support in developing the institutional and legislative framework necessary for the development of such areas of the green economy as solar energy, sustainable fisheries and aquaculture, and also by enhancing international cooperation within the framework of the “Green Bridge” Partnership Program.
+One of the most promising areas of renewable energy is the development of Solar energy. The Sun is an inexhaustible, permanent, environmentally sustainable and freely available energy source, which can be used for providing energy for heating, electricity and hot water.
+Having a high degree of insolation and a large number of sunny hours per year Kazakhstan is one of the promising regions of the Earth for the development of solar energy.
+Having adopted the Concept for the transition to Green Economy, Kazakhstan have decided to fully implement Renewable Energy Sources.
+To achieve this goal, it is necessary to introduce new technological processes, increase the level of knowledge and awareness, which promote the development of alternative energy sources. Creation of the Interactive Atlas of Solar Resources of the Republic of Kazakhstan will expand the potentials of using solar resources.</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DescriptionText" xml:space="preserve">
+    <value>The Atlas of Solar Resources of Kazakhstan has been created within the framework of the Project of the Ministry of Energy of the Republic of Kazakhstan and the United Nations Development Program "Support to the Government of the Republic of Kazakhstan in implementing the Concept of Transition to Green Economy and Institutionalization of the “Green Bridge” Partnership Program”.</value>
+  </data>
+  <data name="Map1Description" xml:space="preserve">
+    <value>Maps of solar radiation indicators (direct, diffuse, total, etc.) constructed on the basis of climatic bases that are in open access (NASA SSE, Sustainable Buildings, SARAH-E)</value>
+  </data>
+  <data name="Map1Title" xml:space="preserve">
+    <value>Solar resources</value>
+  </data>
+  <data name="Map2Description" xml:space="preserve">
+    <value>Maps of the main meteorological characteristics (air temperature, temperature of the underlying surface, cloudiness, atmospheric precipitation, albedo, etc.)</value>
+  </data>
+  <data name="Map2Title" xml:space="preserve">
+    <value>Climate</value>
+  </data>
+  <data name="Map3Description" xml:space="preserve">
+    <value>Maps of factors affecting the potential of building solar power plants (specially protected natural areas, infrastructure, etc.)</value>
+  </data>
+  <data name="Map3Title" xml:space="preserve">
+    <value>Factors affecting for the installation of grid-connected solar power stations</value>
+  </data>
+  <data name="Map4Description" xml:space="preserve">
+    <value>A map of operating and projected solar energy facilities; a map of power lines</value>
+  </data>
+  <data name="Map4Title" xml:space="preserve">
+    <value>Solar energy facilities</value>
+  </data>
+  <data name="Slogan1" xml:space="preserve">
+    <value>“Internet technologies and renewable sources will merge in the coming years”                            N. Nazarbayev</value>
+  </data>
+  <data name="Slogan2" xml:space="preserve">
+    <value>The transition to "green" energy and the introduction of "green" &lt;br /&gt;technologies is a growing vector of the global economy&lt;br/&gt;N. Nazarbayev</value>
+  </data>
+  <data name="Slogan3" xml:space="preserve">
+    <value>«Fifth challenge is the global energy security» N. Nazarbayev</value>
+  </data>
+</root>
