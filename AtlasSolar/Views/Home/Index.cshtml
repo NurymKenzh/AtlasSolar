@@ -1,139 +1,97 @@
 ﻿@{
     ViewBag.Title = AtlasSolar.Resources.Common.MainPage;
 }
-
-
-    
-
-    <!-- second menu bar -->
-    <!-- 2-column layout -->
-    <div class="row row-offcanvas row-offcanvas-right">
-        <div class="col-xs-12 col-sm-9">
-
-            <!-- jumbotron -->
-            @*<div class="jumbotron">
-                <h1>@AtlasSolar.Resources.Info.Description</h1>
-                <p>@AtlasSolar.Resources.Info.DescriptionText</p>
-            </div>*@
-
-            <div class="row">
-
-                <!-- column 1 -->
-                <div class="col-sm-6">
-
-                    <!-- box 1 -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+<!-- second menu bar -->
+<!-- 2-column layout -->
+<div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-xs-12 col-sm-9">
+        <div class="row">
+            <!-- column 1 -->
+            <div class="col-sm-6">
+                <!-- box 1 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="@Url.Action("Demo", "Maps", new { map = "avg_dnr" })">
+                            <h3 class="panel-title">@AtlasSolar.Resources.Info.Map1Title</h3>
+                        </a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="min-j">
                             <a href="@Url.Action("Demo", "Maps", new { map = "avg_dnr" })">
-                                <h3 class="panel-title">@AtlasSolar.Resources.Info.Map1Title</h3>
+                                <img src="img/sl4.jpg" />
                             </a>
                         </div>
-                        <div class="panel-body">
-                            <div class="min-j">
-                                <a href="@Url.Action("Demo", "Maps", new { map = "avg_dnr" })">
-                                    <img src="img/sl4.jpg" />
-                                </a>
-                            </div>
-                            <p>@AtlasSolar.Resources.Info.Map1Description</p>
-                            @*<p>
-                                @Html.ActionLink(AtlasSolar.Resources.Common.Continue, "Demo", "Maps", new { map = "avg_dnr" }, new { @class = "btn btn-default right" })
-                            </p>*@
-                        </div>
+                        <p>@AtlasSolar.Resources.Info.Map1Description</p>
                     </div>
-
-                    <!-- box 2 -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                </div>
+                <!-- box 2 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="@Url.Action("Demo", "Maps", new { map = "t10m" })">
+                            <h3 class="panel-title">@AtlasSolar.Resources.Info.Map2Title</h3>
+                        </a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="min-j">
                             <a href="@Url.Action("Demo", "Maps", new { map = "t10m" })">
-                                <h3 class="panel-title">@AtlasSolar.Resources.Info.Map2Title</h3>
+                                <img src="img/sl6.jpg" />
                             </a>
-                            
                         </div>
-                        <div class="panel-body">
-                            <div class="min-j">
-                                <a href="@Url.Action("Demo", "Maps", new { map = "t10m" })">
-                                    <img src="img/sl6.jpg" />
-                                </a>
-                            </div>
-                            <p>@AtlasSolar.Resources.Info.Map2Description</p>
-                            @*<p>
-                                @Html.ActionLink(AtlasSolar.Resources.Common.Continue, "Demo", "Maps", new { map = "t10m" }, new { @class = "btn btn-default right" })
-                            </p>*@
-                        </div>
+                        <p>@AtlasSolar.Resources.Info.Map2Description</p>
                     </div>
                 </div>
-                <!-- /column 1 -->
-                <!-- column 2 -->
-                <div class="col-sm-6">
-
-                    <!-- box 3 -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a href="@Url.Action("Demo", "Maps", new { map = "factor" })">
-                                <h3 class="panel-title">@AtlasSolar.Resources.Info.Map3Title</h3>
-                            </a>
-                            
-                        </div>
-                        <div class="panel-body">
-                            <div class="min-j">
-                                <a href="@Url.Action("Demo", "Maps", new { map = "factor" })">
-                                    <img src="img/sl5.jpg" />
-                                </a>
-                            </div>
-                            <p>@AtlasSolar.Resources.Info.Map3Description</p>
-                            @*<p>
-                                @Html.ActionLink(AtlasSolar.Resources.Common.Continue, "Demo", "Maps", new { map = "factor" }, new { @class = "btn btn-default right" })
-                            </p>*@
-                        </div>
-                    </div>
-
-                    <!-- box 4 -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a href="@Url.Action("Demo", "Maps", new { map = "solar" })">
-                                <h3 class="panel-title">@AtlasSolar.Resources.Info.Map4Title</h3>
-                            </a>
-                            
-                        </div>
-                        <div class="panel-body">
-                            <div class="min-j">
-                                <a href="@Url.Action("Demo", "Maps", new { map = "solar" })">
-                                    <img src="img/sl7.jpg" />
-                                </a>
-                            </div>
-                            <p>@AtlasSolar.Resources.Info.Map4Description</p>
-                            @*<p>
-                                @Html.ActionLink(AtlasSolar.Resources.Common.Continue, "Demo", "Maps", new { map = "solar" }, new { @class = "btn btn-default right" })
-                            </p>*@
-                        </div>
-                    </div>
-                </div>
-                <!-- /column 2 -->
-                
             </div>
-            <!--/row-->
+            <!-- /column 1 -->
+            <!-- column 2 -->
+            <div class="col-sm-6">
+                <!-- box 3 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="@Url.Action("Demo", "Maps", new { map = "factor" })">
+                            <h3 class="panel-title">@AtlasSolar.Resources.Info.Map3Title</h3>
+                        </a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="min-j">
+                            <a href="@Url.Action("Demo", "Maps", new { map = "factor" })">
+                                <img src="img/sl5.jpg" />
+                            </a>
+                        </div>
+                        <p>@AtlasSolar.Resources.Info.Map3Description</p>
+                    </div>
+                </div>
+                <!-- box 4 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="@Url.Action("Demo", "Maps", new { map = "solar" })">
+                            <h3 class="panel-title">@AtlasSolar.Resources.Info.Map4Title</h3>
+                        </a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="min-j">
+                            <a href="@Url.Action("Demo", "Maps", new { map = "solar" })">
+                                <img src="img/sl7.jpg" />
+                            </a>
+                        </div>
+                        <p>@AtlasSolar.Resources.Info.Map4Description</p>
+                    </div>
+                </div>
+            </div>
+            <!-- /column 2 -->
         </div>
-
-        
-
-            
-        <!--/span-->
-        <!-- column 3 (sidebar) -->
-        <div class="col-sm-3 sidebar-offcanvas" id="sidebar">
-            <div class="list-group" role="navigation"> </div>
-            <a href="http://ecosolar.kz/" style="margin-bottom: 10px;">
-                <img src="~/img/ecosolar_logo.png" />
-                <img src="~/img/ecosolar_name.png" />
-            </a>
-        </div>
-        <!-- /column 3 (sidebar) -->
-
+        <!--/row-->
     </div>
-    <!--/row-->
-    @*<footer>
-        <h4>&copy Copyright 2017 - Atlas Solar</h4>
-    </footer>*@
-
+    <!--/span-->
+    <!-- column 3 (sidebar) -->
+    <div class="col-sm-3 sidebar-offcanvas" id="sidebar">
+        <div class="list-group" role="navigation"> </div>
+        <a href="http://ecosolar.kz/" style="margin-bottom: 10px;">
+            <img src="~/img/ecosolar_logo.png" />
+            <img src="~/img/ecosolar_name.png" />
+        </a>
+    </div>
+    <!-- /column 3 (sidebar) -->
+</div>
 <!-- box 3 -->
 <div>
     <div class="panel-body">
@@ -141,37 +99,6 @@
             <a>
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/bEBEKigbAA0" frameborder="0" allowfullscreen></iframe>
             </a>
-            
         </div>
     </div>
 </div>
-@*<div class="jumbotron">
-        <h1>ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-            <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-        <p>
-            @Html.ActionLink("-Демонстрационная карта-", "Test", "Maps", null, new { @class = "btn btn-default" })
-        </p>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-                <p>
-                    ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                    enables a clean separation of concerns and gives you full control over markup
-                    for enjoyable, agile development.
-                </p>
-                <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-                <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-                <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-                <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-                <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>
-    </div>*@
