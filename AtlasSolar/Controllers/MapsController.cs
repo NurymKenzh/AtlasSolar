@@ -779,6 +779,7 @@ namespace AtlasSolar.Controllers
                 .ToList();
             ViewBag.CalcMeteoDataSources = new SelectList(calcmeteodatasources, "Id", "Name");
 
+            ViewBag.gip = Properties.Settings.Default.GeoServerIP;
             return View();
         }
 

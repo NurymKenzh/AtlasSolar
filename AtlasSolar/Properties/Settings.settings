@@ -122,5 +122,8 @@
     <Setting Name="GeoServerPath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">C:\GeoServer 2.9.0</Value>
     </Setting>
+    <Setting Name="GeoServerIP" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">92.46.36.100</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -1,4 +1,4 @@
-﻿// переменные
+﻿// variables
 var longitude; // X
 var latitude;   // Y
 var hdms;       // hemisphere, degrees, minutes, and seconds
@@ -8,20 +8,14 @@ var dialog_calcpv_first = true;
 var dialog_calcpvresult_first = true;
 var dialog_calcefficiency_first = true;
 var dialog_calcefficiencyresult_first = true;
-var dontshow_selectpoint = false; // не показывать окно выбора точки на карте
+var dontshow_selectpoint = false; // do not show the point selection window on the map
 var role = document.getElementById("Role").innerHTML;
 var appliances = [];
 var calcefficiencyresultchart = null;
 var comparepointsresultchart = null;
 var set_point_number = 0;
-// GeoServer ip
-//var gip = $('#ipadres').val(); // javascript instead jquery
-//var gip = 'atlassolar.kz';
-var gip = window.location.hostname;
-//var gip = 'localhost';
 var min_zoom = 4;
 var max_zoom = 10;
-//var gip = '5.34.80.254';
 var months = ["", "", "", "", "", "", "", "", "", "", "", ""];
 months[0] = document.getElementById("month01").innerHTML;
 months[1] = document.getElementById("month02").innerHTML;
