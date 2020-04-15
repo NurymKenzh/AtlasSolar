@@ -25,11 +25,11 @@ namespace AtlasSolar.Models
         [DisplayFormat(DataFormatString = "{0:G}", ApplyFormatInEditMode = true)]
         public decimal Efficiency { get; set; }
 
-        // Номинальная температура работы солнечного элемента NOCT
+        // Nominal solar cell operating temperature NOCT
         [Display(ResourceType = typeof(Resources.Common), Name = "RatedOperatingTemperature")]
         public int RatedOperatingTemperature { get; set; }
 
-        // Температурный коэффициент мощности фотопанели
+        // Photographic Panel Temperature Power Factor
         [Display(ResourceType = typeof(Resources.Common), Name = "ThermalPowerFactor")]
         [DisplayFormat(DataFormatString = "{0:G}", ApplyFormatInEditMode = true)]
         public decimal ThermalPowerFactor { get; set; }

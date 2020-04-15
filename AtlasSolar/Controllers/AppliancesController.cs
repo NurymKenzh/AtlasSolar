@@ -80,7 +80,6 @@ namespace AtlasSolar.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Appliance appliance = await db.Appliances.FindAsync(id);
             Appliance appliance = await db.Appliances
                 .Where(a => a.Id == id)
                 .Include(a => a.ApplianceType)
@@ -202,7 +201,6 @@ namespace AtlasSolar.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Appliance appliance = await db.Appliances.FindAsync(id);
             Appliance appliance = await db.Appliances
                 .Where(a => a.Id == id)
                 .Include(a => a.ApplianceType)

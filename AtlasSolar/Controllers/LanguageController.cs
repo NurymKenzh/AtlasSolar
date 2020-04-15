@@ -29,8 +29,6 @@ namespace AtlasSolar.Controllers
             Response.Cookies.Add(cookie);
 
             return Redirect(Request.UrlReferrer.ToString());
-
-            //return View("Index");
         }
     }
 }

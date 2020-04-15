@@ -27,9 +27,6 @@ namespace AtlasSolar.Models
         [Display(ResourceType = typeof(Resources.Common), Name = "Day")]
         public int? Day { get; set; }
 
-        //[Display(ResourceType = typeof(Resources.Common), Name = "Hour")]
-        //public int? Hour { get; set; }
-
         [Display(ResourceType = typeof(Resources.Common), Name = "Longitude")]
         public decimal Longitude { get; set; }
 

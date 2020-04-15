@@ -188,7 +188,6 @@ namespace AtlasSolar.Controllers
                 {
                     ModelState.AddModelError("", error);
                 }
-                //AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form

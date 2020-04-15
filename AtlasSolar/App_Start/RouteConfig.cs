@@ -13,7 +13,6 @@ namespace AtlasSolar
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("Home/Index");
-            //routes.LowercaseUrls = true;
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

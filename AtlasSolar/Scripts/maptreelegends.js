@@ -1,4 +1,4 @@
-﻿// дерево слоев, легенды
+﻿// layer tree legends
 $(function () {
     $.jstree.defaults.core.themes.icons = false;
     $('#jstree').jstree({
@@ -11,9 +11,7 @@ $(function () {
             whole_node: false,  // to avoid checking the box just clicking the node
             tie_selection: false // for checking without selecting and selecting without checking
         },
-        plugins: ['checkbox'
-            //, 'wholerow'
-        ]
+        plugins: ['checkbox']
     })
         .on("check_node.jstree uncheck_node.jstree open_node.jstree", function (e, data) {
         if (data.node.id == 'spp') {
@@ -994,7 +992,7 @@ $(function () {
         if (data.node.id == 'meteo_st') {
             Layer_meteo_st.setVisible(data.node.state.checked);
         }
-        // выделение
+        // select
         var nasasse = false;
         var nasasse1 = false;
         var nasasse2 = false;
@@ -1488,7 +1486,7 @@ $(function () {
         else {
             $('#j1_295_anchor').css('font-weight', 'bold');
         }
-        // легенды
+        // legends
         if (Layer_spp.getVisible() == false) {
             $('#legend_spp').hide();
         }
@@ -2067,9 +2065,7 @@ $(function () {
             $('#legend_kzcover').show();
         }
         });
-    //$.jstree.reference('#jstree').open_all();
     if ($('#mapid').html() == "avg_dnr") {
-        //$.jstree.reference('#jstree')._open_to('swv_dwn_year');
         $.jstree.reference('#jstree').check_node('swv_dwn_year');
     }
     if ($('#mapid').html() == "factor") {
@@ -2089,5 +2085,4 @@ $(function () {
 
     $.jstree.reference('#jstree').check_node('oblasti');
     $.jstree.reference('#jstree').check_node('spp');
-    
 });

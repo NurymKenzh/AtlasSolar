@@ -480,43 +480,5 @@ namespace AtlasSolar.Models
                 return Code + (string.IsNullOrEmpty(AdditionalEN) ? "" : $" ({AdditionalEN})");
             }
         }
-
-        //[Display(ResourceType = typeof(Resources.Common), Name = "AdditionalKZ")]
-        //public string AdditionalKZ { get; set; }
-
-        //[Display(ResourceType = typeof(Resources.Common), Name = "AdditionalRU")]
-        //public string AdditionalRU { get; set; }
-
-        //[Display(ResourceType = typeof(Resources.Common), Name = "MeteoDataType")]
-        //public string NameAdditional
-        //{
-        //    get
-        //    {
-        //        HttpCookie cookie = HttpContext.Current.Request.Cookies["Language"];
-        //        if (cookie != null)
-        //        {
-        //            if (cookie.Value != null)
-        //            {
-        //                if (cookie.Value == "en")
-        //                {
-        //                    return NameEN + (!string.IsNullOrEmpty(AdditionalEN) ? " (" + AdditionalEN + ")" : "");
-        //                }
-        //                if (cookie.Value == "kk")
-        //                {
-        //                    return (!string.IsNullOrEmpty(NameKZ) ? NameKZ : NameEN) + (!string.IsNullOrEmpty(AdditionalKZ) ? " (" + AdditionalKZ + ")" : (!string.IsNullOrEmpty(AdditionalEN) ? " (" + AdditionalEN + ")" : ""));
-        //                }
-        //                if (cookie.Value == "ru")
-        //                {
-        //                    return (!string.IsNullOrEmpty(NameRU) ? NameRU : NameEN) + (!string.IsNullOrEmpty(AdditionalRU) ? " (" + AdditionalRU + ")" : (!string.IsNullOrEmpty(AdditionalEN) ? " (" + AdditionalEN + ")" : ""));
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            return (!string.IsNullOrEmpty(NameRU) ? NameRU : NameEN) + (!string.IsNullOrEmpty(AdditionalRU) ? " (" + AdditionalRU + ")" : (!string.IsNullOrEmpty(AdditionalEN) ? " (" + AdditionalEN + ")" : ""));
-        //        }
-        //        return (!string.IsNullOrEmpty(NameRU) ? NameRU : NameEN) + (!string.IsNullOrEmpty(AdditionalRU) ? " (" + AdditionalRU + ")" : (!string.IsNullOrEmpty(AdditionalEN) ? " (" + AdditionalEN + ")" : ""));
-        //    }
-        //}
     }
 }

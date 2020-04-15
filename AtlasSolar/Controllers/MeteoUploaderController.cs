@@ -75,7 +75,7 @@ namespace AtlasSolar.Controllers
                 proc.StartInfo.WorkingDirectory = Path.GetDirectoryName(batfilename);
                 proc.Start();
                 proc.WaitForExit();
-                // загрузка данных из файлов
+                // loading data from files
                 foreach (HttpPostedFileBase file in Files)
                 {
                     string filenameout = Path.Combine(Server.MapPath(path), Path.GetFileName(Path.ChangeExtension(Path.GetFileNameWithoutExtension(file.FileName) + "_out", "txt")));
@@ -92,8 +92,6 @@ namespace AtlasSolar.Controllers
                     List<string> meteodatatypecodes = new List<string>();
                     List<string> meteodatatypenameENs = new List<string>();
 
-                    //string meteodatatypecode_ = "";
-                    //string meteodatatypenameEN_ = "";
                     string meteodataperiodicitycode = "";
                     string meteodatasourcecode = "SARAH-E";
                     int meteodatatypeid = -1;
@@ -116,7 +114,6 @@ namespace AtlasSolar.Controllers
                                 {
                                     if (line.Contains("time, lat, lon"))
                                     {
-                                        //meteodatatypecode_ = line.Split(' ')[1].Split('(')[0].Trim();
                                         meteodatatypecodes.Add(line.Split(' ')[1].Split('(')[0].Trim());
                                         meteodatatypenameENs.Add("");
                                     }
@@ -132,11 +129,9 @@ namespace AtlasSolar.Controllers
                                                 break;
                                             }
                                         }
-                                        //meteodatatypenameEN_ = line.Split('"')[1] + meteodatatypenameEN_;
                                     }
                                     for (int i = 0; i < meteodatatypecodes.Count; i++)
                                     {
-                                        //if (line.Contains(meteodatatypecode_ + ":units") && meteodatatypecode_ != "")
                                         if (line.Contains(meteodatatypecodes[i] + ":units") && meteodatatypecodes[i] != "")
                                         {
                                             if (line.Contains(meteodatatypecodes[i]))
@@ -144,7 +139,6 @@ namespace AtlasSolar.Controllers
                                                 meteodatatypenameENs[i] += " " + line.Split('"')[1];
                                                 break;
                                             }
-                                            //meteodatatypenameEN_ = meteodatatypenameEN_ + " " + line.Split('"')[1];
                                         }
                                     }
 
@@ -202,10 +196,6 @@ namespace AtlasSolar.Controllers
                                             }
                                         }
                                         meteodatatypes = db.MeteoDataTypes.ToList();
-                                        //meteodatatypeid = db.MeteoDataTypes
-                                        //    .Where(m => m.Code == meteodatatypecode_ && m.MeteoDataSourceId == meteodatasourceid && m.MeteoDataPeriodicityId == meteodataperiodicityid)
-                                        //    .FirstOrDefault()
-                                        //    .Id;
                                     }
 
                                     if (line.Contains("lon"))
@@ -285,7 +275,6 @@ namespace AtlasSolar.Controllers
                                             v = v.Substring(0, v.Length - 1);
                                             decimal value = Convert.ToDecimal(v);
 
-
                                             sw.WriteLine(meteodatatypeid.ToString() + "\t" +
                                                 times[Convert.ToInt32(pi[0])].Year.ToString() + "\t" +
                                                 times[Convert.ToInt32(pi[0])].Month.ToString() + "\t" +
@@ -296,11 +285,8 @@ namespace AtlasSolar.Controllers
                                                 value.ToString().Replace(',', '.')
                                                 );
                                             count++;
-
-
                                         }
                                     }
-
                                 }
                                 if (line.Contains("variables"))
                                 {
@@ -338,15 +324,12 @@ namespace AtlasSolar.Controllers
                         GC.Collect();
                     }
                 }
-                // удаление файлов
+                // file deletion
                 try
                 {
                     System.IO.File.Delete(batfilename);
                 }
-                catch (Exception ex)
-                {
-
-                }
+                catch (Exception ex) { }
                 foreach (HttpPostedFileBase file in Files)
                 {
                     string path_filename = Path.Combine(Server.MapPath(path), Path.GetFileName(file.FileName));
@@ -355,26 +338,17 @@ namespace AtlasSolar.Controllers
                     {
                         System.IO.File.Delete(path_filename);
                     }
-                    catch (Exception ex)
-                    {
-
-                    }
+                    catch (Exception ex) { }
                     try
                     {
                         System.IO.File.Delete(Path.ChangeExtension(path_filename, "txt"));
                     }
-                    catch (Exception ex)
-                    {
-
-                    }
+                    catch (Exception ex) { }
                     try
                     {
                         System.IO.File.Delete(filenameout);
                     }
-                    catch (Exception ex)
-                    {
-
-                    }
+                    catch (Exception ex) { }
                 }
             }
 

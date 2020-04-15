@@ -9,12 +9,9 @@
 
 <h2>@AtlasSolar.Resources.Common.ApplianceTypes</h2>
 
-@*@if (ViewBag.Role.Contains("Admin"))
-{*@
-    <p>
-        @Html.ActionLink(AtlasSolar.Resources.Common.Create, "Create")
-    </p>
-    @*}*@
+<p>
+    @Html.ActionLink(AtlasSolar.Resources.Common.Create, "Create")
+</p>
 
 @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortOrder = Request.QueryString["SortOrder"], NameEN = ViewBag.NameENFilter, NameKZ = ViewBag.NameKZFilter, NameRU = ViewBag.NameRUFilter }), new PagedListRenderOptions() { PageCountAndCurrentLocationFormat = "{0} / {1}", DisplayPageCountAndCurrentLocation = true })
 
@@ -56,20 +53,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.NameRU)
                 </td>
-                @*@if (ViewBag.Role.Contains("Admin"))
-                {*@
-                    <td>
-                        @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = item.Id }) |
-                        @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id }) |
-                        @Html.ActionLink(AtlasSolar.Resources.Common.Delete, "Delete", new { id = item.Id })
-                    </td>
-                @*}
-                else
-                {
-                    <td>
-                        @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id })
-                    </td>
-                }*@
+                <td>
+                    @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = item.Id }) |
+                    @Html.ActionLink(AtlasSolar.Resources.Common.Details, "Details", new { id = item.Id }) |
+                    @Html.ActionLink(AtlasSolar.Resources.Common.Delete, "Delete", new { id = item.Id })
+                </td>
             </tr>
         }
 

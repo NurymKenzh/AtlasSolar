@@ -30,11 +30,9 @@ namespace AtlasSolar.Models
         [Display(ResourceType = typeof(Resources.Common), Name = "Action")]
         public string Action { get; set; }
 
-        //[DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(Resources.Common), Name = "Comment")]
         public string Comment { get; set; }
 
-        //[DataType(DataType.MultilineText)]
         [Display(ResourceType = typeof(Resources.Common), Name = "Errors")]
         public string Errors { get; set; }
 

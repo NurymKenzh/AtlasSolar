@@ -376,7 +376,7 @@ namespace AtlasSolar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\GeoServer 2.9.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\GeoServer\\data_dir")]
         public string GeoServerPath {
             get {
                 return ((string)(this["GeoServerPath"]));
@@ -385,10 +385,46 @@ namespace AtlasSolar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("92.46.36.100")]
-        public string GeoServerIP {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost")]
+        public string GeoServerURL {
             get {
-                return ((string)(this["GeoServerIP"]));
+                return ((string)(this["GeoServerURL"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
+        public string GeoServerUser {
+            get {
+                return ((string)(this["GeoServerUser"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("geoserver")]
+        public string GeoServerPassword {
+            get {
+                return ((string)(this["GeoServerPassword"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8080")]
+        public string GeoServerPort {
+            get {
+                return ((string)(this["GeoServerPort"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\AtlasSolar")]
+        public string WorkspaceDir {
+            get {
+                return ((string)(this["WorkspaceDir"]));
             }
         }
     }

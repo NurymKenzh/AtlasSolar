@@ -57,7 +57,7 @@ namespace AtlasSolar.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        // получение списка ежедневных данных NASA (1983-2005)
+        // getting a list of daily data NASA (1983-2005)
         public ActionResult ParseNASA1983Daily(bool? post)
         {
             string report = "";
@@ -68,10 +68,6 @@ namespace AtlasSolar.Controllers
                     longitude_max = 95 + 0.5m,
                     latitude_min = 39 - 0.5m,
                     latitude_max = 56 + 0.5m;
-            //decimal longitude_min = 45 - 0.5m,
-            //        longitude_max = 44 + 0.5m,
-            //        latitude_min = 39 - 0.5m,
-            //        latitude_max = 38 + 0.5m;
 
             List<MeteoDataType> meteodatatypes = new List<MeteoDataType>();
             using (var db = new NpgsqlContext())
@@ -106,9 +102,6 @@ namespace AtlasSolar.Controllers
 
             if (!error)
             {
-                //string filenameout = Path.Combine(Server.MapPath(path), "From NASA (1983-2005).txt");
-                //using (StreamWriter sw = System.IO.File.AppendText(filenameout))
-                //{
                 bool go = false;
                 for (decimal latitude = latitude_min; latitude <= latitude_max; latitude++)
                 {
@@ -169,9 +162,6 @@ namespace AtlasSolar.Controllers
                             string file = (new WebClient()).DownloadString(file_url);
                             string[] lines = file.Split('\n');
                             List<string> columns = new List<string>();
-                            //using (var db = new NpgsqlContext())
-                            //{
-                            //db.Configuration.AutoDetectChangesEnabled = false;
                             foreach (string line in lines)
                             {
                                 if (line.Length == 0)
@@ -190,17 +180,6 @@ namespace AtlasSolar.Controllers
                                 {
                                     for (int c = 3; c < columns.Count; c++)
                                     {
-                                        //decimal out_decimal = 0;
-                                        //db.MeteoDatas.Add(new MeteoData()
-                                        //{
-                                        //    Year = Convert.ToInt32(linecolumns[0]),
-                                        //    Month = Convert.ToInt32(linecolumns[1]),
-                                        //    Day = Convert.ToInt32(linecolumns[2]),
-                                        //    Longitude = Convert.ToDecimal(slon.Replace(".", ",")),
-                                        //    Latitude = Convert.ToDecimal(slat.Replace(".", ",")),
-                                        //    MeteoDataTypeId = meteodatatypes.Where(m => m.Code == columns[c]).FirstOrDefault().Id,
-                                        //    Value = decimal.TryParse(linecolumns[c].Replace(".", ","), out out_decimal) ? Convert.ToDecimal(linecolumns[c].Replace(".", ",")) : (decimal?)null
-                                        //});
                                         sw.WriteLine(meteodatatypes.Where(m => m.Code == columns[c]).FirstOrDefault().Id.ToString() + "\t" +
                                             linecolumns[0] + "\t" +
                                             linecolumns[1] + "\t" +
@@ -222,30 +201,11 @@ namespace AtlasSolar.Controllers
                                     }
                                 }
                             }
-                            ////db.SaveChanges();
-                            //db.Dispose();
-                            //GC.Collect();
-                            //}
                         }
                     }
 
                 }
-                //}
 
-                //using (var db = new NpgsqlContext())
-                //{
-                //    string query = "COPY \"MeteoData\" (\"MeteoDataTypeId\", \"Year\", \"Month\", \"Day\", \"Hour\", \"Longitude\", \"Latitude\", \"Value\") FROM '" + filenameout + "' WITH NULL AS ''";
-                //    try
-                //    {
-                //        db.MeteoDatas.SqlQuery(query).SingleOrDefault();
-                //    }
-                //    catch (Exception ex)
-                //    {
-
-                //    }
-                //    db.Dispose();
-                //    GC.Collect();
-                //}
                 for (decimal latitude = latitude_min; latitude <= latitude_max; latitude++)
                 {
                     for (decimal longitude = longitude_min; longitude <= longitude_max; longitude++)
@@ -273,8 +233,6 @@ namespace AtlasSolar.Controllers
 
             }
 
-
-
             TimeSpan time = DateTime.Now - start;
             report += "<br/>Time: " + time.ToString() + "<br/>Count: " + count.ToString() + "<br/>";
             ViewBag.Report = report;
@@ -290,7 +248,7 @@ namespace AtlasSolar.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        // получение списка среднемесячных данных NASA (1983-2005)
+        // getting a list of monthly average data NASA (1983-2005)
         public ActionResult ParseNASA1983Monthly(bool? post)
         {
             string report = "";
@@ -310,10 +268,6 @@ namespace AtlasSolar.Controllers
                     longitude_max = 95 + 0.5m,
                     latitude_min = 39 - 0.5m,
                     latitude_max = 56 + 0.5m;
-            //decimal longitude_min = 45 - 0.5m,
-            //        longitude_max = 44 + 0.5m,
-            //        latitude_min = 39 - 0.5m,
-            //        latitude_max = 38 + 0.5m;
 
             int count = 0;
             for (decimal latitude = latitude_min; latitude <= latitude_max; latitude++)
@@ -446,7 +400,7 @@ namespace AtlasSolar.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        // получение списка типов данных
+        // getting a list of data types
         public ActionResult ParseMeteoDataTypes(bool? post)
         {
             string report = "";
@@ -457,7 +411,7 @@ namespace AtlasSolar.Controllers
             HtmlAgilityPack.HtmlDocument html = new HtmlAgilityPack.HtmlDocument();
             HtmlAgilityPack.HtmlNode root = html.DocumentNode;
 
-            // среднемесячные типы NASA (1983-2005)
+            // monthly average types NASA (1983-2005)
             decimal longitude_min = 45 - 0.5m,
                     longitude_max = 45 - 0.5m,
                     latitude_min = 39 - 0.5m,
@@ -545,7 +499,7 @@ namespace AtlasSolar.Controllers
                 }
             }
 
-            // ежедневные типы NASA (1983-2005)
+            // daily types NASA (1983-2005)
             url = "https://eosweb.larc.nasa.gov/cgi-bin/sse/daily.cgi?email=skip%40larc.nasa.gov&step=1&lat=" +
                 "38.5".ToString().Replace(",", ".") +
                 "&lon=" +
@@ -617,13 +571,7 @@ namespace AtlasSolar.Controllers
                 GC.Collect();
             }
 
-            // ежедневные типы NASA
-            //file_url = "http://power.larc.nasa.gov/cgi-bin/hirestimeser.cgi?email=hirestimeser%40larc.nasa.gov&step=1&lat=" +
-            //    "38.5".ToString().Replace(",", ".") +
-            //    "&lon=" +
-            //    "44.5".ToString().Replace(",", ".") +
-            //    "&ms=1&ds=1&ys=1981&me=1&de=2&ye=1981&p=MHswv_dwn&p=MHclr_sky&p=MHT2M&p=MHT2MN&p=MHT2MX&p=MHRH2M&p=MHWS10M&p=MHPRECTOT&submit=Submit";
-            //file_url = "http://power.larc.nasa.gov/cgi-bin/hirestimeser.cgi?&lat=38.5&ye=1981&p=MHswv_dwn&p=MHclr_sky&p=MHT2M&p=MHT2MN&p=MHT2MX&p=MHRH2M&p=MHWS10M&p=MHPRECTOT&de=2&submit=Submit&ms=1&me=1&lon=44.5&step=1&email=hirestimeser40larc.nasa.gov&ys=1981&ds=1";
+            // daily types NASA
             file_url = "https://power.larc.nasa.gov/cgi-bin/hirestimeser.cgi?email=hirestimeser%40larc.nasa.gov&step=1&lat=38&lon=44&ms=1&ds=1&ys=2016&me=1&de=2&ye=2016&p=MHswv_dwn&p=MHlwv_dwn&p=MHtoa_dwn&p=MHclr_sky&p=MHPS&p=MHT2M&p=MHT2MN&p=MHT2MX&p=MHQV2M&p=MHRH2M&p=MHDFP2M&p=MHTS&p=MHWS10M&p=MHPRECTOT&submit=Submit";
             file = (new WebClient()).DownloadString(file_url);
             lines = file.Split('\n');
@@ -693,7 +641,7 @@ namespace AtlasSolar.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        // получение списка ежедневных данных NASA
+        // getting a list of daily data NASA
         public ActionResult ParseNASADaily(bool? post)
         {
             string report = "";
@@ -703,10 +651,6 @@ namespace AtlasSolar.Controllers
                     longitude_max = 95 + 0.25m,
                     latitude_min = 39 - 0.25m,
                     latitude_max = 56 + 0.25m;
-            //decimal longitude_min = 44.75m,
-            //        longitude_max = 44.75m,
-            //        latitude_min = 38.75m,
-            //        latitude_max = 38.75m;
 
             List<MeteoDataType> meteodatatypes = new List<MeteoDataType>();
             using (var db = new NpgsqlContext())
@@ -725,7 +669,6 @@ namespace AtlasSolar.Controllers
                 .ToList();
 
             int count = 0;
-
             for (decimal latitude = latitude_min; latitude <= latitude_max; latitude += 0.5M)
             {
                 for (decimal longitude = longitude_min; longitude <= longitude_max; longitude += 0.5M)
@@ -747,11 +690,6 @@ namespace AtlasSolar.Controllers
                         }
                     }
 
-                    //string file_url = "http://power.larc.nasa.gov/cgi-bin/hirestimeser.cgi?email=hirestimeser%40larc.nasa.gov&step=1&lat=" +
-                    //    latitude.ToString().Replace(",", ".") +
-                    //    "&lon=" +
-                    //    longitude.ToString().Replace(",", ".") +
-                    //    "&ms=1&ds=1&ys=1981&me=12&de=31&ye=2016&p=MHswv_dwn&p=MHclr_sky&p=MHT2M&p=MHT2MN&p=MHT2MX&p=MHRH2M&p=MHWS10M&p=MHPRECTOT&submit=Submit";
                     string file_url = "https://power.larc.nasa.gov/cgi-bin/hirestimeser.cgi?email=hirestimeser%40larc.nasa.gov&step=1&lat=" +
                         latitude.ToString().Replace(",", ".") +
                         "&lon=" +
@@ -856,12 +794,10 @@ namespace AtlasSolar.Controllers
         public ActionResult Test(bool? post)
         {
             new Thread(() => {
-                //Do an advanced looging here which takes a while
                 try
                 {
                     string query = "COPY (SELECT \"MeteoDataTypeId\", \"Year\", \"Month\", \"Day\", \"Longitude\", \"Latitude\", \"Value\" FROM \"MeteoData\") TO 'D:\\My documents\\Test.csv' DELIMITER ',' CSV HEADER;";
                     db.MeteoDatas.SqlQuery(query).SingleOrDefault();
-                    //await db.MeteoDatas.SqlQuery(query).SingleOrDefaultAsync();
                 }
                 catch (Exception ex)
                 {

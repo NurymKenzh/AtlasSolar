@@ -111,7 +111,7 @@ namespace AtlasSolar.Controllers
                 //----------------------------------------------------------------------------------------------------------------------------------------
                 if (meteodataperoidicity.Code.Contains("Daily") && meteodataperoidicityto.Code.Contains("Daily") && meteodataperoidicityto.Code.Contains("average"))
                 {
-                    // добавить новый тип метеоданных, если нет
+                    // add a new type of weather data if not exists
                     int ismeteodatatypeto = db.MeteoDataTypes
                         .Where(m => m.MeteoDataPeriodicityId == meteodataperoidicityto.Id && m.MeteoDataSourceId == meteodatatype.MeteoDataSourceId)
                         .Count();
@@ -220,7 +220,7 @@ namespace AtlasSolar.Controllers
                 //----------------------------------------------------------------------------------------------------------------------------------------
                 if (meteodataperoidicity.Code.Contains("Daily") && meteodataperoidicityto.Code.Contains("Yearly") && meteodataperoidicityto.Code.Contains("average"))
                 {
-                    // добавить новый тип метеоданных, если нет
+                    // add a new type of weather data if not exists
                     int ismeteodatatypeto = db.MeteoDataTypes
                         .Where(m => m.MeteoDataPeriodicityId == meteodataperoidicityto.Id && m.MeteoDataSourceId == meteodatatype.MeteoDataSourceId && m.Code == meteodatatype.Code)
                         .Count();
@@ -284,10 +284,6 @@ namespace AtlasSolar.Controllers
                                         List<MeteoData> meteodatas = db_.MeteoDatas
                                             .Where(m => m.Latitude == latitude && m.Longitude == longitude && m.MeteoDataTypeId == meteodatatype.Id)
                                             .ToList();
-                                        //for (int month = 1; month <= 12; month++)
-                                        //{
-                                        //    for (int day = 1; day <= 31; day++)
-                                        //    {
                                         List<MeteoData> meteodatasnew = meteodatas.ToList();
                                         if (meteodatasnew.Count() > 0)
                                         {
@@ -301,8 +297,6 @@ namespace AtlasSolar.Controllers
                                                 );
                                             count++;
                                         }
-                                        //    }
-                                        //}
                                         db_.Dispose();
                                         GC.Collect();
                                     }
@@ -451,19 +445,6 @@ namespace AtlasSolar.Controllers
                         latitude_max = Properties.Settings.Default.NASASSELatitudeMax;
                         decimal step = Properties.Settings.Default.NASASSECoordinatesStep;
 
-                        //using (var dblocal = new NpgsqlContext())
-                        //{
-                        //    Option o_longitude_min = dblocal.Options.Where(o => o.Code == Properties.Settings.Default.SARAHELongitudeMinOption).FirstOrDefault();
-                        //    Option o_longitude_max = dblocal.Options.Where(o => o.Code == Properties.Settings.Default.SARAHELongitudeMaxOption).FirstOrDefault();
-                        //    Option o_latitude_min = dblocal.Options.Where(o => o.Code == Properties.Settings.Default.SARAHELatitudeMinOption).FirstOrDefault();
-                        //    Option o_latitude_max = dblocal.Options.Where(o => o.Code == Properties.Settings.Default.SARAHELatitudeMaxOption).FirstOrDefault();
-                        //    longitude_min = Convert.ToDecimal(o_longitude_min.Value.Replace('.', ','));
-                        //    longitude_max = Convert.ToDecimal(o_longitude_max.Value.Replace('.', ','));
-                        //    latitude_min = Convert.ToDecimal(o_latitude_min.Value.Replace('.', ','));
-                        //    latitude_max = Convert.ToDecimal(o_latitude_max.Value.Replace('.', ','));
-                        //}
-                        //step = Properties.Settings.Default.SARAHECoordinatesStep;
-
                         string filenameout = Path.Combine(Server.MapPath(path), $"{meteodatatype.Code} {meteodatatype.AdditionalEN}.csv");
                         System.IO.File.Delete(filenameout);
                         using (StreamWriter sw = System.IO.File.AppendText(filenameout))
@@ -497,7 +478,7 @@ namespace AtlasSolar.Controllers
                                 "average month 11" + ";" +
                                 "average month 12"
                                 );
-                            for (decimal latitude = latitude_min; latitude <= latitude_max; latitude+=step)
+                            for (decimal latitude = latitude_min; latitude <= latitude_max; latitude += step)
                             {
                                 for (decimal longitude = longitude_min; longitude <= longitude_max; longitude += step)
                                 {

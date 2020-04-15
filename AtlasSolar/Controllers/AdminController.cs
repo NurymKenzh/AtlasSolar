@@ -94,14 +94,14 @@ namespace AtlasSolar.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        // определение минимальных необходимых данных, запускается один раз
+        // determination of the minimum required data, run once
         public ActionResult Init(bool? post)
         {
             SystemLog.New("Init", true);
 
             List<string> errors = new List<string>();
 
-            // метео периодичности
+            // meteo periodicities
             List<MeteoDataPeriodicity> mdps = new List<MeteoDataPeriodicity>();
             mdps.Add(new MeteoDataPeriodicity()
             {
@@ -141,7 +141,7 @@ namespace AtlasSolar.Controllers
                 }
             }
 
-            // метео источники
+            // meteo sources
             List<MeteoDataSource> mdss = new List<MeteoDataSource>();
             mdss.Add(new MeteoDataSource()
             {
@@ -210,7 +210,7 @@ namespace AtlasSolar.Controllers
             return View();
         }
 
-        // получение списка метеорологических параметров NASA SSE, NASA POWER
+        // getting a list of meteorological parameters from NASA SSE, NASA POWER
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult ParseMeteoDataTypes(bool? post)
@@ -223,7 +223,7 @@ namespace AtlasSolar.Controllers
                 List<string> errors = new List<string>();
                 string comment = "";
 
-                // среднемесячные типы NASA SSE
+                // monthly average types NASA SSE
                 try
                 {
                     int count_NASA_SSE = 0;
@@ -339,7 +339,7 @@ namespace AtlasSolar.Controllers
                     errors.Add(ex.Message);
                 }
 
-                // ежедневные типы NASA SSE
+                // daily types NASA SSE
                 try
                 {
                     int count_NASA_SSE = 0;
@@ -431,7 +431,7 @@ namespace AtlasSolar.Controllers
                     errors.Add(ex.Message);
                 }
 
-                // ежедневные типы NASA POWER
+                // daily types NASA POWER
                 try
                 {
                     int count_NASA_POWER = 0;
@@ -519,7 +519,7 @@ namespace AtlasSolar.Controllers
                     errors.Add(ex.Message);
                 }
 
-                // среднемесячные типы NASA POWER
+                // monthly average types NASA POWER
                 try
                 {
                     int count_NASA_POWER = 0;
@@ -828,7 +828,7 @@ namespace AtlasSolar.Controllers
                 false);
         }
 
-        // получение среднемесячных метеорологических данных NASA SSE
+        // parse monthly average meteorological data NASA SSE
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult ParseMeteoDataNASASSEMonthlyAverage(bool? post)
@@ -877,8 +877,7 @@ namespace AtlasSolar.Controllers
                 }
 
                 List<int> meteodatatypeids = meteodatatypes.Select(m => m.Id).ToList();
-                //MeteoData md = db.MeteoDatas.Where(m => meteodatatypeids.Contains(m.MeteoDataTypeId)).FirstOrDefault(); // uncomment
-                MeteoData md = null;//delete
+                MeteoData md = db.MeteoDatas.Where(m => meteodatatypeids.Contains(m.MeteoDataTypeId)).FirstOrDefault();
 
                 if (md != null)
                 {
@@ -1026,7 +1025,7 @@ namespace AtlasSolar.Controllers
                 false);
         }
 
-        // получение среднемесячных метеорологических данных NASA POWER
+        // parse monthly average meteorological data NASA POWER
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult ParseMeteoDataNASAPOWERMonthlyAverage(bool? post)
@@ -1212,7 +1211,7 @@ namespace AtlasSolar.Controllers
                 false);
         }
 
-        // получение ежедневных метеорологических данных NASA SSE
+        // parse daily meteorological data NASA SSE
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult ParseMeteoDataNASASSEDaily(bool? post)
@@ -1449,7 +1448,7 @@ namespace AtlasSolar.Controllers
                 false);
         }
 
-        // получение ежедневных метеорологических данных NASA POWER
+        // parse daily meteorological data NASA POWER
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult ParseMeteoDataNASAPOWERDaily(int Year, int Month)
@@ -1475,8 +1474,6 @@ namespace AtlasSolar.Controllers
         [Authorize(Roles = "Admin")]
         public void UploadSARAHETask(IEnumerable<HttpPostedFileBase> Files, string UserId, string User)
         {
-            //string userid = User.Identity.GetUserId(),
-            //        user = User.Identity.Name;
             string userid = UserId,
                     user = User;
 
@@ -1509,17 +1506,11 @@ namespace AtlasSolar.Controllers
                         .ToList();
                     meteodataperiodicities = db.MeteoDataPeriodicities.ToList();
                     meteodatatypes = db.MeteoDataTypes.ToList();
-                    //db.Dispose();
-                    //GC.Collect();
                 }
 
                 string CurrentUserId = userid;
                 string path = "~/Upload/" + CurrentUserId;
 
-                //if (!Directory.Exists(Server.MapPath(path)))
-                //{
-                //    DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(path));
-                //}
                 string filenameimport = Path.Combine(Server.MapPath(path), $"{Properties.Settings.Default.SARAHECode}.txt");
                 System.IO.File.Delete(filenameimport);
                 using (StreamWriter sw = System.IO.File.AppendText(filenameimport))
@@ -1528,8 +1519,6 @@ namespace AtlasSolar.Controllers
                     StreamWriter bat = new StreamWriter(batfilename);
                     foreach (HttpPostedFileBase file in Files)
                     {
-                        //string path_filename = Path.Combine(Server.MapPath(path), Path.GetFileName(file.FileName));
-                        //file.SaveAs(path_filename);
                         string filename = Path.GetFileNameWithoutExtension(file.FileName);
                         bat.WriteLine("ncdump -f c " + filename + ".nc > " + filename + ".txt");
                     }
@@ -1542,44 +1531,8 @@ namespace AtlasSolar.Controllers
                     proc.Start();
                     proc.WaitForExit();
 
-                    //string outs = "";
-                    //var process = new Process();
-                    //var startinfo = new ProcessStartInfo("cmd.exe", "/c start /wait " + Path.GetFileName(batfilename));
-                    //startinfo.RedirectStandardOutput = true;
-                    //startinfo.UseShellExecute = false;
-                    //startinfo.FileName = batfilename;
-                    //startinfo.WorkingDirectory = Path.GetDirectoryName(batfilename);
-                    //process.StartInfo = startinfo;
-                    //process.OutputDataReceived += (sender, args) => outs = args.Data; // do whatever processing you need to do in this handler
-                    //process.Start();
-                    //process.BeginOutputReadLine();
-                    //process.WaitForExit();
-
-                    //System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                    //proc.StartInfo.FileName = "C:\\test\\netcdf.bat";
-                    //proc.StartInfo.WorkingDirectory = "C:\\test";
-                    //proc.StartInfo.UseShellExecute = true;
-                    //proc.Start();
-
-                    //Process proc = new System.Diagnostics.Process();
-                    //proc.StartInfo.FileName = "C:\\test\\netcdf.bat";
-                    //proc.StartInfo.Arguments = "/c start /wait " + Path.GetFileName("C:\\test\\netcdf.bat");
-                    //proc.StartInfo.WorkingDirectory = Path.GetDirectoryName("C:\\test\\netcdf.bat");
-                    //proc.Start();
-                    //proc.WaitForExit();
-
-                    //string batDir = Path.GetDirectoryName(batfilename);
-                    //var proc = new Process();
-                    //proc.StartInfo.WorkingDirectory = batDir;
-                    //proc.StartInfo.FileName = batfilename;
-                    //proc.StartInfo.CreateNoWindow = true;
-                    //proc.Start();
-                    //proc.WaitForExit();
-
-
-
                     System.IO.File.Delete(batfilename);
-                    // загрузка данных из файлов
+                    // loading data from files
                     foreach (HttpPostedFileBase file in Files)
                     {
                         bool break_file = false;
@@ -1697,8 +1650,6 @@ namespace AtlasSolar.Controllers
                                             }
                                         }
                                         meteodatatypes = db.MeteoDataTypes.ToList();
-                                        //db.Dispose();
-                                        //GC.Collect();
                                     }
                                 }
 
@@ -1811,14 +1762,12 @@ namespace AtlasSolar.Controllers
                                             year.ToString() + "\t" +
                                             month.ToString() + "\t" +
                                             (meteodataperiodicitycode == Properties.Settings.Default.Daily || meteodataperiodicitycode == Properties.Settings.Default.Hourly ? day : null).ToString() + "\t" +
-                                            //(meteodataperiodicitycode == Properties.Settings.Default.Hourly ? (int?)times[Convert.ToInt32(pi[0])].Hour : null).ToString() + "\t" +
                                             lons[Convert.ToInt32(pi[2])].ToString().Replace(',', '.') + "\t" +
                                             lats[Convert.ToInt32(pi[1])].ToString().Replace(',', '.') + "\t" +
                                             value.ToString().Replace(',', '.')
                                             );
                                         count++;
 
-                                        /////////////////////
                                         if (o_longitude_min == null)
                                         {
                                             o_longitude_min = new Option()
@@ -1831,7 +1780,6 @@ namespace AtlasSolar.Controllers
                                         {
                                             o_longitude_min.Value = lons[Convert.ToInt32(pi[2])].ToString().Replace(',', '.');
                                         }
-                                        ////////////////////////////////
                                         if (o_longitude_max == null)
                                         {
                                             o_longitude_max = new Option()
@@ -1844,7 +1792,6 @@ namespace AtlasSolar.Controllers
                                         {
                                             o_longitude_max.Value = lons[Convert.ToInt32(pi[2])].ToString().Replace(',', '.');
                                         }
-                                        //////////////////////////////////
                                         if (o_latitude_min == null)
                                         {
                                             o_latitude_min = new Option()
@@ -1857,7 +1804,6 @@ namespace AtlasSolar.Controllers
                                         {
                                             o_latitude_min.Value = lats[Convert.ToInt32(pi[1])].ToString().Replace(',', '.');
                                         }
-                                        ////////////////////////////////
                                         if (o_latitude_max == null)
                                         {
                                             o_latitude_max = new Option()
@@ -1870,7 +1816,6 @@ namespace AtlasSolar.Controllers
                                         {
                                             o_latitude_max.Value = lats[Convert.ToInt32(pi[1])].ToString().Replace(',', '.');
                                         }
-                                        ////////////////////////////
                                     }
                                 }
                             }
@@ -1976,20 +1921,11 @@ namespace AtlasSolar.Controllers
                 false);
         }
 
-        // загрузка данных SARAH-E
+        // load data SARAH-E
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult UploadSARAHE(IEnumerable<HttpPostedFileBase> Files)
         {
-            //string batfilename = Path.ChangeExtension(Path.Combine(Server.MapPath("~/Upload/"), "bat"), ".bat");
-            //Process proc = new System.Diagnostics.Process();
-            //proc.StartInfo.FileName = batfilename;
-            //proc.StartInfo.Arguments = "/c start /wait " + Path.GetFileName(batfilename);
-            //proc.StartInfo.WorkingDirectory = Path.GetDirectoryName(batfilename);
-            //proc.Start();
-            //proc.WaitForExit();
-
-
             string userid = User.Identity.GetUserId(),
                     user = User.Identity.Name;
             SystemLog.New("UploadSARAHE", "", null, true);
@@ -2008,30 +1944,6 @@ namespace AtlasSolar.Controllers
                 file.SaveAs(path_filename);
             }
 
-            //// new
-            //string filenameimport = Path.Combine(Server.MapPath(path), $"{Properties.Settings.Default.SARAHECode}.txt");
-            //System.IO.File.Delete(filenameimport);
-            //using (StreamWriter sw = System.IO.File.AppendText(filenameimport))
-            //{
-            //    string batfilename = Path.ChangeExtension(Path.Combine(Server.MapPath(path), DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss")), ".bat");
-            //    StreamWriter bat = new StreamWriter(batfilename);
-            //    foreach (HttpPostedFileBase file in Files)
-            //    {
-            //        string filename = Path.GetFileNameWithoutExtension(file.FileName);
-            //        bat.WriteLine("ncdump -f c " + filename + ".nc > " + filename + ".txt");
-            //    }
-            //    bat.Close();
-
-            //    Process proc = new System.Diagnostics.Process();
-            //    proc.StartInfo.FileName = batfilename;
-            //    proc.StartInfo.Arguments = "/c start /wait " + Path.GetFileName(batfilename);
-            //    proc.StartInfo.WorkingDirectory = Path.GetDirectoryName(batfilename);
-            //    proc.Start();
-            //    proc.WaitForExit();
-
-            //    System.IO.File.Delete(batfilename);
-            //}
-
             Task t = new Task(() => UploadSARAHETask(Files, userid, user));
             t.Start();
 
@@ -2049,8 +1961,6 @@ namespace AtlasSolar.Controllers
         [Authorize(Roles = "Admin")]
         public void UploadCLARATask(IEnumerable<HttpPostedFileBase> Files, string UserId, string User)
         {
-            //string userid = User.Identity.GetUserId(),
-            //        user = User.Identity.Name;
             string userid = UserId,
                     user = User;
 
@@ -2083,17 +1993,11 @@ namespace AtlasSolar.Controllers
                         .ToList();
                     meteodataperiodicities = db.MeteoDataPeriodicities.ToList();
                     meteodatatypes = db.MeteoDataTypes.ToList();
-                    //db.Dispose();
-                    //GC.Collect();
                 }
 
                 string CurrentUserId = userid;
                 string path = "~/Upload/" + CurrentUserId;
 
-                //if (!Directory.Exists(Server.MapPath(path)))
-                //{
-                //    DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(path));
-                //}
                 string filenameimport = Path.Combine(Server.MapPath(path), $"{Properties.Settings.Default.CLARACode}.txt");
                 System.IO.File.Delete(filenameimport);
                 using (StreamWriter sw = System.IO.File.AppendText(filenameimport))
@@ -2102,8 +2006,6 @@ namespace AtlasSolar.Controllers
                     StreamWriter bat = new StreamWriter(batfilename);
                     foreach (HttpPostedFileBase file in Files)
                     {
-                        //string path_filename = Path.Combine(Server.MapPath(path), Path.GetFileName(file.FileName));
-                        //file.SaveAs(path_filename);
                         string filename = Path.GetFileNameWithoutExtension(file.FileName);
                         bat.WriteLine("ncdump -f c " + filename + ".nc > " + filename + ".txt");
                     }
@@ -2116,44 +2018,8 @@ namespace AtlasSolar.Controllers
                     proc.Start();
                     proc.WaitForExit();
 
-                    //string outs = "";
-                    //var process = new Process();
-                    //var startinfo = new ProcessStartInfo("cmd.exe", "/c start /wait " + Path.GetFileName(batfilename));
-                    //startinfo.RedirectStandardOutput = true;
-                    //startinfo.UseShellExecute = false;
-                    //startinfo.FileName = batfilename;
-                    //startinfo.WorkingDirectory = Path.GetDirectoryName(batfilename);
-                    //process.StartInfo = startinfo;
-                    //process.OutputDataReceived += (sender, args) => outs = args.Data; // do whatever processing you need to do in this handler
-                    //process.Start();
-                    //process.BeginOutputReadLine();
-                    //process.WaitForExit();
-
-                    //System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                    //proc.StartInfo.FileName = "C:\\test\\netcdf.bat";
-                    //proc.StartInfo.WorkingDirectory = "C:\\test";
-                    //proc.StartInfo.UseShellExecute = true;
-                    //proc.Start();
-
-                    //Process proc = new System.Diagnostics.Process();
-                    //proc.StartInfo.FileName = "C:\\test\\netcdf.bat";
-                    //proc.StartInfo.Arguments = "/c start /wait " + Path.GetFileName("C:\\test\\netcdf.bat");
-                    //proc.StartInfo.WorkingDirectory = Path.GetDirectoryName("C:\\test\\netcdf.bat");
-                    //proc.Start();
-                    //proc.WaitForExit();
-
-                    //string batDir = Path.GetDirectoryName(batfilename);
-                    //var proc = new Process();
-                    //proc.StartInfo.WorkingDirectory = batDir;
-                    //proc.StartInfo.FileName = batfilename;
-                    //proc.StartInfo.CreateNoWindow = true;
-                    //proc.Start();
-                    //proc.WaitForExit();
-
-
-
                     System.IO.File.Delete(batfilename);
-                    // загрузка данных из файлов
+                    // loading data from files
                     foreach (HttpPostedFileBase file in Files)
                     {
                         bool break_file = false;
@@ -2192,7 +2058,6 @@ namespace AtlasSolar.Controllers
                                 {
                                     for (int i = 0; i < meteodatatypecodes.Count; i++)
                                     {
-                                        //if (line.Contains(meteodatatypecodes[i]))
                                         if (meteodatatypecodes[i] == line.Split(':')[0].Trim())
                                         {
                                             string newname = line.Split('"')[1];
@@ -2208,7 +2073,7 @@ namespace AtlasSolar.Controllers
                                     {
                                         if (line.Contains(meteodatatypecodes[i]))
                                         {
-                                            if(line.Split('"')[1] != "1")
+                                            if (line.Split('"')[1] != "1")
                                             {
                                                 meteodatatypenameENs[i] += " " + line.Split('"')[1];
                                             }
@@ -2275,8 +2140,6 @@ namespace AtlasSolar.Controllers
                                             }
                                         }
                                         meteodatatypes = db.MeteoDataTypes.ToList();
-                                        //db.Dispose();
-                                        //GC.Collect();
                                     }
                                 }
 
@@ -2344,124 +2207,114 @@ namespace AtlasSolar.Controllers
                                 for (int i = 0; i < meteodatatypecodes.Count; i++)
                                 {
                                     if (line.Contains(meteodatatypecodes[i]) && !line.Contains("="))
-                                    if (line.Split('(')[0].Split('/')[2].Trim() == meteodatatypecodes[i])
-                                    {
-                                        meteodatatypeid = meteodatatypes
-                                            .Where(m => m.Code == meteodatatypecodes[i] && m.MeteoDataSourceId == meteodatasourceid && m.MeteoDataPeriodicityId == meteodataperiodicityid)
-                                            .FirstOrDefault()
-                                            .Id;
+                                        if (line.Split('(')[0].Split('/')[2].Trim() == meteodatatypecodes[i])
+                                        {
+                                            meteodatatypeid = meteodatatypes
+                                                .Where(m => m.Code == meteodatatypecodes[i] && m.MeteoDataSourceId == meteodatasourceid && m.MeteoDataPeriodicityId == meteodataperiodicityid)
+                                                .FirstOrDefault()
+                                                .Id;
 
-                                        string p = line.Split('(')[1];
-                                        p = p.Substring(0, p.Length - 1);
-                                        string[] pi = p.Split(',');
-                                        string v = line.Trim().Split(' ')[0];
-                                        v = v.Substring(0, v.Length - 1);
-                                        decimal? value = null;
-                                        try
+                                            string p = line.Split('(')[1];
+                                            p = p.Substring(0, p.Length - 1);
+                                            string[] pi = p.Split(',');
+                                            string v = line.Trim().Split(' ')[0];
+                                            v = v.Substring(0, v.Length - 1);
+                                            decimal? value = null;
+                                            try
                                             {
                                                 value = Convert.ToDecimal(v.Replace('.', ','));
                                             }
-                                        catch
+                                            catch
                                             {
                                             }
-                                        //if (v != "_" && !v.Contains("N"))
-                                        //{
-                                        //    value = Convert.ToDecimal(v.Replace('.',','));
-                                        //}
-                                        int? year = times[Convert.ToInt32(pi[0])].Year,
-                                            month = times[Convert.ToInt32(pi[0])].Month,
-                                            day = null;
+                                            int? year = times[Convert.ToInt32(pi[0])].Year,
+                                                month = times[Convert.ToInt32(pi[0])].Month,
+                                                day = null;
 
-                                        MeteoData md = new MeteoData();
-                                        if (meteodataperiodicitycode.ToLower() == Properties.Settings.Default.Daily.ToLower())
-                                        {
-                                            day = times[Convert.ToInt32(pi[0])].Day;
-                                            md = db.MeteoDatas
-                                                .Where(m => m.MeteoDataTypeId == meteodatatypeid && m.Year == year && m.Month == month && m.Day == day)
-                                                .FirstOrDefault();
-                                        }
-                                        else
-                                        {
-                                            md = db.MeteoDatas
-                                                .Where(m => m.MeteoDataTypeId == meteodatatypeid && m.Year == year && m.Month == month)
-                                                .FirstOrDefault();
-                                        }
+                                            MeteoData md = new MeteoData();
+                                            if (meteodataperiodicitycode.ToLower() == Properties.Settings.Default.Daily.ToLower())
+                                            {
+                                                day = times[Convert.ToInt32(pi[0])].Day;
+                                                md = db.MeteoDatas
+                                                    .Where(m => m.MeteoDataTypeId == meteodatatypeid && m.Year == year && m.Month == month && m.Day == day)
+                                                    .FirstOrDefault();
+                                            }
+                                            else
+                                            {
+                                                md = db.MeteoDatas
+                                                    .Where(m => m.MeteoDataTypeId == meteodatatypeid && m.Year == year && m.Month == month)
+                                                    .FirstOrDefault();
+                                            }
 
-                                        if (md != null)
-                                        {
-                                            string path_filename_ = Path.Combine(Server.MapPath(path), Path.GetFileName(file.FileName));
-                                            string filenameout_ = Path.Combine(Server.MapPath(path), Path.GetFileName(Path.ChangeExtension(Path.GetFileNameWithoutExtension(file.FileName) + "_out", "txt")));
-                                            System.IO.File.Delete(path_filename_);
-                                            System.IO.File.Delete(Path.ChangeExtension(path_filename_, "txt"));
-                                            break_file = true;
-                                            break;
-                                        }
+                                            if (md != null)
+                                            {
+                                                string path_filename_ = Path.Combine(Server.MapPath(path), Path.GetFileName(file.FileName));
+                                                string filenameout_ = Path.Combine(Server.MapPath(path), Path.GetFileName(Path.ChangeExtension(Path.GetFileNameWithoutExtension(file.FileName) + "_out", "txt")));
+                                                System.IO.File.Delete(path_filename_);
+                                                System.IO.File.Delete(Path.ChangeExtension(path_filename_, "txt"));
+                                                break_file = true;
+                                                break;
+                                            }
 
-                                        sw.WriteLine(meteodatatypeid.ToString() + "\t" +
-                                            year.ToString() + "\t" +
-                                            month.ToString() + "\t" +
-                                            (meteodataperiodicitycode == Properties.Settings.Default.Daily || meteodataperiodicitycode == Properties.Settings.Default.Hourly ? day : null).ToString() + "\t" +
-                                            //(meteodataperiodicitycode == Properties.Settings.Default.Hourly ? (int?)times[Convert.ToInt32(pi[0])].Hour : null).ToString() + "\t" +
-                                            lons[Convert.ToInt32(pi[2])].ToString().Replace(',', '.') + "\t" +
-                                            lats[Convert.ToInt32(pi[1])].ToString().Replace(',', '.') + "\t" +
-                                            value.ToString().Replace(',', '.')
-                                            );
-                                        count++;
+                                            sw.WriteLine(meteodatatypeid.ToString() + "\t" +
+                                                year.ToString() + "\t" +
+                                                month.ToString() + "\t" +
+                                                (meteodataperiodicitycode == Properties.Settings.Default.Daily || meteodataperiodicitycode == Properties.Settings.Default.Hourly ? day : null).ToString() + "\t" +
+                                                lons[Convert.ToInt32(pi[2])].ToString().Replace(',', '.') + "\t" +
+                                                lats[Convert.ToInt32(pi[1])].ToString().Replace(',', '.') + "\t" +
+                                                value.ToString().Replace(',', '.')
+                                                );
+                                            count++;
 
-                                        /////////////////////
-                                        if (o_longitude_min == null)
-                                        {
-                                            o_longitude_min = new Option()
+                                            if (o_longitude_min == null)
                                             {
-                                                Code = Properties.Settings.Default.CLARALongitudeMinOption,
-                                                Value = lons[Convert.ToInt32(pi[2])].ToString().Replace(',', '.')
-                                            };
-                                        }
-                                        else if (lons[Convert.ToInt32(pi[2])] < Convert.ToDecimal(o_longitude_min.Value.Replace('.', ',')))
-                                        {
-                                            o_longitude_min.Value = lons[Convert.ToInt32(pi[2])].ToString().Replace(',', '.');
-                                        }
-                                        ////////////////////////////////
-                                        if (o_longitude_max == null)
-                                        {
-                                            o_longitude_max = new Option()
+                                                o_longitude_min = new Option()
+                                                {
+                                                    Code = Properties.Settings.Default.CLARALongitudeMinOption,
+                                                    Value = lons[Convert.ToInt32(pi[2])].ToString().Replace(',', '.')
+                                                };
+                                            }
+                                            else if (lons[Convert.ToInt32(pi[2])] < Convert.ToDecimal(o_longitude_min.Value.Replace('.', ',')))
                                             {
-                                                Code = Properties.Settings.Default.CLARALongitudeMaxOption,
-                                                Value = lons[Convert.ToInt32(pi[2])].ToString().Replace(',', '.')
-                                            };
-                                        }
-                                        else if (lons[Convert.ToInt32(pi[2])] > Convert.ToDecimal(o_longitude_max.Value.Replace('.', ',')))
-                                        {
-                                            o_longitude_max.Value = lons[Convert.ToInt32(pi[2])].ToString().Replace(',', '.');
-                                        }
-                                        //////////////////////////////////
-                                        if (o_latitude_min == null)
-                                        {
-                                            o_latitude_min = new Option()
+                                                o_longitude_min.Value = lons[Convert.ToInt32(pi[2])].ToString().Replace(',', '.');
+                                            }
+                                            if (o_longitude_max == null)
                                             {
-                                                Code = Properties.Settings.Default.CLARALatitudeMinOption,
-                                                Value = lats[Convert.ToInt32(pi[1])].ToString().Replace(',', '.')
-                                            };
-                                        }
-                                        else if (lats[Convert.ToInt32(pi[1])] < Convert.ToDecimal(o_latitude_min.Value.Replace('.', ',')))
-                                        {
-                                            o_latitude_min.Value = lats[Convert.ToInt32(pi[1])].ToString().Replace(',', '.');
-                                        }
-                                        ////////////////////////////////
-                                        if (o_latitude_max == null)
-                                        {
-                                            o_latitude_max = new Option()
+                                                o_longitude_max = new Option()
+                                                {
+                                                    Code = Properties.Settings.Default.CLARALongitudeMaxOption,
+                                                    Value = lons[Convert.ToInt32(pi[2])].ToString().Replace(',', '.')
+                                                };
+                                            }
+                                            else if (lons[Convert.ToInt32(pi[2])] > Convert.ToDecimal(o_longitude_max.Value.Replace('.', ',')))
                                             {
-                                                Code = Properties.Settings.Default.CLARALatitudeMaxOption,
-                                                Value = lats[Convert.ToInt32(pi[1])].ToString().Replace(',', '.')
-                                            };
+                                                o_longitude_max.Value = lons[Convert.ToInt32(pi[2])].ToString().Replace(',', '.');
+                                            }
+                                            if (o_latitude_min == null)
+                                            {
+                                                o_latitude_min = new Option()
+                                                {
+                                                    Code = Properties.Settings.Default.CLARALatitudeMinOption,
+                                                    Value = lats[Convert.ToInt32(pi[1])].ToString().Replace(',', '.')
+                                                };
+                                            }
+                                            else if (lats[Convert.ToInt32(pi[1])] < Convert.ToDecimal(o_latitude_min.Value.Replace('.', ',')))
+                                            {
+                                                o_latitude_min.Value = lats[Convert.ToInt32(pi[1])].ToString().Replace(',', '.');
+                                            }
+                                            if (o_latitude_max == null)
+                                            {
+                                                o_latitude_max = new Option()
+                                                {
+                                                    Code = Properties.Settings.Default.CLARALatitudeMaxOption,
+                                                    Value = lats[Convert.ToInt32(pi[1])].ToString().Replace(',', '.')
+                                                };
+                                            }
+                                            else if (lats[Convert.ToInt32(pi[1])] > Convert.ToDecimal(o_latitude_max.Value.Replace('.', ',')))
+                                            {
+                                                o_latitude_max.Value = lats[Convert.ToInt32(pi[1])].ToString().Replace(',', '.');
+                                            }
                                         }
-                                        else if (lats[Convert.ToInt32(pi[1])] > Convert.ToDecimal(o_latitude_max.Value.Replace('.', ',')))
-                                        {
-                                            o_latitude_max.Value = lats[Convert.ToInt32(pi[1])].ToString().Replace(',', '.');
-                                        }
-                                        ////////////////////////////
-                                    }
                                 }
                             }
                             if (line.Contains("variables"))
@@ -2567,7 +2420,7 @@ namespace AtlasSolar.Controllers
                 false);
         }
 
-        // загрузка данных CLARA
+        // load dataCLARA
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult UploadCLARA(IEnumerable<HttpPostedFileBase> Files)
@@ -2598,44 +2451,7 @@ namespace AtlasSolar.Controllers
             return View();
         }
 
-        //// GET
-        //[Authorize(Roles = "Admin")]
-        //public ActionResult UploadCLARA()
-        //{
-        //    return View();
-        //}
-
-        //// загрузка данных CLARA
-        //[HttpPost]
-        //[Authorize(Roles = "Admin")]
-        //public ActionResult UploadCLARA(IEnumerable<HttpPostedFileBase> Files)
-        //{
-        //    string userid = User.Identity.GetUserId(),
-        //            user = User.Identity.Name;
-        //    SystemLog.New("UploadSARAHE", "", null, true);
-
-        //    string CurrentUserId = userid;
-        //    string path = "~/Upload/" + CurrentUserId;
-
-        //    if (!Directory.Exists(Server.MapPath(path)))
-        //    {
-        //        DirectoryInfo di2 = Directory.CreateDirectory(Server.MapPath(path));
-        //    }
-
-        //    foreach (HttpPostedFileBase file in Files)
-        //    {
-        //        string path_filename = Path.Combine(Server.MapPath(path), Path.GetFileName(file.FileName));
-        //        file.SaveAs(path_filename);
-        //    }
-
-        //    Task t = new Task(() => UploadSARAHETask(Files, userid, user));
-        //    t.Start();
-
-        //    ViewBag.Report = "Операция UploadSARAHE запущена.";
-        //    return View();
-        //}
-
-        // формирование среднемесячных метеоданных
+        // monthly average weather data
         [Authorize(Roles = "Admin")]
         public ActionResult Average()
         {
@@ -2716,7 +2532,7 @@ namespace AtlasSolar.Controllers
                     .Where(m => m.Id == meteodatatype.MeteoDataSourceId)
                     .FirstOrDefault();
                 //----------------------------------------------------------------------------------------------------------------------------------------
-                // ежесуточные или ежемесячные в среднемесячные
+                // daily or monthly average monthly
                 if ((meteodataperoidicity.Code.ToLower().Contains(Properties.Settings.Default.Daily.ToLower()) || meteodataperoidicity.Code.ToLower().Contains(Properties.Settings.Default.Monthly.ToLower())) &&
                     !meteodataperoidicity.Code.ToLower().Contains(Properties.Settings.Default.Average.ToLower()) &&
                     meteodataperoidicityto.Code.ToLower().Contains(Properties.Settings.Default.Monthly.ToLower()) &&
@@ -2729,7 +2545,7 @@ namespace AtlasSolar.Controllers
                         $"{meteodatasource.Name} {meteodataperoidicity.Name} {meteodatatype.Name} ({meteodatatype.Code}) -> {meteodataperoidicityto.Name}",
                         null,
                         true);
-                    // добавить новый тип метеоданных, если нет
+                    // add a new type of weather data if not exists
                     using (var dblocal = new NpgsqlContext())
                     {
                         int ismeteodatatypeto = dblocal.MeteoDataTypes
@@ -2754,8 +2570,6 @@ namespace AtlasSolar.Controllers
                             dblocal.SaveChanges();
                             comment += $"Добавлен 1 метеорологический параметр {meteodatasource.Name} {meteodataperoidicityto.Name} {meteodatatypetonew.Name} ({meteodatatypetonew.Code}). ";
                         }
-                        //dblocal.Dispose();
-                        //GC.Collect();
                     }
                     MeteoDataType meteodatatypeto = db.MeteoDataTypes
                         .Where(m => m.MeteoDataPeriodicityId == MeteoDataPeriodicityToId && m.MeteoDataSourceId == meteodatasource.Id)
@@ -2925,7 +2739,6 @@ namespace AtlasSolar.Controllers
             {
                 string userid = User.Identity.GetUserId(),
                         user = User.Identity.Name;
-                //SystemLog.New("UploadSARAHE", "", null, true);
 
                 Task t = new Task(() => AverageTask(MeteoDataPeriodicityId, MeteoDataPeriodicityToId, MeteoDataSourceId, MeteoDataTypeId, userid, user));
                 t.Start();
@@ -2939,74 +2752,6 @@ namespace AtlasSolar.Controllers
             }
             return View();
         }
-
-        //[Authorize(Roles = "Admin")]
-        //// delete
-        //public ActionResult UploadNewMeteoDataTypes()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //[Authorize(Roles = "Admin")]
-        //// удалить
-        //public ActionResult UploadNewMeteoDataTypes(IEnumerable<HttpPostedFileBase> Files)
-        //{
-        //    string userid = User.Identity.GetUserId(),
-        //            user = User.Identity.Name;
-        //    string path = "~/Upload/" + userid;
-        //    int count_deleted = 0,
-        //            count_modified = 0;
-        //    if (!Directory.Exists(Server.MapPath(path)))
-        //    {
-        //        DirectoryInfo di2 = Directory.CreateDirectory(Server.MapPath(path));
-        //    }
-        //    foreach (HttpPostedFileBase file in Files)
-        //    {
-        //        string path_filename = Path.Combine(Server.MapPath(path), Path.GetFileName(file.FileName));
-        //        file.SaveAs(path_filename);
-
-
-        //        using (StreamReader reader = new StreamReader(path_filename))
-        //        {
-        //            string line = "";
-
-        //            while ((line = reader.ReadLine()) != null)
-        //            {
-        //                string[] strs = line.Split('\t');
-        //                if (strs[0] != "Id")
-        //                {
-        //                    int id = Convert.ToInt32(strs[0]);
-        //                    MeteoDataType mdt = db.MeteoDataTypes.FirstOrDefault(m => m.Id == id);
-        //                    if (strs[16] == "delete")
-        //                    {
-        //                        db.MeteoDataTypes.Remove(mdt);
-        //                        count_deleted++;
-        //                    }
-        //                    else
-        //                    {
-        //                        mdt.GroupKZ = strs[5];
-        //                        mdt.GroupRU = strs[6];
-        //                        mdt.NameEN = strs[7];
-        //                        mdt.NameKZ = strs[8];
-        //                        mdt.NameRU = strs[9];
-        //                        mdt.AdditionalKZ = strs[11];
-        //                        mdt.AdditionalRU = strs[12];
-        //                        mdt.DescriptionEN = strs[13];
-        //                        mdt.DescriptionKZ = strs[14];
-        //                        mdt.DescriptionRU = strs[15];
-        //                        db.Entry(mdt).State = EntityState.Modified;
-        //                        count_modified++;
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //    db.SaveChanges();
-
-        //    ViewBag.Report = $"Deleted: {count_deleted}; Modified: {count_modified}";
-        //    return View();
-        //}
 
         [Authorize(Roles = "Admin")]
         public ActionResult CreateLayerData()
@@ -3227,7 +2972,7 @@ namespace AtlasSolar.Controllers
                                             msperday[11] = meteodatas.Where(m => m.Month == 12).Select(m => m.Value).Sum();
                                             decimal?[] days = new decimal?[12];
                                             days[0] = 31;
-                                            days[1] = 622 / 22; //!!!!!!!!!!!!!
+                                            days[1] = 622 / 22;
                                             days[2] = 31;
                                             days[3] = 30;
                                             days[4] = 31;
@@ -3380,7 +3125,7 @@ namespace AtlasSolar.Controllers
                 false);
         }
 
-        // получение ежедневных метеорологических данных NASA POWER
+        // receiving daily meteorological data NASA POWER
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult RefreshStatistics(bool? post)
@@ -3395,7 +3140,6 @@ namespace AtlasSolar.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        // delete
         public ActionResult UploadNewMeteoDataTypes()
         {
             return View();
@@ -3403,7 +3147,6 @@ namespace AtlasSolar.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        // удалить
         public ActionResult UploadNewMeteoDataTypes(IEnumerable<HttpPostedFileBase> Files)
         {
             string userid = User.Identity.GetUserId(),
@@ -3432,7 +3175,7 @@ namespace AtlasSolar.Controllers
                             MeteoDataType mdt = db.MeteoDataTypes.FirstOrDefault(m => m.Id == id);
                             if (mdt != null)
                             {
-                                if(strs[16] == "1")
+                                if (strs[16] == "1")
                                 {
                                     db.MeteoDataTypes.Remove(mdt);
                                     count_modified++;
@@ -3460,7 +3203,6 @@ namespace AtlasSolar.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        // delete
         public ActionResult UploadRayon()
         {
             return View();
@@ -3468,7 +3210,6 @@ namespace AtlasSolar.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        // удалить
         public ActionResult UploadRayon(IEnumerable<HttpPostedFileBase> Files)
         {
             string userid = User.Identity.GetUserId(),
@@ -3481,34 +3222,16 @@ namespace AtlasSolar.Controllers
             }
             foreach (HttpPostedFileBase file in Files)
             {
-                //// .asc
-                //string path_filename = Path.Combine(Server.MapPath(path), Path.GetFileName(file.FileName));
-                //file.SaveAs(path_filename);
-                //using (StreamReader reader = new StreamReader(path_filename))
-                //{
-                //    string line = "";
-                //    while ((line = reader.ReadLine()) != null)
-                //    {
-                //    }
-                //}
-
                 // geoTiff
                 try
                 {
-                    //http://trac.osgeo.org/gdal/browser/trunk/gdal/swig/csharp/apps/GDALRead.cs
                     string path_filename = Path.Combine(Server.MapPath(path), Path.GetFileName(file.FileName));
                     file.SaveAs(path_filename);
                     Gdal.AllRegister();
 
                     string[] args = new string[3];
                     args[0] = path_filename;
-                    //string filename;
                     int iOverview = -1;
-                    if (args.Length < 2)
-                    {
-                        int err = 1;
-                    }
-                    //if (args.Length == 3) iOverview = int.Parse(args[2]);
 
                     Dataset ds = Gdal.Open(args[0], Access.GA_ReadOnly);
 
@@ -3534,7 +3257,6 @@ namespace AtlasSolar.Controllers
                     // create geotiff
                     string path_filename_new = Path.Combine(Server.MapPath(path), "new_" + Path.GetFileName(file.FileName));
                     Driver drv = Gdal.GetDriverByName("GTiff");
-                    //string[] options = new string[] { "TILED=YES" };
                     // options
                     int BlockXSize, BlockYSize;
                     band.GetBlockSize(out BlockXSize, out BlockYSize);
@@ -3561,7 +3283,7 @@ namespace AtlasSolar.Controllers
                     {
                         for (int j = h - 1; j >= 0; j--)
                         {
-                            buffer[i + j * w] = rnd.Next(350);//(i * 256 / w);
+                            buffer[i + j * w] = rnd.Next(350);
                         }
                     }
 
@@ -3576,7 +3298,6 @@ namespace AtlasSolar.Controllers
                     ds_new.SetGCPs(ds.GetGCPs(), "");
                     ba.FlushCache();
                     ds_new.FlushCache();
-                    //Dataset dso = drv.CreateCopy(path_filename_new, ds, 0, options, new Gdal.GDALProgressFuncDelegate(ProgressFunc), "Sample Data");
                 }
                 catch (Exception ex)
                 {
@@ -3586,21 +3307,6 @@ namespace AtlasSolar.Controllers
 
             ViewBag.Report = $"Modified: {count_modified}";
             return View();
-        }
-
-        public static int ProgressFunc(double Complete, IntPtr Message, IntPtr Data)
-        {
-            //Console.Write("Processing ... " + Complete* 100 + "% Completed.");
-            if (Message != IntPtr.Zero)
-            {
-                //Console.Write(" Message:" + System.Runtime.InteropServices.Marshal.PtrToStringAnsi(Message));
-            }
-            if (Data != IntPtr.Zero)
-            {
-                //Console.Write(" Data:" + System.Runtime.InteropServices.Marshal.PtrToStringAnsi(Data));
-            }
-            //Console.WriteLine("");
-            return 1;
         }
 
         [Authorize(Roles = "Admin")]
@@ -3625,7 +3331,7 @@ namespace AtlasSolar.Controllers
             IList<MeteoDataType> meteodatatypes = db.MeteoDataTypes
                 .Where(m => true)
                 .ToList();
-            foreach(MeteoDataType meteodatatype in meteodatatypes)
+            foreach (MeteoDataType meteodatatype in meteodatatypes)
             {
                 MeteoDataSource meteodatasource = meteodatasources
                     .Where(m => m.Id == meteodatatype.MeteoDataSourceId)
@@ -3653,7 +3359,7 @@ namespace AtlasSolar.Controllers
                     latitude_min = Properties.Settings.Default.NASAPOWERLatitudeMin;
                     latitude_max = Properties.Settings.Default.NASAPOWERLatitudeMax;
                     step = Properties.Settings.Default.NASAPOWERCoordinatesStep;
-                    if(meteodataperoidicity.Code.ToLower().Contains(Properties.Settings.Default.Monthly))
+                    if (meteodataperoidicity.Code.ToLower().Contains(Properties.Settings.Default.Monthly))
                     {
                         longitude_min = Properties.Settings.Default.NASASSELongitudeMin;
                         longitude_max = Properties.Settings.Default.NASASSELongitudeMax;
@@ -3716,9 +3422,9 @@ namespace AtlasSolar.Controllers
                                     .ToList();
                                 string filenameout_pure = $"{meteodatatype.Id.ToString()} {province.Code} {longitude.ToString()}-{latitude.ToString()}.csv",
                                     filenameout = Path.Combine(Server.MapPath("~/Download/" + User.Identity.GetUserId()), filenameout_pure);
-                                using (StreamWriter sw = new StreamWriter(filenameout, false, Encoding.UTF8))// System.IO.File.AppendText(filenameout))
+                                using (StreamWriter sw = new StreamWriter(filenameout, false, Encoding.UTF8))
                                 {
-                                    // добавить заголовки (тип данных, область, координаты)
+                                    // add headers (data type, area, coordinates)
                                     var rm = new ResourceManager(typeof(AtlasSolar.Resources.Common));
                                     string sMeteoDataTypeEN = rm.GetString("MeteoDataType", CultureInfo.CreateSpecificCulture("en")),
                                         sMeteoDataTypeKK = rm.GetString("MeteoDataType", CultureInfo.CreateSpecificCulture("kk")),

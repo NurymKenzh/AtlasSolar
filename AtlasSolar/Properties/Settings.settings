@@ -120,10 +120,22 @@
       <Value Profile="(Default)">CLARA</Value>
     </Setting>
     <Setting Name="GeoServerPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\GeoServer 2.9.0</Value>
+      <Value Profile="(Default)">D:\GeoServer\data_dir</Value>
     </Setting>
-    <Setting Name="GeoServerIP" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">92.46.36.100</Value>
+    <Setting Name="GeoServerURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost</Value>
+    </Setting>
+    <Setting Name="GeoServerUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">admin</Value>
+    </Setting>
+    <Setting Name="GeoServerPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">geoserver</Value>
+    </Setting>
+    <Setting Name="GeoServerPort" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">8080</Value>
+    </Setting>
+    <Setting Name="WorkspaceDir" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">data\AtlasSolar</Value>
     </Setting>
   </Settings>
 </SettingsFile>

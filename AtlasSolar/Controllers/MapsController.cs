@@ -50,16 +50,10 @@ namespace AtlasSolar.Controllers
         }
 
         // GET: Maps
-        public ActionResult Demo(string map)
+        public ActionResult Main(string map)
         {
-            //List<SelectListItem> PVOrientations = new List<SelectListItem>()
-            //{
-            //    new SelectListItem() {Text="-Следящая по двум осям-", Value="1"}
-            //};
-            //ViewBag.PVOrientations = PVOrientations;
             ViewBag.PVSystemMaterials = new SelectList(db.PVSystemMaterials
                 .ToList()
-                //.OrderBy(p => p.Name)
                 .OrderBy(p =>
                     p.NameEN.Contains("Mono") ? 1 :
                     p.NameEN.Contains("Poly") ? 2 :
@@ -92,7 +86,6 @@ namespace AtlasSolar.Controllers
                 .OrderBy(m => m.Name)
                 .ToList();
             IList<MeteoDataSource> meteodatasources = db.MeteoDataSources
-                //.Where(m => true)
                 .ToList();
             meteodatasources = meteodatasources
                 .OrderBy(m => m.Name)
@@ -115,7 +108,6 @@ namespace AtlasSolar.Controllers
             IList<PanelOrientation> panelorientations = db.PanelOrientations
                 .ToList();
             panelorientations = panelorientations
-                //.OrderBy(p => p.Name)
                 .OrderBy(p =>
                     p.Code == Properties.Settings.Default.PanelOriantationFixedCode ? 1 :
                     p.Code == Properties.Settings.Default.PanelOriantationFixedCorrectableCode ? 2 :
@@ -129,7 +121,6 @@ namespace AtlasSolar.Controllers
                 .ToList();
             panelorientationswithcode = panelorientations
                 .Where(p => !string.IsNullOrEmpty(p.Code))
-                //.OrderBy(p => p.Name)
                 .OrderBy(p =>
                     p.Code == Properties.Settings.Default.PanelOriantationFixedCode ? 1 :
                     p.Code == Properties.Settings.Default.PanelOriantationFixedCorrectableCode ? 2 :
@@ -202,11 +193,6 @@ namespace AtlasSolar.Controllers
                 }
             }
 
-            //IList<Appliance> A_lamps = db.Appliances
-            //    .Include(a => a.ApplianceType)
-            //    .Where(a => a.ApplianceType.NameEN.ToLower().Contains("lamp"))
-            //    .ToList();
-            //ViewBag.ALamps = A_lamps;
             IList<Appliance> Appliances = db.Appliances
                 .Include(a => a.ApplianceType)
                 .ToList()
@@ -598,172 +584,6 @@ namespace AtlasSolar.Controllers
             ViewBag.Source_daylghtav = md_daylghtav.Source;
             ViewBag.Additional_daylghtav = md_daylghtav.Additional;
 
-            //// delete get max, min of provinces
-            //var provinces = db.Provinces
-            //    .Where(p => true);
-            //GdalConfiguration.ConfigureGdal();
-            //foreach (Province province in provinces)
-            //{
-            //    //string auto_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces", province.Code + "auto_dist.tif");
-            //    //Dataset auto_dist_ds = Gdal.Open(auto_dist_file_name, Access.GA_ReadOnly);
-            //    //Band auto_dist_band = auto_dist_ds.GetRasterBand(1);
-            //    //int auto_dist_width = auto_dist_band.XSize;
-            //    //int auto_dist_height = auto_dist_band.YSize;
-            //    //float[] auto_dist_array = new float[auto_dist_width * auto_dist_height];
-            //    //auto_dist_band.ReadRaster(0, 0, auto_dist_width, auto_dist_height, auto_dist_array, auto_dist_width, auto_dist_height, 0, 0);
-            //    //double auto_dist_out_val;
-            //    //int auto_dist_out_hasval;
-            //    //float auto_dist_NoDataValue = -1;
-            //    //auto_dist_band.GetNoDataValue(out auto_dist_out_val, out auto_dist_out_hasval);
-            //    //if (auto_dist_out_hasval != 0)
-            //    //    auto_dist_NoDataValue = (float)auto_dist_out_val;
-            //    //float auto_dist_minimum = float.MaxValue,
-            //    //    auto_dist_maximum = auto_dist_array.Max();
-            //    //foreach(float v in auto_dist_array)
-            //    //{
-            //    //    if(v != auto_dist_NoDataValue && v < auto_dist_minimum)
-            //    //    {
-            //    //        auto_dist_minimum = v;
-            //    //    }
-            //    //}
-            //    //province.Max_auto_dist = (decimal?)auto_dist_maximum;
-            //    //province.Min_auto_dist = (decimal?)auto_dist_minimum;
-
-            //    //string lep_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces", province.Code + "lep_dist.tif");
-            //    //Dataset lep_dist_ds = Gdal.Open(lep_dist_file_name, Access.GA_ReadOnly);
-            //    //Band lep_dist_band = lep_dist_ds.GetRasterBand(1);
-            //    //int lep_dist_width = lep_dist_band.XSize;
-            //    //int lep_dist_height = lep_dist_band.YSize;
-            //    //float[] lep_dist_array = new float[lep_dist_width * lep_dist_height];
-            //    //lep_dist_band.ReadRaster(0, 0, lep_dist_width, lep_dist_height, lep_dist_array, lep_dist_width, lep_dist_height, 0, 0);
-            //    //double lep_dist_out_val;
-            //    //int lep_dist_out_hasval;
-            //    //float lep_dist_NoDataValue = -1;
-            //    //lep_dist_band.GetNoDataValue(out lep_dist_out_val, out lep_dist_out_hasval);
-            //    //if (lep_dist_out_hasval != 0)
-            //    //    lep_dist_NoDataValue = (float)lep_dist_out_val;
-            //    //float lep_dist_minimum = float.MaxValue,
-            //    //    lep_dist_maximum = lep_dist_array.Max();
-            //    //foreach (float v in lep_dist_array)
-            //    //{
-            //    //    if (v != lep_dist_NoDataValue && v < lep_dist_minimum)
-            //    //    {
-            //    //        lep_dist_minimum = v;
-            //    //    }
-            //    //}
-            //    //province.Max_lep_dist = (decimal?)lep_dist_maximum;
-            //    //province.Min_lep_dist = (decimal?)lep_dist_minimum;
-
-            //    //string np_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces", province.Code + "np_dist.tif");
-            //    //Dataset np_dist_ds = Gdal.Open(np_dist_file_name, Access.GA_ReadOnly);
-            //    //Band np_dist_band = np_dist_ds.GetRasterBand(1);
-            //    //int np_dist_width = np_dist_band.XSize;
-            //    //int np_dist_height = np_dist_band.YSize;
-            //    //float[] np_dist_array = new float[np_dist_width * np_dist_height];
-            //    //np_dist_band.ReadRaster(0, 0, np_dist_width, np_dist_height, np_dist_array, np_dist_width, np_dist_height, 0, 0);
-            //    //double np_dist_out_val;
-            //    //int np_dist_out_hasval;
-            //    //float np_dist_NoDataValue = -1;
-            //    //np_dist_band.GetNoDataValue(out np_dist_out_val, out np_dist_out_hasval);
-            //    //if (np_dist_out_hasval != 0)
-            //    //    np_dist_NoDataValue = (float)np_dist_out_val;
-            //    //float np_dist_minimum = float.MaxValue,
-            //    //    np_dist_maximum = np_dist_array.Max();
-            //    //foreach (float v in np_dist_array)
-            //    //{
-            //    //    if (v != np_dist_NoDataValue && v < np_dist_minimum)
-            //    //    {
-            //    //        np_dist_minimum = v;
-            //    //    }
-            //    //}
-            //    //province.Max_np_dist = (decimal?)np_dist_maximum;
-            //    //province.Min_np_dist = (decimal?)np_dist_minimum;
-
-            //    //string slope_srtm_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces", province.Code + "slope_srtm.tif");
-            //    //Dataset slope_srtm_ds = Gdal.Open(slope_srtm_file_name, Access.GA_ReadOnly);
-            //    //Band slope_srtm_band = slope_srtm_ds.GetRasterBand(1);
-            //    //int slope_srtm_width = slope_srtm_band.XSize;
-            //    //int slope_srtm_height = slope_srtm_band.YSize;
-            //    //float[] slope_srtm_array = new float[slope_srtm_width * slope_srtm_height];
-            //    //slope_srtm_band.ReadRaster(0, 0, slope_srtm_width, slope_srtm_height, slope_srtm_array, slope_srtm_width, slope_srtm_height, 0, 0);
-            //    //double slope_srtm_out_val;
-            //    //int slope_srtm_out_hasval;
-            //    //float slope_srtm_NoDataValue = -1;
-            //    //slope_srtm_band.GetNoDataValue(out slope_srtm_out_val, out slope_srtm_out_hasval);
-            //    //if (slope_srtm_out_hasval != 0)
-            //    //    slope_srtm_NoDataValue = (float)slope_srtm_out_val;
-            //    //float slope_srtm_minimum = float.MaxValue,
-            //    //    slope_srtm_maximum = slope_srtm_array.Max();
-            //    //foreach (float v in slope_srtm_array)
-            //    //{
-            //    //    if (v != slope_srtm_NoDataValue && v < slope_srtm_minimum)
-            //    //    {
-            //    //        slope_srtm_minimum = v;
-            //    //    }
-            //    //}
-            //    //province.Max_slope_srtm = (decimal?)slope_srtm_maximum;
-            //    //province.Min_slope_srtm = (decimal?)slope_srtm_minimum;
-
-            //    string srtm_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces", province.Code + "srtm.tif");
-            //    Dataset srtm_ds = Gdal.Open(srtm_file_name, Access.GA_ReadOnly);
-            //    Band srtm_band = srtm_ds.GetRasterBand(1);
-            //    int srtm_width = srtm_band.XSize;
-            //    int srtm_height = srtm_band.YSize;
-            //    int[] srtm_array = new int[srtm_width * srtm_height];
-            //    srtm_band.ReadRaster(0, 0, srtm_width, srtm_height, srtm_array, srtm_width, srtm_height, 0, 0);
-            //    double srtm_out_val;
-            //    int srtm_out_hasval;
-            //    int srtm_NoDataValue = -1;
-            //    srtm_band.GetNoDataValue(out srtm_out_val, out srtm_out_hasval);
-            //    if (srtm_out_hasval != 0)
-            //        srtm_NoDataValue = (int)srtm_out_val;
-            //    int srtm_minimum = int.MaxValue,
-            //        srtm_maximum = int.MinValue;
-            //    foreach (int v in srtm_array)
-            //    {
-            //        if (v != srtm_NoDataValue && v < srtm_minimum)
-            //        {
-            //            srtm_minimum = v;
-            //        }
-            //        if (v != srtm_NoDataValue && v > srtm_maximum)
-            //        {
-            //            srtm_maximum = v;
-            //        }
-            //    }
-            //    srtm_array = null;
-            //    province.Max_srtm = srtm_maximum;
-            //    province.Min_srtm = srtm_minimum;
-            //    GC.Collect();
-
-            //    //string swvdwnyear_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces", province.Code + "swvdwnyear.tif");
-            //    //Dataset swvdwnyear_ds = Gdal.Open(swvdwnyear_file_name, Access.GA_ReadOnly);
-            //    //Band swvdwnyear_band = swvdwnyear_ds.GetRasterBand(1);
-            //    //int swvdwnyear_width = swvdwnyear_band.XSize;
-            //    //int swvdwnyear_height = swvdwnyear_band.YSize;
-            //    //float[] swvdwnyear_array = new float[swvdwnyear_width * swvdwnyear_height];
-            //    //swvdwnyear_band.ReadRaster(0, 0, swvdwnyear_width, swvdwnyear_height, swvdwnyear_array, swvdwnyear_width, swvdwnyear_height, 0, 0);
-            //    //double swvdwnyear_out_val;
-            //    //int swvdwnyear_out_hasval;
-            //    //float swvdwnyear_NoDataValue = -1;
-            //    //swvdwnyear_band.GetNoDataValue(out swvdwnyear_out_val, out swvdwnyear_out_hasval);
-            //    //if (swvdwnyear_out_hasval != 0)
-            //    //    swvdwnyear_NoDataValue = (float)swvdwnyear_out_val;
-            //    //float swvdwnyear_minimum = float.MaxValue,
-            //    //    swvdwnyear_maximum = swvdwnyear_array.Max();
-            //    //foreach (float v in swvdwnyear_array)
-            //    //{
-            //    //    if (v != swvdwnyear_NoDataValue && v < swvdwnyear_minimum)
-            //    //    {
-            //    //        swvdwnyear_minimum = v;
-            //    //    }
-            //    //}
-            //    //province.Max_swvdwnyear = (decimal?)swvdwnyear_maximum;
-            //    //province.Min_swvdwnyear = (decimal?)swvdwnyear_minimum;
-
-            //    db.Entry(province).State = EntityState.Modified;
-            //}
-            //db.SaveChangesAsync();
-
             IList<Province> provinces = db.Provinces
                 .ToList();
             provinces = provinces
@@ -779,7 +599,8 @@ namespace AtlasSolar.Controllers
                 .ToList();
             ViewBag.CalcMeteoDataSources = new SelectList(calcmeteodatasources, "Id", "Name");
 
-            ViewBag.gip = Properties.Settings.Default.GeoServerIP;
+            ViewBag.gip = Properties.Settings.Default.GeoServerURL;
+            ViewBag.gport = Properties.Settings.Default.GeoServerPort;
             return View();
         }
 
@@ -913,7 +734,6 @@ namespace AtlasSolar.Controllers
                 }
             }
 
-
             return View();
         }
 
@@ -944,15 +764,15 @@ namespace AtlasSolar.Controllers
                 Ybottom = (int)Y - 0.5M;
                 Ytop = Ybottom + 1;
             }
-            // расстояния до углов
+            // distance to corners
             decimal Rleftbottom = (decimal)Math.Sqrt(Math.Pow((double)(X - Xleft), 2) + Math.Pow((double)(Y - Ybottom), 2));
             decimal Rlefttop = (decimal)Math.Sqrt(Math.Pow((double)(X - Xleft), 2) + Math.Pow((double)(Y - Ytop), 2));
             decimal Rrighttop = (decimal)Math.Sqrt(Math.Pow((double)(X - Xright), 2) + Math.Pow((double)(Y - Ytop), 2));
             decimal Rrightbottom = (decimal)Math.Sqrt(Math.Pow((double)(X - Xright), 2) + Math.Pow((double)(Y - Ybottom), 2));
-            // сумма расстояний
+            // sum of distances
             decimal Rsum = Rleftbottom + Rlefttop + Rrighttop + Rrightbottom;
 
-            // значения в углах
+            // values in the corners
             decimal? Vleftbottom = db.MeteoDatas
                 .Where(m => m.Latitude == Ybottom && m.Longitude == Xleft && m.MeteoDataTypeId == 5)
                 .Select(m => m.Value)
@@ -969,7 +789,7 @@ namespace AtlasSolar.Controllers
                 .Where(m => m.Latitude == Ybottom && m.Longitude == Xright && m.MeteoDataTypeId == 5)
                 .Select(m => m.Value)
                 .Average();
-            // расчет
+            // calculation
             decimal V = 0;
             if (Vleftbottom == null || Vlefttop == null || Vrighttop == null || Vrightbottom == null)
             {
@@ -996,145 +816,6 @@ namespace AtlasSolar.Controllers
                 ThermalPowerFactor = pvsystemmaterial.ThermalPowerFactor
             });
         }
-
-        //[HttpPost]
-        //public ActionResult CalcPV(
-        //    decimal Longitude,
-        //    decimal Latitude,
-        //    decimal Energy,
-        //    int PVSystemMaterialId,
-        //    decimal Efficiency,
-        //    int RatedOperatingTemperature,
-        //    decimal ThermalPowerFactor,
-        //    decimal WiringEfficiency,
-        //    decimal ControllerEfficiency,
-        //    decimal InverterEfficiency,
-        //    decimal BatteryEfficiency
-        //    )
-        //{
-        //    //Longitude = 69.873046875M;
-        //    //Latitude = 46.31658418182221M;
-        //    PVSystemMaterial pvsystemmaterial = db.PVSystemMaterials.Where(p => p.Id == PVSystemMaterialId).FirstOrDefault();
-        //    int NASASSEId = db.MeteoDataSources.Where(m => m.NameEN == "NASA SSE").FirstOrDefault().Id;
-        //    int PeriodicityId = db.MeteoDataPeriodicities.Where(m => m.Code.Contains("Monthly average")).FirstOrDefault().Id;
-        //    // количество дней по месяцам
-        //    decimal[] days = new decimal[12];
-        //    days[0] = 31;
-        //    days[1] = 622 / 22;
-        //    days[2] = 31;
-        //    days[3] = 30;
-        //    days[4] = 31;
-        //    days[5] = 30;
-        //    days[6] = 31;
-        //    days[7] = 31;
-        //    days[8] = 30;
-        //    days[9] = 31;
-        //    days[10] = 30;
-        //    days[11] = 31;
-        //    // радиация на горизонтальную поверхность
-        //    int HpMeteoDataTypeId = db.MeteoDataTypes
-        //        .Where(m => m.Code == "swv_dwn" && m.MeteoDataSourceId == NASASSEId && m.MeteoDataPeriodicityId == PeriodicityId)
-        //        .FirstOrDefault().Id;
-        //    IList<MeteoData> Hp = GetMonthlyAverage(Longitude, Latitude, HpMeteoDataTypeId);
-        //    // полная радиация на ориентированную наклонную поверхность (для следящих по двум осям принимается равной Hp)
-        //    // edit
-        //    IList<MeteoData> Ht = Hp;
-        //    // продолжительность светового дня
-        //    int DMeteoDataTypeId = db.MeteoDataTypes
-        //        .Where(m => m.Code == "daylight" && m.MeteoDataSourceId == NASASSEId && m.MeteoDataPeriodicityId == PeriodicityId)
-        //        .FirstOrDefault().Id;
-        //    IList<MeteoData> D = GetMonthlyAverage(Longitude, Latitude, DMeteoDataTypeId);
-        //    // количество приходящей радиации в сумме в месяц
-        //    IList<MeteoData> Ht1 = new List<MeteoData>();
-        //    // количество приходящей радиации в час по месяцам
-        //    IList<MeteoData> Ht2 = new List<MeteoData>();
-        //    foreach (MeteoData hp in Hp)
-        //    {
-        //        if (hp.Month < 13)
-        //        {
-        //            Ht1.Add(new MeteoData()
-        //            {
-        //                Day = hp.Day,
-        //                Latitude = hp.Latitude,
-        //                Longitude = hp.Longitude,
-        //                MeteoDataTypeId = hp.MeteoDataTypeId,
-        //                Month = hp.Month,
-        //                Year = hp.Year,
-        //                Value = hp.Value * days[(int)hp.Month - 1]
-        //            });
-        //            Ht2.Add(new MeteoData()
-        //            {
-        //                Day = hp.Day,
-        //                Latitude = hp.Latitude,
-        //                Longitude = hp.Longitude,
-        //                MeteoDataTypeId = hp.MeteoDataTypeId,
-        //                Month = hp.Month,
-        //                Year = hp.Year,
-        //                Value = hp.Value / D.Where(d => d.Month == hp.Month).FirstOrDefault().Value
-        //            });
-        //        }
-        //    }
-        //    // суммарная продолжительность светового дня (часов работы установки в месяц)
-        //    // edit (Dm from D)
-        //    IList<MeteoData> Dm = GetMonthlyAverage(Longitude, Latitude, DMeteoDataTypeId);
-        //    for (int i = 1; i <= 12; i++)
-        //    {
-        //        MeteoData Dmi = Dm.Where(d => d.Month == i).FirstOrDefault();
-        //        Dmi.Value *= days[i - 1];
-        //    }
-        //    // средняя температура наружного воздуха град С
-        //    int TaMeteoDataTypeId = db.MeteoDataTypes
-        //        .Where(m => m.Code == "T10M" && m.MeteoDataSourceId == NASASSEId && m.MeteoDataPeriodicityId == PeriodicityId && m.AdditionalEN.Contains("22-year Average"))
-        //        .FirstOrDefault().Id;
-        //    IList<MeteoData> Ta = GetMonthlyAverage(Longitude, Latitude, TaMeteoDataTypeId);
-        //    // температура ячейки в рабочем режиме
-        //    IList<decimal> Tc = new List<decimal>();
-        //    //foreach(MeteoData ta in Ta.OrderBy(t => t.Month))
-        //    for (int i = 1; i <= 12; i++)
-        //    {
-        //        MeteoData ht2 = Ht2.Where(h => h.Month == Ta[i - 1].Month).FirstOrDefault();
-        //        Tc.Add((decimal)Ta[i - 1].Value + (decimal)ht2.Value / 0.8M * (RatedOperatingTemperature - 20));
-        //    }
-        //    // эффективность солнечной панели в зависимости от температуры
-        //    IList<decimal> Nt = new List<decimal>();
-        //    for (int i = 1; i <= 12; i++)
-        //    {
-        //        Nt.Add(Efficiency * (1 - ThermalPowerFactor * (Tc[i - 1] - 25)));
-        //    }
-        //    // общий коэффициент потерь
-        //    IList<decimal> N = new List<decimal>();
-        //    for (int i = 1; i <= 12; i++)
-        //    {
-        //        N.Add(WiringEfficiency * ControllerEfficiency * InverterEfficiency * BatteryEfficiency * Nt[i - 1]);
-        //    }
-        //    // общая площадь
-        //    List<decimal> S = new List<decimal>();
-        //    for (int i = 1; i <= 12; i++)
-        //    {
-        //        S.Add(Energy / (N[i - 1] * (decimal)Ht[i - 1].Value));
-        //    }
-        //    List<string> Ss = new List<string>();
-        //    for (int i = 0; i < S.Count(); i++)
-        //    {
-        //        Ss.Add(S[i].ToString("F"));
-        //    }
-        //    // данные для графика
-        //    List<PlotData> PD = new List<PlotData>();
-        //    for (int i = 0; i < S.Count(); i++)
-        //    {
-        //        PD.Add(new PlotData() { X = i + 1, Y = S[i] });
-        //    }
-        //    return Json(new
-        //    {
-        //        PVSystemType = pvsystemmaterial.Name,
-        //        PVSystemEfficiency = Efficiency,
-        //        PVSystemRatedOperatingTemperature = RatedOperatingTemperature,
-        //        PVSystemThermalPowerFactor = ThermalPowerFactor,
-        //        Ss = Ss,
-        //        S = S,
-        //        PD = PD
-        //    });
-        //}
 
         [HttpPost]
         public ActionResult CalcPV(
@@ -1165,8 +846,6 @@ namespace AtlasSolar.Controllers
         {
             decimal longitude = Longitude == null ? 0 : (decimal)Longitude;
             decimal latitude = Latitude == null ? 0 : (decimal)Latitude;
-            //decimal longitude = string.IsNullOrEmpty(Longitude) ? 0 : Convert.ToDecimal(Longitude);
-            //decimal latitude = string.IsNullOrEmpty(Latitude) ? 0 : Convert.ToDecimal(Latitude);
             decimal wload = Wload == null ? 0 : (int)Wload;
             PanelOrientation panel_orientation = db.PanelOrientations.FirstOrDefault(p => p.Id == PanelOrientationId);
             decimal azimuth = Azimuth == null ? 0 : (int)Azimuth;
@@ -1185,18 +864,13 @@ namespace AtlasSolar.Controllers
             decimal losses_shad = LossesShad == null ? 0 : (decimal)LossesShad;
             decimal losses_mis = LossesMis == null ? 0 : (decimal)LossesMis;
 
-            //int SPPPurposeId,
-            //int PVSystemMaterialId,
-            //decimal? ThermalPowerFactor,
-
-
             PVSystemMaterial pvsystemmaterial = db.PVSystemMaterials.Where(p => p.Id == PVSystemMaterialId).FirstOrDefault();
 
             int NASASSEId = db.MeteoDataSources.Where(m => m.Code.ToLower() == Properties.Settings.Default.NASASSECode.ToLower()).FirstOrDefault().Id;
             int NASAPOWERId = db.MeteoDataSources.Where(m => m.Code.ToLower() == Properties.Settings.Default.NASAPOWERCode.ToLower()).FirstOrDefault().Id;
             int PeriodicityMAId = db.MeteoDataPeriodicities.Where(m => m.Code.ToLower().Contains(Properties.Settings.Default.Monthly) && m.Code.ToLower().Contains(Properties.Settings.Default.Average)).FirstOrDefault().Id;
 
-            // количество дней по месяцам
+            // number of days by month
             decimal[] days = new decimal[12];
             days[0] = 31;
             days[1] = 622 / 22;
@@ -1284,15 +958,6 @@ namespace AtlasSolar.Controllers
                 OPT_ANG.FirstOrDefault(o => o.Month == i).Value = OPT_ANG.FirstOrDefault(o => o.Month == i).Value == null ? 0 : OPT_ANG.FirstOrDefault(o => o.Month == i).Value;
             }
 
-            // Monthly Averaged Air Temperature At 2 m Above The Surface Of The Earth For Indicated GMT Times (°C) (NASA POWER)
-            //int TaMeteoDataTypeId = db.MeteoDataTypes
-            //    .Where(m => m.Code == "T2M" && m.MeteoDataSourceId == NASAPOWERId && m.MeteoDataPeriodicityId == PeriodicityMAId)
-            //    .FirstOrDefault().Id;
-            //int TaMeteoDataTypeId = db.MeteoDataTypes
-            //    .Where(m => m.Code == "T10M" && m.MeteoDataSourceId == NASASSEId && m.MeteoDataPeriodicityId == PeriodicityMAId)
-            //    .FirstOrDefault().Id;
-            //IList<MeteoData> TaM = GetMonthlyAverage(longitude, latitude, TaMeteoDataTypeId);
-
             int Ta03MeteoDataTypeId = db.MeteoDataTypes
                 .Where(m => m.Code == "T2M3" && m.MeteoDataSourceId == NASAPOWERId && m.MeteoDataPeriodicityId == PeriodicityMAId && m.AdditionalEN == "Average@03")
                 .FirstOrDefault().Id;
@@ -1321,20 +986,13 @@ namespace AtlasSolar.Controllers
             }
 
 
-            // расчет дневной среднемесячной солнечной радиации
+            // calculation of daily average monthly solar radiation
             // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             latitude = latitude / 180 * (decimal)Math.PI;
             tilt = tilt / 180 * (decimal)Math.PI;
             azimuth = azimuth / 180 * (decimal)Math.PI;
-            //H[0].Value = 1.14M;
-            //Hd[0].Value = 0.69M;
-            //Ps[0].Value = 0.35M;
-            //H[6].Value = 5.93M;
-            //Hd[6].Value = 2.58M;
-            //Ps[6].Value = 0.16M;
 
-
-            // порядковый номер дня в году, отсчитываемый от 1 января
+            // day ordinal of the year counted from January 1
             int[] N = new int[12];
             N[0] = 17;
             N[1] = 47;
@@ -1349,7 +1007,7 @@ namespace AtlasSolar.Controllers
             N[10] = 318;
             N[11] = 344;
 
-            // значения склонения Солнца (рад)
+            // declination of the sun (radian)
             decimal[] δ = new decimal[12];
             for (int i = 0; i < 12; i++)
             {
@@ -1377,10 +1035,10 @@ namespace AtlasSolar.Controllers
             }
 
             // solar hour angle for each daylight hour relative to solar noon.
-            // Часовой угол ω (рад) – угол, который определяет угловое смещение Солнца в течение суток.
-            // Один час соответствует π/12 рад или 15 град углового смещения.
-            // В полдень часовой угол равен нулю.
-            // Значения часового угла до полудня считаются отрицательными, после полудня – положительными.
+            // Hour angle ω (рад) – the angle that determines the angular displacement of the sun during the day.
+            // One hour corresponds to π/12 rad or 15 degrees of angular displacement.
+            // At noon, the hour angle is zero.
+            // The values of the hour angle before noon are considered negative, in the afternoon - positive.
             decimal[] ω = new decimal[25];
             int w_begin = 2,
                 w_end = 22;
@@ -1441,8 +1099,6 @@ namespace AtlasSolar.Controllers
 
             // hourly cosine of zenith angle (the angle between the vertical and a ray from the sun)
             decimal[,] cosθ_zh = new decimal[12, 25];
-            //decimal[,] sinθ_zh = new decimal[12, 25];
-            //decimal[,] tanθ_zh = new decimal[12, 25];
             decimal[,] θ_zh = new decimal[12, 25];
             for (int i = 0; i < 12; i++)
             {
@@ -1450,8 +1106,6 @@ namespace AtlasSolar.Controllers
                 {
                     // (2.11)
                     cosθ_zh[i, j] = (decimal)Math.Sin((double)latitude) * (decimal)Math.Sin((double)δ[i]) + (decimal)Math.Cos((double)latitude) * (decimal)Math.Cos((double)δ[i]) * (decimal)Math.Cos((double)ω[j]);
-                    //sinθ_zh[i, j] = (decimal)Math.Pow(1 - Math.Pow((double)cosθ_zh[i, j], 2), 0.5);
-                    //tanθ_zh[i, j] = sinθ_zh[i, j] / cosθ_zh[i, j];
                     θ_zh[i, j] = (decimal)Math.Acos((double)cosθ_zh[i, j]);
                 }
             }
@@ -1488,11 +1142,8 @@ namespace AtlasSolar.Controllers
             // hourly surface azimuth of the tilted surface; angle between the projection of the normal to the surface into the horizontal surface and the local meridian.
             // Azimuth is zero facing the equator, positive west, and negative east
             decimal[,] γ_h = new decimal[12, 25];
-            // ?????????????????????????????????????????????????????????????????????
 
-
-
-            // Следящая по горизонтальной оси, корректируемая по азимуту солнца 2 раза в год
+            // Tracking along the horizontal axis, adjusted by the azimuth of the sun 2 times a year
             decimal[,] β_h0 = new decimal[12, 25];
             decimal[,] σ_β = new decimal[12, 25];
             // hourly slope of the PV array relative to horizontal surface
@@ -1514,7 +1165,7 @@ namespace AtlasSolar.Controllers
                 }
             }
 
-            // Следящая по двум осям
+            // Two axis tracking
             if (panel_orientation.Code.ToLower() == Properties.Settings.Default.PanelOriantation2AxisCode.ToLower())
             {
                 for (int i = 0; i < 12; i++)
@@ -1522,16 +1173,14 @@ namespace AtlasSolar.Controllers
                     for (int j = w_begin; j <= w_end; j++)
                     {
                         // (2.22)
-                        //γ_sh[i, j] = azimuth;????????????????????
                         γ_h[i, j] = γ_sh[i, j];
                         β_h[i, j] = θ_zh[i, j];
                     }
                 }
             }
 
-            // Фиксированная, азимут и угол наклона корректируются 2 раза в год
-            // Значение углов наклона панели
-            //decimal[] β = new decimal[12];
+            // Fixed, azimuth and tilt angle are adjusted 2 times a year
+            // Panel angles values
             string[] β_h_s = new string[12];
             if (panel_orientation.Code.ToLower() == Properties.Settings.Default.PanelOriantationFixedCorrectableCode.ToLower())
             {
@@ -1555,7 +1204,7 @@ namespace AtlasSolar.Controllers
                 }
             }
 
-            // Следящая по вертикальной оси, корректируемая по углу наклона 2 раза в год
+            // Tracking along the vertical axis, adjusted by the angle of inclination 2 times a year
             if (panel_orientation.Code.ToLower() == Properties.Settings.Default.PanelOriantationVerticalCode.ToLower())
             {
                 for (int i = 0; i < 12; i++)
@@ -1564,37 +1213,22 @@ namespace AtlasSolar.Controllers
                     {
                         γ_h[i, j] = γ_sh[i, j];
                     }
-                    //if (i >= 2 && i < 8)
-                    //{
-                    //    for (int j = w_begin; j <= w_end; j++)
-                    //    {
-                    //        β_h[i, j] = (decimal)OPT_ANG.FirstOrDefault(o => o.Month == 3).Value;
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    for (int j = w_begin; j <= w_end; j++)
-                    //    {
-                    //        β_h[i, j] = (decimal)OPT_ANG.FirstOrDefault(o => o.Month == 9).Value;
-                    //    }
-                    //}
                 }
             }
 
-            // Фиксированная, азимут и угол наклона корректируются 2 раза в год
+            // Fixed, azimuth and tilt angle are adjusted 2 times a year
             if (panel_orientation.Code.ToLower() == Properties.Settings.Default.PanelOriantationFixedCode.ToLower())
             {
                 for (int i = 0; i < 12; i++)
                 {
                     for (int j = w_begin; j <= w_end; j++)
                     {
-                        //β_h[i, j] = tilt;
                         γ_h[i, j] = azimuth;
                     }
                 }
             }
 
-            // Фиксированная
+            // Fixed
             if (panel_orientation.Code.ToLower() == Properties.Settings.Default.PanelOriantationFixedCode.ToLower())
             {
                 for (int i = 0; i < 12; i++)
@@ -1606,7 +1240,7 @@ namespace AtlasSolar.Controllers
                 }
             }
 
-            // Следящая по вертикальной оси, корректируемая по углу наклона 2 раза в год
+            // Tracking along the vertical axis, adjusted by the angle of inclination 2 times a year
             if (panel_orientation.Code.ToLower() == Properties.Settings.Default.PanelOriantationVerticalCode.ToLower())
             {
                 for (int i = 0; i < 12; i++)
@@ -1654,9 +1288,8 @@ namespace AtlasSolar.Controllers
                 H_td_s[i] = (H_td[i] / 1000m).ToString("0.00");
             }
             // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            // Прочие потери в PV панели
+            // Other losses in the PV panel
             // (1.5)
-            //decimal Lopv = 1 - (1 - losses_snow) * (1 - losses_soil) * (1 - losses_shad) * (1 - losses_mis);
             decimal[] Lopv = new decimal[12];
             for (int i = 0; i < 12; i++)
             {
@@ -1681,12 +1314,8 @@ namespace AtlasSolar.Controllers
                 η_opv[i] = 1 - Lopv[i];
             }
 
-            //// Средняя дневная температура наружного воздуха град С
+            //// Average daily outdoor temperature, degrees C
             //// (1.3)
-            //decimal Ta = (decimal)(TaM.FirstOrDefault(t => t.Month == 3).Value +
-            //    TaM.FirstOrDefault(t => t.Month == 3).Value +
-            //    TaM.FirstOrDefault(t => t.Month == 3).Value +
-            //    TaM.FirstOrDefault(t => t.Month == 3).Value) / 4;
             string[] Ta_s = new string[12];
             for (int i = 0; i < 12; i++)
             {
@@ -1711,7 +1340,6 @@ namespace AtlasSolar.Controllers
                         D += H_th[i, j];
                         D_count++;
                     }
-                    //H_tah[i, j] = H_td[i] / j;
                     bufer += H_th[i, j];
                     bufer_count++;
                 }
@@ -1721,61 +1349,51 @@ namespace AtlasSolar.Controllers
                 H_tah_s[i] = (D / D_count / 1000m).ToString("0.00");
             }
 
-            // Температура ячейки в рабочем режиме для каждого месяца
+            // Cell temperature in operating mode for each month
             decimal[] T_c = new decimal[12];
             string[] T_c_s = new string[12];
             for (int i = 0; i < 12; i++)
             {
-                //for (int j = w_begin; j <= w_end; j++)
-                {
-                    // (1.2)
-                    T_c[i] = (decimal)Ta.FirstOrDefault(t => t.Month == i + 1).Value + H_tah[i] / 1000m / 0.8m * (NOCT - 20);
-                    T_c_s[i] = T_c[i].ToString("0.00");
-                }
+                // (1.2)
+                T_c[i] = (decimal)Ta.FirstOrDefault(t => t.Month == i + 1).Value + H_tah[i] / 1000m / 0.8m * (NOCT - 20);
+                T_c_s[i] = T_c[i].ToString("0.00");
             }
 
-            // коэффициент эффективности солнечного панеля при различных температурах ячейки
+            // solar panel efficiency coefficient at various cell temperatures
             decimal[] η_tpv = new decimal[12];
             string[] η_tpv_s = new string[12];
             for (int i = 0; i < 12; i++)
             {
                 decimal bufer = 0;
                 int bufer_count = 0;
-                //for (int j = w_begin; j <= w_end; j++)
-                {
-                    // (1.1)
-                    η_tpv[i] = panel_efficiency * (1 + thermal_power_factor * (T_c[i] - 25));
-                    bufer += η_tpv[i];
-                    bufer_count++;
-                }
+                // (1.1)
+                η_tpv[i] = panel_efficiency * (1 + thermal_power_factor * (T_c[i] - 25));
+                bufer += η_tpv[i];
+                bufer_count++;
+
                 η_tpv_s[i] = (bufer / bufer_count).ToString("0.00");
             }
 
-            // Эффективеность электрических устройств
+            // The effectiveness of electrical devices
             // (1.7)
             decimal η_epv = wiring_efficiency * controller_efficiency * inverter_efficiency * battery_efficiency;
 
-            // Коэффициент эффективности PV системы
+            // PV system efficiency coefficient
             decimal[] η_spv = new decimal[12];
             string[] η_spv_s = new string[12];
             for (int i = 0; i < 12; i++)
             {
                 decimal bufer = 0;
                 int bufer_count = 0;
-                //for (int j = w_begin; j <= w_end; j++)
-                {
-                    // (1.8)
-                    η_spv[i] = η_tpv[i] * η_epv * η_opv[i];
-                    bufer += η_spv[i];
-                    bufer_count++;
-                }
+                // (1.8)
+                η_spv[i] = η_tpv[i] * η_epv * η_opv[i];
+                bufer += η_spv[i];
+                bufer_count++;
+
                 η_spv_s[i] = (bufer / bufer_count).ToString("0.00");
             }
 
-            //// Area of Solar PV panel [m2]
-            //// (1.9-2)
-            //decimal S_pv = panels_count * rated_power / 1000 / panel_efficiency;
-            // Среднемесячная необходимая общая площадь солнечных PV-систем (kWh/day)
+            // Monthly average required total area of solar PV systems (kWh/day)
             decimal[] S_pv = new decimal[12];
             string[] S_pv_s = new string[12];
             for (int i = 0; i < 12; i++)
@@ -1785,43 +1403,17 @@ namespace AtlasSolar.Controllers
                 S_pv_s[i] = S_pv[i].ToString("0.00");
             }
 
-            //// Monthly averaged energy output from the Solar PV panel [kWh/day]
-            //decimal[] W_PV = new decimal[12];
-            //for (int i = 0; i < 12; i++)
-            //{
-            //    //for (int j = w_begin; j <= w_end; j++)
-            //    {
-            //        // (1.9-1)
-            //        W_PV[i] = S_pv * η_spv[i] * H_td[i];
-            //    }
-            //}
-            //string[] W_PV_s = new string[12];
-            //for (int i = 0; i < 12; i++)
-            //{
-            //    decimal bufer = 0;
-            //    //for (int j = w_begin; j <= w_end; j++)
-            //    {
-            //        bufer += W_PV[i] / 1000m;
-            //    }
-            //    W_PV_s[i] = bufer.ToString("0.00");
-            //}
-            // Общая необходимая номинальная мощность солнечных PV-систем
+            // Total required rated power of solar PV systems
             decimal[] P_tpv = new decimal[12];
             string[] P_tpv_s = new string[12];
             for (int i = 0; i < 12; i++)
             {
                 // (32)
-                //P_tpv[i] = S_pv[i] / η_spv[i] * 1000;
                 P_tpv[i] = S_pv[i] * 1000 * panel_efficiency;
                 P_tpv_s[i] = P_tpv[i].ToString("0.00");
             }
 
-            // данные для графика
-            //List<PlotData> W_PV_c = new List<PlotData>();
-            //for (int i = 0; i < W_PV.Count(); i++)
-            //{
-            //    W_PV_c.Add(new PlotData() { X = i + 1, Y = W_PV[i] / 1000m });
-            //}
+            // chart data
             List<PlotData> S_pv_c = new List<PlotData>();
             for (int i = 0; i < S_pv.Count(); i++)
             {
@@ -1830,41 +1422,9 @@ namespace AtlasSolar.Controllers
 
             return Json(new
             {
-                //Longitude = Longitude.ToString(),
-                //Latitude = Latitude.ToString(),
-                //SPPPurpose = db.SPPPurposes.FirstOrDefault(s => s.Id == SPPPurposeId).Name,
-                //PanelOrientation = panel_orientation.Name,
-                //PVSystemMaterial = pvsystemmaterial.Name,
-                //RatedPower = RatedPower.ToString(),
-                //PanelsCount = PanelsCount.ToString(),
-                //PanelEfficiency = PanelEfficiency.ToString(),
-                //RatedOperatingTemperature = RatedOperatingTemperature.ToString(),
-                //ThermalPowerFactor = ThermalPowerFactor.ToString(),
-                //Tilt = Tilt.ToString(),
-                //Azimuth = Azimuth.ToString(),
-                //WiringEfficiency = WiringEfficiency.ToString(),
-                //ControllerEfficiency = ControllerEfficiency.ToString(),
-                //InverterEfficiency = InverterEfficiency.ToString(),
-                //BatteryEfficiency = BatteryEfficiency.ToString(),
-                //LossesSoil = LossesSoil.ToString(),
-                //LossesSnow = LossesSnow.ToString(),
-                //LossesShad = LossesShad.ToString(),
-                //LossesMis = LossesMis.ToString(),
-                //H_td_average = H_td.Average().ToString("0.00"),
-                //η_epv = η_epv.ToString(),
                 S_pv = S_pv_s,
-                //W_PV = W_PV_s,
-                //H_td = H_td_s,
-                //H_tah = H_tah_s,
-                //H_tm = H_tm_s,
-                //Ta = Ta_s,
-                //D = D_s,
-                //η_tpv = η_tpv_s,
-                //η_spv = η_spv_s,
                 S_pv_c = S_pv_c,
                 P_tpv = P_tpv_s
-                //T_c = T_c_s,
-                //β_h = β_h_s
             });
         }
 
@@ -1894,15 +1454,15 @@ namespace AtlasSolar.Controllers
                 Ybottom = (int)Y - 0.5M;
                 Ytop = Ybottom + 1;
             }
-            // расстояния до углов
+            // distance to corners
             decimal Rleftbottom = (decimal)Math.Sqrt(Math.Pow((double)(X - Xleft), 2) + Math.Pow((double)(Y - Ybottom), 2));
             decimal Rlefttop = (decimal)Math.Sqrt(Math.Pow((double)(X - Xleft), 2) + Math.Pow((double)(Y - Ytop), 2));
             decimal Rrighttop = (decimal)Math.Sqrt(Math.Pow((double)(X - Xright), 2) + Math.Pow((double)(Y - Ytop), 2));
             decimal Rrightbottom = (decimal)Math.Sqrt(Math.Pow((double)(X - Xright), 2) + Math.Pow((double)(Y - Ybottom), 2));
-            // сумма расстояний
+            // sum of distances
             decimal Rsum = Rleftbottom + Rlefttop + Rrighttop + Rrightbottom;
 
-            // значения в углах
+            // values in the corners
             List<MeteoData> Vleftbottom = db.MeteoDatas
                 .Where(m => m.Latitude == Ybottom && m.Longitude == Xleft && m.MeteoDataTypeId == MeteoDataTypeId)
                 .ToList();
@@ -1915,14 +1475,8 @@ namespace AtlasSolar.Controllers
             List<MeteoData> Vrightbottom = db.MeteoDatas
                 .Where(m => m.Latitude == Ybottom && m.Longitude == Xright && m.MeteoDataTypeId == MeteoDataTypeId)
                 .ToList();
-            // расчет
+            // calculation
             IList<MeteoData> r = new List<MeteoData>();
-
-            //// edit
-            //Vleftbottom[6].Value = 9.84M;
-            //Vlefttop[6].Value = 9.84M;
-            //Vrighttop[6].Value = 9.84M;
-            //Vrightbottom[6].Value = 9.84M;
 
             for (int i = 0; i < Vleftbottom.Count; i++)
             {
@@ -1939,7 +1493,6 @@ namespace AtlasSolar.Controllers
             {
                 return null;
             }
-
         }
 
         IList<MeteoData> GetMeteoData(decimal Longitude, decimal Latitude, int MeteoDataTypeId)
@@ -1954,7 +1507,6 @@ namespace AtlasSolar.Controllers
                 .Where(m => m.Id == mdt.MeteoDataPeriodicityId)
                 .FirstOrDefault();
 
-
             decimal Xleft = 0,
                     Xright = 0,
                     Ybottom = 0,
@@ -1964,45 +1516,6 @@ namespace AtlasSolar.Controllers
                     longitude_max = 0,
                     latitude_min = 0,
                     latitude_max = 0;
-            //if (mds.Code == Properties.Settings.Default.NASASSECode)
-            //{
-            //    longitude_min = Properties.Settings.Default.NASASSELongitudeMin;
-            //    longitude_max = Properties.Settings.Default.NASASSELongitudeMax;
-            //    latitude_min = Properties.Settings.Default.NASASSELatitudeMin;
-            //    latitude_max = Properties.Settings.Default.NASASSELatitudeMax;
-            //    step = Properties.Settings.Default.NASASSECoordinatesStep;
-            //}
-            //if (mds.Code == Properties.Settings.Default.NASAPOWERCode)
-            //{
-            //    longitude_min = Properties.Settings.Default.NASAPOWERLongitudeMin;
-            //    longitude_max = Properties.Settings.Default.NASAPOWERLongitudeMax;
-            //    latitude_min = Properties.Settings.Default.NASAPOWERLatitudeMin;
-            //    latitude_max = Properties.Settings.Default.NASAPOWERLatitudeMax;
-            //    step = Properties.Settings.Default.NASAPOWERCoordinatesStep;
-            //    if (mdp.Code.ToLower().Contains(Properties.Settings.Default.Average.ToLower()))
-            //    {
-            //        longitude_min = Properties.Settings.Default.NASASSELongitudeMin;
-            //        longitude_max = Properties.Settings.Default.NASASSELongitudeMax;
-            //        latitude_min = Properties.Settings.Default.NASASSELatitudeMin;
-            //        latitude_max = Properties.Settings.Default.NASASSELatitudeMax;
-            //        step = Properties.Settings.Default.NASASSECoordinatesStep;
-            //    }
-            //}
-            //if (mds.Code == Properties.Settings.Default.SARAHECode)
-            //{
-            //    using (var dblocal = new NpgsqlContext())
-            //    {
-            //        Option o_longitude_min = dblocal.Options.Where(o => o.Code == Properties.Settings.Default.SARAHELongitudeMinOption).FirstOrDefault();
-            //        Option o_longitude_max = dblocal.Options.Where(o => o.Code == Properties.Settings.Default.SARAHELongitudeMaxOption).FirstOrDefault();
-            //        Option o_latitude_min = dblocal.Options.Where(o => o.Code == Properties.Settings.Default.SARAHELatitudeMinOption).FirstOrDefault();
-            //        Option o_latitude_max = dblocal.Options.Where(o => o.Code == Properties.Settings.Default.SARAHELatitudeMaxOption).FirstOrDefault();
-            //        longitude_min = Convert.ToDecimal(o_longitude_min.Value.Replace('.', ','));
-            //        longitude_max = Convert.ToDecimal(o_longitude_max.Value.Replace('.', ','));
-            //        latitude_min = Convert.ToDecimal(o_latitude_min.Value.Replace('.', ','));
-            //        latitude_max = Convert.ToDecimal(o_latitude_max.Value.Replace('.', ','));
-            //    }
-            //    step = Properties.Settings.Default.SARAHECoordinatesStep;
-            //}
             if (mds.Code == Properties.Settings.Default.NASASSECode)
             {
                 longitude_min = Properties.Settings.Default.NASASSELongitudeMin;
@@ -2061,7 +1574,7 @@ namespace AtlasSolar.Controllers
             Xright = longitude_max;
             Ybottom = latitude_min;
             Ytop = latitude_max;
-            // 4 ближайшие точки
+            // 4 nearest points
             for (decimal longitude = longitude_min; longitude <= longitude_max; longitude += step)
             {
                 if (Xleft <= longitude && Xleft <= Longitude && longitude <= Longitude)
@@ -2090,15 +1603,15 @@ namespace AtlasSolar.Controllers
                     Ytop = latitude;
                 }
             }
-            // расстояния до углов
+            // distance to corners
             decimal Rleftbottom = (decimal)Math.Sqrt(Math.Pow((double)(Longitude - Xleft), 2) + Math.Pow((double)(Latitude - Ybottom), 2));
             decimal Rlefttop = (decimal)Math.Sqrt(Math.Pow((double)(Longitude - Xleft), 2) + Math.Pow((double)(Latitude - Ytop), 2));
             decimal Rrighttop = (decimal)Math.Sqrt(Math.Pow((double)(Longitude - Xright), 2) + Math.Pow((double)(Latitude - Ytop), 2));
             decimal Rrightbottom = (decimal)Math.Sqrt(Math.Pow((double)(Longitude - Xright), 2) + Math.Pow((double)(Latitude - Ybottom), 2));
-            // сумма расстояний
+            // sum of distances
             decimal Rsum = Rleftbottom + Rlefttop + Rrighttop + Rrightbottom;
 
-            // значения в углах
+            // values in the corners
             List<MeteoData> Vleftbottom = db.MeteoDatas
                 .Where(m => m.Latitude == Ybottom && m.Longitude == Xleft && m.MeteoDataTypeId == MeteoDataTypeId)
                 .ToList()
@@ -2127,7 +1640,7 @@ namespace AtlasSolar.Controllers
                 .ThenBy(m => m.Month)
                 .ThenBy(m => m.Day)
                 .ToList();
-            // расчет
+            // calculation
             IList<MeteoData> r = new List<MeteoData>();
             for (int i = 0; i < Vleftbottom.Count; i++)
             {
@@ -2140,98 +1653,6 @@ namespace AtlasSolar.Controllers
                     (Vrighttop[i].Value == null ? 0 : Vrighttop[i].Value) * Rrighttop +
                     (Vrightbottom[i].Value == null ? 0 : Vrightbottom[i].Value) * Rrightbottom) / Rsum;
             }
-            //foreach (MeteoData md in Vleftbottom)
-            //{
-            //    if (r.Count(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day) == 0)
-            //    {
-            //        decimal? Vleftbottom_v = Vleftbottom.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vleftbottom_v = Vleftbottom_v == null ? 0 : Vleftbottom_v;
-            //        decimal? Vlefttop_v = Vlefttop.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vlefttop_v = Vlefttop_v == null ? 0 : Vlefttop_v;
-            //        decimal? Vrighttop_v = Vrighttop.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vrighttop_v = Vrighttop_v == null ? 0 : Vrighttop_v;
-            //        decimal? Vrightbottom_v = Vrightbottom.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vrightbottom_v = Vrightbottom_v == null ? 0 : Vrightbottom_v;
-
-            //        r.Add(md);
-            //        r.Last().Latitude = Latitude;
-            //        r.Last().Longitude = Longitude;
-            //        r.Last().Value = (decimal)(
-            //            Vleftbottom_v * Rleftbottom +
-            //            Vlefttop_v * Rlefttop +
-            //            Vrighttop_v * Rrighttop +
-            //            Vrightbottom_v * Rrightbottom) / Rsum;
-            //    }
-            //}
-            //foreach (MeteoData md in Vlefttop)
-            //{
-            //    if (r.Count(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day) == 0)
-            //    {
-            //        decimal? Vleftbottom_v = Vleftbottom.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vleftbottom_v = Vleftbottom_v == null ? 0 : Vleftbottom_v;
-            //        decimal? Vlefttop_v = Vlefttop.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vlefttop_v = Vlefttop_v == null ? 0 : Vlefttop_v;
-            //        decimal? Vrighttop_v = Vrighttop.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vrighttop_v = Vrighttop_v == null ? 0 : Vrighttop_v;
-            //        decimal? Vrightbottom_v = Vrightbottom.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vrightbottom_v = Vrightbottom_v == null ? 0 : Vrightbottom_v;
-
-            //        r.Add(md);
-            //        r.Last().Latitude = Latitude;
-            //        r.Last().Longitude = Longitude;
-            //        r.Last().Value = (decimal)(
-            //            Vleftbottom_v * Rleftbottom +
-            //            Vlefttop_v * Rlefttop +
-            //            Vrighttop_v * Rrighttop +
-            //            Vrightbottom_v * Rrightbottom) / Rsum;
-            //    }
-            //}
-            //foreach (MeteoData md in Vrighttop)
-            //{
-            //    if (r.Count(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day) == 0)
-            //    {
-            //        decimal? Vleftbottom_v = Vleftbottom.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vleftbottom_v = Vleftbottom_v == null ? 0 : Vleftbottom_v;
-            //        decimal? Vlefttop_v = Vlefttop.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vlefttop_v = Vlefttop_v == null ? 0 : Vlefttop_v;
-            //        decimal? Vrighttop_v = Vrighttop.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vrighttop_v = Vrighttop_v == null ? 0 : Vrighttop_v;
-            //        decimal? Vrightbottom_v = Vrightbottom.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vrightbottom_v = Vrightbottom_v == null ? 0 : Vrightbottom_v;
-
-            //        r.Add(md);
-            //        r.Last().Latitude = Latitude;
-            //        r.Last().Longitude = Longitude;
-            //        r.Last().Value = (decimal)(
-            //            Vleftbottom_v * Rleftbottom +
-            //            Vlefttop_v * Rlefttop +
-            //            Vrighttop_v * Rrighttop +
-            //            Vrightbottom_v * Rrightbottom) / Rsum;
-            //    }
-            //}
-            //foreach (MeteoData md in Vrightbottom)
-            //{
-            //    if (r.Count(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day) == 0)
-            //    {
-            //        decimal? Vleftbottom_v = Vleftbottom.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vleftbottom_v = Vleftbottom_v == null ? 0 : Vleftbottom_v;
-            //        decimal? Vlefttop_v = Vlefttop.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vlefttop_v = Vlefttop_v == null ? 0 : Vlefttop_v;
-            //        decimal? Vrighttop_v = Vrighttop.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vrighttop_v = Vrighttop_v == null ? 0 : Vrighttop_v;
-            //        decimal? Vrightbottom_v = Vrightbottom.FirstOrDefault(m => m.Year == md.Year && m.Month == md.Month && m.Day == md.Day).Value;
-            //        Vrightbottom_v = Vrightbottom_v == null ? 0 : Vrightbottom_v;
-
-            //        r.Add(md);
-            //        r.Last().Latitude = Latitude;
-            //        r.Last().Longitude = Longitude;
-            //        r.Last().Value = (decimal)(
-            //            Vleftbottom_v * Rleftbottom +
-            //            Vlefttop_v * Rlefttop +
-            //            Vrighttop_v * Rrighttop +
-            //            Vrightbottom_v * Rrightbottom) / Rsum;
-            //    }
-            //}
             return r;
         }
 
@@ -2324,7 +1745,7 @@ namespace AtlasSolar.Controllers
                 string userid = User.Identity.GetUserId();
                 string path = "~/Download/";
 
-                //удаление предыдущих файлов и папок
+                // delete previous files and folders
                 DirectoryInfo di = new DirectoryInfo(Server.MapPath(path));
                 foreach (FileInfo file in di.GetFiles())
                 {
@@ -2363,11 +1784,10 @@ namespace AtlasSolar.Controllers
                 MeteoDataPeriodicity mdp = db.MeteoDataPeriodicities
                     .Where(m => m.Id == mdt.MeteoDataPeriodicityId)
                     .FirstOrDefault();
-                //string filenameout = $"{mds.Name} {mdp.Name} {mdt.NameFull} {Longitude.ToString()}-{Latitude.ToString()}";
                 string filenameout = $"{mds.Name} {mdp.Name} {mdt.Id} {Longitude.ToString()}-{Latitude.ToString()}";
                 filenameout = Path.GetInvalidFileNameChars().Aggregate(filenameout, (current, c) => current.Replace(c.ToString(), string.Empty));
                 filenameout = Path.Combine(Server.MapPath(path), $"{filenameout}.csv");
-                // получение данных
+                // get data
                 decimal Xleft = 0,
                         Xright = 0,
                         Ybottom = 0,
@@ -2377,45 +1797,6 @@ namespace AtlasSolar.Controllers
                         longitude_max = 0,
                         latitude_min = 0,
                         latitude_max = 0;
-                //if (mds.Code == Properties.Settings.Default.NASASSECode)
-                //{
-                //    longitude_min = Properties.Settings.Default.NASASSELongitudeMin;
-                //    longitude_max = Properties.Settings.Default.NASASSELongitudeMax;
-                //    latitude_min = Properties.Settings.Default.NASASSELatitudeMin;
-                //    latitude_max = Properties.Settings.Default.NASASSELatitudeMax;
-                //    step = Properties.Settings.Default.NASASSECoordinatesStep;
-                //}
-                //if (mds.Code == Properties.Settings.Default.NASAPOWERCode)
-                //{
-                //    longitude_min = Properties.Settings.Default.NASAPOWERLongitudeMin;
-                //    longitude_max = Properties.Settings.Default.NASAPOWERLongitudeMax;
-                //    latitude_min = Properties.Settings.Default.NASAPOWERLatitudeMin;
-                //    latitude_max = Properties.Settings.Default.NASAPOWERLatitudeMax;
-                //    step = Properties.Settings.Default.NASAPOWERCoordinatesStep;
-                //    if (mdp.Code.ToLower().Contains(Properties.Settings.Default.Average.ToLower()))
-                //    {
-                //        longitude_min = Properties.Settings.Default.NASASSELongitudeMin;
-                //        longitude_max = Properties.Settings.Default.NASASSELongitudeMax;
-                //        latitude_min = Properties.Settings.Default.NASASSELatitudeMin;
-                //        latitude_max = Properties.Settings.Default.NASASSELatitudeMax;
-                //        step = Properties.Settings.Default.NASASSECoordinatesStep;
-                //    }
-                //}
-                //if (mds.Code == Properties.Settings.Default.SARAHECode)
-                //{
-                //    using (var dblocal = new NpgsqlContext())
-                //    {
-                //        Option o_longitude_min = dblocal.Options.Where(o => o.Code == Properties.Settings.Default.SARAHELongitudeMinOption).FirstOrDefault();
-                //        Option o_longitude_max = dblocal.Options.Where(o => o.Code == Properties.Settings.Default.SARAHELongitudeMaxOption).FirstOrDefault();
-                //        Option o_latitude_min = dblocal.Options.Where(o => o.Code == Properties.Settings.Default.SARAHELatitudeMinOption).FirstOrDefault();
-                //        Option o_latitude_max = dblocal.Options.Where(o => o.Code == Properties.Settings.Default.SARAHELatitudeMaxOption).FirstOrDefault();
-                //        longitude_min = Convert.ToDecimal(o_longitude_min.Value.Replace('.', ','));
-                //        longitude_max = Convert.ToDecimal(o_longitude_max.Value.Replace('.', ','));
-                //        latitude_min = Convert.ToDecimal(o_latitude_min.Value.Replace('.', ','));
-                //        latitude_max = Convert.ToDecimal(o_latitude_max.Value.Replace('.', ','));
-                //    }
-                //    step = Properties.Settings.Default.SARAHECoordinatesStep;
-                //}
                 if (mds.Code == Properties.Settings.Default.NASASSECode)
                 {
                     longitude_min = Properties.Settings.Default.NASASSELongitudeMin;
@@ -2474,7 +1855,7 @@ namespace AtlasSolar.Controllers
                 Xright = longitude_max;
                 Ybottom = latitude_min;
                 Ytop = latitude_max;
-                // 4 ближайшие точки
+                // 4 nearest points
                 for (decimal longitude = longitude_min; longitude <= longitude_max; longitude += step)
                 {
                     if (Xleft <= longitude && Xleft <= Longitude && longitude <= Longitude)
@@ -2503,14 +1884,14 @@ namespace AtlasSolar.Controllers
                         Ytop = latitude;
                     }
                 }
-                // расстояния до углов
+                // distance to corners
                 decimal Rleftbottom = (decimal)Math.Sqrt(Math.Pow((double)(Longitude - Xleft), 2) + Math.Pow((double)(Latitude - Ybottom), 2));
                 decimal Rlefttop = (decimal)Math.Sqrt(Math.Pow((double)(Longitude - Xleft), 2) + Math.Pow((double)(Latitude - Ytop), 2));
                 decimal Rrighttop = (decimal)Math.Sqrt(Math.Pow((double)(Longitude - Xright), 2) + Math.Pow((double)(Latitude - Ytop), 2));
                 decimal Rrightbottom = (decimal)Math.Sqrt(Math.Pow((double)(Longitude - Xright), 2) + Math.Pow((double)(Latitude - Ybottom), 2));
-                // сумма расстояний
+                // sum of distances
                 decimal Rsum = Rleftbottom + Rlefttop + Rrighttop + Rrightbottom;
-                // значения в углах
+                // values in the corners
                 List<MeteoData> Vleftbottom = db.MeteoDatas
                     .Where(m => m.Latitude == Ybottom && m.Longitude == Xleft && m.MeteoDataTypeId == MeteoDataTypeId)
                     .OrderBy(m => m.Year)
@@ -2535,7 +1916,7 @@ namespace AtlasSolar.Controllers
                     .ThenBy(m => m.Month)
                     .ThenBy(m => m.Day)
                     .ToList();
-                // расчет
+                // calculation
                 IList<MeteoData> mdl = new List<MeteoData>();
                 for (int i = 0; i < Vleftbottom.Count; i++)
                 {
@@ -2544,7 +1925,7 @@ namespace AtlasSolar.Controllers
                     mdl[i].Longitude = Longitude;
                     mdl[i].Value = Vleftbottom[i].Value == null || Vlefttop[i].Value == null || Vrighttop[i].Value == null || Vrightbottom[i].Value == null ? (decimal?)null : (decimal)(Vleftbottom[i].Value * Rleftbottom + Vlefttop[i].Value * Rlefttop + Vrighttop[i].Value * Rrighttop + Vrightbottom[i].Value * Rrightbottom) / Rsum;
                 }
-                // сохранение в файл
+                // save to file
                 using (var sw = new StreamWriter(
                         new FileStream(filenameout, FileMode.CreateNew, FileAccess.Write),
                         Encoding.UTF8))
@@ -2605,7 +1986,7 @@ namespace AtlasSolar.Controllers
                 p3 = GetMeteoData((decimal)Longitude3, (decimal)Latitude3, MeteoDataTypeId).ToList();
             }
 
-            // данные для графика
+            // chart data
             List<PlotDataS> xaxis = new List<PlotDataS>();
             List<PlotDataS> r1 = new List<PlotDataS>();
             if (mdp.Code.ToLower().Contains(Properties.Settings.Default.Average.ToLower()) && mdp.Code.ToLower().Contains(Properties.Settings.Default.Monthly.ToLower()))
@@ -2771,19 +2152,6 @@ namespace AtlasSolar.Controllers
         [HttpPost]
         public JsonResult GetSPPs()
         {
-            //List<SPP> spps = new List<SPP>()
-            //{
-            //    new SPP()
-            //    {
-            //        Name = "One",
-            //        Coordinates = "77,43"
-            //    },
-            //    new SPP()
-            //    {
-            //        Name = "Two",
-            //        Coordinates = "78,44"
-            //    }
-            //};
             List<SPP> spps = db.SPPs.ToList();
             JObject o = JObject.FromObject(new
             {
@@ -2819,7 +2187,7 @@ namespace AtlasSolar.Controllers
             string jsonstr = o.ToString();
 
             JsonResult result = new JsonResult();
-            result.Data = jsonstr;//result.Data = "{\"type\": \"FeatureCollection\",\"crs\": { \"type\": \"name\", \"properties\": { \"name\": \"urn:ogc:def:crs:EPSG::3857\" }},\"features\": [{ \"type\": \"Feature\", \"properties\": { \"OBJECTID\": 5, \"count\": 0, \"power\": 0.5, \"cost\": \"270 000 000 тенге\", \"startup\": 2017, \"link\": \"www.samruk-green.kz\", \"customer\": \"ТОО «Samruk-Green Energy»\", \"investor\": \"ТОО «Samruk-Green Energy»\", \"executor\": \"ПСД - АО КазНИПИИТЭС «Энергия»\", \"name\": \"СЭС 2,5 МВт в г. Капшагай\", \"percent\": 18.0, \"statusid\": 1, \"purposeid\": 1, \"pvorientid\": 5 }, \"geometry\": { \"type\": \"Point\", \"coordinates\": [ 8580101.2472526263, 5448245.8648402235 ]} }]}";
+            result.Data = jsonstr;
             return result;
         }
 
@@ -2837,7 +2205,6 @@ namespace AtlasSolar.Controllers
                 spp = new SPP();
             }
 
-            //spp.Id = Convert.ToInt32(Request["Id"]);
             spp.Name = Request["Name"];
             spp.Count = Request["Count"] != "" ? (int?)Convert.ToInt32(Request["Count"]) : null;
             spp.Power = Request["Power"] != "" ? (decimal?)Convert.ToDecimal(Request["Power"]) : null;
@@ -2854,14 +2221,7 @@ namespace AtlasSolar.Controllers
             spp.PanelOrientationId = Convert.ToInt32(Request["PanelOrientationId"]);
             for (int i = 0; i < Request.Files.Count; i++)
             {
-                HttpPostedFileBase file = Request.Files[i]; //Uploaded file
-                                                            //Use the following properties to get file's name, size and MIMEType
-                                                            //int fileSize = file.ContentLength;
-                                                            //string fileName = file.FileName;
-                                                            //string mimeType = file.ContentType;
-                                                            //System.IO.Stream fileContent = file.InputStream;
-                                                            ////To save file, use SaveAs method
-                                                            //file.SaveAs(Server.MapPath("~/") + fileName); //File will be saved in application root
+                HttpPostedFileBase file = Request.Files[i];
                 if (file != null)
                 {
                     MemoryStream target = new MemoryStream();
@@ -2959,36 +2319,6 @@ namespace AtlasSolar.Controllers
 
         }
 
-        //decimal sin(decimal degree)
-        //{
-        //    return (decimal)Math.Sin((double)degree / 180.0 * Math.PI);
-        //}
-
-        //decimal cos(decimal degree)
-        //{
-        //    return (decimal)Math.Cos((double)degree / 180.0 * Math.PI);
-        //}
-
-        //decimal tan(decimal degree)
-        //{
-        //    return (decimal)Math.Tan((double)degree / 180.0 * Math.PI);
-        //}
-
-        //decimal asin(decimal value)
-        //{
-        //    return (decimal)(Math.Asin((double)value) * 180.0 / Math.PI);
-        //}
-
-        //decimal acos(decimal value)
-        //{
-        //    return (decimal)(Math.Acos((double)value) * 180.0 / Math.PI);
-        //}
-
-        //decimal atan(decimal value)
-        //{
-        //    return (decimal)(Math.Atan((double)value) * 180.0 / Math.PI);
-        //}
-
         [HttpPost]
         public ActionResult CalcEfficiency(
             decimal? Longitude,
@@ -2997,8 +2327,6 @@ namespace AtlasSolar.Controllers
             int SPPPurposeId,
             int PanelOrientationId,
             int PVSystemMaterialId,
-            //decimal? RatedPower,
-            //int? PanelsCount,
             decimal? PanelsArea,
             decimal? PanelEfficiency,
             int? RatedOperatingTemperature,
@@ -3028,18 +2356,11 @@ namespace AtlasSolar.Controllers
             decimal controller_efficiency = ControllerEfficiency == null ? 0 : (decimal)ControllerEfficiency;
             decimal inverter_efficiency = InverterEfficiency == null ? 0 : (decimal)InverterEfficiency;
             decimal battery_efficiency = BatteryEfficiency == null ? 0 : (decimal)BatteryEfficiency;
-            //int panels_count = PanelsCount == null ? 0 : (int)PanelsCount;
-            //decimal rated_power = RatedPower == null ? 0 : (decimal)RatedPower;
             decimal panels_area = PanelsArea == null ? 0 : (decimal)PanelsArea;
             decimal losses_soil = LossesSoil == null ? 0 : (decimal)LossesSoil;
             decimal losses_snow = LossesSnow == null ? 0 : (decimal)LossesSnow;
             decimal losses_shad = LossesShad == null ? 0 : (decimal)LossesShad;
             decimal losses_mis = LossesMis == null ? 0 : (decimal)LossesMis;
-
-            //int SPPPurposeId,
-            //int PVSystemMaterialId,
-            //decimal? ThermalPowerFactor,
-
 
             PVSystemMaterial pvsystemmaterial = db.PVSystemMaterials.Where(p => p.Id == PVSystemMaterialId).FirstOrDefault();
 
@@ -3047,7 +2368,7 @@ namespace AtlasSolar.Controllers
             int NASAPOWERId = db.MeteoDataSources.Where(m => m.Code.ToLower() == Properties.Settings.Default.NASAPOWERCode.ToLower()).FirstOrDefault().Id;
             int PeriodicityMAId = db.MeteoDataPeriodicities.Where(m => m.Code.ToLower().Contains(Properties.Settings.Default.Monthly) && m.Code.ToLower().Contains(Properties.Settings.Default.Average)).FirstOrDefault().Id;
 
-            // количество дней по месяцам
+            // number of days by month
             decimal[] days = new decimal[12];
             days[0] = 31;
             days[1] = 113 / 4;
@@ -3141,15 +2462,6 @@ namespace AtlasSolar.Controllers
                 OPT_ANG.FirstOrDefault(o => o.Month == i).Value = OPT_ANG.FirstOrDefault(o => o.Month == i).Value == null ? 0 : OPT_ANG.FirstOrDefault(o => o.Month == i).Value;
             }
 
-            // Monthly Averaged Air Temperature At 2 m Above The Surface Of The Earth For Indicated GMT Times (°C) (NASA POWER)
-            //int TaMeteoDataTypeId = db.MeteoDataTypes
-            //    .Where(m => m.Code == "T2M" && m.MeteoDataSourceId == NASAPOWERId && m.MeteoDataPeriodicityId == PeriodicityMAId)
-            //    .FirstOrDefault().Id;
-            //int TaMeteoDataTypeId = db.MeteoDataTypes
-            //    .Where(m => m.Code == "T10M" && m.MeteoDataSourceId == NASASSEId && m.MeteoDataPeriodicityId == PeriodicityMAId)
-            //    .FirstOrDefault().Id;
-            //IList<MeteoData> TaM = GetMonthlyAverage(longitude, latitude, TaMeteoDataTypeId);
-
             int Ta03MeteoDataTypeId = db.MeteoDataTypes
                 .Where(m => m.Code == "T2M3" && m.MeteoDataSourceId == NASAPOWERId && m.MeteoDataPeriodicityId == PeriodicityMAId && m.AdditionalEN == "Average@03")
                 .FirstOrDefault().Id;
@@ -3168,7 +2480,6 @@ namespace AtlasSolar.Controllers
             IList<MeteoData> Ta12 = GetMonthlyAverage(longitude, latitude, Ta12MeteoDataTypeId);
             IList<MeteoData> Ta = new List<MeteoData>();
 
-            //string[] Ta_s = new string[12];
             for (int i = 1; i <= 12; i++)
             {
                 // (1.3)
@@ -3177,23 +2488,15 @@ namespace AtlasSolar.Controllers
                     Month = i,
                     Value = (Ta03.FirstOrDefault(t => t.Month == i).Value + Ta06.FirstOrDefault(t => t.Month == i).Value + Ta09.FirstOrDefault(t => t.Month == i).Value + Ta12.FirstOrDefault(t => t.Month == i).Value) / 4m
                 });
-                //Ta_s[i] = ((decimal)Ta[i - 1].Value).ToString("0.00");
             }
 
-            // расчет дневной среднемесячной солнечной радиации
+            // calculation of daily average monthly solar radiation
             // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             latitude = latitude / 180 * (decimal)Math.PI;
             tilt = tilt / 180 * (decimal)Math.PI;
             azimuth = azimuth / 180 * (decimal)Math.PI;
-            //H[0].Value = 1.14M;
-            //Hd[0].Value = 0.69M;
-            //Ps[0].Value = 0.35M;
-            //H[6].Value = 5.93M;
-            //Hd[6].Value = 2.58M;
-            //Ps[6].Value = 0.16M;
 
-
-            // порядковый номер дня в году, отсчитываемый от 1 января
+            // day ordinal of the year counted from January 1
             int[] N = new int[12];
             N[0] = 17;
             N[1] = 47;
@@ -3208,7 +2511,7 @@ namespace AtlasSolar.Controllers
             N[10] = 318;
             N[11] = 344;
 
-            // значения склонения Солнца (рад)
+            // declination of the sun (radian)
             decimal[] δ = new decimal[12];
             for (int i = 0; i < 12; i++)
             {
@@ -3236,10 +2539,10 @@ namespace AtlasSolar.Controllers
             }
 
             // solar hour angle for each daylight hour relative to solar noon.
-            // Часовой угол ω (рад) – угол, который определяет угловое смещение Солнца в течение суток.
-            // Один час соответствует π/12 рад или 15 град углового смещения.
-            // В полдень часовой угол равен нулю.
-            // Значения часового угла до полудня считаются отрицательными, после полудня – положительными.
+            // Hourly angle ω (rad) is the angle that determines the angular displacement of the Sun during the day.
+            // One hour corresponds to π/12 rad or 15 degrees of angular displacement.
+            // At noon, the hour angle is zero.
+            // The values of the hour angle before noon are considered negative, in the afternoon - positive.
             decimal[] ω = new decimal[25];
             int w_begin = 2,
                 w_end = 22;
@@ -3300,8 +2603,6 @@ namespace AtlasSolar.Controllers
 
             // hourly cosine of zenith angle (the angle between the vertical and a ray from the sun)
             decimal[,] cosθ_zh = new decimal[12, 25];
-            //decimal[,] sinθ_zh = new decimal[12, 25];
-            //decimal[,] tanθ_zh = new decimal[12, 25];
             decimal[,] θ_zh = new decimal[12, 25];
             for (int i = 0; i < 12; i++)
             {
@@ -3309,8 +2610,6 @@ namespace AtlasSolar.Controllers
                 {
                     // (2.11)
                     cosθ_zh[i, j] = (decimal)Math.Sin((double)latitude) * (decimal)Math.Sin((double)δ[i]) + (decimal)Math.Cos((double)latitude) * (decimal)Math.Cos((double)δ[i]) * (decimal)Math.Cos((double)ω[j]);
-                    //sinθ_zh[i, j] = (decimal)Math.Pow(1 - Math.Pow((double)cosθ_zh[i, j], 2), 0.5);
-                    //tanθ_zh[i, j] = sinθ_zh[i, j] / cosθ_zh[i, j];
                     θ_zh[i, j] = (decimal)Math.Acos((double)cosθ_zh[i, j]);
                 }
             }
@@ -3347,11 +2646,8 @@ namespace AtlasSolar.Controllers
             // hourly surface azimuth of the tilted surface; angle between the projection of the normal to the surface into the horizontal surface and the local meridian.
             // Azimuth is zero facing the equator, positive west, and negative east
             decimal[,] γ_h = new decimal[12, 25];
-            // ?????????????????????????????????????????????????????????????????????
 
-
-
-            // Следящая по горизонтальной оси, корректируемая по азимуту солнца 2 раза в год
+            // Tracking along the horizontal axis, adjusted by the azimuth of the sun 2 times a year
             decimal[,] β_h0 = new decimal[12, 25];
             decimal[,] σ_β = new decimal[12, 25];
             // hourly slope of the PV array relative to horizontal surface
@@ -3373,7 +2669,7 @@ namespace AtlasSolar.Controllers
                 }
             }
 
-            // Следящая по двум осям
+            // Two axis tracking
             if (panel_orientation.Code.ToLower() == Properties.Settings.Default.PanelOriantation2AxisCode.ToLower())
             {
                 for (int i = 0; i < 12; i++)
@@ -3381,22 +2677,20 @@ namespace AtlasSolar.Controllers
                     for (int j = w_begin; j <= w_end; j++)
                     {
                         // (2.22)
-                        //γ_sh[i, j] = azimuth;????????????????????
                         γ_h[i, j] = γ_sh[i, j];
                         β_h[i, j] = θ_zh[i, j];
                     }
                 }
             }
 
-            // Фиксированная, азимут и угол наклона корректируются 2 раза в год
-            // Значение углов наклона панели
-            //decimal[] β = new decimal[12];
+            // Fixed, azimuth and tilt angle are adjusted 2 times a year
+            // Panel angles values
             string[] β_h_s = new string[12];
             if (panel_orientation.Code.ToLower() == Properties.Settings.Default.PanelOriantationFixedCorrectableCode.ToLower())
             {
                 for (int i = 0; i < 12; i++)
                 {
-                    if (i >= 3 && i <= 8) //
+                    if (i >= 3 && i <= 8)
                     {
                         for (int j = w_begin; j <= w_end; j++)
                         {
@@ -3414,7 +2708,7 @@ namespace AtlasSolar.Controllers
                 }
             }
 
-            // Следящая по вертикальной оси, корректируемая по углу наклона 2 раза в год
+            // Tracking along the vertical axis, adjusted by the angle of inclination 2 times a year
             if (panel_orientation.Code.ToLower() == Properties.Settings.Default.PanelOriantationVerticalCode.ToLower())
             {
                 for (int i = 0; i < 12; i++)
@@ -3423,37 +2717,22 @@ namespace AtlasSolar.Controllers
                     {
                         γ_h[i, j] = γ_sh[i, j];
                     }
-                    //if (i >= 2 && i < 8)
-                    //{
-                    //    for (int j = w_begin; j <= w_end; j++)
-                    //    {
-                    //        β_h[i, j] = (decimal)OPT_ANG.FirstOrDefault(o => o.Month == 3).Value;
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    for (int j = w_begin; j <= w_end; j++)
-                    //    {
-                    //        β_h[i, j] = (decimal)OPT_ANG.FirstOrDefault(o => o.Month == 9).Value;
-                    //    }
-                    //}
                 }
             }
 
-            // Фиксированная, азимут и угол наклона корректируются 2 раза в год
+            // Fixed, azimuth and tilt angle are adjusted 2 times a year
             if (panel_orientation.Code.ToLower() == Properties.Settings.Default.PanelOriantationFixedCode.ToLower())
             {
                 for (int i = 0; i < 12; i++)
                 {
                     for (int j = w_begin; j <= w_end; j++)
                     {
-                        //β_h[i, j] = tilt;
                         γ_h[i, j] = azimuth;
                     }
                 }
             }
 
-            // Фиксированная
+            // Fixed
             if (panel_orientation.Code.ToLower() == Properties.Settings.Default.PanelOriantationFixedCode.ToLower())
             {
                 for (int i = 0; i < 12; i++)
@@ -3465,7 +2744,7 @@ namespace AtlasSolar.Controllers
                 }
             }
 
-            // Следящая по вертикальной оси, корректируемая по углу наклона 2 раза в год
+            // Tracking along the vertical axis, adjusted by the angle of inclination 2 times a year
             if (panel_orientation.Code.ToLower() == Properties.Settings.Default.PanelOriantationVerticalCode.ToLower())
             {
                 for (int i = 0; i < 12; i++)
@@ -3513,9 +2792,8 @@ namespace AtlasSolar.Controllers
                 H_td_s[i] = (H_td[i] / 1000m).ToString("0.00");
             }
             // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            // Прочие потери в PV панели
+            // Other losses in the PV panel
             // (1.5)
-            //decimal Lopv = 1 - (1 - losses_snow) * (1 - losses_soil) * (1 - losses_shad) * (1 - losses_mis);
             decimal[] Lopv = new decimal[12];
             for (int i = 0; i < 12; i++)
             {
@@ -3533,19 +2811,14 @@ namespace AtlasSolar.Controllers
 
             // the coefficient of efficiency of other power losses in PV module
             // (1.6)
-            //decimal η_opv = 1 - Lopv;
             decimal[] η_opv = new decimal[12];
             for (int i = 0; i < 12; i++)
             {
                 η_opv[i] = 1 - Lopv[i];
             }
 
-            //// Средняя дневная температура наружного воздуха град С
-            //// (1.3)
-            //decimal Ta = (decimal)(TaM.FirstOrDefault(t => t.Month == 3).Value +
-            //    TaM.FirstOrDefault(t => t.Month == 3).Value +
-            //    TaM.FirstOrDefault(t => t.Month == 3).Value +
-            //    TaM.FirstOrDefault(t => t.Month == 3).Value) / 4;
+            // Average daily outdoor temperature, degrees C
+            // (1.3)
             string[] Ta_s = new string[12];
             for (int i = 0; i < 12; i++)
             {
@@ -3570,7 +2843,6 @@ namespace AtlasSolar.Controllers
                         D += H_th[i, j];
                         D_count++;
                     }
-                    //H_tah[i, j] = H_td[i] / j;
                     bufer += H_th[i, j];
                     bufer_count++;
                 }
@@ -3580,37 +2852,32 @@ namespace AtlasSolar.Controllers
                 H_tah_s[i] = (D / D_count / 1000m).ToString("0.00");
             }
 
-            // Температура ячейки в рабочем режиме для каждого месяца
+            // Cell temperature in operating mode for each month
             decimal[] T_c = new decimal[12];
             string[] T_c_s = new string[12];
             for (int i = 0; i < 12; i++)
             {
-                //for (int j = w_begin; j <= w_end; j++)
-                {
-                    // (1.2)
-                    T_c[i] = (decimal)Ta.FirstOrDefault(t => t.Month == i + 1).Value + H_tah[i] / 1000m / 0.8m * (NOCT - 20);
-                    T_c_s[i] = T_c[i].ToString("0.00");
-                }
+                // (1.2)
+                T_c[i] = (decimal)Ta.FirstOrDefault(t => t.Month == i + 1).Value + H_tah[i] / 1000m / 0.8m * (NOCT - 20);
+                T_c_s[i] = T_c[i].ToString("0.00");
             }
 
-            // коэффициент эффективности солнечного панеля при различных температурах ячейки
+            // solar panel efficiency coefficient at various cell temperatures
             decimal[] η_tpv = new decimal[12];
             string[] η_tpv_s = new string[12];
             for (int i = 0; i < 12; i++)
             {
                 decimal bufer = 0;
                 int bufer_count = 0;
-                //for (int j = w_begin; j <= w_end; j++)
-                {
-                    // (1.1)
-                    η_tpv[i] = panel_efficiency * (1 + thermal_power_factor * (T_c[i] - 25));
-                    bufer += η_tpv[i];
-                    bufer_count++;
-                }
+                // (1.1)
+                η_tpv[i] = panel_efficiency * (1 + thermal_power_factor * (T_c[i] - 25));
+                bufer += η_tpv[i];
+                bufer_count++;
+
                 η_tpv_s[i] = (bufer / bufer_count).ToString("0.00");
             }
 
-            // Эффективеность электрических устройств
+            // The effectiveness of electrical devices
             // (1.7)
             decimal η_epv = 1M;
             if (SPPPurposeId == 1) //сетевая
@@ -3621,51 +2888,38 @@ namespace AtlasSolar.Controllers
             {
                 η_epv = wiring_efficiency * controller_efficiency * inverter_efficiency * battery_efficiency;
             }
-            
 
-            // Коэффициент эффективности PV системы
+            // PV system efficiency coefficient
             decimal[] η_spv = new decimal[12];
             string[] η_spv_s = new string[12];
             for (int i = 0; i < 12; i++)
             {
                 decimal bufer = 0;
                 int bufer_count = 0;
-                //for (int j = w_begin; j <= w_end; j++)
-                {
-                    // (1.8)
-                    η_spv[i] = η_tpv[i] * η_epv * η_opv[i];
-                    bufer += η_spv[i];
-                    bufer_count++;
-                }
+                // (1.8)
+                η_spv[i] = η_tpv[i] * η_epv * η_opv[i];
+                bufer += η_spv[i];
+                bufer_count++;
+                
                 η_spv_s[i] = (bufer / bufer_count).ToString("0.00");
             }
-
-            // Area of Solar PV panel [m2]
-            // (1.9-2)
-            //decimal S_pv = panels_count * rated_power / 1000 / panel_efficiency;
 
             // Monthly averaged energy output from the Solar PV panel [kWh/day]
             decimal[] W_PV = new decimal[12];
             for (int i = 0; i < 12; i++)
             {
-                //for (int j = w_begin; j <= w_end; j++)
-                {
-                    // (1.9-1)
-                    W_PV[i] = panels_area * η_spv[i] * H_td[i];
-                }
+                // (1.9-1)
+                W_PV[i] = panels_area * η_spv[i] * H_td[i];
             }
             string[] W_PV_s = new string[12];
             for (int i = 0; i < 12; i++)
             {
                 decimal bufer = 0;
-                //for (int j = w_begin; j <= w_end; j++)
-                {
-                    bufer += W_PV[i] / 1000m;
-                }
+                bufer += W_PV[i] / 1000m;
                 W_PV_s[i] = bufer.ToString("0.00");
             }
 
-            // данные для графика
+            // chart data
             List<PlotData> W_PV_c = new List<PlotData>();
             for (int i = 0; i < W_PV.Count(); i++)
             {
@@ -3685,40 +2939,9 @@ namespace AtlasSolar.Controllers
 
             return Json(new
             {
-                //Longitude = Longitude.ToString(),
-                //Latitude = Latitude.ToString(),
-                //SPPPurpose = db.SPPPurposes.FirstOrDefault(s => s.Id == SPPPurposeId).Name,
-                //PanelOrientation = panel_orientation.Name,
-                //PVSystemMaterial = pvsystemmaterial.Name,
-                //RatedPower = RatedPower.ToString(),
-                //PanelsCount = PanelsCount.ToString(),
-                //PanelEfficiency = PanelEfficiency.ToString(),
-                //RatedOperatingTemperature = RatedOperatingTemperature.ToString(),
-                //ThermalPowerFactor = ThermalPowerFactor.ToString(),
-                //Tilt = Tilt.ToString(),
-                //Azimuth = Azimuth.ToString(),
-                //WiringEfficiency = WiringEfficiency.ToString(),
-                //ControllerEfficiency = ControllerEfficiency.ToString(),
-                //InverterEfficiency = InverterEfficiency.ToString(),
-                //BatteryEfficiency = BatteryEfficiency.ToString(),
-                //LossesSoil = LossesSoil.ToString(),
-                //LossesSnow = LossesSnow.ToString(),
-                //LossesShad = LossesShad.ToString(),
-                //LossesMis = LossesMis.ToString(),
-                //H_td_average = H_td.Average().ToString("0.00"),
-                //η_epv = η_epv.ToString(),
-                //S_pv = S_pv.ToString(),
                 W_PV = W_PV_s,
                 H_td = H_td_s,
-                //H_tah = H_tah_s,
-                //H_tm = H_tm_s,
-                //Ta = Ta_s,
-                //D = D_s,
-                //η_tpv = η_tpv_s,
-                //η_spv = η_spv_s,
                 W_PV_c = W_PV_c,
-                //T_c = T_c_s,
-                //β_h = β_h_s
                 W_PV_year = W_PV_year.ToString("0.00"),
                 H_td_year = H_td_year.ToString("0.00")
             });
@@ -3730,7 +2953,7 @@ namespace AtlasSolar.Controllers
             try
             {
                 string path = "~/Download/csv/";
-                //удаление предыдущих файлов и папок
+                // delete previous files and folders
                 DirectoryInfo di = new DirectoryInfo(Server.MapPath(path));
                 foreach (FileInfo file in di.GetFiles())
                 {
@@ -3757,12 +2980,11 @@ namespace AtlasSolar.Controllers
                 }
                 string filenameout = $"{DateTime.Now.ToString("yyyy.MM.dd.hh.mm.ss.FFFFFFF")}.csv";
                 filenameout = Path.Combine(Server.MapPath(path), filenameout);
-                // сохранение в файл
+                // save to file
                 using (var sw = new StreamWriter(
                         new FileStream(filenameout, FileMode.CreateNew, FileAccess.Write),
                         Encoding.UTF8))
                 {
-
                     for (int i = 0; i < Array.Length; i++)
                     {
                         string line = "";
@@ -3795,7 +3017,7 @@ namespace AtlasSolar.Controllers
             try
             {
                 string path = "~/Download/Images/";
-                //удаление предыдущих файлов и папок
+                // delete previous files and folders
                 DirectoryInfo di = new DirectoryInfo(Server.MapPath(path));
                 foreach (FileInfo file in di.GetFiles())
                 {
@@ -3836,23 +3058,6 @@ namespace AtlasSolar.Controllers
                 {
                     FilePath = "/Download/Images/" + Path.GetFileName(filenameout)
                 });
-
-                //var imgPath = "/Download/Images/" + Path.GetFileName(filenameout);
-                //return base.File(imgPath, "application/unknown");
-
-                //var imgPath = "/Download/Images/" + Path.GetFileName(filenameout);
-                //Response.AddHeader("Content-Disposition", "attachment;filename=DealerAdTemplate.png");
-                //Response.WriteFile(imgPath);
-                //Response.End();
-                //return null;
-
-                //byte[] fileBytes = System.IO.File.ReadAllBytes("/Download/Images/" + Path.GetFileName(filenameout));
-                //string fileName = "myfile.png";
-                //return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
-
-                //var image = db.Images.Where(x => x.ImageID == id).Select(x => x).Single();
-                //return File(image.ImageData, image.ImageMimeType);
-                //return File(new MemoryStream(data), "image/png");
             }
             catch (Exception e)
             {
@@ -3867,35 +3072,30 @@ namespace AtlasSolar.Controllers
         public ActionResult AnalizeTerrainRayon(
             int RayonId,
             int Importances_sum_swv_dwn,    // analize_terrain_sum_swv_dwn
-            int? Min_sum_swv_dwn,            // analize_terrain_sum_swv_dwn_min
-            int Importances_lep,            // analize_terrain_lep_dwn
-            int? Max_lep,                    // analize_terrain_lep_min
-            int Importances_road,            // analize_terrain_road_dwn
-            int? Max_road,                    // analize_terrain_road_min
-            int Importances_np,            // analize_terrain_np_dwn
+            int? Min_sum_swv_dwn,           // analize_terrain_sum_swv_dwn_min
+            int? Max_lep,                   // analize_terrain_lep_min
+            int? Max_road,                  // analize_terrain_road_min
             int? Max_np,                    // analize_terrain_np_min
-            int Importances_slope_blh,            // analize_terrain_slope_blh_dwn
-            int? Max_slope_blh,                    // analize_terrain_slope_blh_min
-            int Importances_srtm_blh,            // analize_terrain_srtm_blh_dwn
-            int? Max_srtm_blh,                    // analize_terrain_srtm_blh_min
-                                                 //string[] Excludes 
-            bool Exclude_oopt,  // analize_terrain_oopt_exclude
-            bool Exclude_wood,  // analize_terrain_wood_exclude
-            bool Exclude_hydro,  // analize_terrain_hydro_exclude
-            bool Exclude_pamatniki,  // analize_terrain_pamatniki_exclude
-            bool Exclude_np  // analize_terrain_np_exclude
+            int Importances_slope_blh,      // analize_terrain_slope_blh_dwn
+            int? Max_slope_blh,             // analize_terrain_slope_blh_min
+            int Importances_srtm_blh,       // analize_terrain_srtm_blh_dwn
+            int? Max_srtm_blh,              // analize_terrain_srtm_blh_min
+            bool Exclude_oopt               // analize_terrain_oopt_exclude
             )
         {
             int min_sum_swv_dwn = Min_sum_swv_dwn == null ? 1000 : (int)Min_sum_swv_dwn,
                 max_sum_swv_dwn = 2000,
-                max_lep = (Max_lep == null || Max_lep > 300000) ? 300000 : (int)Max_lep,
-                max_road = (Max_road == null || Max_road > 200000) ? 200000 : (int)Max_road,
-                max_np = (Max_np == null || Max_np > 300000) ? 300000 : (int)Max_np,
                 max_slope_blh = (Max_slope_blh == null || Max_slope_blh > 90) ? 90 : (int)Max_slope_blh,
                 max_srtm_blh = (Max_srtm_blh == null || Max_srtm_blh > 5000) ? 5000 : (int)Max_srtm_blh;
 
             string GeoServerdatadir_pre = "~/Download/AnalizeTerrain";
-            string GeoServerdatadir = @"F:\GeoServer 2.9.0\data_dir\coverages\AtlasSolar\AnalizeTerrain";
+            string GeoServerdatadir = Path.Combine(Properties.Settings.Default.GeoServerPath,
+                Properties.Settings.Default.WorkspaceDir,
+                "AnalizeTerrain");
+            string GeoServerUser = Properties.Settings.Default.GeoServerUser,
+                GeoServerPassword = Properties.Settings.Default.GeoServerPassword,
+                GeoServerURL = Properties.Settings.Default.GeoServerURL,
+                GeoServerPort = Properties.Settings.Default.GeoServerPort;
             string sum_swv_dwn_file_name = $"{RayonId.ToString()}_sum_swv_dwn.tif";
             string srtm_blh_file_name = $"{RayonId.ToString()}_srtm_blh.tif";
             string aspect_blh_file_name = $"{RayonId.ToString()}_aspect_blh.tif";
@@ -3904,7 +3104,6 @@ namespace AtlasSolar.Controllers
             string np_dist_file_name = $"{RayonId.ToString()}_np_dist.tif";
             string lep_dist_file_name = $"{RayonId.ToString()}_lep_dist.tif";
             string ador_dist_file_name = $"{RayonId.ToString()}_ador_dist.tif";
-            // delete .AddDays(-1)
             string out_file_name_pure = $"{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_FFFFFFF")}";
             string out_file_name = $"{out_file_name_pure}.tif";
             string out_file_name_GeoServer = out_file_name;
@@ -3930,8 +3129,8 @@ namespace AtlasSolar.Controllers
                         // delete storage in GeoServer
                         string batfilenamedelete = Path.ChangeExtension(Path.Combine(Server.MapPath(GeoServerdatadir_pre), file.Name), ".bat");
                         StreamWriter batdelete = new StreamWriter(batfilenamedelete);
-                        batdelete.WriteLine($"curl -v -u admin:Ki5sh6fohh -XDELETE \"http://localhost:8080/geoserver/rest/layers/AtlasSolar:{file.Name}\"");
-                        batdelete.WriteLine($"curl -v -u admin:Ki5sh6fohh -XDELETE \"http://localhost:8080/geoserver/rest/workspaces/AtlasSolar/coveragestores/{file.Name}?recurse=true\"");
+                        batdelete.WriteLine($"curl -v -u {GeoServerUser}:{GeoServerPassword} -XDELETE \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/layers/AtlasSolar:{file.Name}\"");
+                        batdelete.WriteLine($"curl -v -u {GeoServerUser}:{GeoServerPassword} -XDELETE \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/workspaces/AtlasSolar/coveragestores/{file.Name}?recurse=true\"");
                         batdelete.Close();
                         Process procdelete = new System.Diagnostics.Process();
                         procdelete.StartInfo.FileName = batfilenamedelete;
@@ -3954,12 +3153,10 @@ namespace AtlasSolar.Controllers
                 np_dist_file_name = Path.Combine(Server.MapPath(maps_path), Path.GetFileName(np_dist_file_name));
                 lep_dist_file_name = Path.Combine(Server.MapPath(maps_path), Path.GetFileName(lep_dist_file_name));
                 ador_dist_file_name = Path.Combine(Server.MapPath(maps_path), Path.GetFileName(ador_dist_file_name));
-                //out_file_name = Path.Combine(GeoServerdatadir, Path.GetFileName(out_file_name));
                 out_file_name = Path.Combine(Server.MapPath(GeoServerdatadir_pre), Path.GetFileName(out_file_name));
                 out_file_name_GeoServer = Path.Combine(GeoServerdatadir, Path.GetFileName(out_file_name_GeoServer));
 
                 // open tifs
-                ////Gdal.AllRegister();
                 GdalConfiguration.ConfigureGdal();
                 Dataset sum_swv_dwn_ds = Gdal.Open(sum_swv_dwn_file_name, Access.GA_ReadOnly);
                 Band sum_swv_dwn_band = sum_swv_dwn_ds.GetRasterBand(1);
@@ -3967,56 +3164,35 @@ namespace AtlasSolar.Controllers
                 int sum_swv_dwn_height = sum_swv_dwn_band.YSize;
                 float[] sum_swv_dwn_r = new float[sum_swv_dwn_width * sum_swv_dwn_height];
                 sum_swv_dwn_band.ReadRaster(0, 0, sum_swv_dwn_width, sum_swv_dwn_height, sum_swv_dwn_r, sum_swv_dwn_width, sum_swv_dwn_height, 0, 0);
-                //---
+                
                 Dataset srtm_blh_ds = Gdal.Open(srtm_blh_file_name, Access.GA_ReadOnly);
                 Band srtm_blh_band = srtm_blh_ds.GetRasterBand(1);
                 int srtm_blh_width = srtm_blh_band.XSize;
                 int srtm_blh_height = srtm_blh_band.YSize;
                 float[] srtm_blh_r = new float[srtm_blh_width * srtm_blh_height];
                 srtm_blh_band.ReadRaster(0, 0, srtm_blh_width, srtm_blh_height, srtm_blh_r, srtm_blh_width, srtm_blh_height, 0, 0);
-                //---
+                
                 Dataset aspect_blh_ds = Gdal.Open(sum_swv_dwn_file_name, Access.GA_ReadOnly);
                 Band aspect_blh_band = aspect_blh_ds.GetRasterBand(1);
                 int aspect_blh_width = aspect_blh_band.XSize;
                 int aspect_blh_height = aspect_blh_band.YSize;
                 float[] aspect_blh_r = new float[aspect_blh_width * aspect_blh_height];
                 aspect_blh_band.ReadRaster(0, 0, aspect_blh_width, aspect_blh_height, aspect_blh_r, aspect_blh_width, aspect_blh_height, 0, 0);
-                //---
+                
                 Dataset slope_blh_ds = Gdal.Open(slope_blh_file_name, Access.GA_ReadOnly);
                 Band slope_blh_band = slope_blh_ds.GetRasterBand(1);
                 int slope_blh_width = slope_blh_band.XSize;
                 int slope_blh_height = slope_blh_band.YSize;
                 float[] slope_blh_r = new float[slope_blh_width * slope_blh_height];
                 slope_blh_band.ReadRaster(0, 0, slope_blh_width, slope_blh_height, slope_blh_r, slope_blh_width, slope_blh_height, 0, 0);
-                //---
+                
                 Dataset rstr_iskl_ds = Gdal.Open(rstr_iskl_file_name, Access.GA_ReadOnly);
                 Band rstr_iskl_band = rstr_iskl_ds.GetRasterBand(1);
                 int rstr_iskl_width = rstr_iskl_band.XSize;
                 int rstr_iskl_height = rstr_iskl_band.YSize;
                 float[] rstr_iskl_r = new float[rstr_iskl_width * rstr_iskl_height];
                 rstr_iskl_band.ReadRaster(0, 0, rstr_iskl_width, rstr_iskl_height, rstr_iskl_r, rstr_iskl_width, rstr_iskl_height, 0, 0);
-                //---
-                //Dataset np_dist_ds = Gdal.Open(np_dist_file_name, Access.GA_ReadOnly);
-                //Band np_dist_band = np_dist_ds.GetRasterBand(1);
-                //int np_dist_width = np_dist_band.XSize;
-                //int np_dist_height = np_dist_band.YSize;
-                //float[] np_dist_r = new float[np_dist_width * np_dist_height];
-                //np_dist_band.ReadRaster(0, 0, np_dist_width, np_dist_height, np_dist_r, np_dist_width, np_dist_height, 0, 0);
-                ////---
-                //Dataset lep_dist_ds = Gdal.Open(lep_dist_file_name, Access.GA_ReadOnly);
-                //Band lep_dist_band = lep_dist_ds.GetRasterBand(1);
-                //int lep_dist_width = lep_dist_band.XSize;
-                //int lep_dist_height = lep_dist_band.YSize;
-                //float[] lep_dist_r = new float[lep_dist_width * lep_dist_height];
-                //lep_dist_band.ReadRaster(0, 0, lep_dist_width, lep_dist_height, lep_dist_r, lep_dist_width, lep_dist_height, 0, 0);
-                ////---
-                //Dataset ador_dist_ds = Gdal.Open(ador_dist_file_name, Access.GA_ReadOnly);
-                //Band ador_dist_band = ador_dist_ds.GetRasterBand(1);
-                //int ador_dist_width = ador_dist_band.XSize;
-                //int ador_dist_height = ador_dist_band.YSize;
-                //float[] ador_dist_r = new float[ador_dist_width * ador_dist_height];
-                //ador_dist_band.ReadRaster(0, 0, ador_dist_width, ador_dist_height, ador_dist_r, ador_dist_width, ador_dist_height, 0, 0);
-
+                
                 // create out tif
                 Driver out_drv = Gdal.GetDriverByName("GTiff");
                 int out_BlockXSize,
@@ -4067,15 +3243,6 @@ namespace AtlasSolar.Controllers
                                 float slope_blh = slope_blh_r_v > max_slope_blh ? 0 : (slope_blh_r_v - max_slope_blh) / (0 - max_slope_blh) * 100;
                                 slope_blh *= Importances_slope_blh / 100;
 
-                                //float sum_swv_dwn_r_v = sum_swv_dwn_r[i + j * sum_swv_dwn_width] < 0 ? 0 : sum_swv_dwn_r[i + j * sum_swv_dwn_width];
-                                //float sum_swv_dwn = (sum_swv_dwn_r_v - min_sum_swv_dwn) / (max_sum_swv_dwn - min_sum_swv_dwn) * 100;
-
-                                //float srtm_blh_r_v = srtm_blh_r[i + j * srtm_blh_width] < -227 ? -227 : srtm_blh_r[i + j * srtm_blh_width];
-                                //float srtm_blh = (srtm_blh_r_v - (-227)) / (max_srtm_blh - (-227)) * 100;
-
-                                //float slope_blh_r_v = slope_blh_r[i + j * slope_blh_width] < 0 ? 0 : slope_blh_r[i + j * slope_blh_width];
-                                //float slope_blh = (slope_blh_r_v - 0) / (max_slope_blh - 0) * 100;
-
                                 value = (sum_swv_dwn + srtm_blh + slope_blh) / 3;
                             }
                         }
@@ -4104,9 +3271,9 @@ namespace AtlasSolar.Controllers
 
                 string batfilename = Path.ChangeExtension(out_file_name, ".bat");
                 StreamWriter bat = new StreamWriter(batfilename);
-                bat.WriteLine($"curl -u admin:Ki5sh6fohh -v -XPOST -H \"Content-type: text/xml\" \\ -d \" <coverageStore> <name>{out_file_name_pure}</name> <workspace>AtlasSolar</workspace> <enabled>true</enabled> <type>GeoTIFF</type> <url>/coverages/AtlasSolar/AnalizeTerrain/{out_file_name_pure}.tif</url> </coverageStore>\" \\ \"http://localhost:8080/geoserver/rest/workspaces/AtlasSolar/coveragestores?configure=all\"");
-                bat.WriteLine($"curl -u admin:Ki5sh6fohh -v -XPOST -H \"Content-type: text/xml\" \\ -d \" <coverage> <name>{out_file_name_pure}</name> <title>{out_file_name_pure}</title> <nativeCRS>EPSG:3857</nativeCRS> <srs>EPSG:3857</srs> <projectionPolicy>FORCE_DECLARED</projectionPolicy> <defaultInterpolationMethod><name>nearest neighbor</name></defaultInterpolationMethod> </coverage> \" \\ \"http://localhost:8080/geoserver/rest/workspaces/AtlasSolar/coveragestores/{out_file_name_pure}/coverages?recalculate=nativebbox\"");
-                bat.WriteLine($"curl -v -u admin:Ki5sh6fohh -XPUT -H \"Content-type: text/xml\" \\ -d \"<layer><defaultStyle><name>AnalizeTerrain</name></defaultStyle></layer>\" http://localhost:8080/geoserver/rest/layers/AtlasSolar:{out_file_name_pure}");
+                bat.WriteLine($"curl -u {GeoServerUser}:{GeoServerPassword} -v -XPOST -H \"Content-type: text/xml\" \\ -d \" <coverageStore> <name>{out_file_name_pure}</name> <workspace>AtlasSolar</workspace> <enabled>true</enabled> <type>GeoTIFF</type> <url>/{Properties.Settings.Default.WorkspaceDir}/AnalizeTerrain/{out_file_name_pure}.tif</url> </coverageStore>\" \\ \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/workspaces/AtlasSolar/coveragestores?configure=all\"");
+                bat.WriteLine($"curl -u {GeoServerUser}:{GeoServerPassword} -v -XPOST -H \"Content-type: text/xml\" \\ -d \" <coverage> <name>{out_file_name_pure}</name> <title>{out_file_name_pure}</title> <nativeCRS>EPSG:3857</nativeCRS> <srs>EPSG:3857</srs> <projectionPolicy>FORCE_DECLARED</projectionPolicy> <defaultInterpolationMethod><name>nearest neighbor</name></defaultInterpolationMethod> </coverage> \" \\ \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/workspaces/AtlasSolar/coveragestores/{out_file_name_pure}/coverages?recalculate=nativebbox\"");
+                bat.WriteLine($"curl -v -u {GeoServerUser}:{GeoServerPassword} -XPUT -H \"Content-type: text/xml\" \\ -d \"<layer><defaultStyle><name>AnalizeTerrain</name></defaultStyle></layer>\" {GeoServerURL}:{GeoServerPort}/geoserver/rest/layers/AtlasSolar:{out_file_name_pure}");
                 bat.Close();
 
                 Process proc = new System.Diagnostics.Process();
@@ -4161,10 +3328,15 @@ namespace AtlasSolar.Controllers
             )
         {
             string error = "";
-            string GeoServerAtlasSolar = Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\";
+            string GeoServerAtlasSolar = Path.Combine(Properties.Settings.Default.GeoServerPath,
+                Properties.Settings.Default.WorkspaceDir);
+            string GeoServerUser = Properties.Settings.Default.GeoServerUser,
+                GeoServerPassword = Properties.Settings.Default.GeoServerPassword,
+                GeoServerURL = Properties.Settings.Default.GeoServerURL,
+                GeoServerPort = Properties.Settings.Default.GeoServerPort;
             string out_file_name_pure = $"{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_FFFFFFF")}";
             string out_file_name = $"{out_file_name_pure}.tif";
-            out_file_name = Path.Combine(GeoServerAtlasSolar + "AnalizeTerrain", out_file_name);
+            out_file_name = Path.Combine(GeoServerAtlasSolar, "AnalizeTerrain", out_file_name);
             try
             {
                 int min_swvdwnyear = Min_swvdwnyear == null ? 1100 : (int)Min_swvdwnyear,
@@ -4180,7 +3352,7 @@ namespace AtlasSolar.Controllers
                 max_np_dist *= 1000;
                 
                 // delete old files
-                DirectoryInfo di = new DirectoryInfo(GeoServerAtlasSolar + "AnalizeTerrain");
+                DirectoryInfo di = new DirectoryInfo(Path.Combine(GeoServerAtlasSolar, "AnalizeTerrain"));
                 foreach (FileInfo file in di.GetFiles("*.tif"))
                 {
                     DateTime fdt = new DateTime(
@@ -4195,8 +3367,8 @@ namespace AtlasSolar.Controllers
                         // delete storage in GeoServer
                         string batfilenamedelete = Path.ChangeExtension(Path.Combine(GeoServerAtlasSolar + "AnalizeTerrain", file.Name), ".bat");
                         StreamWriter batdelete = new StreamWriter(batfilenamedelete);
-                        batdelete.WriteLine($"curl -v -u admin:Ki5sh6fohh -XDELETE \"http://localhost:8080/geoserver/rest/layers/AtlasSolar:{file.Name}\"");
-                        batdelete.WriteLine($"curl -v -u admin:Ki5sh6fohh -XDELETE \"http://localhost:8080/geoserver/rest/workspaces/AtlasSolar/coveragestores/{file.Name}?recurse=true\"");
+                        batdelete.WriteLine($"curl -v -u {GeoServerUser}:{GeoServerPassword} -XDELETE \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/layers/AtlasSolar:{file.Name}\"");
+                        batdelete.WriteLine($"curl -v -u {GeoServerUser}:{GeoServerPassword} -XDELETE \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/workspaces/AtlasSolar/coveragestores/{file.Name}?recurse=true\"");
                         batdelete.Close();
                         Process procdelete = new System.Diagnostics.Process();
                         procdelete.StartInfo.FileName = batfilenamedelete;
@@ -4206,14 +3378,14 @@ namespace AtlasSolar.Controllers
                         procdelete.WaitForExit();
                         System.IO.File.Delete(batfilenamedelete);
                         // delete in GeoServer directory
-                        System.IO.File.Delete(Path.ChangeExtension(file.FullName + "_delete", ".bat")); //?
+                        System.IO.File.Delete(Path.ChangeExtension(file.FullName + "_delete", ".bat"));
                         file.Delete();
                     }
                 }
 
                 // create raster
                 GdalConfiguration.ConfigureGdal();
-                string auto_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "auto_dist.tif");
+                string auto_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "auto_dist.tif");
                 Dataset auto_dist_ds = Gdal.Open(auto_dist_file_name, Access.GA_ReadOnly);
                 Band auto_dist_band = auto_dist_ds.GetRasterBand(1);
                 int auto_dist_width = auto_dist_band.XSize;
@@ -4226,7 +3398,7 @@ namespace AtlasSolar.Controllers
                 auto_dist_band.GetNoDataValue(out auto_dist_out_val, out auto_dist_out_hasval);
                 if (auto_dist_out_hasval != 0)
                     auto_dist_NoDataValue = (float)auto_dist_out_val;
-                string kzcoveriskl_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "kzcoveriskl.tif");
+                string kzcoveriskl_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "kzcoveriskl.tif");
                 Dataset kzcoveriskl_ds = Gdal.Open(kzcoveriskl_file_name, Access.GA_ReadOnly);
                 Band kzcoveriskl_band = kzcoveriskl_ds.GetRasterBand(1);
                 int kzcoveriskl_width = kzcoveriskl_band.XSize;
@@ -4239,7 +3411,7 @@ namespace AtlasSolar.Controllers
                 kzcoveriskl_band.GetNoDataValue(out kzcoveriskl_out_val, out kzcoveriskl_out_hasval);
                 if (kzcoveriskl_out_hasval != 0)
                     kzcoveriskl_NoDataValue = (byte)kzcoveriskl_out_val;
-                string lep_dist_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "lep_dist.tif");
+                string lep_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "lep_dist.tif");
                 Dataset lep_dist_ds = Gdal.Open(lep_dist_file_name, Access.GA_ReadOnly);
                 Band lep_dist_band = lep_dist_ds.GetRasterBand(1);
                 int lep_dist_width = lep_dist_band.XSize;
@@ -4252,7 +3424,7 @@ namespace AtlasSolar.Controllers
                 lep_dist_band.GetNoDataValue(out lep_dist_out_val, out lep_dist_out_hasval);
                 if (lep_dist_out_hasval != 0)
                     lep_dist_NoDataValue = (float)lep_dist_out_val;
-                string np_dist_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "np_dist.tif");
+                string np_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "np_dist.tif");
                 Dataset np_dist_ds = Gdal.Open(np_dist_file_name, Access.GA_ReadOnly);
                 Band np_dist_band = np_dist_ds.GetRasterBand(1);
                 int np_dist_width = np_dist_band.XSize;
@@ -4265,7 +3437,7 @@ namespace AtlasSolar.Controllers
                 np_dist_band.GetNoDataValue(out np_dist_out_val, out np_dist_out_hasval);
                 if (np_dist_out_hasval != 0)
                     np_dist_NoDataValue = (float)np_dist_out_val;
-                string ooptiskl_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "ooptiskl.tif");
+                string ooptiskl_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "ooptiskl.tif");
                 Dataset ooptiskl_ds = Gdal.Open(ooptiskl_file_name, Access.GA_ReadOnly);
                 Band ooptiskl_band = ooptiskl_ds.GetRasterBand(1);
                 int ooptiskl_width = ooptiskl_band.XSize;
@@ -4278,7 +3450,7 @@ namespace AtlasSolar.Controllers
                 ooptiskl_band.GetNoDataValue(out ooptiskl_out_val, out ooptiskl_out_hasval);
                 if (ooptiskl_out_hasval != 0)
                     ooptiskl_NoDataValue = (byte)ooptiskl_out_val;
-                string slope_srtm_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "slope_srtm.tif");
+                string slope_srtm_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "slope_srtm.tif");
                 Dataset slope_srtm_ds = Gdal.Open(slope_srtm_file_name, Access.GA_ReadOnly);
                 Band slope_srtm_band = slope_srtm_ds.GetRasterBand(1);
                 int slope_srtm_width = slope_srtm_band.XSize;
@@ -4291,7 +3463,7 @@ namespace AtlasSolar.Controllers
                 slope_srtm_band.GetNoDataValue(out slope_srtm_out_val, out slope_srtm_out_hasval);
                 if (slope_srtm_out_hasval != 0)
                     slope_srtm_NoDataValue = (float)slope_srtm_out_val;
-                string srtm_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "srtm.tif");
+                string srtm_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "srtm.tif");
                 Dataset srtm_ds = Gdal.Open(srtm_file_name, Access.GA_ReadOnly);
                 Band srtm_band = srtm_ds.GetRasterBand(1);
                 int srtm_width = srtm_band.XSize;
@@ -4304,7 +3476,7 @@ namespace AtlasSolar.Controllers
                 srtm_band.GetNoDataValue(out srtm_out_val, out srtm_out_hasval);
                 if (srtm_out_hasval != 0)
                     srtm_NoDataValue = (int)srtm_out_val;
-                string swvdwnyear_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "swvdwnyear.tif");
+                string swvdwnyear_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "swvdwnyear.tif");
                 Dataset swvdwnyear_ds = Gdal.Open(swvdwnyear_file_name, Access.GA_ReadOnly);
                 Band swvdwnyear_band = swvdwnyear_ds.GetRasterBand(1);
                 int swvdwnyear_width = swvdwnyear_band.XSize;
@@ -4348,15 +3520,7 @@ namespace AtlasSolar.Controllers
                 {
                     for (int j = min_height - 1; j >= 0; j--)
                     {
-                        if ((auto_dist_array[i + j * auto_dist_width] == auto_dist_NoDataValue)
-                            //|| (kzcoveriskl_array[i + j * kzcoveriskl_width] == kzcoveriskl_NoDataValue)
-                            //|| (lep_dist_array[i + j * lep_dist_width] == lep_dist_NoDataValue)
-                            //|| (np_dist_array[i + j * np_dist_width] == np_dist_NoDataValue)
-                            //|| (ooptiskl_array[i + j * ooptiskl_width] == ooptiskl_NoDataValue)
-                            //|| (slope_srtm_array[i + j * slope_srtm_width] == slope_srtm_NoDataValue)
-                            //|| (srtm_array[i + j * srtm_width] == srtm_NoDataValue)
-                            //|| (swvdwnyear_array[i + j * swvdwnyear_width] == swvdwnyear_NoDataValue)
-                            )
+                        if (auto_dist_array[i + j * auto_dist_width] == auto_dist_NoDataValue)
                         {
                             out_buffer_array[i + j * min_width] = out_NoDataValue;
                         }
@@ -4441,13 +3605,10 @@ namespace AtlasSolar.Controllers
                                     out_buffer_array[i + j * min_width] = Convert.ToByte((sum_swv_dwn + np_dist + lep_dist + auto_dist + slope_srtm + srtm) / Importances_count);
                                 }
                             }
-                            
-                            //float SLOPE = slope_srtm_array[i + j * slope_srtm_width];
-                            //float ALTITUDE = srtm_array[i + j * srtm_width];
                         }
                     }
                 }
-                out_file_name = Path.Combine(GeoServerAtlasSolar + "AnalizeTerrain", out_file_name);
+                out_file_name = Path.Combine(GeoServerAtlasSolar, "AnalizeTerrain", out_file_name);
                 Dataset out_ds = out_drv.Create(out_file_name, min_width, min_height, 1, DataType.GDT_Byte, out_options);
                 Band out_band = out_ds.GetRasterBand(1);
                 out_band.WriteRaster(0, 0, min_width, min_height, out_buffer_array, min_width, min_height, 0, 0);
@@ -4471,12 +3632,12 @@ namespace AtlasSolar.Controllers
                 swvdwnyear_array = null;
                 GC.Collect();
 
-                // публикация слоя
+                // layer publishing
                 string batfilename = Path.ChangeExtension(out_file_name, ".bat");
                 StreamWriter bat = new StreamWriter(batfilename);
-                bat.WriteLine($"curl -u admin:Ki5sh6fohh -v -XPOST -H \"Content-type: text/xml\" \\ -d \" <coverageStore> <name>{out_file_name_pure}</name> <workspace>AtlasSolar</workspace> <enabled>true</enabled> <type>GeoTIFF</type> <url>/coverages/AtlasSolar/AnalizeTerrain/{out_file_name_pure}.tif</url> </coverageStore>\" \\ \"http://localhost:8080/geoserver/rest/workspaces/AtlasSolar/coveragestores?configure=all\"");
-                bat.WriteLine($"curl -u admin:Ki5sh6fohh -v -XPOST -H \"Content-type: text/xml\" \\ -d \" <coverage> <name>{out_file_name_pure}</name> <title>{out_file_name_pure}</title> <nativeCRS>EPSG:3857</nativeCRS> <srs>EPSG:3857</srs> <projectionPolicy>FORCE_DECLARED</projectionPolicy> <defaultInterpolationMethod><name>nearest neighbor</name></defaultInterpolationMethod> </coverage> \" \\ \"http://localhost:8080/geoserver/rest/workspaces/AtlasSolar/coveragestores/{out_file_name_pure}/coverages?recalculate=nativebbox\"");
-                bat.WriteLine($"curl -v -u admin:Ki5sh6fohh -XPUT -H \"Content-type: text/xml\" \\ -d \"<layer><defaultStyle><name>AnalizeTerrain</name></defaultStyle></layer>\" http://localhost:8080/geoserver/rest/layers/AtlasSolar:{out_file_name_pure}");
+                bat.WriteLine($"curl -u {GeoServerUser}:{GeoServerPassword} -v -XPOST -H \"Content-type: text/xml\" \\ -d \" <coverageStore> <name>{out_file_name_pure}</name> <workspace>AtlasSolar</workspace> <enabled>true</enabled> <type>GeoTIFF</type> <url>/{Properties.Settings.Default.WorkspaceDir}/AnalizeTerrain/{out_file_name_pure}.tif</url> </coverageStore>\" \\ \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/workspaces/AtlasSolar/coveragestores?configure=all\"");
+                bat.WriteLine($"curl -u {GeoServerUser}:{GeoServerPassword} -v -XPOST -H \"Content-type: text/xml\" \\ -d \" <coverage> <name>{out_file_name_pure}</name> <title>{out_file_name_pure}</title> <nativeCRS>EPSG:3857</nativeCRS> <srs>EPSG:3857</srs> <projectionPolicy>FORCE_DECLARED</projectionPolicy> <defaultInterpolationMethod><name>nearest neighbor</name></defaultInterpolationMethod> </coverage> \" \\ \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/workspaces/AtlasSolar/coveragestores/{out_file_name_pure}/coverages?recalculate=nativebbox\"");
+                bat.WriteLine($"curl -v -u {GeoServerUser}:{GeoServerPassword} -XPUT -H \"Content-type: text/xml\" \\ -d \"<layer><defaultStyle><name>AnalizeTerrain</name></defaultStyle></layer>\" {GeoServerURL}:{GeoServerPort}/geoserver/rest/layers/AtlasSolar:{out_file_name_pure}");
                 bat.Close();
 
                 Process proc = new System.Diagnostics.Process();
@@ -4503,13 +3664,18 @@ namespace AtlasSolar.Controllers
         [HttpPost]
         public ActionResult FindTerrain(int OblastId, string Formula)
         {
-            string GeoServerAtlasSolar = Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\";
+            string GeoServerAtlasSolar = Path.Combine(Properties.Settings.Default.GeoServerPath,
+                Properties.Settings.Default.WorkspaceDir);
+            string GeoServerUser = Properties.Settings.Default.GeoServerUser,
+                GeoServerPassword = Properties.Settings.Default.GeoServerPassword,
+                GeoServerURL = Properties.Settings.Default.GeoServerURL,
+                GeoServerPort = Properties.Settings.Default.GeoServerPort;
             string out_file_name_pure = $"{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_FFFFFFF")}";
             string out_file_name = $"{out_file_name_pure}.tif";
-            out_file_name = Path.Combine(GeoServerAtlasSolar + "FindTerrain", out_file_name);
+            out_file_name = Path.Combine(GeoServerAtlasSolar, "FindTerrain", out_file_name);
 
             // delete old files
-            DirectoryInfo di = new DirectoryInfo(GeoServerAtlasSolar + "FindTerrain");
+            DirectoryInfo di = new DirectoryInfo(Path.Combine(GeoServerAtlasSolar, "FindTerrain"));
             foreach (FileInfo file in di.GetFiles("*.tif"))
             {
                 DateTime fdt = new DateTime(
@@ -4524,8 +3690,8 @@ namespace AtlasSolar.Controllers
                     // delete storage in GeoServer
                     string batfilenamedelete = Path.ChangeExtension(Path.Combine(GeoServerAtlasSolar + "FindTerrain", file.Name), ".bat");
                     StreamWriter batdelete = new StreamWriter(batfilenamedelete);
-                    batdelete.WriteLine($"curl -v -u admin:Ki5sh6fohh -XDELETE \"http://localhost:8080/geoserver/rest/layers/AtlasSolar:{file.Name}\"");
-                    batdelete.WriteLine($"curl -v -u admin:Ki5sh6fohh -XDELETE \"http://localhost:8080/geoserver/rest/workspaces/AtlasSolar/coveragestores/{file.Name}?recurse=true\"");
+                    batdelete.WriteLine($"curl -v -u {GeoServerUser}:{GeoServerPassword} -XDELETE \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/layers/AtlasSolar:{file.Name}\"");
+                    batdelete.WriteLine($"curl -v -u {GeoServerUser}:{GeoServerPassword} -XDELETE \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/workspaces/AtlasSolar/coveragestores/{file.Name}?recurse=true\"");
                     batdelete.Close();
                     Process procdelete = new System.Diagnostics.Process();
                     procdelete.StartInfo.FileName = batfilenamedelete;
@@ -4535,16 +3701,16 @@ namespace AtlasSolar.Controllers
                     procdelete.WaitForExit();
                     System.IO.File.Delete(batfilenamedelete);
                     // delete in GeoServer directory
-                    System.IO.File.Delete(Path.ChangeExtension(file.FullName + "_delete", ".bat")); //?
+                    System.IO.File.Delete(Path.ChangeExtension(file.FullName + "_delete", ".bat"));
                     file.Delete();
                 }
             }
 
-            // формирование растра
+            // create raster
             string formula = Formula;
             formula = formula.Replace("=", "==");
             formula = formula.Replace(",", ".");
-            // проверка формулы
+            // formula check
             string formula_test = formula;
             formula_test = formula_test.Replace("==", "");
             formula_test = formula_test.Replace(".", "");
@@ -4596,12 +3762,12 @@ namespace AtlasSolar.Controllers
             object result = EvalFindTerrain(formula, GeoServerAtlasSolar, out_file_name_pure, OblastId.ToString());
             if(result != null)
             {
-                // публикация слоя
+                // layer publishing
                 string batfilename = Path.ChangeExtension(out_file_name, ".bat");
                 StreamWriter bat = new StreamWriter(batfilename);
-                bat.WriteLine($"curl -u admin:Ki5sh6fohh -v -XPOST -H \"Content-type: text/xml\" \\ -d \" <coverageStore> <name>{out_file_name_pure}</name> <workspace>AtlasSolar</workspace> <enabled>true</enabled> <type>GeoTIFF</type> <url>/coverages/AtlasSolar/FindTerrain/{out_file_name_pure}.tif</url> </coverageStore>\" \\ \"http://localhost:8080/geoserver/rest/workspaces/AtlasSolar/coveragestores?configure=all\"");
-                bat.WriteLine($"curl -u admin:Ki5sh6fohh -v -XPOST -H \"Content-type: text/xml\" \\ -d \" <coverage> <name>{out_file_name_pure}</name> <title>{out_file_name_pure}</title> <nativeCRS>EPSG:3857</nativeCRS> <srs>EPSG:3857</srs> <projectionPolicy>FORCE_DECLARED</projectionPolicy> <defaultInterpolationMethod><name>nearest neighbor</name></defaultInterpolationMethod> </coverage> \" \\ \"http://localhost:8080/geoserver/rest/workspaces/AtlasSolar/coveragestores/{out_file_name_pure}/coverages?recalculate=nativebbox\"");
-                bat.WriteLine($"curl -v -u admin:Ki5sh6fohh -XPUT -H \"Content-type: text/xml\" \\ -d \"<layer><defaultStyle><name>FindTerrain</name></defaultStyle></layer>\" http://localhost:8080/geoserver/rest/layers/AtlasSolar:{out_file_name_pure}");
+                bat.WriteLine($"curl -u {GeoServerUser}:{GeoServerPassword} -v -XPOST -H \"Content-type: text/xml\" \\ -d \" <coverageStore> <name>{out_file_name_pure}</name> <workspace>AtlasSolar</workspace> <enabled>true</enabled> <type>GeoTIFF</type> <url>/{Properties.Settings.Default.WorkspaceDir}/FindTerrain/{out_file_name_pure}.tif</url> </coverageStore>\" \\ \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/workspaces/AtlasSolar/coveragestores?configure=all\"");
+                bat.WriteLine($"curl -u {GeoServerUser}:{GeoServerPassword} -v -XPOST -H \"Content-type: text/xml\" \\ -d \" <coverage> <name>{out_file_name_pure}</name> <title>{out_file_name_pure}</title> <nativeCRS>EPSG:3857</nativeCRS> <srs>EPSG:3857</srs> <projectionPolicy>FORCE_DECLARED</projectionPolicy> <defaultInterpolationMethod><name>nearest neighbor</name></defaultInterpolationMethod> </coverage> \" \\ \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/workspaces/AtlasSolar/coveragestores/{out_file_name_pure}/coverages?recalculate=nativebbox\"");
+                bat.WriteLine($"curl -v -u {GeoServerUser}:{GeoServerPassword} -XPUT -H \"Content-type: text/xml\" \\ -d \"<layer><defaultStyle><name>FindTerrain</name></defaultStyle></layer>\" {GeoServerURL}:{GeoServerPort}/geoserver/rest/layers/AtlasSolar:{out_file_name_pure}");
                 bat.Close();
 
                 Process proc = new System.Diagnostics.Process();
@@ -4620,7 +3786,6 @@ namespace AtlasSolar.Controllers
                 });
             }
             
-            
             return Json(new
             {
                 Layer = out_file_name_pure,
@@ -4630,13 +3795,11 @@ namespace AtlasSolar.Controllers
         
         public static object EvalFindTerrain(string sCSCode, string GeoServerAtlasSolar, string OutFileName, string OblastId)
         {
-
             CSharpCodeProvider c = new CSharpCodeProvider();
             ICodeCompiler icc = c.CreateCompiler();
             CompilerParameters cp = new CompilerParameters();
 
             cp.ReferencedAssemblies.Add("system.dll");
-            //cp.ReferencedAssemblies.Add("AtlasSolar.dll");
 
             cp.CompilerOptions = "/t:library";
             cp.GenerateInMemory = true;
@@ -4660,7 +3823,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            string out_file_name = $\"{ out_file_name_pure}.tif\";\n");
             sb.Append("            int OblastId = 11;\n");
             sb.Append("            GdalConfiguration.ConfigureGdal();\n");
-            sb.Append("            string auto_dist_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @\"\\data_dir\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"auto_dist.tif\");\n");
+            sb.Append("            string auto_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"auto_dist.tif\");\n");
             sb.Append("            Dataset auto_dist_ds = Gdal.Open(auto_dist_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band auto_dist_band = auto_dist_ds.GetRasterBand(1);\n");
             sb.Append("            int auto_dist_width = auto_dist_band.XSize;\n");
@@ -4673,7 +3836,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            auto_dist_band.GetNoDataValue(out auto_dist_out_val, out auto_dist_out_hasval);\n");
             sb.Append("            if (auto_dist_out_hasval != 0)\n");
             sb.Append("                auto_dist_NoDataValue = (float)auto_dist_out_val;\n");
-            sb.Append("            string kzcoveriskl_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @\"\\data_dir\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"kzcoveriskl.tif\");\n");
+            sb.Append("            string kzcoveriskl_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"kzcoveriskl.tif\");\n");
             sb.Append("            Dataset kzcoveriskl_ds = Gdal.Open(kzcoveriskl_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band kzcoveriskl_band = kzcoveriskl_ds.GetRasterBand(1);\n");
             sb.Append("            int kzcoveriskl_width = kzcoveriskl_band.XSize;\n");
@@ -4686,7 +3849,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            kzcoveriskl_band.GetNoDataValue(out kzcoveriskl_out_val, out kzcoveriskl_out_hasval);\n");
             sb.Append("            if (kzcoveriskl_out_hasval != 0)\n");
             sb.Append("                kzcoveriskl_NoDataValue = (byte)kzcoveriskl_out_val;\n");
-            sb.Append("            string lep_dist_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @\"\\data_dir\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"lep_dist.tif\");\n");
+            sb.Append("            string lep_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"lep_dist.tif\");\n");
             sb.Append("            Dataset lep_dist_ds = Gdal.Open(lep_dist_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band lep_dist_band = lep_dist_ds.GetRasterBand(1);\n");
             sb.Append("            int lep_dist_width = lep_dist_band.XSize;\n");
@@ -4699,7 +3862,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            lep_dist_band.GetNoDataValue(out lep_dist_out_val, out lep_dist_out_hasval);\n");
             sb.Append("            if (lep_dist_out_hasval != 0)\n");
             sb.Append("                lep_dist_NoDataValue = (float)lep_dist_out_val;\n");
-            sb.Append("            string np_dist_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @\"\\data_dir\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"np_dist.tif\");\n");
+            sb.Append("            string np_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"np_dist.tif\");\n");
             sb.Append("            Dataset np_dist_ds = Gdal.Open(np_dist_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band np_dist_band = np_dist_ds.GetRasterBand(1);\n");
             sb.Append("            int np_dist_width = np_dist_band.XSize;\n");
@@ -4712,7 +3875,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            np_dist_band.GetNoDataValue(out np_dist_out_val, out np_dist_out_hasval);\n");
             sb.Append("            if (np_dist_out_hasval != 0)\n");
             sb.Append("                np_dist_NoDataValue = (float)np_dist_out_val;\n");
-            sb.Append("            string ooptiskl_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @\"\\data_dir\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"ooptiskl.tif\");\n");
+            sb.Append("            string ooptiskl_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"ooptiskl.tif\");\n");
             sb.Append("            Dataset ooptiskl_ds = Gdal.Open(ooptiskl_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band ooptiskl_band = ooptiskl_ds.GetRasterBand(1);\n");
             sb.Append("            int ooptiskl_width = ooptiskl_band.XSize;\n");
@@ -4725,7 +3888,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            ooptiskl_band.GetNoDataValue(out ooptiskl_out_val, out ooptiskl_out_hasval);\n");
             sb.Append("            if (ooptiskl_out_hasval != 0)\n");
             sb.Append("                ooptiskl_NoDataValue = (byte)ooptiskl_out_val;\n");
-            sb.Append("            string slope_srtm_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @\"\\data_dir\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"slope_srtm.tif\");\n");
+            sb.Append("            string slope_srtm_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"slope_srtm.tif\");\n");
             sb.Append("            Dataset slope_srtm_ds = Gdal.Open(slope_srtm_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band slope_srtm_band = slope_srtm_ds.GetRasterBand(1);\n");
             sb.Append("            int slope_srtm_width = slope_srtm_band.XSize;\n");
@@ -4738,7 +3901,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            slope_srtm_band.GetNoDataValue(out slope_srtm_out_val, out slope_srtm_out_hasval);\n");
             sb.Append("            if (slope_srtm_out_hasval != 0)\n");
             sb.Append("                slope_srtm_NoDataValue = (float)slope_srtm_out_val;\n");
-            sb.Append("            string srtm_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @\"\\data_dir\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"srtm.tif\");\n");
+            sb.Append("            string srtm_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"srtm.tif\");\n");
             sb.Append("            Dataset srtm_ds = Gdal.Open(srtm_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band srtm_band = srtm_ds.GetRasterBand(1);\n");
             sb.Append("            int srtm_width = srtm_band.XSize;\n");
@@ -4751,7 +3914,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            srtm_band.GetNoDataValue(out srtm_out_val, out srtm_out_hasval);\n");
             sb.Append("            if (srtm_out_hasval != 0)\n");
             sb.Append("                srtm_NoDataValue = (int)srtm_out_val;\n");
-            sb.Append("            string swvdwnyear_file_name = Path.Combine(AtlasSolar.Properties.Settings.Default.GeoServerPath + @\"\\data_dir\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"swvdwnyear.tif\");\n");
+            sb.Append("            string swvdwnyear_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"swvdwnyear.tif\");\n");
             sb.Append("            Dataset swvdwnyear_ds = Gdal.Open(swvdwnyear_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band swvdwnyear_band = swvdwnyear_ds.GetRasterBand(1);\n");
             sb.Append("            int swvdwnyear_width = swvdwnyear_band.XSize;\n");
@@ -4824,7 +3987,7 @@ namespace AtlasSolar.Controllers
             sb.Append("                    }\n");
             sb.Append("                }\n");
             sb.Append("            }\n");
-            sb.Append("            out_file_name = Path.Combine(GeoServerAtlasSolar + \"FindTerrain\", out_file_name);\n");
+            sb.Append("            out_file_name = Path.Combine(GeoServerAtlasSolar, \"FindTerrain\", out_file_name);\n");
             sb.Append("            Dataset out_ds = out_drv.Create(out_file_name, min_width, min_height, 1, DataType.GDT_Byte, out_options);\n");
             sb.Append("            Band out_band = out_ds.GetRasterBand(1);\n");
             sb.Append("            out_band.WriteRaster(0, 0, min_width, min_height, out_buffer_array, min_width, min_height, 0, 0);\n");
@@ -4886,11 +4049,10 @@ namespace AtlasSolar.Controllers
             return s;
         }
 
-        //[HttpPost]
         public FilePathResult DownloadMap(string FileName, string Folder)
         {
-            string GeoServerAtlasSolar = Properties.Settings.Default.GeoServerPath + @"\data_dir\coverages\AtlasSolar\";
-            return new FilePathResult(Path.Combine(GeoServerAtlasSolar + Folder, FileName + ".tif"), "image/tiff");
+            string GeoServerAtlasSolar = Path.Combine(Properties.Settings.Default.GeoServerPath, Properties.Settings.Default.WorkspaceDir);
+            return new FilePathResult(Path.Combine(GeoServerAtlasSolar, Folder, FileName + ".tif"), "image/tiff");
         }
 
         [HttpPost]

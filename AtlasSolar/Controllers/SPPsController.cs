@@ -94,7 +94,6 @@ namespace AtlasSolar.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //SPP sPP = await db.SPPs.FindAsync(id);
             SPP sPP = await db.SPPs
                 .Where(s => s.Id == id)
                 .Include(s => s.PanelOrientation)
@@ -254,7 +253,6 @@ namespace AtlasSolar.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //SPP sPP = await db.SPPs.FindAsync(id);
             SPP sPP = await db.SPPs
                 .Where(s => s.Id == id)
                 .Include(s => s.PanelOrientation)

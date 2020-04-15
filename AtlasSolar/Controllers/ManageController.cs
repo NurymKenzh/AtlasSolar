@@ -50,7 +50,6 @@ namespace AtlasSolar.Controllers
             }
         }
 
-        //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
@@ -75,38 +74,12 @@ namespace AtlasSolar.Controllers
             return View(model);
         }
 
-        ////
-        //// POST: /Manage/RemoveLogin
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
-        //{
-        //    ManageMessageId? message;
-        //    var result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
-        //    if (result.Succeeded)
-        //    {
-        //        var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-        //        if (user != null)
-        //        {
-        //            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-        //        }
-        //        message = ManageMessageId.RemoveLoginSuccess;
-        //    }
-        //    else
-        //    {
-        //        message = ManageMessageId.Error;
-        //    }
-        //    return RedirectToAction("ManageLogins", new { Message = message });
-        //}
-
-        //
         // GET: /Manage/AddPhoneNumber
         public ActionResult AddPhoneNumber()
         {
             return View();
         }
 
-        //
         // POST: /Manage/AddPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -130,7 +103,6 @@ namespace AtlasSolar.Controllers
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
 
-        //
         // POST: /Manage/EnableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -145,7 +117,6 @@ namespace AtlasSolar.Controllers
             return RedirectToAction("Index", "Manage");
         }
 
-        //
         // POST: /Manage/DisableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -160,7 +131,6 @@ namespace AtlasSolar.Controllers
             return RedirectToAction("Index", "Manage");
         }
 
-        //
         // GET: /Manage/VerifyPhoneNumber
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
@@ -169,7 +139,6 @@ namespace AtlasSolar.Controllers
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
 
-        //
         // POST: /Manage/VerifyPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -194,7 +163,6 @@ namespace AtlasSolar.Controllers
             return View(model);
         }
 
-        //
         // POST: /Manage/RemovePhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -213,14 +181,12 @@ namespace AtlasSolar.Controllers
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
 
-        //
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
         {
             return View();
         }
 
-        //
         // POST: /Manage/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -244,14 +210,12 @@ namespace AtlasSolar.Controllers
             return View(model);
         }
 
-        //
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
         {
             return View();
         }
 
-        //
         // POST: /Manage/SetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -276,30 +240,6 @@ namespace AtlasSolar.Controllers
             return View(model);
         }
 
-        ////
-        //// GET: /Manage/ManageLogins
-        //public async Task<ActionResult> ManageLogins(ManageMessageId? message)
-        //{
-        //    ViewBag.StatusMessage =
-        //        message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-        //        : message == ManageMessageId.Error ? "An error has occurred."
-        //        : "";
-        //    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-        //    if (user == null)
-        //    {
-        //        return View("Error");
-        //    }
-        //    var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
-        //    var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
-        //    ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
-        //    return View(new ManageLoginsViewModel
-        //    {
-        //        CurrentLogins = userLogins,
-        //        OtherLogins = otherLogins
-        //    });
-        //}
-
-        //
         // POST: /Manage/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -309,7 +249,6 @@ namespace AtlasSolar.Controllers
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 
-        //
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {

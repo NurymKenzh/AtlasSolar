@@ -1,4 +1,4 @@
-﻿// функция нажатия на карту
+﻿// map click function
 map.on('singleclick', function (evt) {
     var coordinates = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
     longitude = coordinates[0];
@@ -7,7 +7,7 @@ map.on('singleclick', function (evt) {
     Source_select.clear();
     if (tool == 'info' || tool == 'analizeterrain') {
         var pixel = map.getEventPixel(evt.originalEvent);
-        ///////////////////////////////////
+
         $("#dialog_table").find("tr:gt(0)").remove();
         var viewResolution = (view.getResolution());
         var url_oblasti = Source_oblasti.getGetFeatureInfoUrl(evt.coordinate, viewResolution, 'EPSG:3857', { 'INFO_FORMAT': 'text/javascript', 'propertyName': 'name_rs,name_kz,name_an' });
@@ -364,7 +364,7 @@ map.on('singleclick', function (evt) {
         var url_kzcover = Source_kzcover.getGetFeatureInfoUrl(evt.coordinate, viewResolution, 'EPSG:3857', { 'INFO_FORMAT': 'text/javascript', 'propertyName': 'GRAY_INDEX' });
 
         var url_meteo_st = Source_meteo_st.getGetFeatureInfoUrl(evt.coordinate, viewResolution, 'EPSG:3857', { 'INFO_FORMAT': 'text/javascript', 'propertyName': 'wmo_id,name_rs' });
-        //---------------------
+        
         var oblasti_value = '';
         var rayony_value = '';
 
@@ -615,62 +615,6 @@ map.on('singleclick', function (evt) {
         var daylghtav_11_value = -1000;
         var daylghtav_12_value = -1000;
 
-        var p_clr_cky_year_value = -1;
-        var p_clr_cky_01_value = -1;
-        var p_clr_cky_02_value = -1;
-        var p_clr_cky_03_value = -1;
-        var p_clr_cky_04_value = -1;
-        var p_clr_cky_05_value = -1;
-        var p_clr_cky_06_value = -1;
-        var p_clr_cky_07_value = -1;
-        var p_clr_cky_08_value = -1;
-        var p_clr_cky_09_value = -1;
-        var p_clr_cky_10_value = -1;
-        var p_clr_cky_11_value = -1;
-        var p_clr_cky_12_value = -1;
-
-        var p_swv_dwn_year_value = -1;
-        var p_swv_dwn_01_value = -1;
-        var p_swv_dwn_02_value = -1;
-        var p_swv_dwn_03_value = -1;
-        var p_swv_dwn_04_value = -1;
-        var p_swv_dwn_05_value = -1;
-        var p_swv_dwn_06_value = -1;
-        var p_swv_dwn_07_value = -1;
-        var p_swv_dwn_08_value = -1;
-        var p_swv_dwn_09_value = -1;
-        var p_swv_dwn_10_value = -1;
-        var p_swv_dwn_11_value = -1;
-        var p_swv_dwn_12_value = -1;
-
-        var p_toa_dwn_year_value = -1;
-        var p_toa_dwn_01_value = -1;
-        var p_toa_dwn_02_value = -1;
-        var p_toa_dwn_03_value = -1;
-        var p_toa_dwn_04_value = -1;
-        var p_toa_dwn_05_value = -1;
-        var p_toa_dwn_06_value = -1;
-        var p_toa_dwn_07_value = -1;
-        var p_toa_dwn_08_value = -1;
-        var p_toa_dwn_09_value = -1;
-        var p_toa_dwn_10_value = -1;
-        var p_toa_dwn_11_value = -1;
-        var p_toa_dwn_12_value = -1;
-
-        var dni_year_value = -1;
-        var dni_01_value = -1;
-        var dni_02_value = -1;
-        var dni_03_value = -1;
-        var dni_04_value = -1;
-        var dni_05_value = -1;
-        var dni_06_value = -1;
-        var dni_07_value = -1;
-        var dni_08_value = -1;
-        var dni_09_value = -1;
-        var dni_10_value = -1;
-        var dni_11_value = -1;
-        var dni_12_value = -1;
-
         var sic_year_value = -1;
         var sic_01_value = -1;
         var sic_02_value = -1;
@@ -743,11 +687,10 @@ map.on('singleclick', function (evt) {
 
         var meteo_st_name_rs = '';
         var meteo_st_wmo_id = -1;
-        //---------------------
+        
         function Get_oblasti() {
             content = "";
             content += '<tr><td colspan="2" style="text-align: center;">' + $('#RetrievingData').html() + '</td>'
-                    //+ '<td style="padding-left: 10px;"></td>'
                     + '</tr>';
             $('#dialog_table').append(content);
             jQuery.ajax({
@@ -7473,13 +7416,12 @@ map.on('singleclick', function (evt) {
                     Get_zapovedzony();
                 },
                 error: function () {
-                    alert('error');
                     Get_zapovedzony();
                 }
             });
         };
         //---------------------
-        // могут быть за границей
+        // may be abroad
         function Get_zapovedzony() {
             if (Layer_zapovedzony.getVisible()) {
                 jQuery.ajax({
@@ -7568,17 +7510,7 @@ map.on('singleclick', function (evt) {
                         + '</tr>';
                 $('#dialog_table').append(content);
             }
-            // оптимальные углы наклона
-            //if (OPTANG_value[0] != 0) {
-            //    var OPTANG_value_s = '';
-            //    for (i = 0; i < 12; i++) {
-            //        OPTANG_value_s += (i + 1).toString() + ': ' + OPTANG_value[i].toFixed(2).toString() + '; ';
-            //    }
-            //    content = "";
-            //    content += '<tr><td>' + $('#Info_OPTANG').html() + '</td>'
-            //            + '<td>' + OPTANG_value_s + '</td></tr>';
-            //    $('#dialog_table').append(content);
-            //}
+            // optimal tilt angles
             if (OPTANG_value[0] != 0) {
                 content = "";
                 content += '<tr><td>' + $('#Info_OPTANG').html() + '</td>'
@@ -7609,7 +7541,7 @@ map.on('singleclick', function (evt) {
                         + '</tr>';
                 $('#dialog_table').append(content);
             }
-            // метеостанция
+            // weather station
             if (meteo_st_wmo_id > 0) {
                 content = "";
                 content += '<tr><td>' + $('#Tree_meteo_st').html() + '</td>'
@@ -8816,7 +8748,7 @@ map.on('singleclick', function (evt) {
                         + '</tr>';
                 $('#dialog_table').append(content);
             }
-            // Климат
+            // Climate
             if (rainavgesm_year_value > -1000 ||
                             rainavgesm_01_value > -1000 ||
                             rainavgesm_02_value > -1000 ||
@@ -9834,7 +9766,7 @@ map.on('singleclick', function (evt) {
                     + '</tr>';
                 $('#dialog_table').append(content);
             }
-            // ЛЭП
+            // Power lines
             if (lep_gid.length > 0) {
                 for (i = 0; i < lep_gid.length; i++) {
                     content = "";
@@ -9844,7 +9776,7 @@ map.on('singleclick', function (evt) {
                     $('#dialog_table').append(content);
                 }
             }
-            // СЭС
+            // Solar power plants
             var features = [];
             map.forEachFeatureAtPixel(pixel, function (feature, layer) {
                 features.push(feature);
@@ -9858,7 +9790,7 @@ map.on('singleclick', function (evt) {
                         + '</tr>';
                 $('#dialog_table').append(content);
             }
-            // Рельеф
+            // Relief
             if (srtm_value > -1000 ||
                 aspect_srtm_value > -1000 ||
                 slope_srtm_value > -1000) {
@@ -9912,7 +9844,7 @@ map.on('singleclick', function (evt) {
                         + '<td>' + slope_srtm_value.toFixed(2) + '</td></tr>';
                 $('#dialog_table').append(content);
             }
-            // ООПТ
+            // Protected Areas
             if (pamyatnikprirodypol_value != '' ||
                 prirparki_value != '' ||
                 rezervaty_value != '' ||
@@ -9959,21 +9891,21 @@ map.on('singleclick', function (evt) {
                         + '<td>' + zapovedzony_value + '</td></tr>';
                 $('#dialog_table').append(content);
             }
-            // памятници археологии
+            // monuments of archeology
             if (arheopamyat_value != '') {
                 content = "";
                 content += '<tr><td>' + $('#Info_arheopamyat').html() + '</td>'
                         + '<td>' + arheopamyat_value + '</td></tr>';
                 $('#dialog_table').append(content);
             }
-            // гидрография
+            // hydrography
             if (hidroohrzony_value != '') {
                 content = "";
                 content += '<tr><td>' + $('#Info_hidroohrzony').html() + '</td>'
                         + '<td>' + hidroohrzony_value + '</td></tr>';
                 $('#dialog_table').append(content);
             }
-            // непригодные и малопригодные земли
+            // unsuitable and unsuitable lands
             if (kzcover_value != 255) {
                 content = "";
                 var kzcover_value_s = '';
@@ -10045,7 +9977,6 @@ map.on('singleclick', function (evt) {
         };
         //---------------------
         Get_oblasti();
-        ///////////////////////////////////
     }
     else if (tool == 'calcarea') {
         var coordinate4326 = ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326')

@@ -269,7 +269,6 @@
     <Compile Include="Controllers\SPPStatusesController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Controllers\SystemLogsController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="GdalConfiguration.cs" />
     <Compile Include="Global.asax.cs">
@@ -524,8 +523,6 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\style.css" />
-    <Content Include="Content\style_old2.css" />
-    <Content Include="Content\style_old.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -933,8 +930,7 @@
     <Content Include="Views\Averager\CreateLayerData.cshtml" />
     <Content Include="Views\Averager\Index.cshtml" />
     <Content Include="Views\Language\Index.cshtml" />
-    <Content Include="Views\Maps\Demo.cshtml" />
-    <Content Include="Views\Maps\Test2.cshtml" />
+    <Content Include="Views\Maps\Main.cshtml" />
     <Content Include="Views\MeteoUploader\Index.cshtml" />
     <Content Include="Views\MeteoUploader\Upload.cshtml" />
     <Content Include="Views\Moderator\Index.cshtml" />
@@ -945,7 +941,6 @@
     <Content Include="Views\Parser\ParseNASA1983Daily.cshtml" />
     <Content Include="Views\Parser\ParseNASA1983Monthly.cshtml" />
     <Content Include="Views\Parser\ParseNASADaily.cshtml" />
-    <Content Include="Views\Parser\Test.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Shared\_AdminPartial.cshtml" />
@@ -1059,7 +1054,6 @@
     <Folder Include="Help\" />
     <Folder Include="Maps\" />
     <Folder Include="Upload\" />
-    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

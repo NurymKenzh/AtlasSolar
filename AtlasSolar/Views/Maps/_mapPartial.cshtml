@@ -421,18 +421,6 @@
                                 </li>
                         </li>
                     </ul>
-                        @*<li data-jstree='{"checkbox_disabled": true}'>
-                <p>@AtlasSolar.Resources.Layers.MapAuxiliary</p>
-                <ul>
-                    <li data-jstree='{"checkbox_disabled": true}'>
-                        <p>@AtlasSolar.Resources.Layers.lep</p>
-                        <ul><li id="lep">@AtlasSolar.Resources.Layers.lep</li></ul>
-                        <ul><li id="lep_bufer">@AtlasSolar.Resources.Layers.lep_bufer</li></ul>
-                    </li>
-
-                </ul>
-            </li>*@
-
                         <li data-jstree='{"checkbox_disabled": true}'>
                             <p>@AtlasSolar.Resources.Layers.MapFactors</p>
                             <ul>
@@ -453,7 +441,6 @@
                                         <li id="zapovedzony">@AtlasSolar.Resources.Layers.Tree_zapovedzony<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_zapovedzony'), $('#Description_zapovedzony'), $('#Appointment_zapovedzony'), $('#Resolution_zapovedzony'), $('#Source_zapovedzony'), $('#Additional_zapovedzony'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>
                                     </ul>
                                 </li>
-                                @*<li id="arheopamyat">@AtlasSolar.Resources.Layers.Tree_arheopamyat<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_arheopamyat'), $('#Description_arheopamyat'), $('#Appointment_arheopamyat'), $('#Resolution_arheopamyat'), $('#Source_arheopamyat'), $('#Additional_arheopamyat'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>*@
                                 <li id="hidroohrzony">@AtlasSolar.Resources.Layers.Tree_hidroohrzony<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_hidroohrzony'), $('#Description_hidroohrzony'), $('#Appointment_hidroohrzony'), $('#Resolution_hidroohrzony'), $('#Source_hidroohrzony'), $('#Additional_hidroohrzony'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>
                                 <li id="kzcover">@AtlasSolar.Resources.Layers.Tree_kzcover<input type="button" title="@AtlasSolar.Resources.Common.Information" class="btn btn-default" onclick="ShowLayerInfo($('#Name_kzcover'), $('#Description_kzcover'), $('#Appointment_kzcover'), $('#Resolution_kzcover'), $('#Source_kzcover'), $('#Additional_kzcover'));" style="background: url(../Images/info16.png) no-repeat center center; background-size: contain; width: 16px; height: 16px; border-width: 0px;" /></li>
                                 <li id="meteo_st">@AtlasSolar.Resources.Layers.meteo_st</li>
@@ -1348,7 +1335,6 @@
                     <table class="legend">
                         <tr>
                             <td>
-                                @*<div style="background-color: #ffffb2;"></div>*@
                                 <img src="~/Images/Legend/spp1.png" style="height: 19px;" />
                             </td>
                             <td>
@@ -1357,7 +1343,6 @@
                         </tr>
                         <tr>
                             <td>
-                                @*<div style="background-color: #fff6a2;"></div>*@
                                 <img src="~/Images/Legend/spp2.png" style="height: 19px;" />
                             </td>
                             <td>
@@ -1418,17 +1403,14 @@
                     <p id="oopt_legend">@AtlasSolar.Resources.Layers.Legend_oopt</p>
                     <table class="legend">
                         <tr><td><div style="background-color: #e69800;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_pamyatnikprirodypol_1</td></tr>
-                        @*<tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_pamyatnikprirodypol_2</td></tr>*@
                         <tr><td><div style="background-color: #d1ff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_prirparki_1</td></tr>
                         <tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_prirparki_2</td></tr>
                         <tr><td><div style="background-color: #aaff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_rezervaty_1</td></tr>
                         <tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_rezervaty_2</td></tr>
                         <tr><td><div style="background-color: #ffd37f;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_zakazniky_1</td></tr>
-                        @*<tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_zakazniky_2</td></tr>*@
                         <tr><td><div style="background-color: #3bd625;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_zapovedniki_1</td></tr>
                         <tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_zapovedniki_2</td></tr>
                         <tr><td><div style="background-color: #55ff00;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_zapovedzony_1</td></tr>
-                        @*<tr><td><div style="background-color: #ffff73;"></div></td><td>@AtlasSolar.Resources.Layers.Legend_zapovedzony_2</td></tr>*@
                     </table>
                 </div>
                 <div id="legend_arheopamyat" style="margin: 5px; border-bottom-style: solid; border-bottom-width: 1px;">
@@ -1485,14 +1467,12 @@
                     <ul class="nav navbar-nav" style="float: left;">
                         <li><a id="tool_calc_energy" href="#" onclick="ChangeTool('calcenergy')" title="@AtlasSolar.Resources.Common.CalcEnergy" class="icon1"></a></li>
                         <li><a id="tool_calc_efficiency" href="#" onclick="ChangeTool('calcefficiency')" title="@AtlasSolar.Resources.Common.CalcEfficiency" class="icon2"></a></li>
-                        @*<li><a id="tool_calc_area" href="#" onclick="ChangeTool('calcarea')" title="@AtlasSolar.Resources.Common.CalcArea" class="icon3"></a></li>*@
                         <li><a id="tool_compare_points" href="#" onclick="ChangeTool('comparepoints')" title="@AtlasSolar.Resources.Common.ComparePoints" class="icon5"></a></li>
                         <li><a id="tool_analize_terrain" href="#" onclick="ChangeTool('analizeterrain')" title="@AtlasSolar.Resources.Common.AnalizeTerrain" class="icon6"></a></li>
                         <li><a id="tool_find_terrain" href="#" onclick="ChangeTool('findterrain')" title="@AtlasSolar.Resources.Common.FindTerrain" class="icon7"></a></li>
                         <li><a id="tool_measure" href="#" onclick="ChangeTool('measure')" title="@AtlasSolar.Resources.Common.MeasureOnTheMap" class="icon8"></a></li>
                         @Html.DropDownList("MapSources", null, htmlAttributes: new { @onchange = "ChangeMapSource(this.value)", style = "margin: 15px 15px 0px 15px;" })
                     </ul>
-                    @*<label style="padding-top: 15px;"><b>@AtlasSolar.Resources.Common.BetaTesting</b></label>*@
                     <ul class="nav navbar-nav" style="float: right; width: auto;">
                         <li style="float: right;">@Html.DropDownList("Languages", null, htmlAttributes: new { @onchange = "ChangeCookie('Language',this.value)", style = "margin: 15px 15px 0px 15px;" })</li>
                         <li style="float: right;">@Html.ActionLink(AtlasSolar.Resources.Common.Contact, "Contact", "Home", null, new { style = "padding-bottom: 9px; color: #333333;" })</li>
@@ -1500,33 +1480,10 @@
                         <li style="float: right;">@Html.ActionLink(AtlasSolar.Resources.Common.Home, "Index", "Home", null, new { style = "padding-bottom: 9px; color: #333333;" })</li>
                     </ul>
                 </div>
-
-                @*<input id="tool_calc_energy" type="button" title="-Расчет энергопотребления-" class="btn btn-default" onclick="ChangeTool('calcenergy')" style="background: url(../Images/Buttons/calcenergy.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
-                    <input id="tool_calc_area" type="button" title="@AtlasSolar.Resources.Common.CalcArea" class="btn btn-default" onclick="ChangeTool('calcarea')" style="background: url(../Images/Buttons/calcarea.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
-                    <input id="tool_calc_efficiency" type="button" title="-Расчет производительности PV-системы-" class="btn btn-default" onclick="ChangeTool('calcefficiency')" style="background: url(../Images/Buttons/calcefficiency.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
-                    <input id="tool_compare_points" type="button" title="-Сравнить данные по точкам-" class="btn btn-default" onclick="ChangeTool('comparepoints')" style="background: url(../Images/Buttons/calcefficiency.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
-                    <input id="tool_analize_terrain" type="button" title="-Анализ местности-" class="btn btn-default" onclick="ChangeTool('analizeterrain')" style="background: url(../Images/Buttons/calcefficiency.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
-                    @if (!string.IsNullOrEmpty(ViewBag.Role))
-                    {
-                        <input id="tool_get_meteo_data" type="button" title="-Получение метеорологических данных-" class="btn btn-default" onclick="ChangeTool('getmeteodata')" style="background: url(../Images/Buttons/getmeteodata.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
-                    }
-                    @if (ViewBag.Role == "Admin" || ViewBag.Role == "Moderator")
-                    {
-                        <input id="tool_create_spp" type="button" title="-Создать СЭС-" class="btn btn-default" onclick="ChangeTool('createspp')" hidden="hidden" style="background: url(../Images/Buttons/getmeteodata.png) no-repeat center center; background-size: contain; float: left; width: 32px; height: 32px; margin: 6px; margin-right: 12px; border-color: #444444; border-width: 0px;" />
-                    }
-
-                    <ul class="nav navbar-nav" style="float: right;">
-                        <li>@Html.ActionLink(AtlasSolar.Resources.Common.Home, "Index", "Home", null, new { style = "padding-bottom: 9px; color: #333333;" })</li>
-                        <li>@Html.ActionLink(AtlasSolar.Resources.Common.About, "About", "Home", null, new { style = "padding-bottom: 9px; color: #333333;" })</li>
-                        <li>@Html.ActionLink(AtlasSolar.Resources.Common.Contact, "Contact", "Home", null, new { style = "padding-bottom: 9px; color: #333333;" })</li>
-                        <li>@Html.DropDownList("Languages", null, htmlAttributes: new { @onchange = "ChangeCookie('Language',this.value)", style = "margin: 15px 15px 0px 15px;" })</li>
-                    </ul>*@
             </div>
         </div>
         <div class="map">
-            <div id="map" class="map" style="width: 100%; height: calc(100% - 10px);">
-
-            </div>
+            <div id="map" class="map" style="width: 100%; height: calc(100% - 10px);"></div>
             <input id="swipe" type="range" style="width: 100%; height: 10px;" value="100">
         </div>        
     </div>

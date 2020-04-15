@@ -1,7 +1,4 @@
-﻿@* -Xms6g -Xmx7g -XX:-UseGCOverheadLimit -XX:+UseParallelGC –XX:+UseG1GC *@
-@* '+' Enable direct integration with GeoServer WMS + *@
-@* '-' Automatically configure a GeoWebCache layer for each new layer or layer group -*@
-@{
+﻿@{
     ViewBag.Title = "Map";
     Layout = "~/Views/Shared/_LayoutMap.cshtml";
 }
@@ -9,7 +6,6 @@
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.12.4.js"></script>
 <script src="~/Scripts/jquery-1.12.4.min.js"></script>
-
 
 <link href="~/Content/ol.css" rel="stylesheet" />
 <script src="~/Scripts/ol.js"></script>
@@ -21,7 +17,6 @@
 <script src="~/Scripts/jquery.flot.time.min.js"></script>
 <script src="~/Scripts/jquery.flot.canvas.js"></script>
 <script src="~/Scripts/jquery.flot.canvas.min.js"></script>
-@*<script src="~/Scripts/jquery.flot.axislabels.js"></script>*@
 <script src="~/Scripts/jquery.flot.resize.js"></script>
 
 <script src="~/Scripts/jquery-ui.js"></script>
@@ -32,13 +27,11 @@
 <script src="~/Scripts/inputmask.js"></script>
 <script src="~/Scripts/inputmask.numeric.extensions.js"></script>
 <script src="~/Scripts/inputmask.regex.extensions.js"></script>
-@*<script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
-<script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.1.57/js/jquery.inputmask.js"></script>*@
 <script src="~/Scripts/jquery.inputmask.bundle.js"></script>
 <script src="~/Scripts/jquery.inputmask.js"></script>
 
 <style>
-    .nav > li > a:hover, .nav > li > a:focus{
+    .nav > li > a:hover, .nav > li > a:focus {
         background-color: rgb(225,226,225);
     }
 
@@ -66,7 +59,6 @@
         width: calc(100% - 300px);
         height: calc(100% - 44px);
         float: left;
-        /*min-width: 930px;*/
     }
 
     .sidepanel {
@@ -76,13 +68,6 @@
         float: left;
     }
 
-    /*.sidepanel-title {
-        width: 100%;
-        font-size: 3em;
-        color: #ffffff;
-        display: block;
-        text-align: center;
-    }*/
     .ol-attribution ul {
         font-size: 1rem;
     }
@@ -107,7 +92,7 @@
         display: none;
     }
 
-    /*легенды*/
+    /*legendы*/
     .legend td:nth-child(1) {
         padding: 0px;
     }
@@ -122,33 +107,8 @@
         border-style: solid;
         border-width: 1px;
     }
-    /*.legend th, td {
-        background-color: blue;
-    }*/
 
-    /*информация*/
-    /*#dialog_table {
-        border-collapse: collapse;
-    }
-
-        #dialog_table td, th {
-            border: 1px solid black;
-            padding: 0px 10px 0px 10px;
-        }
-
-        #dialog_table tr.header {
-            cursor: pointer;
-        }
-
-        #dialog_table td:nth-child(1) {
-            width: 50%;
-        }
-
-        #dialog_table td:nth-child(2) {
-            width: 50%;
-        }*/
-
-    /*выберите точку на карте*/
+    /*select point*/
     .simplelabel {
         font-weight: normal;
     }
@@ -210,11 +170,11 @@
     }
 
     .td-center {
-    text-align: center;
-    vertical-align: middle;
+        text-align: center;
+        vertical-align: middle;
     }
 
-    .axisLabels{
+    .axisLabels {
         color: brown;
     }
 
@@ -240,31 +200,42 @@
         padding: 4px 8px;
         opacity: 0.7;
         white-space: nowrap;
-      }
-      .tooltip-measure {
+    }
+
+    .tooltip-measure {
         opacity: 1;
         font-weight: bold;
-      }
-      .tooltip-static {
+    }
+
+    .tooltip-static {
         background-color: #ffcc33;
         color: black;
         border: 1px solid white;
-      }
-      .tooltip-measure:before,
-      .tooltip-static:before {
-        border-top: 6px solid rgba(0, 0, 0, 0.5);
-        border-right: 6px solid transparent;
-        border-left: 6px solid transparent;
-        content: "";
-        position: absolute;
-        bottom: -6px;
-        margin-left: -7px;
-        left: 50%;
-      }
-      .tooltip-static:before {
-        border-top-color: #ffcc33;
-      }    
+    }
+
+        .tooltip-measure:before,
+        .tooltip-static:before {
+            border-top: 6px solid rgba(0, 0, 0, 0.5);
+            border-right: 6px solid transparent;
+            border-left: 6px solid transparent;
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            margin-left: -7px;
+            left: 50%;
+        }
+
+        .tooltip-static:before {
+            border-top-color: #ffcc33;
+        }
 </style>
+
+<script>
+    // GeoServer ip
+    var gip = '@ViewBag.gip';
+    // GeoServer port
+    var gport = '@ViewBag.gport';
+</script>
 
 @Html.Partial("_mapPartial")
 @Html.Partial("_mapDialogs")
@@ -349,7 +320,7 @@
     <div id="Date">@AtlasSolar.Resources.Common.Date</div>
 </div>
 
-@* Слои *@
+@* Layers *@
 <div hidden="hidden">
     <div id="Info_OPTANG">@AtlasSolar.Resources.Layers.Info_OPTANG</div>
 
@@ -404,7 +375,7 @@
     <div id="Resolution_retesh0mim">@ViewBag.Resolution_retesh0mim</div>
     <div id="Source_retesh0mim">@ViewBag.Source_retesh0mim</div>
     <div id="Additional_retesh0mim">@ViewBag.Additional_retesh0mim</div>
-    
+
     <div id="Tree_dni">@AtlasSolar.Resources.Layers.Tree_dni</div>
     <div id="Name_dni">@ViewBag.Name_dni</div>
     <div id="Description_dni">@ViewBag.Description_dni</div>
@@ -647,18 +618,6 @@
 <div id="myModal" class="modalinfo modal">
     <div>
         <span class="close" id="modal_close">&times;</span>
-        @*<h4 id="layer_name" align="left"></h4>
-        <p id="layer_info" align="justify"></p>
-        <br />
-        <p align="justify">Карта распределения средних сумм прямой солнечной радиации на перпендикулярную поверхность при средних условиях облачности и представляют собой результаты интерполяции с разрешением 5 км.</p>
-        <br />
-        <p align="justify">Назначение: Значения солнечной радиации представляют собой ресурс необходимый для солнечных энергетических систем, для расчетов количества солнечной энергии на наклонную, ориентированную поверхность.  Также учитываются при расчетах эффективности PV и CSP систем.</p>
-        <br />
-        <p align="justify">Источник: Данные были получены из проекта  POWER Исследовательского центра NASA Langley,  финансируемая  Программой прикладных наук NASA (науки о Земле) https://eosweb.larc.nasa.gov/sse/. Разрешение: 1°×1° Период осреднения:  июль 1983 г. - июнь 2005 г.</p>
-        <br />
-        <p align="justify">Дополнительная информация: Верификация данных базы для территории РК проводилась на основе данных двух метеорологических станции (МС Семей, МС Аральское море). Карты в свободном доступе для личного пользования. При использовании карты в печатном виде, под картой должен быть указан следующий текст: Интерактивный Атлас Солнечных ресурсов РК, <a href="URL">http://atlassolar.kz</a>; на основе данных <a href="URL">https://eosweb.larc.nasa.gov/sse/</a> </p>
-        <br />
-        <p align="justify">Его можно использовать в широком диапазоне, начиная от вывода сообщений и заканчивая формой регистрации.</p>*@
         <h4 id="layer_Name" align="left"></h4>
         <p id="layer_Description" align="justify" style="margin-top: 10px;"></p>
         <br />
@@ -672,50 +631,42 @@
     </div>
 </div>
 
-@*<input type="button" value="-Test-" name="Action" onclick="Test();" class="btn btn-default" />*@
-
 <script>
     document.getElementById("loading").style.display = "block";
 </script>
 
-@* переменные *@
+@* variables *@
 <script src="~/Scripts/mapvariables.js"></script>
-<script>
-    // GeoServer ip
-    var gip = '@ViewBag.gip';
-</script>
 
-@* слои *@
+@* layers *@
 <script src="~/Scripts/maplayers.js"></script>
 
-@* дерево слоев, легенды *@
+@* layers and legends tree *@
 <script src="~/Scripts/maptreelegends.js"></script>
 
-@* карта *@
+@* map *@
 <script>
-    // вид
+    // view
     var view = new ol.View({
         projection: 'EPSG:3857',
         center: [7447522, 6202316],
         zoom: 5,
-        maxZoom: max_zoom, //16,
+        maxZoom: max_zoom,
         minZoom: min_zoom,
-        extent: [5000000,4800000,10000000,7500000]
+        extent: [5000000, 4800000, 10000000, 7500000]
     });
 
-    // карта
+    // map
     var map = new ol.Map({
-        //interactions: ol.interaction.defaults().extend([select, translate]),
         controls: ol.control.defaults().extend([
-              new ol.control.FullScreen({
-                  source: 'fullscreen'
-              }),
+            new ol.control.FullScreen({
+                source: 'fullscreen'
+            }),
             new ol.control.OverviewMap(),
             new ol.control.ScaleLine()
         ]),
         layers: [
             Layer_Base,
-
             Layer_rayony,
             Layer_avg_dnr_year,
             Layer_avg_dnr_01,
@@ -795,7 +746,7 @@
             Layer_retesh0mim_10,
             Layer_retesh0mim_11,
             Layer_retesh0mim_12,
-            
+
             Layer_avg_kt_22_01,
             Layer_avg_kt_22_02,
             Layer_avg_kt_22_03,
@@ -808,7 +759,7 @@
             Layer_avg_kt_22_10,
             Layer_avg_kt_22_11,
             Layer_avg_kt_22_12,
-            
+
             Layer_avg_nkt_22_01,
             Layer_avg_nkt_22_02,
             Layer_avg_nkt_22_03,
@@ -821,7 +772,7 @@
             Layer_avg_nkt_22_10,
             Layer_avg_nkt_22_11,
             Layer_avg_nkt_22_12,
-            
+
             Layer_day_cld_22_01,
             Layer_day_cld_22_02,
             Layer_day_cld_22_03,
@@ -834,7 +785,7 @@
             Layer_day_cld_22_10,
             Layer_day_cld_22_11,
             Layer_day_cld_22_12,
-            
+
             Layer_daylghtav_01,
             Layer_daylghtav_02,
             Layer_daylghtav_03,
@@ -927,7 +878,7 @@
             Layer_t10m_10,
             Layer_t10m_11,
             Layer_t10m_12,
-            
+
             Layer_rainavgesm_year,
             Layer_rainavgesm_01,
             Layer_rainavgesm_02,
@@ -1031,7 +982,7 @@
         view: view
     });
 
-    // смена базового слоя
+    // change base layer
     function ChangeMapSource(val) {
         if (val == 'OpenStreetMap') {
             var Source = new ol.source.OSM({});
@@ -1075,12 +1026,12 @@
     };
 </script>
 
-@* функция нажатия на карту *@
+@* mpa click *@
 <script src="~/Scripts/mapclick.js"></script>
 
-@* выбор инструмента *@
+@* tool selection *@
 <script>
-    // выбор инструмента
+    // tool selection
     function ChangeTool(newtool) {
         if ((tool == 'comparepoints' || tool == 'setpoint') && (newtool == 'calcarea' || newtool == 'getmeteodata' || newtool == 'getmeteodataregion' || newtool == 'createspp' || newtool == 'calcefficiency' || newtool == 'comparepoints' || newtool == 'calcenergy' || newtool == 'analizeterrain' || newtool == 'findterrain')) {
             $("#dialog_compare_points").dialog("destroy");
@@ -1142,7 +1093,7 @@
                     zoom: map.getView().getZoom(),
                     maxZoom: max_zoom,
                     minZoom: min_zoom,
-                    extent: [5000000,4800000,10000000,7500000]
+                    extent: [5000000, 4800000, 10000000, 7500000]
                 }));
             }
             if (newtool == 'findterrain') {
@@ -1302,9 +1253,6 @@
                     $("#tool_measure").css({
                         "background": "url(../images/css-sprite-iconok2.png) -268px -38px no-repeat"
                     });
-
-                    
-
                 }
                 removeInteraction();
             });
@@ -1315,8 +1263,6 @@
             });
             document.getElementById("analize_terrain_downloadlink").style.display = "none";
             $("#dialog_analize_terrain").dialog({
-                //width: 700,
-                //height: 750,
                 width: 400,
                 height: 300,
                 appendTo: "#fullscreen",
@@ -1374,9 +1320,9 @@
     };
 </script>
 
-@* окно необходимости выбора точки на карте *@
+@* window of the need to select a point on the map *@
 <script>
-    // больше не показывать окно необходимости выбора точки на карте
+    // no longer show the window of the need to select a point on the map
     function DontShowSelectPoint() {
         if (document.getElementById('dontshow_selectpoint').checked) {
             dontshow_selectpoint = true;
@@ -1385,36 +1331,29 @@
         }
     };
 
-    // закрыть окно необходимости выбора точки на карте
+    // close the window to select a point on the map
     function CloseSelectPointDialog() {
         $("#dialog_selectpoint").dialog("close");
     };
 </script>
 
-@* расчет энергопотребления *@
+@* calculation of energy consumption *@
 <script>
-    // расчет энергопотребления: изменить прибор
+    // energy calculation: change the device
     function ChangeAppliance() {
         var power = $("#calc_energy_ApplianceId option:selected").text().split("(")[$("#calc_energy_ApplianceId option:selected").text().split("(").length - 1].split(")")[0];
         $("#calcpv_power").val(power);
     };
-    // расчет энергопотребления: добавить прибор
+    // calculation of energy consumption: add device
     function AddAppliance() {
         var appliance_id = $("#calc_energy_ApplianceId").val();
         var was = false;
-        //for (i = 0; i < appliances.length; i++) {
-        //    if (appliances[i].id == appliance_id) {
-        //        was = true;
-        //        break;
-        //    }
-        //}
         if (was) {
             alert($('#HasAlready').html());
         }
         else {
             var appliance = $("#calc_energy_ApplianceId option:selected").text();
             appliance = appliance.split(" (")[0];
-            //var power = $("#calc_energy_ApplianceId option:selected").text().split("(")[$("#calc_energy_ApplianceId option:selected").text().split("(").length - 1].split(")")[0];
             var power = $("#calcpv_power").val();
             var count = $("#calcpv_energy_count").val();
             if (count == "") {
@@ -1447,7 +1386,7 @@
         }
     };
 
-    // расчет энергопотребления: убрать прибор
+    // calculation of energy consumption: remove the device
     function RemoveAppliance(appliance_id) {
         $('table#calcpv_energy_table tr#' + appliance_id.toString()).remove();
         for (i = 0; i < appliances.length; i++) {
@@ -1459,7 +1398,7 @@
         CalcEnergy();
     };
 
-    // расчет энергопотребления
+    // calculation of energy consumption
     function CalcEnergy() {
         var energy = 0;
         for (i = 0; i < appliances.length; i++) {
@@ -1470,9 +1409,9 @@
     };
 </script>
 
-@* расчет площади PV системы *@
+@* calculation of the area of the PV system *@
 <script>
-    // расчет площади PV системы: изменение типа материала
+    // calculation of the area of the PV system: changing the type of material
     function CalcPVChangePVSystemMaterial(val) {
         $.ajax({
             url: '@Url.Action("GetPVSystemMaterial")',
@@ -1489,7 +1428,7 @@
         });
     };
 
-    // расчет площади PV системы: изменение типа ориентации
+    // calculation of the area of the PV system: changing the type of orientation
     function CalcPVChangePanelOrientation(val) {
         if (val == 1) {
             $("#calcpv_azimuth").prop('readonly', true);
@@ -1519,7 +1458,7 @@
         }
     };
 
-    // диалог расчета площади PV системы
+    // dialog for calculating the area of the PV system
     function CalcPVDialog() {
         $("#dialog_calc").dialog("close");
         document.getElementById("calcpv_coordinates").innerHTML = hdms;
@@ -1534,27 +1473,9 @@
         });
     };
 
-    @*// расчет площади PV системы: изменение типа материала
-    function CalcPVChangePVSystemMaterial(val) {
-        $.ajax({
-            url: '@Url.Action("GetPVSystemMaterial")',
-            data: JSON.stringify({ "Id": val }),
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            success: function (data) {
-                $("#calcpv_Efficiency").val(data.Efficiency);
-                $("#calcpv_RatedOperatingTemperature").val(data.RatedOperatingTemperature);
-                $("#calcpv_ThermalPowerFactor").val(data.ThermalPowerFactor);
-            },
-            error: function () {
-            }
-        });
-    };*@
-
-    // расчет площади PV системы
+    // calculation of the area of the PV system
     function CalcPV() {
         var LossesSnowMoths = [];
-        var favorite = [];
         $.each($("input[name='calcpv_lossessnow_month']:checked"), function () {
             LossesSnowMoths.push($(this).val());
         });
@@ -1589,30 +1510,6 @@
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                //$("#calcpvresult_Longitude").html(data.Longitude);
-                //$("#calcpvresult_Latitude").html(data.Latitude);
-                //$("#calcpvresult_SPPPurpose").html(data.SPPPurpose);
-                //$("#calcpvresult_PanelOrientation").html(data.PanelOrientation);
-                //$("#calcpvresult_PVSystemMaterial").html(data.PVSystemMaterial);
-                //$("#calcpvresult_RatedPower").html(data.RatedPower);
-                //$("#calcpvresult_PanelsCount").html(data.PanelsCount);
-                //$("#calcpvresult_PanelEfficiency").html(data.PanelEfficiency);
-                //$("#calcpvresult_RatedOperatingTemperature").html(data.RatedOperatingTemperature);
-                //$("#calcpvresult_ThermalPowerFactor").html(data.ThermalPowerFactor);
-                //$("#calcpvresult_Tilt").html(data.Tilt);
-                //$("#calcpvresult_Azimuth").html(data.Azimuth);
-                //$("#calcpvresult_WiringEfficiency").html(data.WiringEfficiency);
-                //$("#calcpvresult_ControllerEfficiency").html(data.ControllerEfficiency);
-                //$("#calcpvresult_InverterEfficiency").html(data.InverterEfficiency);
-                //$("#calcpvresult_BatteryEfficiency").html(data.BatteryEfficiency);
-                //$("#calcpvresult_LossesSoil").html(data.LossesSoil);
-                //$("#calcpvresult_LossesSnow").html(data.LossesSnow);
-                //$("#calcpvresult_LossesShad").html(data.LossesShad);
-                //$("#calcpvresult_LossesMis").html(data.LossesMis);
-                //$("#calcpvresult_H_td_average").html(data.H_td_average);
-                //$("#calcpvresult_η_epv").html(data.η_epv);
-                //$("#calcpvresult_S_pv").html(data.S_pv);
-
                 $("#calcpvresult_month01").html($("#month01").text());
                 $("#calcpvresult_month02").html($("#month02").text());
                 $("#calcpvresult_month03").html($("#month03").text());
@@ -1651,130 +1548,10 @@
                 $("#calcpvresult_P_tpv10").html(data.P_tpv[9]);
                 $("#calcpvresult_P_tpv11").html(data.P_tpv[10]);
                 $("#calcpvresult_P_tpv12").html(data.P_tpv[11]);
-
-                //$("#calcpvresult_H_td01").html(data.H_td[0]);
-                //$("#calcpvresult_H_td02").html(data.H_td[1]);
-                //$("#calcpvresult_H_td03").html(data.H_td[2]);
-                //$("#calcpvresult_H_td04").html(data.H_td[3]);
-                //$("#calcpvresult_H_td05").html(data.H_td[4]);
-                //$("#calcpvresult_H_td06").html(data.H_td[5]);
-                //$("#calcpvresult_H_td07").html(data.H_td[6]);
-                //$("#calcpvresult_H_td08").html(data.H_td[7]);
-                //$("#calcpvresult_H_td09").html(data.H_td[8]);
-                //$("#calcpvresult_H_td10").html(data.H_td[9]);
-                //$("#calcpvresult_H_td11").html(data.H_td[10]);
-                //$("#calcpvresult_H_td12").html(data.H_td[11]);
-
-                //$("#calcpvresult_H_tah01").html(data.H_tah[0]);
-                //$("#calcpvresult_H_tah02").html(data.H_tah[1]);
-                //$("#calcpvresult_H_tah03").html(data.H_tah[2]);
-                //$("#calcpvresult_H_tah04").html(data.H_tah[3]);
-                //$("#calcpvresult_H_tah05").html(data.H_tah[4]);
-                //$("#calcpvresult_H_tah06").html(data.H_tah[5]);
-                //$("#calcpvresult_H_tah07").html(data.H_tah[6]);
-                //$("#calcpvresult_H_tah08").html(data.H_tah[7]);
-                //$("#calcpvresult_H_tah09").html(data.H_tah[8]);
-                //$("#calcpvresult_H_tah10").html(data.H_tah[9]);
-                //$("#calcpvresult_H_tah11").html(data.H_tah[10]);
-                //$("#calcpvresult_H_tah12").html(data.H_tah[11]);
-
-                //$("#calcpvresult_H_tm01").html(data.H_tm[0]);
-                //$("#calcpvresult_H_tm02").html(data.H_tm[1]);
-                //$("#calcpvresult_H_tm03").html(data.H_tm[2]);
-                //$("#calcpvresult_H_tm04").html(data.H_tm[3]);
-                //$("#calcpvresult_H_tm05").html(data.H_tm[4]);
-                //$("#calcpvresult_H_tm06").html(data.H_tm[5]);
-                //$("#calcpvresult_H_tm07").html(data.H_tm[6]);
-                //$("#calcpvresult_H_tm08").html(data.H_tm[7]);
-                //$("#calcpvresult_H_tm09").html(data.H_tm[8]);
-                //$("#calcpvresult_H_tm10").html(data.H_tm[9]);
-                //$("#calcpvresult_H_tm11").html(data.H_tm[10]);
-                //$("#calcpvresult_H_tm12").html(data.H_tm[11]);
-
-                //$("#calcpvresult_Ta01").html(data.Ta[0]);
-                //$("#calcpvresult_Ta02").html(data.Ta[1]);
-                //$("#calcpvresult_Ta03").html(data.Ta[2]);
-                //$("#calcpvresult_Ta04").html(data.Ta[3]);
-                //$("#calcpvresult_Ta05").html(data.Ta[4]);
-                //$("#calcpvresult_Ta06").html(data.Ta[5]);
-                //$("#calcpvresult_Ta07").html(data.Ta[6]);
-                //$("#calcpvresult_Ta08").html(data.Ta[7]);
-                //$("#calcpvresult_Ta09").html(data.Ta[8]);
-                //$("#calcpvresult_Ta10").html(data.Ta[9]);
-                //$("#calcpvresult_Ta11").html(data.Ta[10]);
-                //$("#calcpvresult_Ta12").html(data.Ta[11]);
-
-                //$("#calcpvresult_D01").html(data.D[0]);
-                //$("#calcpvresult_D02").html(data.D[1]);
-                //$("#calcpvresult_D03").html(data.D[2]);
-                //$("#calcpvresult_D04").html(data.D[3]);
-                //$("#calcpvresult_D05").html(data.D[4]);
-                //$("#calcpvresult_D06").html(data.D[5]);
-                //$("#calcpvresult_D07").html(data.D[6]);
-                //$("#calcpvresult_D08").html(data.D[7]);
-                //$("#calcpvresult_D09").html(data.D[8]);
-                //$("#calcpvresult_D10").html(data.D[9]);
-                //$("#calcpvresult_D11").html(data.D[10]);
-                //$("#calcpvresult_D12").html(data.D[11]);
-
-                //$("#calcpvresult_η_tpv01").html(data.η_tpv[0]);
-                //$("#calcpvresult_η_tpv02").html(data.η_tpv[1]);
-                //$("#calcpvresult_η_tpv03").html(data.η_tpv[2]);
-                //$("#calcpvresult_η_tpv04").html(data.η_tpv[3]);
-                //$("#calcpvresult_η_tpv05").html(data.η_tpv[4]);
-                //$("#calcpvresult_η_tpv06").html(data.η_tpv[5]);
-                //$("#calcpvresult_η_tpv07").html(data.η_tpv[6]);
-                //$("#calcpvresult_η_tpv08").html(data.η_tpv[7]);
-                //$("#calcpvresult_η_tpv09").html(data.η_tpv[8]);
-                //$("#calcpvresult_η_tpv10").html(data.η_tpv[9]);
-                //$("#calcpvresult_η_tpv11").html(data.η_tpv[10]);
-                //$("#calcpvresult_η_tpv12").html(data.η_tpv[11]);
-
-                //$("#calcpvresult_η_spv01").html(data.η_spv[0]);
-                //$("#calcpvresult_η_spv02").html(data.η_spv[1]);
-                //$("#calcpvresult_η_spv03").html(data.η_spv[2]);
-                //$("#calcpvresult_η_spv04").html(data.η_spv[3]);
-                //$("#calcpvresult_η_spv05").html(data.η_spv[4]);
-                //$("#calcpvresult_η_spv06").html(data.η_spv[5]);
-                //$("#calcpvresult_η_spv07").html(data.η_spv[6]);
-                //$("#calcpvresult_η_spv08").html(data.η_spv[7]);
-                //$("#calcpvresult_η_spv09").html(data.η_spv[8]);
-                //$("#calcpvresult_η_spv10").html(data.η_spv[9]);
-                //$("#calcpvresult_η_spv11").html(data.η_spv[10]);
-                //$("#calcpvresult_η_spv12").html(data.η_spv[11]);
-
-                //$("#calcpvresult_T_c01").html(data.T_c[0]);
-                //$("#calcpvresult_T_c02").html(data.T_c[1]);
-                //$("#calcpvresult_T_c03").html(data.T_c[2]);
-                //$("#calcpvresult_T_c04").html(data.T_c[3]);
-                //$("#calcpvresult_T_c05").html(data.T_c[4]);
-                //$("#calcpvresult_T_c06").html(data.T_c[5]);
-                //$("#calcpvresult_T_c07").html(data.T_c[6]);
-                //$("#calcpvresult_T_c08").html(data.T_c[7]);
-                //$("#calcpvresult_T_c09").html(data.T_c[8]);
-                //$("#calcpvresult_T_c10").html(data.T_c[9]);
-                //$("#calcpvresult_T_c11").html(data.T_c[10]);
-                //$("#calcpvresult_T_c12").html(data.T_c[11]);
-
-                //if ($("#calcpv_PanelOrientationId").val() == 4) {
-                //    $("#calcpvresult_β_h01").html(data.β_h[0]);
-                //    $("#calcpvresult_β_h02").html(data.β_h[1]);
-                //    $("#calcpvresult_β_h03").html(data.β_h[2]);
-                //    $("#calcpvresult_β_h04").html(data.β_h[3]);
-                //    $("#calcpvresult_β_h05").html(data.β_h[4]);
-                //    $("#calcpvresult_β_h06").html(data.β_h[5]);
-                //    $("#calcpvresult_β_h07").html(data.β_h[6]);
-                //    $("#calcpvresult_β_h08").html(data.β_h[7]);
-                //    $("#calcpvresult_β_h09").html(data.β_h[8]);
-                //    $("#calcpvresult_β_h10").html(data.β_h[9]);
-                //    $("#calcpvresult_β_h11").html(data.β_h[10]);
-                //    $("#calcpvresult_β_h12").html(data.β_h[11]);
-                //}
                 var S_pv = [];
                 for (i = 0; i < data.S_pv_c.length; i++) {
                     S_pv.push([data.S_pv_c[i].X, data.S_pv_c[i].Y]);
                 }
-                //$('#CalcPVResultChart').show();
                 var options = {
                     axisLabels: {
                         show: true
@@ -1793,12 +1570,7 @@
                     }],
                     canvas: true
                 };
-                //calcpvresultchart = $.plot("#calcpvresult_chart", [S_pv],
-                //    {
-                //        canvas: true
-                //    });
                 calcpvresultchart = $.plot("#calcpvresult_chart", [S_pv], options);
-                //$('#CalcPVResult').show();
 
                 if (dialog_calcpvresult_first) {
                     $("#dialog_calcpvresult").dialog({
@@ -1819,12 +1591,11 @@
             },
             error: function () {
                 document.getElementById("loading").style.display = "none";
-                alert('Error');
             }
         });
     };
 
-    // расчет площади PV системы: скачать диаграмму
+    // calculation of the area of the PV system: download the diagram
     function DownloadCalcPVChart() {
         var myCanvas = calcpvresultchart.getCanvas();
         $("#calcpvresult_chart_download").attr("src", myCanvas.toDataURL());
@@ -1838,19 +1609,19 @@
                     window.open(data.FilePath);
                 }
                 else {
-                    alert(data.Error);
+                    console.log(data.Error);
                 }
             },
             error: function () {
-                alert('Error');
+                console.log('Error');
             }
         });
     };
 </script>
 
-@* расчет производительности PV системы *@
+@* PV system performance calculation *@
 <script>
-    // расчет производительности PV системы: изменение типа материала
+    // PV system performance calculation: material type change
     function CalcEfficiencyChangePVSystemMaterial(val) {
         $.ajax({
             url: '@Url.Action("GetPVSystemMaterial")',
@@ -1867,7 +1638,7 @@
         });
     };
 
-    // расчет производительности PV системы: изменение типа ориентации
+    // PV system performance calculation: orientation type change
     function CalcEfficiencyChangePanelOrientation(val) {
         if (val == 1) {
             $("#calcefficiency_azimuth").prop('readonly', true);
@@ -1890,18 +1661,15 @@
             $("#calcefficiency_tilt").prop('readonly', false);
         }
         else if (val == 4) {
-            //$("#calcefficiency_azimuth").prop('readonly', true);
-            //$("#calcefficiency_azimuth").val('');
             $("#calcefficiency_azimuth").prop('readonly', false);
             $("#calcefficiency_tilt").prop('readonly', true);
             $("#calcefficiency_tilt").val('');
         }
     };
 
-    // расчет производительности PV системы
+    // PV system performance calculation
     function CalcEfficiency() {
         var LossesSnowMoths = [];
-        var favorite = [];
         $.each($("input[name='calcefficiency_lossessnow_month']:checked"), function () {
             LossesSnowMoths.push($(this).val());
         });
@@ -1915,8 +1683,6 @@
                 "SPPPurposeId": $("#calcefficiency_SPPPurposeId").val(),
                 "PanelOrientationId": $("#calcefficiency_PanelOrientationId").val(),
                 "PVSystemMaterialId": $("#calcefficiency_PVSystemMaterialId").val(),
-                //"RatedPower": parseFloat($("#calcefficiency_rated_power").val().replace(",", ".")),
-                //"PanelsCount": $("#calcefficiency_panels_count").val(),
                 "PanelsArea": parseFloat($("#calcefficiency_panels_area").val().replace(",", ".")),
                 "PanelEfficiency": parseFloat($("#calcefficiency_panel_efficiency").val().replace(",", ".")),
                 "RatedOperatingTemperature": $("#calcefficiency_rated_operating_temperature").val(),
@@ -1936,30 +1702,6 @@
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                //$("#calcefficiencyresult_Longitude").html(data.Longitude);
-                //$("#calcefficiencyresult_Latitude").html(data.Latitude);
-                //$("#calcefficiencyresult_SPPPurpose").html(data.SPPPurpose);
-                //$("#calcefficiencyresult_PanelOrientation").html(data.PanelOrientation);
-                //$("#calcefficiencyresult_PVSystemMaterial").html(data.PVSystemMaterial);
-                //$("#calcefficiencyresult_RatedPower").html(data.RatedPower);
-                //$("#calcefficiencyresult_PanelsCount").html(data.PanelsCount);
-                //$("#calcefficiencyresult_PanelEfficiency").html(data.PanelEfficiency);
-                //$("#calcefficiencyresult_RatedOperatingTemperature").html(data.RatedOperatingTemperature);
-                //$("#calcefficiencyresult_ThermalPowerFactor").html(data.ThermalPowerFactor);
-                //$("#calcefficiencyresult_Tilt").html(data.Tilt);
-                //$("#calcefficiencyresult_Azimuth").html(data.Azimuth);
-                //$("#calcefficiencyresult_WiringEfficiency").html(data.WiringEfficiency);
-                //$("#calcefficiencyresult_ControllerEfficiency").html(data.ControllerEfficiency);
-                //$("#calcefficiencyresult_InverterEfficiency").html(data.InverterEfficiency);
-                //$("#calcefficiencyresult_BatteryEfficiency").html(data.BatteryEfficiency);
-                //$("#calcefficiencyresult_LossesSoil").html(data.LossesSoil);
-                //$("#calcefficiencyresult_LossesSnow").html(data.LossesSnow);
-                //$("#calcefficiencyresult_LossesShad").html(data.LossesShad);
-                //$("#calcefficiencyresult_LossesMis").html(data.LossesMis);
-                //$("#calcefficiencyresult_H_td_average").html(data.H_td_average);
-                //$("#calcefficiencyresult_η_epv").html(data.η_epv);
-                //$("#calcefficiencyresult_S_pv").html(data.S_pv);
-
                 $("#calcefficiencyresult_month01").html($("#month01").text());
                 $("#calcefficiencyresult_month02").html($("#month02").text());
                 $("#calcefficiencyresult_month03").html($("#month03").text());
@@ -2002,117 +1744,10 @@
                 $("#calcefficiencyresult_H_td12").html(data.H_td[11]);
                 $("#calcefficiencyresult_H_tdyear").html(data.H_td_year);
 
-                //$("#calcefficiencyresult_H_tah01").html(data.H_tah[0]);
-                //$("#calcefficiencyresult_H_tah02").html(data.H_tah[1]);
-                //$("#calcefficiencyresult_H_tah03").html(data.H_tah[2]);
-                //$("#calcefficiencyresult_H_tah04").html(data.H_tah[3]);
-                //$("#calcefficiencyresult_H_tah05").html(data.H_tah[4]);
-                //$("#calcefficiencyresult_H_tah06").html(data.H_tah[5]);
-                //$("#calcefficiencyresult_H_tah07").html(data.H_tah[6]);
-                //$("#calcefficiencyresult_H_tah08").html(data.H_tah[7]);
-                //$("#calcefficiencyresult_H_tah09").html(data.H_tah[8]);
-                //$("#calcefficiencyresult_H_tah10").html(data.H_tah[9]);
-                //$("#calcefficiencyresult_H_tah11").html(data.H_tah[10]);
-                //$("#calcefficiencyresult_H_tah12").html(data.H_tah[11]);
-
-                //$("#calcefficiencyresult_H_tm01").html(data.H_tm[0]);
-                //$("#calcefficiencyresult_H_tm02").html(data.H_tm[1]);
-                //$("#calcefficiencyresult_H_tm03").html(data.H_tm[2]);
-                //$("#calcefficiencyresult_H_tm04").html(data.H_tm[3]);
-                //$("#calcefficiencyresult_H_tm05").html(data.H_tm[4]);
-                //$("#calcefficiencyresult_H_tm06").html(data.H_tm[5]);
-                //$("#calcefficiencyresult_H_tm07").html(data.H_tm[6]);
-                //$("#calcefficiencyresult_H_tm08").html(data.H_tm[7]);
-                //$("#calcefficiencyresult_H_tm09").html(data.H_tm[8]);
-                //$("#calcefficiencyresult_H_tm10").html(data.H_tm[9]);
-                //$("#calcefficiencyresult_H_tm11").html(data.H_tm[10]);
-                //$("#calcefficiencyresult_H_tm12").html(data.H_tm[11]);
-
-                //$("#calcefficiencyresult_Ta01").html(data.Ta[0]);
-                //$("#calcefficiencyresult_Ta02").html(data.Ta[1]);
-                //$("#calcefficiencyresult_Ta03").html(data.Ta[2]);
-                //$("#calcefficiencyresult_Ta04").html(data.Ta[3]);
-                //$("#calcefficiencyresult_Ta05").html(data.Ta[4]);
-                //$("#calcefficiencyresult_Ta06").html(data.Ta[5]);
-                //$("#calcefficiencyresult_Ta07").html(data.Ta[6]);
-                //$("#calcefficiencyresult_Ta08").html(data.Ta[7]);
-                //$("#calcefficiencyresult_Ta09").html(data.Ta[8]);
-                //$("#calcefficiencyresult_Ta10").html(data.Ta[9]);
-                //$("#calcefficiencyresult_Ta11").html(data.Ta[10]);
-                //$("#calcefficiencyresult_Ta12").html(data.Ta[11]);
-
-                //$("#calcefficiencyresult_D01").html(data.D[0]);
-                //$("#calcefficiencyresult_D02").html(data.D[1]);
-                //$("#calcefficiencyresult_D03").html(data.D[2]);
-                //$("#calcefficiencyresult_D04").html(data.D[3]);
-                //$("#calcefficiencyresult_D05").html(data.D[4]);
-                //$("#calcefficiencyresult_D06").html(data.D[5]);
-                //$("#calcefficiencyresult_D07").html(data.D[6]);
-                //$("#calcefficiencyresult_D08").html(data.D[7]);
-                //$("#calcefficiencyresult_D09").html(data.D[8]);
-                //$("#calcefficiencyresult_D10").html(data.D[9]);
-                //$("#calcefficiencyresult_D11").html(data.D[10]);
-                //$("#calcefficiencyresult_D12").html(data.D[11]);
-
-                //$("#calcefficiencyresult_η_tpv01").html(data.η_tpv[0]);
-                //$("#calcefficiencyresult_η_tpv02").html(data.η_tpv[1]);
-                //$("#calcefficiencyresult_η_tpv03").html(data.η_tpv[2]);
-                //$("#calcefficiencyresult_η_tpv04").html(data.η_tpv[3]);
-                //$("#calcefficiencyresult_η_tpv05").html(data.η_tpv[4]);
-                //$("#calcefficiencyresult_η_tpv06").html(data.η_tpv[5]);
-                //$("#calcefficiencyresult_η_tpv07").html(data.η_tpv[6]);
-                //$("#calcefficiencyresult_η_tpv08").html(data.η_tpv[7]);
-                //$("#calcefficiencyresult_η_tpv09").html(data.η_tpv[8]);
-                //$("#calcefficiencyresult_η_tpv10").html(data.η_tpv[9]);
-                //$("#calcefficiencyresult_η_tpv11").html(data.η_tpv[10]);
-                //$("#calcefficiencyresult_η_tpv12").html(data.η_tpv[11]);
-
-                //$("#calcefficiencyresult_η_spv01").html(data.η_spv[0]);
-                //$("#calcefficiencyresult_η_spv02").html(data.η_spv[1]);
-                //$("#calcefficiencyresult_η_spv03").html(data.η_spv[2]);
-                //$("#calcefficiencyresult_η_spv04").html(data.η_spv[3]);
-                //$("#calcefficiencyresult_η_spv05").html(data.η_spv[4]);
-                //$("#calcefficiencyresult_η_spv06").html(data.η_spv[5]);
-                //$("#calcefficiencyresult_η_spv07").html(data.η_spv[6]);
-                //$("#calcefficiencyresult_η_spv08").html(data.η_spv[7]);
-                //$("#calcefficiencyresult_η_spv09").html(data.η_spv[8]);
-                //$("#calcefficiencyresult_η_spv10").html(data.η_spv[9]);
-                //$("#calcefficiencyresult_η_spv11").html(data.η_spv[10]);
-                //$("#calcefficiencyresult_η_spv12").html(data.η_spv[11]);
-
-                //$("#calcefficiencyresult_T_c01").html(data.T_c[0]);
-                //$("#calcefficiencyresult_T_c02").html(data.T_c[1]);
-                //$("#calcefficiencyresult_T_c03").html(data.T_c[2]);
-                //$("#calcefficiencyresult_T_c04").html(data.T_c[3]);
-                //$("#calcefficiencyresult_T_c05").html(data.T_c[4]);
-                //$("#calcefficiencyresult_T_c06").html(data.T_c[5]);
-                //$("#calcefficiencyresult_T_c07").html(data.T_c[6]);
-                //$("#calcefficiencyresult_T_c08").html(data.T_c[7]);
-                //$("#calcefficiencyresult_T_c09").html(data.T_c[8]);
-                //$("#calcefficiencyresult_T_c10").html(data.T_c[9]);
-                //$("#calcefficiencyresult_T_c11").html(data.T_c[10]);
-                //$("#calcefficiencyresult_T_c12").html(data.T_c[11]);
-
-                //if ($("#calcefficiency_PanelOrientationId").val() == 4) {
-                //    $("#calcefficiencyresult_β_h01").html(data.β_h[0]);
-                //    $("#calcefficiencyresult_β_h02").html(data.β_h[1]);
-                //    $("#calcefficiencyresult_β_h03").html(data.β_h[2]);
-                //    $("#calcefficiencyresult_β_h04").html(data.β_h[3]);
-                //    $("#calcefficiencyresult_β_h05").html(data.β_h[4]);
-                //    $("#calcefficiencyresult_β_h06").html(data.β_h[5]);
-                //    $("#calcefficiencyresult_β_h07").html(data.β_h[6]);
-                //    $("#calcefficiencyresult_β_h08").html(data.β_h[7]);
-                //    $("#calcefficiencyresult_β_h09").html(data.β_h[8]);
-                //    $("#calcefficiencyresult_β_h10").html(data.β_h[9]);
-                //    $("#calcefficiencyresult_β_h11").html(data.β_h[10]);
-                //    $("#calcefficiencyresult_β_h12").html(data.β_h[11]);
-                //}
-
                 var W_PV = [];
                 for (i = 0; i < data.W_PV_c.length; i++) {
                     W_PV.push([data.W_PV_c[i].X, data.W_PV_c[i].Y]);
                 }
-                //$('#CalcEfficiencyResultChart').show();
                 var options = {
                     axisLabels: {
                         show: true
@@ -2121,43 +1756,9 @@
                         show: true,
                         margin: 15
                     },
-                    //margin: {
-                    //    top: 50,
-                    //    left: 50,
-                    //    bottom: 50,
-                    //    right: 50
-                    //},
-                    //labelMargin: {
-                    //    top: 50,
-                    //    left: 50,
-                    //    bottom: 50,
-                    //    right: 50
-                    //},
-                    //borderWidth: {
-                    //    top: 5,
-                    //    left: 5,
-                    //    bottom: 5,
-                    //    right: 5
-                    //},
-                    //xaxes: [{
-                    //    axisLabel: $('#Month').html(),
-                    //    axisLabelPadding: 15,
-                    //}],
-                    //yaxes: [{
-                    //    position: 'left',
-                    //    axisLabel: $('#AverageMonthlyOutputPowerOfThePVSystem').html(),
-                    //    axisLabelPadding: 25,
-                    //}, {
-                    //    position: 'right',
-                    //    axisLabel: 'bleem'
-                    //}],
                     canvas: true
                 };
                 calcefficiencyresultchart = $.plot("#calcefficiencyresult_chart", [W_PV], options);
-                //$('#CalcEfficiencyResult').show();
-
-                
-
                 if (dialog_calcefficiencyresult_first) {
                     $("#dialog_calcefficiencyresult").dialog({
                         width: 1050,
@@ -2177,35 +1778,13 @@
 
                     });
                 }
-
                 calcefficiencyresultchart.setupGrid();
                 calcefficiencyresultchart.draw();
-
-                //calcefficiencyresultchart.getCanvas().getContext("2d").fillText("Hello World", canvas.width / 2, canvas.height / 2);
-                
-
                 document.getElementById("loading").style.display = "none";
-                //calcefficiencyresultchart.draw();
-
-                //var canvas = calcefficiencyresultchart.getCanvas();
-                //var ctx = canvas.getContext("2d");
-                //ctx.save();
-                //ctx.fillStyle = "brown";
-                //ctx.textAlign = "center";
-                //ctx.fillText($('#Month').html(), canvas.width / 2, canvas.height - 10);
-                //var tx = 60;
-                //var ty = (50);
-                //ctx.rotate(-Math.PI / 2);
-                //ctx.fillStyle = "brown";
-                //ctx.textAlign = "center";
-                //ctx.fillText($('#AverageMonthlyOutputPowerOfThePVSystem').html(), -canvas.height / 2, 10);
-                //ctx.restore();
-
                 setTimeout(FlotLabels, 500);
             },
             error: function () {
                 document.getElementById("loading").style.display = "none";
-                alert('Error');
             }
         });
     };
@@ -2217,8 +1796,6 @@
         ctx.fillStyle = "brown";
         ctx.textAlign = "center";
         ctx.fillText($('#Month').html(), canvas.width / 2, canvas.height - 10);
-        var tx = 60;
-        var ty = (50);
         ctx.rotate(-Math.PI / 2);
         ctx.fillStyle = "brown";
         ctx.textAlign = "center";
@@ -2226,7 +1803,7 @@
         ctx.restore();
     };
 
-    // расчет производительности PV системы: скачать параметры PV-системы
+    // calculation of PV system performance: download PV system parameters
     function DownloadCalcEfficiencyResult() {
         var myTableArray = [];
         $("table#CalcEfficiencyResultParamsTable tr").each(function () {
@@ -2260,56 +1837,17 @@
         });
     };
 
-    // расчет производительности PV системы: скачать диаграмму
+    // calculation of PV system performance: download a diagram
     function DownloadCalcEfficiencyChart() {
         var myCanvas = calcefficiencyresultchart.getCanvas();
-        
-        //var canvas = calcefficiencyresultchart.getCanvas();
-        //var ctx = canvas.getContext("2d");
-        //ctx.save();
-        //ctx.fillStyle = "brown";
-        //ctx.textAlign = "center";
-        //ctx.fillText($('#Month').html(), canvas.width / 2, canvas.height - 10);
-        //var tx = 60;
-        //var ty = (50);
-        //ctx.rotate(-Math.PI / 2);
-        //ctx.fillStyle = "brown";
-        //ctx.textAlign = "center";
-        //ctx.fillText($('#AverageMonthlyOutputPowerOfThePVSystem').html(), -canvas.height / 2, 10);
-        //ctx.restore();
-
-        @*$("#calcefficiencyresult_chart_download").attr("src", myCanvas.toDataURL());
-        var picture = $('#calcefficiencyresult_chart_download').attr("src");
-        $.ajax({
-            type: 'POST',
-            url: '@Url.Action("GetChart")',
-            data: { source: picture },
-            success: function (data) {
-                if (data.Error == null) {
-                    window.open(data.FilePath);
-                    //window.location = data.FilePath;
-                }
-                else {
-                    alert(data.Error);
-                }
-            },
-            error: function () {
-                alert('Error');
-            }
-        });*@
         var c = myCanvas;
         var d = c.toDataURL("image/png");
         var w = window.open('about:blank', 'image from canvas');
-        //var w = window.open(c.toDataURL('image/png'));
         w.document.write("<img src='" + d + "' alt='from canvas'/>");
-
-        //var image = myCanvas.toDataURL();
-        //image = image.replace("image/png", "image/octet-stream");
-        //document.location.href = image;
     };
 </script>
 
-@* анализ местности *@
+@* terrain analysis *@
 <script>
     function AnalizeTerrain() {
         document.getElementById("loading").style.display = "block";
@@ -2343,41 +1881,13 @@
                 "Exclude_park": $("input[name='analize_terrain_park_exclude']").prop("checked"),
                 "Exclude_natres": $("input[name='analize_terrain_natres_exclude']").prop("checked"),
                 "Exclude_preserve": $("input[name='analize_terrain_preserve_exclude']").prop("checked")
-
-
-
-                //"Importances_lep": $("#analize_terrain_sum_swv_dwn").val(),
-                //"Max_lep": $("#analize_terrain_lep_max").val(),
-                //"Importances_road": $("#analize_terrain_road").val(),
-                //"Max_road": $("#analize_terrain_road_max").val(),
-                //"Importances_np": $("#analize_terrain_np").val(),
-                //"Max_np": $("#analize_terrain_np_max").val(),
-                //"Importances_slope_blh": $("#analize_terrain_slope_blh").val(),
-                //"Max_slope_blh": $("#analize_terrain_slope_blh_max").val(),
-                //"Importances_srtm_blh": $("#analize_terrain_srtm_blh").val(),
-                //"Max_srtm_blh": $("#analize_terrain_srtm_blh_max").val(),
-                //"Exclude_oopt": $("input[name='analize_terrain_oopt_exclude']").prop("checked"),
-                //"Exclude_wood": $("input[name='analize_terrain_wood_exclude']").prop("checked"),
-                //"Exclude_hydro": $("input[name='analize_terrain_hydro_exclude']").prop("checked"),
-                //"Exclude_pamatniki": $("input[name='analize_terrain_pamatniki_exclude']").prop("checked"),
-                //"Exclude_np": $("input[name='analize_terrain_np_exclude']").prop("checked")
             }),
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 if (!data.ErrorMessage) {
-
-                    
-                    //var Source_AnalizeTerrain_buf = new ol.source.TileWMS();
-                    //var Layer_AnalizeTerrain_buf = new ol.layer.Tile({source: Source_AnalizeTerrain_buf});
-                    //Layer_AnalizeTerrain_buf.setVisible(false);
-
-                    //alert(map.getLayers()[map.getLayers().length - 1]);
-                    //map.removeLayer(map.getLayers()[map.getLayers().length - 1]);
-                    //map.removeLayer(Layer_AnalizeTerrain);
-
                     Source_AnalizeTerrain = new ol.source.TileWMS({
-                        url: 'http://' + gip + ':8080/geoserver/AtlasSolar/wms?',//service=WMS&request=GetMap&srs=EPSG:3857&format=application/openlayers&',
+                        url: gip + ':' + gport + '/geoserver/AtlasSolar/wms?',
                         params: {
                             'LAYERS': 'AtlasSolar:' + data.Layer,
                             'VERSION': '1.1.0',
@@ -2386,8 +1896,6 @@
                             'SRS': 'EPSG:3857'
                         },
                         serverType: 'geoserver'
-                        //,
-                        //projection: 'EPSG:3857'
                     });
                     if (map.getView().getZoom() > 7){
                         map.getView().setZoom(7);
@@ -2406,22 +1914,18 @@
                     $('#legend_analizeterrain').show();
                     var index = $('#tabs a[href="#Legend"]').parent().index();
                     $("#tabs").tabs("option", "active", index);
-
-                    //Layer_AnalizeTerrain = Layer_AnalizeTerrain_buf;
-                    //Source_AnalizeTerrain = Source_AnalizeTerrain_buf;
-                    //map.addLayer(Layer_AnalizeTerrain_buf);    
                     var editedHref = $('#analize_terrain_downloadlink').attr('href').split('?')[0];
                     $('#analize_terrain_downloadlink').attr('href', editedHref + '?FileName=' + data.Layer + '&Folder=AnalizeTerrain');
                     document.getElementById("analize_terrain_downloadlink").style.display = "inline-block";
                 }
                 else {
-                    alert(data.ErrorMessage);
+                    console.log(data.ErrorMessage);
                 }
                 document.getElementById("loading").style.display = "none";
             },
             error: function () {
                 document.getElementById("loading").style.display = "none";
-                alert('error');
+                console.log('error');
             }
         });
     };
@@ -2453,18 +1957,8 @@
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 if (!data.ErrorMessage) {
-
-
-                    //var Source_AnalizeTerrain_buf = new ol.source.TileWMS();
-                    //var Layer_AnalizeTerrain_buf = new ol.layer.Tile({source: Source_AnalizeTerrain_buf});
-                    //Layer_AnalizeTerrain_buf.setVisible(false);
-
-                    //alert(map.getLayers()[map.getLayers().length - 1]);
-                    //map.removeLayer(map.getLayers()[map.getLayers().length - 1]);
-                    //map.removeLayer(Layer_AnalizeTerrain);
-
                     Source_AnalizeTerrain = new ol.source.TileWMS({
-                        url: 'http://' + gip + ':8080/geoserver/AtlasSolar/wms?',//service=WMS&request=GetMap&srs=EPSG:3857&format=application/openlayers&',
+                        url: gip + ':' + gport + '/geoserver/AtlasSolar/wms?',
                         params: {
                             'LAYERS': 'AtlasSolar:' + data.Layer,
                             'VERSION': '1.1.0',
@@ -2473,8 +1967,6 @@
                             'SRS': 'EPSG:3857'
                         },
                         serverType: 'geoserver'
-                        //,
-                        //projection: 'EPSG:3857'
                     });
                     if (map.getView().getZoom() > 7) {
                         map.getView().setZoom(7);
@@ -2493,29 +1985,24 @@
                     $('#legend_analizeterrain').show();
                     var index = $('#tabs a[href="#Legend"]').parent().index();
                     $("#tabs").tabs("option", "active", index);
-
-                    //Layer_AnalizeTerrain = Layer_AnalizeTerrain_buf;
-                    //Source_AnalizeTerrain = Source_AnalizeTerrain_buf;
-                    //map.addLayer(Layer_AnalizeTerrain_buf);                    
                 }
                 else {
-                    alert(data.ErrorMessage);
+                    console.log(data.ErrorMessage);
                 }
             },
             error: function () {
-                alert('error');
+                console.log('error');
             }
         });
     };
 </script>
 
-@* поиск местности *@
+@* Find terrain *@
 <script>
     var formulas = $("#formulas");
     var formula = $("#find_terrain_formula");
     var operands = $("#operands");
     var message = $("#message");
-    //var expectFormula = true;
 
     formulas.dblclick(function () {
         if (formula.val()[formula.val().length - 1] != ' ') {
@@ -2569,11 +2056,10 @@
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                alert(data.FilePath);
                 window.location = data.FilePath;
             },
             error: function () {
-                alert('Error');
+                console.log('Error');
             }
         });
     };
@@ -2591,7 +2077,7 @@
             success: function (data) {
                 if (!data.ErrorMessage) {
                     Source_FindTerrain = new ol.source.TileWMS({
-                        url: 'http://' + gip + ':8080/geoserver/AtlasSolar/wms?',
+                        url: gip + ':' + gport + '/geoserver/AtlasSolar/wms?',
                         params: {
                             'LAYERS': 'AtlasSolar:' + data.Layer,
                             'VERSION': '1.1.0',
@@ -2619,47 +2105,25 @@
                     var index = $('#tabs a[href="#Legend"]').parent().index();
                     $("#tabs").tabs("option", "active", index);
 
-
                     var editedHref = $('#find_terrain_downloadlink').attr('href').split('?')[0];
                     $('#find_terrain_downloadlink').attr('href', editedHref + '?FileName=' + data.Layer + '&Folder=FindTerrain');
                     document.getElementById("find_terrain_downloadlink").style.display = "inline-block";
                 }
                 else {
-                    alert(data.ErrorMessage);
+                    console.log(data.ErrorMessage);
                 }
                 document.getElementById("loading").style.display = "none";
             },
             error: function () {
                 document.getElementById("loading").style.display = "none";
-                alert('error');
+                console.log('error');
             }
         });
     };
 </script>
 
-@* получение метеоданых *@
+@* receiving weather data *@
 <script>
-    @*function GetMeteoDataRefreshMeteoDataTypeIds() {
-        $.ajax({
-            url: '@Url.Action("GetMeteoDataTypes")',
-            data: JSON.stringify({
-                "MeteoDataPeriodicityId": $('#get_meteo_data_meteodataperiodicityid').val(),
-                "MeteoDataSourceId": $('#get_meteo_data_meteodatasourceid').val()
-            }),
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            success: function (data) {
-                $("#get_meteo_data_meteodatatypeid").empty();
-                $.each(data, function (i) {
-                    var optionhtml = '<option value="' +
-                data[i].Value + '">' + data[i].Text + '</option>';
-                    $('#get_meteo_data_meteodatatypeid').append(optionhtml);
-                });
-            },
-            error: function () {
-            }
-        });
-    };*@
     function GetMeteoDataPeriodicitiesBySource() {
         $.ajax({
             url: '@Url.Action("GetMeteoDataPeriodicitiesBySource")',
@@ -2736,7 +2200,7 @@
     };
 </script>
 
-@* получение метеоданых по области *@
+@* receiving weather data by province *@
 <script>
     function GetMeteoDataRegionPeriodicitiesBySource() {
         $.ajax({
@@ -2801,8 +2265,8 @@
                         window.location = data.FilePath;
                     }
                     else {
-                        alert(data.Error);
                     }
+                        alert(data.Error);
                     document.getElementById("loading").style.display = "none";
                 },
                 error: function () {
@@ -2813,7 +2277,7 @@
     };
 </script>
 
-@* СЭС *@
+@* Solar power plants *@
 <script>
     window.onload = function () {
         document.getElementById('uploader').onsubmit = function () {
@@ -2828,7 +2292,7 @@
             var geom = new ol.geom.Point(
                 [lon3857, lat3857]
             );
-            ///////////////
+
             if ($("#create_spp_Name").val() == '') {
                 alert($("#EnterName").html());
                 return false;
@@ -2853,7 +2317,7 @@
                 var d = new Date();
                 var y = d.getFullYear();
                 if ($("#create_spp_Startup").val() < y) {
-                    alert('Неверный год');
+                    alert($("#WrongYear").html());
                     return false;
                 }
             }
@@ -2910,7 +2374,7 @@
             $("#dialog_create_spp").dialog("close");
             return false;
         }
-        //--------------------
+
         document.getElementById('edit_spp').onsubmit = function () {
             if (role != 'Admin' && role != 'Moderator') {
                 return;
@@ -2923,7 +2387,7 @@
             var geom = new ol.geom.Point(
                 [lon3857, lat3857]
             );
-            ///////////////
+
             if ($("#edit_spp_Name").val() == '') {
                 alert($("#EnterName").html());
                 return false;
@@ -2948,7 +2412,7 @@
                 var d = new Date();
                 var y = d.getFullYear();
                 if ($("#edit_spp_Startup").val() < y) {
-                    alert('Неверный год');
+                    alert($("#WrongYear").html());
                     return false;
                 }
             }
@@ -3105,7 +2569,7 @@
     };
 </script>
 
-@* ЛЭП *@
+@* Power lines *@
 <script>
     function ShowLepInfoDialog(gid) {
         for (i = 0; i < lep_gid.length; i++) {
@@ -3132,30 +2596,8 @@
     };
 </script>
 
-@* сравнение точек *@
+@* Compare points *@
 <script>
-    // сравнение точек: обновление списка метеоданных
-    @*function ComparePointsRefreshMeteoDataTypeIds() {
-        $.ajax({
-            url: '@Url.Action("GetMeteoDataTypes")',
-            data: JSON.stringify({
-                "MeteoDataPeriodicityId": $('#compare_points_meteodataperiodicityid').val(),
-                "MeteoDataSourceId": $('#compare_points_meteodatasourceid').val()
-            }),
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            success: function (data) {
-                $("#compare_points_meteodatatypeid").empty();
-                $.each(data, function (i) {
-                    var optionhtml = '<option value="' +
-                data[i].Value + '">' + data[i].Text + '</option>';
-                    $('#compare_points_meteodatatypeid').append(optionhtml);
-                });
-            },
-            error: function () {
-            }
-        });
-    };*@
     function ComparePointsPeriodicitiesBySource() {
         $.ajax({
             url: '@Url.Action("GetMeteoDataPeriodicitiesBySourceComparePoints")',
@@ -3224,13 +2666,13 @@
         });
     };
 
-    // сравнение точек
+    // Compare points
     function ComparePointsSet(point) {
         tool = 'setpoint';
         set_point_number = point;
     };
 
-    // сравнение точек
+    // Compare points
     function ComparePoints() {
         if ($('#compare_points_meteodatatypeid').val() == null) {
             alert($('#SelectMeteoDataType').html());
@@ -3287,7 +2729,6 @@
                                 }
                             },
                             xaxis: {
-                                //mode: "time",
                                 tickLength: 0,
                                 ticks: X
                             },
@@ -3326,7 +2767,7 @@
     };
 </script>
 
-@* маска ввода *@
+@* input mask *@
 <script>
     var selector = document.getElementById("create_spp_longitude");
     Inputmask({
@@ -3476,12 +2917,12 @@
     selector = document.getElementById("calcpv_controllerefficiency");
     Inputmask(
         {
-        "mask": "9,9[9]",
-        skipOptionalPartCharacter: " ",
-        clearMaskOnLostFocus: true,
-        greedy: false,
-        "placeholder": "0"
-    }).mask(selector);
+            "mask": "9,9[9]",
+            skipOptionalPartCharacter: " ",
+            clearMaskOnLostFocus: true,
+            greedy: false,
+            "placeholder": "0"
+        }).mask(selector);
 
     selector = document.getElementById("calcpv_inverterefficiency");
     Inputmask({
@@ -3501,15 +2942,6 @@
         "placeholder": "0"
     }).mask(selector);
 
-    //selector = document.getElementById("calcpv_azimuth");
-    //Inputmask({
-    //    "mask": "[-]9[9][9]",
-    //    skipOptionalPartCharacter: " ",
-    //    clearMaskOnLostFocus: true,
-    //    greedy: false,
-    //    "placeholder": "0",
-    //    allowMinus: true
-    //}).mask(selector);
     $("#calcpv_azimuth").inputmask("numeric", {
         min: -180,
         max: 180,
@@ -3520,14 +2952,6 @@
         rightAlign: false
     });
 
-    //selector = document.getElementById("calcpv_tilt");
-    //Inputmask({
-    //    "mask": "9[9]",
-    //    skipOptionalPartCharacter: " ",
-    //    clearMaskOnLostFocus: true,
-    //    greedy: false,
-    //    "placeholder": "0"
-    //}).mask(selector);
     $("#calcpv_tilt").inputmask("numeric", {
         min: 0,
         max: 90,
@@ -3592,24 +3016,6 @@
         "placeholder": "0"
     }).mask(selector);
 
-    //selector = document.getElementById("calcefficiency_rated_power");
-    //Inputmask({
-    //    "mask": "9[9][9][9][9][9]",
-    //    skipOptionalPartCharacter: " ",
-    //    clearMaskOnLostFocus: true,
-    //    greedy: false,
-    //    "placeholder": "0"
-    //}).mask(selector);
-
-    //selector = document.getElementById("calcefficiency_panels_count");
-    //Inputmask({
-    //    "mask": "9[9][9][9][9]",
-    //    skipOptionalPartCharacter: " ",
-    //    clearMaskOnLostFocus: true,
-    //    greedy: false,
-    //    "placeholder": "0"
-    //}).mask(selector);
-
     selector = document.getElementById("calcefficiency_panels_area");
     Inputmask({
         "mask": "9[9][9][9],9[9]",
@@ -3619,14 +3025,6 @@
         "placeholder": "0"
     }).mask(selector);
 
-    //selector = document.getElementById("calcefficiency_panel_efficiency");
-    //Inputmask({
-    //    "mask": "9,9[9][9][9]",
-    //    skipOptionalPartCharacter: " ",
-    //    clearMaskOnLostFocus: true,
-    //    greedy: false,
-    //    "placeholder": "0"
-    //}).mask(selector);
     $("#calcefficiency_panel_efficiency").inputmask("numeric", {
         radixPoint: ',',
         min: 0,
@@ -3656,14 +3054,6 @@
         "placeholder": "0"
     }).mask(selector);
 
-    //selector = document.getElementById("calcefficiency_wiringefficiency");
-    //Inputmask({
-    //    "mask": "9,9[9]",
-    //    skipOptionalPartCharacter: " ",
-    //    clearMaskOnLostFocus: true,
-    //    greedy: false,
-    //    "placeholder": "0"
-    //}).mask(selector);
     $("#calcefficiency_wiringefficiency").inputmask("numeric", {
         radixPoint: ',',
         min: 0,
@@ -3675,14 +3065,6 @@
         rightAlign: false
     });
 
-    //selector = document.getElementById("calcefficiency_controllerefficiency");
-    //Inputmask({
-    //    "mask": "9,9[9]",
-    //    skipOptionalPartCharacter: " ",
-    //    clearMaskOnLostFocus: true,
-    //    greedy: false,
-    //    "placeholder": "0"
-    //}).mask(selector);
     $("#calcefficiency_controllerefficiency").inputmask("numeric", {
         radixPoint: ',',
         min: 0,
@@ -3694,14 +3076,6 @@
         rightAlign: false
     });
 
-    //selector = document.getElementById("calcefficiency_inverterefficiency");
-    //Inputmask({
-    //    "mask": "9,9[9]",
-    //    skipOptionalPartCharacter: " ",
-    //    clearMaskOnLostFocus: true,
-    //    greedy: false,
-    //    "placeholder": "0"
-    //}).mask(selector);
     $("#calcefficiency_inverterefficiency").inputmask("numeric", {
         radixPoint: ',',
         min: 0,
@@ -3713,14 +3087,6 @@
         rightAlign: false
     });
 
-    //selector = document.getElementById("calcefficiency_batteryefficiency");
-    //Inputmask({
-    //    "mask": "9,9[9]",
-    //    skipOptionalPartCharacter: " ",
-    //    clearMaskOnLostFocus: true,
-    //    greedy: false,
-    //    "placeholder": "0"
-    //}).mask(selector);
     $("#calcefficiency_batteryefficiency").inputmask("numeric", {
         radixPoint: ',',
         min: 0,
@@ -3732,15 +3098,6 @@
         rightAlign: false
     });
 
-    //selector = document.getElementById("calcefficiency_azimuth");
-    //Inputmask({
-    //    "mask": "[-]9[9][9]",
-    //    skipOptionalPartCharacter: " ",
-    //    clearMaskOnLostFocus: true,
-    //    greedy: false,
-    //    "placeholder": "0",
-    //    allowMinus: true
-    //}).mask(selector);
     $("#calcefficiency_azimuth").inputmask("numeric", {
         min: -180,
         max: 180,
@@ -3751,14 +3108,6 @@
         rightAlign: false
     });
 
-    //selector = document.getElementById("calcefficiency_tilt");
-    //Inputmask({
-    //    "mask": "9[9]",
-    //    skipOptionalPartCharacter: " ",
-    //    clearMaskOnLostFocus: true,
-    //    greedy: false,
-    //    "placeholder": "0"
-    //}).mask(selector);
     $("#calcefficiency_tilt").inputmask("numeric", {
         min: 0,
         max: 90,
@@ -3823,21 +3172,6 @@
         "placeholder": "0"
     }).mask(selector);
 
-    //selector = document.getElementById("calcpv_energy_hours");
-    //Inputmask({
-    //    "mask": "9[9],9[9]",
-    //    skipOptionalPartCharacter: " ",
-    //    clearMaskOnLostFocus: true,
-    //    greedy: false,
-    //    "placeholder": "0"
-    //}).mask(selector);
-    //$("#calcpv_energy_hours").inputmask('Regex', {
-    //    regex: "^[1-9][0-9]?$|^24$",
-    //    skipOptionalPartCharacter: " ",
-    //    clearMaskOnLostFocus: true,
-    //    greedy: false,
-    //    "placeholder": "0"
-    //});
     $("#calcpv_energy_hours").inputmask("numeric", {
         mask: "9[9]",
         min: 0,
@@ -3928,7 +3262,7 @@
     }).mask(selector);
 </script>
 
-@* окно информации о слое *@
+@* layer information window *@
 <script>
     // Get the modal
     var modal = document.getElementById('myModal');
@@ -3937,14 +3271,10 @@
     var btn = document.getElementById("myBtn");
 
     // Get the <span> element that closes the modal
-    //var span = document.getElementsByClassName("close")[0];
     var span = document.getElementById("modal_close");
 
     // When the user clicks the button, open the modal
     function ShowLayerInfo(Name_layer, Description_layer, Appointment_layer, Resolution_layer, Source_layer, Additional_layer) {
-        if (Name_layer.attr('id') == 'Name_lep') {
-            
-        }
         $('#layer_Name').html(Name_layer.html());
         $('#layer_Description').html(Description_layer.html());
         $('#layer_Appointment').html(Appointment_layer.html());
@@ -3985,12 +3315,12 @@
     }
 
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
+    span.onclick = function () {
         modal.style.display = "none";
     }
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
@@ -4015,7 +3345,7 @@
     }
 </script>
 
-@* измерения на карте *@
+@* map measurements *@
 <script>
     var wgs84Sphere = new ol.Sphere(6378137);
     var sketch;
@@ -4027,74 +3357,6 @@
     var continueLineMsg = $('#MeasureClickDrawLine').html();
     var draw;
     var typeSelect = document.getElementById('measure_type');
-    //var pointerMoveHandler = function (evt) {
-    //    if (evt.dragging) {
-    //        return;
-    //    }
-    //    var helpMsg = 'Click to start drawing';
-    //    if (sketch) {
-    //        var geom = (sketch.getGeometry());
-    //        if (geom instanceof ol.geom.Polygon) {
-    //            helpMsg = continuePolygonMsg;
-    //        } else if (geom instanceof ol.geom.LineString) {
-    //            helpMsg = continueLineMsg;
-    //        }
-    //    }
-    //    helpTooltipElement.innerHTML = helpMsg;
-    //    helpTooltip.setPosition(evt.coordinate);
-    //    helpTooltipElement.classList.remove('hidden');
-    //};
-    //map.on('pointermove', pointerMoveHandler);
-    //map.getViewport().addEventListener('mouseout', function () {
-    //    helpTooltipElement.classList.add('hidden');
-    //});
-    //var typeSelect = document.getElementById('type');
-    //var geodesicCheckbox = document.getElementById('geodesic');    
-    //var formatLength = function (line) {
-    //    var length;
-    //    if (geodesicCheckbox.checked) {
-    //        var coordinates = line.getCoordinates();
-    //        length = 0;
-    //        var sourceProj = map.getView().getProjection();
-    //        for (var i = 0, ii = coordinates.length - 1; i < ii; ++i) {
-    //            var c1 = ol.proj.transform(coordinates[i], sourceProj, 'EPSG:4326');
-    //            var c2 = ol.proj.transform(coordinates[i + 1], sourceProj, 'EPSG:4326');
-    //            length += wgs84Sphere.haversineDistance(c1, c2);
-    //        }
-    //    } else {
-    //        length = Math.round(line.getLength() * 100) / 100;
-    //    }
-    //    var output;
-    //    if (length > 100) {
-    //        output = (Math.round(length / 1000 * 100) / 100) +
-    //            ' ' + 'km';
-    //    } else {
-    //        output = (Math.round(length * 100) / 100) +
-    //            ' ' + 'm';
-    //    }
-    //    return output;
-    //};
-    //var formatArea = function (polygon) {
-    //    var area;
-    //    if (geodesicCheckbox.checked) {
-    //        var sourceProj = map.getView().getProjection();
-    //        var geom = (polygon.clone().transform(
-    //            sourceProj, 'EPSG:4326'));
-    //        var coordinates = geom.getLinearRing(0).getCoordinates();
-    //        area = Math.abs(wgs84Sphere.geodesicArea(coordinates));
-    //    } else {
-    //        area = polygon.getArea();
-    //    }
-    //    var output;
-    //    if (area > 10000) {
-    //        output = (Math.round(area / 1000000 * 100) / 100) +
-    //            ' ' + 'km<sup>2</sup>';
-    //    } else {
-    //        output = (Math.round(area * 100) / 100) +
-    //            ' ' + 'm<sup>2</sup>';
-    //    }
-    //    return output;
-    //};
 
     function addInteraction() {
         pointerMoveHandler = function (evt) {
@@ -4111,15 +3373,17 @@
                     helpMsg = continueLineMsg;
                 }
             }
-
-            helpTooltipElement.innerHTML = helpMsg;
+            if (helpTooltipElement != null) {
+                helpTooltipElement.innerHTML = helpMsg;
+                helpTooltipElement.classList.remove('hidden');
+            }
             helpTooltip.setPosition(evt.coordinate);
-
-            helpTooltipElement.classList.remove('hidden');
         };
         map.on('pointermove', pointerMoveHandler);
         map.getViewport().addEventListener('mouseout', function () {
-            helpTooltipElement.classList.add('hidden');
+            if (helpTooltipElement != null) {
+                helpTooltipElement.classList.add('hidden');
+            }
         });
         typeSelect = document.getElementById('measure_type');
         geodesicCheckbox = document.getElementById('geodesic');
@@ -4169,12 +3433,10 @@
             return output;
         };
 
-
-
         var type = (typeSelect.value == 'area' ? 'Polygon' : 'LineString');
         draw = new ol.interaction.Draw({
             source: source,
-            type:  (type),
+            type: (type),
             style: new ol.style.Style({
                 fill: new ol.style.Fill({
                     color: 'rgba(255, 255, 255, 0.2)'
@@ -4201,13 +3463,11 @@
 
         var listener;
         draw.on('drawstart',
-            function(evt) {
+            function (evt) {
                 // set sketch
                 sketch = evt.feature;
-
                 var tooltipCoord = evt.coordinate;
-
-                listener = sketch.getGeometry().on('change', function(evt) {
+                listener = sketch.getGeometry().on('change', function (evt) {
                     var geom = evt.target;
                     var output;
                     if (geom instanceof ol.geom.Polygon) {
@@ -4223,7 +3483,7 @@
             }, this);
 
         draw.on('drawend',
-            function() {
+            function () {
                 measureTooltipElement.className = 'tooltip tooltip-static';
                 measureTooltip.setOffset([0, -7]);
                 // unset sketch
@@ -4265,7 +3525,6 @@
         addInteraction();
     };
 
-    //addInteraction();
     function removeInteraction() {
         map.removeInteraction(draw);
 
@@ -4286,7 +3545,7 @@
     };
 </script>
 
-@* оптимальные углы наклона *@
+@* optimal tilt angles *@
 <script>
     function ShowOPTANGInfoDialog() {
         $("#dialog_OPTANG").dialog({
@@ -4297,12 +3556,12 @@
     };
 </script>
 
-@* шторка *@
+@* curtain *@
 <script>
     var swipe = document.getElementById('swipe');
 
     Layer_Base_Top.on('precompose', function (event) {
-        
+
         var ctx = event.context;
 
         var width = ctx.canvas.width * (swipe.value / 100);
@@ -4324,21 +3583,14 @@
 
 </script>
 
-@* дополнительные функции *@
+@* additional functions *@
 <script>
-    //function Test() {
-    //    alert(Layer_select.getSource().getFeatures().length);
-    //    alert(Layer_select.getVisible());
-    //};
-
     String.format = function () {
-        alert(format);
         var s = arguments[0];
         for (var i = 0; i < arguments.length - 1; i++) {
             var reg = new RegExp("\\{" + i + "\\}", "gm");
             s = s.replace(reg, arguments[i + 1]);
         }
-
         return s;
     }
 
@@ -4363,7 +3615,7 @@
 
         document.getElementById("divbody").style.overflowY = "scroll";
 
-        // высота карты
+        // map height
         $("#fullscreen").height($(window).height() - 10);
         if ($("#fullscreen").height() < 440) {
             $("#fullscreen").height(440);
@@ -4387,23 +3639,15 @@
         $("#calcefficiency_inverterefficiency").val('0,95');
         $("#calcefficiency_batteryefficiency").val('0,8');
 
-        //$("#calcefficiency_rated_power").val('10');
-        //$("#calcefficiency_panels_count").val('10');
         $("#calcefficiency_panels_area").val('1');
 
         var val = $("#CalcEfficiencyChangePanelOrientation").val();
         CalcEfficiencyChangePanelOrientation(val);
 
         $("#tabs").tabs();
-        //$("#CalcPVResult").tabs();
-        //$("#CalcEfficiencyResult").tabs();
         $("#ComparePointsResult").tabs();
         $("#dialog_calcefficiency_tab").tabs();
         $("#dialog_calcpv_tab").tabs();
-
-        //if (role == 'Admin' || role == 'Moderator') {
-        //    $("#tool_create_spp").unhide();
-        //}
 
         $('#legend_analizeterrain').hide();
         $('#legend_findterrain').hide();

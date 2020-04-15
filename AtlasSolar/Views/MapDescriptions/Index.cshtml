@@ -23,13 +23,11 @@
     <table class="table">
         <tr>
             <th>
-                @*@Html.DisplayNameFor(model => model.LayersCode)*@
                 @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().LayersCode).ToString(), "Index", new { LayersCode = ViewBag.LayersCodeFilter, DescriptionForUser = ViewBag.DescriptionForUserFilter })
                 <br />
                 @Html.Editor("LayersCode", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.DescriptionForUser)*@
                 @Html.ActionLink(Html.DisplayNameFor(m => m.FirstOrDefault().DescriptionForUser).ToString(), "Index", new { LayersCode = ViewBag.LayersCodeFilter, DescriptionForUser = ViewBag.DescriptionForUserFilter })
                 <br />
                 @Html.Editor("LayersCode", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })

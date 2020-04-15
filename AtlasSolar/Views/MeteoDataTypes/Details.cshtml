@@ -132,16 +132,16 @@
         </dd>
     </dl>
 </div>
-@*@if (ViewBag.Role.Contains("Admin"))
-{*@
+@if (ViewBag.Role.Contains("Admin"))
+{
     <p>
         @Html.ActionLink(AtlasSolar.Resources.Common.Edit, "Edit", new { id = Model.Id }) |
         @Html.ActionLink(AtlasSolar.Resources.Common.BackToList, "Index")
     </p>
-@*}
+}
 else
 {
     <p>
         @Html.ActionLink(AtlasSolar.Resources.Common.BackToList, "Index")
     </p>
-}*@
+}
