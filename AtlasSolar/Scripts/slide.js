@@ -18,8 +18,6 @@ $(document).ready(function(){
 		if(i<2){i++;}else{i = 0;}
 
 		$('#'+i +'>a').addClass('act');
-
-		console.log(i);
 	}
 	function prev(){
 		$('.slider-div').animate({
@@ -32,7 +30,6 @@ $(document).ready(function(){
 		});
 		if(i>0){i--;}else{i = 2;}
 		$('#'+i +'>a').addClass('act');
-		console.log(i);
 	}
 	var idS = setInterval(function(){
 		next();

@@ -1,7 +1,7 @@
 Database:
 	Web.config: connectionStrings
-GeoServer IP:
-	Project settings: GeoServerIP
+GeoServer settings:
+	Project settings: GeoServerURL, GeoServerPort, GeoServerUser, GeoServerPassword, GeoServerPath, WorkspaceDir
 Error:
 	Could not find a part of the path '...\AtlasSolar\AtlasSolar\bin\roslyn\csc.exe'.
 Solution:

@@ -609,134 +609,6 @@ namespace AtlasSolar.Controllers
             return View();
         }
 
-        public ActionResult Test2()
-        {
-            List<SelectListItem> PVOrientations = new List<SelectListItem>()
-            {
-                new SelectListItem() {Text="-Следящая по двум осям-", Value="1"}
-            };
-            ViewBag.PVOrientations = PVOrientations;
-            ViewBag.PVSystemMaterials = new SelectList(db.PVSystemMaterials
-                .ToList()
-                .OrderBy(p => p.Name), "Id", "Name");
-            
-            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies["Language"];
-            ViewBag.Language = "ru";
-            if (cookie != null)
-            {
-                if (cookie.Value != null)
-                {
-                    ViewBag.Language = cookie.Value;
-                }
-            }
-
-            List<SelectListItem> Languages = new List<SelectListItem>()
-            {
-                new SelectListItem() {Text="English", Value="en", Selected=ViewBag.Language=="en"},
-                new SelectListItem() {Text="Қазақ", Value="kk", Selected=ViewBag.Language=="kk"},
-                new SelectListItem() {Text="Русский", Value="ru", Selected=ViewBag.Language=="ru"}
-            };
-            ViewBag.Languages = Languages;
-
-            IList<MeteoDataPeriodicity> meteodataperiodicities = db.MeteoDataPeriodicities
-                .ToList();
-            meteodataperiodicities = meteodataperiodicities
-                .OrderBy(m => m.Name)
-                .ToList();
-            IList<MeteoDataSource> meteodatasources = db.MeteoDataSources
-                //.Where(m => true)
-                .ToList();
-            meteodatasources = meteodatasources
-                .OrderBy(m => m.Name)
-                .ToList();
-            ViewBag.MeteoDataPeriodicities = new SelectList(meteodataperiodicities, "Id", "Name");
-            ViewBag.MeteoDataSources = new SelectList(meteodatasources, "Id", "Name");
-
-            IList<SPPStatus> sppstatuses = db.SPPStatus
-                .ToList();
-            sppstatuses = sppstatuses
-                .OrderBy(s => s.Name)
-                .ToList();
-            ViewBag.SPPStatuses = new SelectList(sppstatuses, "Id", "Name");
-            IList<SPPPurpose> spppurpose = db.SPPPurposes
-                .ToList();
-            spppurpose = spppurpose
-                .OrderBy(s => s.Name)
-                .ToList();
-            ViewBag.SPPPurposes = new SelectList(spppurpose, "Id", "Name");
-            IList<PanelOrientation> panelorientations = db.PanelOrientations
-                .ToList();
-            panelorientations = panelorientations
-                .OrderBy(s => s.Name)
-                .ToList();
-            ViewBag.PanelOrientations = new SelectList(panelorientations, "Id", "Name");
-
-            string decimaldelimiter = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
-            List<SPP> spps = db.SPPs.ToList();
-            JObject o = JObject.FromObject(new
-            {
-                type = "FeatureCollection",
-                crs = new
-                {
-                    type = "name",
-                    properties = new
-                    {
-                        name = "urn:ogc:def:crs:EPSG::3857"
-                    }
-                },
-                features = from spp in spps
-                           select new
-                           {
-                               type = "Feature",
-                               properties = new
-                               {
-                                   Id = spp.Id,
-                                   Name = spp.Name,
-                                   Count = spp.Count,
-                                   Power = spp.Power,
-                                   Cost = spp.Cost,
-                                   Startup = spp.Startup,
-                                   Link = spp.Link,
-                                   Customer = spp.Customer,
-                                   Investor = spp.Investor,
-                                   Executor = spp.Executor,
-                                   CapacityFactor = spp.CapacityFactor,
-                                   Coordinates = spp.Coordinates,
-                                   SPPStatusId = spp.SPPStatusId,
-                                   SPPPurposeId = spp.SPPPurposeId,
-                                   PanelOrientationId = spp.PanelOrientationId
-                               },
-                               geometry = new
-                               {
-                                   type = "Point",
-                                   coordinates = new List<decimal>
-                                {
-                                    Convert.ToDecimal(spp.Coordinates.Split(',')[0].Replace(".",decimaldelimiter)),
-                                    Convert.ToDecimal(spp.Coordinates.Split(',')[1].Replace(".",decimaldelimiter))
-                                },
-                               }
-                           }
-            });
-            ViewBag.SPPLayerJson = o.ToString();
-
-            ViewBag.Role = "";
-            if (User.Identity.IsAuthenticated)
-            {
-                ViewBag.Role = "User";
-                string CurrentUserId = User.Identity.GetUserId();
-                if (UserManager.IsInRole(CurrentUserId, "Moderator"))
-                {
-                    ViewBag.Role = "Moderator";
-                }
-                if (UserManager.IsInRole(CurrentUserId, "Admin"))
-                {
-                    ViewBag.Role = "Admin";
-                }
-            }
-
-            return View();
-        }
-
         [HttpPost]
         public ActionResult Calc(decimal X, decimal Y)
         {
@@ -3365,7 +3237,7 @@ namespace AtlasSolar.Controllers
                     if ((DateTime.Now - fdt).Days > 0)
                     {
                         // delete storage in GeoServer
-                        string batfilenamedelete = Path.ChangeExtension(Path.Combine(GeoServerAtlasSolar + "AnalizeTerrain", file.Name), ".bat");
+                        string batfilenamedelete = Path.ChangeExtension(Path.Combine(GeoServerAtlasSolar, "AnalizeTerrain", file.Name), ".bat");
                         StreamWriter batdelete = new StreamWriter(batfilenamedelete);
                         batdelete.WriteLine($"curl -v -u {GeoServerUser}:{GeoServerPassword} -XDELETE \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/layers/AtlasSolar:{file.Name}\"");
                         batdelete.WriteLine($"curl -v -u {GeoServerUser}:{GeoServerPassword} -XDELETE \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/workspaces/AtlasSolar/coveragestores/{file.Name}?recurse=true\"");
@@ -3385,7 +3257,7 @@ namespace AtlasSolar.Controllers
 
                 // create raster
                 GdalConfiguration.ConfigureGdal();
-                string auto_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "auto_dist.tif");
+                string auto_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\Provinces\" + OblastId.ToString() + "auto_dist.tif");
                 Dataset auto_dist_ds = Gdal.Open(auto_dist_file_name, Access.GA_ReadOnly);
                 Band auto_dist_band = auto_dist_ds.GetRasterBand(1);
                 int auto_dist_width = auto_dist_band.XSize;
@@ -3398,7 +3270,7 @@ namespace AtlasSolar.Controllers
                 auto_dist_band.GetNoDataValue(out auto_dist_out_val, out auto_dist_out_hasval);
                 if (auto_dist_out_hasval != 0)
                     auto_dist_NoDataValue = (float)auto_dist_out_val;
-                string kzcoveriskl_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "kzcoveriskl.tif");
+                string kzcoveriskl_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\Provinces\" + OblastId.ToString() + "kzcoveriskl.tif");
                 Dataset kzcoveriskl_ds = Gdal.Open(kzcoveriskl_file_name, Access.GA_ReadOnly);
                 Band kzcoveriskl_band = kzcoveriskl_ds.GetRasterBand(1);
                 int kzcoveriskl_width = kzcoveriskl_band.XSize;
@@ -3411,7 +3283,7 @@ namespace AtlasSolar.Controllers
                 kzcoveriskl_band.GetNoDataValue(out kzcoveriskl_out_val, out kzcoveriskl_out_hasval);
                 if (kzcoveriskl_out_hasval != 0)
                     kzcoveriskl_NoDataValue = (byte)kzcoveriskl_out_val;
-                string lep_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "lep_dist.tif");
+                string lep_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\Provinces\" + OblastId.ToString() + "lep_dist.tif");
                 Dataset lep_dist_ds = Gdal.Open(lep_dist_file_name, Access.GA_ReadOnly);
                 Band lep_dist_band = lep_dist_ds.GetRasterBand(1);
                 int lep_dist_width = lep_dist_band.XSize;
@@ -3424,7 +3296,7 @@ namespace AtlasSolar.Controllers
                 lep_dist_band.GetNoDataValue(out lep_dist_out_val, out lep_dist_out_hasval);
                 if (lep_dist_out_hasval != 0)
                     lep_dist_NoDataValue = (float)lep_dist_out_val;
-                string np_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "np_dist.tif");
+                string np_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\Provinces\" + OblastId.ToString() + "np_dist.tif");
                 Dataset np_dist_ds = Gdal.Open(np_dist_file_name, Access.GA_ReadOnly);
                 Band np_dist_band = np_dist_ds.GetRasterBand(1);
                 int np_dist_width = np_dist_band.XSize;
@@ -3437,7 +3309,7 @@ namespace AtlasSolar.Controllers
                 np_dist_band.GetNoDataValue(out np_dist_out_val, out np_dist_out_hasval);
                 if (np_dist_out_hasval != 0)
                     np_dist_NoDataValue = (float)np_dist_out_val;
-                string ooptiskl_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "ooptiskl.tif");
+                string ooptiskl_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\Provinces\" + OblastId.ToString() + "ooptiskl.tif");
                 Dataset ooptiskl_ds = Gdal.Open(ooptiskl_file_name, Access.GA_ReadOnly);
                 Band ooptiskl_band = ooptiskl_ds.GetRasterBand(1);
                 int ooptiskl_width = ooptiskl_band.XSize;
@@ -3450,7 +3322,7 @@ namespace AtlasSolar.Controllers
                 ooptiskl_band.GetNoDataValue(out ooptiskl_out_val, out ooptiskl_out_hasval);
                 if (ooptiskl_out_hasval != 0)
                     ooptiskl_NoDataValue = (byte)ooptiskl_out_val;
-                string slope_srtm_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "slope_srtm.tif");
+                string slope_srtm_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\Provinces\" + OblastId.ToString() + "slope_srtm.tif");
                 Dataset slope_srtm_ds = Gdal.Open(slope_srtm_file_name, Access.GA_ReadOnly);
                 Band slope_srtm_band = slope_srtm_ds.GetRasterBand(1);
                 int slope_srtm_width = slope_srtm_band.XSize;
@@ -3463,7 +3335,7 @@ namespace AtlasSolar.Controllers
                 slope_srtm_band.GetNoDataValue(out slope_srtm_out_val, out slope_srtm_out_hasval);
                 if (slope_srtm_out_hasval != 0)
                     slope_srtm_NoDataValue = (float)slope_srtm_out_val;
-                string srtm_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "srtm.tif");
+                string srtm_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\Provinces\" + OblastId.ToString() + "srtm.tif");
                 Dataset srtm_ds = Gdal.Open(srtm_file_name, Access.GA_ReadOnly);
                 Band srtm_band = srtm_ds.GetRasterBand(1);
                 int srtm_width = srtm_band.XSize;
@@ -3476,7 +3348,7 @@ namespace AtlasSolar.Controllers
                 srtm_band.GetNoDataValue(out srtm_out_val, out srtm_out_hasval);
                 if (srtm_out_hasval != 0)
                     srtm_NoDataValue = (int)srtm_out_val;
-                string swvdwnyear_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\coverages\AtlasSolar\Provinces\" + OblastId.ToString() + "swvdwnyear.tif");
+                string swvdwnyear_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @"\" + Properties.Settings.Default.WorkspaceDir + @"\Provinces\" + OblastId.ToString() + "swvdwnyear.tif");
                 Dataset swvdwnyear_ds = Gdal.Open(swvdwnyear_file_name, Access.GA_ReadOnly);
                 Band swvdwnyear_band = swvdwnyear_ds.GetRasterBand(1);
                 int swvdwnyear_width = swvdwnyear_band.XSize;
@@ -3751,7 +3623,8 @@ namespace AtlasSolar.Controllers
             formula_test = formula_test.Replace("PARK", "");
             formula_test = formula_test.Replace("NATRES", "");
             formula_test = formula_test.Replace("PRESERVE", "");
-            if(formula_test.Trim()!="")
+            formula_test = formula_test.Replace(" ", "");
+            if (formula_test != "")
             {
                 return Json(new
                 {
@@ -3823,7 +3696,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            string out_file_name = $\"{ out_file_name_pure}.tif\";\n");
             sb.Append("            int OblastId = 11;\n");
             sb.Append("            GdalConfiguration.ConfigureGdal();\n");
-            sb.Append("            string auto_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"auto_dist.tif\");\n");
+            sb.Append($"            string auto_dist_file_name = Path.Combine(@\"{Properties.Settings.Default.GeoServerPath}\" + @\"\\\" + @\"{Properties.Settings.Default.WorkspaceDir}\" + @\"\\Provinces\", " + OblastId + " + \"auto_dist.tif\");\n");
             sb.Append("            Dataset auto_dist_ds = Gdal.Open(auto_dist_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band auto_dist_band = auto_dist_ds.GetRasterBand(1);\n");
             sb.Append("            int auto_dist_width = auto_dist_band.XSize;\n");
@@ -3836,7 +3709,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            auto_dist_band.GetNoDataValue(out auto_dist_out_val, out auto_dist_out_hasval);\n");
             sb.Append("            if (auto_dist_out_hasval != 0)\n");
             sb.Append("                auto_dist_NoDataValue = (float)auto_dist_out_val;\n");
-            sb.Append("            string kzcoveriskl_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"kzcoveriskl.tif\");\n");
+            sb.Append($"            string kzcoveriskl_file_name = Path.Combine(@\"{Properties.Settings.Default.GeoServerPath}\" + @\"\\\" + @\"{Properties.Settings.Default.WorkspaceDir}\" + @\"\\Provinces\", " + OblastId + " + \"kzcoveriskl.tif\");\n");
             sb.Append("            Dataset kzcoveriskl_ds = Gdal.Open(kzcoveriskl_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band kzcoveriskl_band = kzcoveriskl_ds.GetRasterBand(1);\n");
             sb.Append("            int kzcoveriskl_width = kzcoveriskl_band.XSize;\n");
@@ -3849,7 +3722,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            kzcoveriskl_band.GetNoDataValue(out kzcoveriskl_out_val, out kzcoveriskl_out_hasval);\n");
             sb.Append("            if (kzcoveriskl_out_hasval != 0)\n");
             sb.Append("                kzcoveriskl_NoDataValue = (byte)kzcoveriskl_out_val;\n");
-            sb.Append("            string lep_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"lep_dist.tif\");\n");
+            sb.Append($"            string lep_dist_file_name = Path.Combine(@\"{Properties.Settings.Default.GeoServerPath}\" + @\"\\\" + @\"{Properties.Settings.Default.WorkspaceDir}\" + @\"\\Provinces\", " + OblastId + " + \"lep_dist.tif\");\n");
             sb.Append("            Dataset lep_dist_ds = Gdal.Open(lep_dist_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band lep_dist_band = lep_dist_ds.GetRasterBand(1);\n");
             sb.Append("            int lep_dist_width = lep_dist_band.XSize;\n");
@@ -3862,7 +3735,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            lep_dist_band.GetNoDataValue(out lep_dist_out_val, out lep_dist_out_hasval);\n");
             sb.Append("            if (lep_dist_out_hasval != 0)\n");
             sb.Append("                lep_dist_NoDataValue = (float)lep_dist_out_val;\n");
-            sb.Append("            string np_dist_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"np_dist.tif\");\n");
+            sb.Append($"            string np_dist_file_name = Path.Combine(@\"{Properties.Settings.Default.GeoServerPath}\" + @\"\\\" + @\"{Properties.Settings.Default.WorkspaceDir}\" + @\"\\Provinces\", " + OblastId + " + \"np_dist.tif\");\n");
             sb.Append("            Dataset np_dist_ds = Gdal.Open(np_dist_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band np_dist_band = np_dist_ds.GetRasterBand(1);\n");
             sb.Append("            int np_dist_width = np_dist_band.XSize;\n");
@@ -3875,7 +3748,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            np_dist_band.GetNoDataValue(out np_dist_out_val, out np_dist_out_hasval);\n");
             sb.Append("            if (np_dist_out_hasval != 0)\n");
             sb.Append("                np_dist_NoDataValue = (float)np_dist_out_val;\n");
-            sb.Append("            string ooptiskl_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"ooptiskl.tif\");\n");
+            sb.Append($"            string ooptiskl_file_name = Path.Combine(@\"{Properties.Settings.Default.GeoServerPath}\" + @\"\\\" + @\"{Properties.Settings.Default.WorkspaceDir}\" + @\"\\Provinces\", " + OblastId + " + \"ooptiskl.tif\");\n");
             sb.Append("            Dataset ooptiskl_ds = Gdal.Open(ooptiskl_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band ooptiskl_band = ooptiskl_ds.GetRasterBand(1);\n");
             sb.Append("            int ooptiskl_width = ooptiskl_band.XSize;\n");
@@ -3888,7 +3761,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            ooptiskl_band.GetNoDataValue(out ooptiskl_out_val, out ooptiskl_out_hasval);\n");
             sb.Append("            if (ooptiskl_out_hasval != 0)\n");
             sb.Append("                ooptiskl_NoDataValue = (byte)ooptiskl_out_val;\n");
-            sb.Append("            string slope_srtm_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"slope_srtm.tif\");\n");
+            sb.Append($"            string slope_srtm_file_name = Path.Combine(@\"{Properties.Settings.Default.GeoServerPath}\" + @\"\\\" + @\"{Properties.Settings.Default.WorkspaceDir}\" + @\"\\Provinces\", " + OblastId + " + \"slope_srtm.tif\");\n");
             sb.Append("            Dataset slope_srtm_ds = Gdal.Open(slope_srtm_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band slope_srtm_band = slope_srtm_ds.GetRasterBand(1);\n");
             sb.Append("            int slope_srtm_width = slope_srtm_band.XSize;\n");
@@ -3901,7 +3774,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            slope_srtm_band.GetNoDataValue(out slope_srtm_out_val, out slope_srtm_out_hasval);\n");
             sb.Append("            if (slope_srtm_out_hasval != 0)\n");
             sb.Append("                slope_srtm_NoDataValue = (float)slope_srtm_out_val;\n");
-            sb.Append("            string srtm_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"srtm.tif\");\n");
+            sb.Append($"            string srtm_file_name = Path.Combine(@\"{Properties.Settings.Default.GeoServerPath}\" + @\"\\\" + @\"{Properties.Settings.Default.WorkspaceDir}\" + @\"\\Provinces\", " + OblastId + " + \"srtm.tif\");\n");
             sb.Append("            Dataset srtm_ds = Gdal.Open(srtm_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band srtm_band = srtm_ds.GetRasterBand(1);\n");
             sb.Append("            int srtm_width = srtm_band.XSize;\n");
@@ -3914,7 +3787,7 @@ namespace AtlasSolar.Controllers
             sb.Append("            srtm_band.GetNoDataValue(out srtm_out_val, out srtm_out_hasval);\n");
             sb.Append("            if (srtm_out_hasval != 0)\n");
             sb.Append("                srtm_NoDataValue = (int)srtm_out_val;\n");
-            sb.Append("            string swvdwnyear_file_name = Path.Combine(Properties.Settings.Default.GeoServerPath + @\"\\\" + Properties.Settings.Default.WorkspaceDir + @\"\\coverages\\AtlasSolar\\Provinces\", " + OblastId + " + \"swvdwnyear.tif\");\n");
+            sb.Append($"            string swvdwnyear_file_name = Path.Combine(@\"{Properties.Settings.Default.GeoServerPath}\" + @\"\\\" + @\"{Properties.Settings.Default.WorkspaceDir}\" + @\"\\Provinces\", " + OblastId + " + \"swvdwnyear.tif\");\n");
             sb.Append("            Dataset swvdwnyear_ds = Gdal.Open(swvdwnyear_file_name, Access.GA_ReadOnly);\n");
             sb.Append("            Band swvdwnyear_band = swvdwnyear_ds.GetRasterBand(1);\n");
             sb.Append("            int swvdwnyear_width = swvdwnyear_band.XSize;\n");
