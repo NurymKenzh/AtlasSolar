@@ -123,7 +123,7 @@
       <Value Profile="(Default)">D:\GeoServer\data_dir</Value>
     </Setting>
     <Setting Name="GeoServerURL" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost</Value>
+      <Value Profile="(Default)">http://92.46.30.100</Value>
     </Setting>
     <Setting Name="GeoServerUser" Type="System.String" Scope="Application">
       <Value Profile="(Default)">admin</Value>

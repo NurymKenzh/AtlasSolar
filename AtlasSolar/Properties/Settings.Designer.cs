@@ -385,7 +385,7 @@ namespace AtlasSolar.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://92.46.30.100")]
         public string GeoServerURL {
             get {
                 return ((string)(this["GeoServerURL"]));
