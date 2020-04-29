@@ -1827,12 +1827,8 @@
                 if (data.Error == null) {
                     window.location = data.FilePath;
                 }
-                else {
-                    alert(data.Error);
-                }
             },
             error: function () {
-                alert('Error');
             }
         });
     };
@@ -2154,9 +2150,6 @@
                     if (data.Error == null) {
                         window.location = data.FilePath;
                     }
-                    else {
-                        alert(data.Error);
-                    }
                     document.getElementById("loading").style.display = "none";
                 },
                 error: function () {
@@ -2214,10 +2207,7 @@
     };
 
     function GetMeteoDataRegion() {
-        if ($('#get_meteo_data_region_meteodatatypeid').val() == null) {
-            alert($('#SelectMeteoDataType').html());
-        }
-        else {
+        if ($('#get_meteo_data_region_meteodatatypeid').val() != null) {
             document.getElementById("loading").style.display = "block";
             $.ajax({
                 url: '@Url.Action("GetMeteoDataRegion")',
@@ -2231,9 +2221,6 @@
                     if (data.Error == null) {
                         window.location = data.FilePath;
                     }
-                    else {
-                    }
-                        alert(data.Error);
                     document.getElementById("loading").style.display = "none";
                 },
                 error: function () {
@@ -2641,10 +2628,7 @@
 
     // Compare points
     function ComparePoints() {
-        if ($('#compare_points_meteodatatypeid').val() == null) {
-            alert($('#SelectMeteoDataType').html());
-        }
-        else {
+        if ($('#compare_points_meteodatatypeid').val() != null) {
             document.getElementById("loading").style.display = "block";
             $.ajax({
                 url: '@Url.Action("ComparePoints")',
