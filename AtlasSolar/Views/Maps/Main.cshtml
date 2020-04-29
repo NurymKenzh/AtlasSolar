@@ -1897,17 +1897,6 @@
                         },
                         serverType: 'geoserver'
                     });
-                    if (map.getView().getZoom() > 7){
-                        map.getView().setZoom(7);
-                    }
-                    map.setView(new ol.View({
-                        center: map.getView().getCenter(),
-                        zoom: map.getView().getZoom(),
-                        maxZoom: 7,
-                        minZoom: min_zoom,
-                        extent: [5000000, 4800000, 10000000, 7500000]
-                    }));
-
                     Layer_AnalizeTerrain.setSource(Source_AnalizeTerrain);
                     Layer_AnalizeTerrain.setOpacity(0.75);
                     Layer_AnalizeTerrain.setVisible(true);
@@ -1968,17 +1957,6 @@
                         },
                         serverType: 'geoserver'
                     });
-                    if (map.getView().getZoom() > 7) {
-                        map.getView().setZoom(7);
-                    }
-                    map.setView(new ol.View({
-                        center: map.getView().getCenter(),
-                        zoom: map.getView().getZoom(),
-                        maxZoom: 7,
-                        minZoom: min_zoom,
-                        extent: [5000000, 4800000, 10000000, 7500000]
-                    }));
-
                     Layer_AnalizeTerrain.setSource(Source_AnalizeTerrain);
                     Layer_AnalizeTerrain.setOpacity(0.75);
                     Layer_AnalizeTerrain.setVisible(true);
@@ -2087,17 +2065,6 @@
                         },
                         serverType: 'geoserver'
                     });
-                    if (map.getView().getZoom() > 7){
-                        map.getView().setZoom(7);
-                    }
-                    map.setView(new ol.View({
-                        center: map.getView().getCenter(),
-                        zoom: map.getView().getZoom(),
-                        maxZoom: 7,
-                        minZoom: min_zoom,
-                        extent: [5000000, 4800000, 10000000, 7500000]
-                    }));
-
                     Layer_FindTerrain.setSource(Source_FindTerrain);
                     Layer_FindTerrain.setOpacity(0.75);
                     Layer_FindTerrain.setVisible(true);
