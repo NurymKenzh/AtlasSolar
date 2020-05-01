@@ -3560,7 +3560,7 @@ namespace AtlasSolar.Controllers
                 if ((DateTime.Now - fdt).Days > 0)
                 {
                     // delete storage in GeoServer
-                    string batfilenamedelete = Path.ChangeExtension(Path.Combine(GeoServerAtlasSolar + "FindTerrain", file.Name), ".bat");
+                    string batfilenamedelete = Path.ChangeExtension(Path.Combine(GeoServerAtlasSolar, "FindTerrain", file.Name), ".bat");
                     StreamWriter batdelete = new StreamWriter(batfilenamedelete);
                     batdelete.WriteLine($"curl -v -u {GeoServerUser}:{GeoServerPassword} -XDELETE \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/layers/AtlasSolar:{file.Name}\"");
                     batdelete.WriteLine($"curl -v -u {GeoServerUser}:{GeoServerPassword} -XDELETE \"{GeoServerURL}:{GeoServerPort}/geoserver/rest/workspaces/AtlasSolar/coveragestores/{file.Name}?recurse=true\"");
