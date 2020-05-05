@@ -7,3 +7,7 @@ Error:
 Solution:
 	run in the Package Manager Console:
 	Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r
+Error:
+	Out of memory error.
+Solution:
+	Visual Studio -> Options -> Projects and Solutions -> Web projects -> Use the 64 bit version of IIS Express for web sites and projects
