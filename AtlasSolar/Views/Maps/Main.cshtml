@@ -2020,24 +2020,6 @@
         formula.val(newFormula);
     };
 
-    function FindTerrainDownloadMap() {
-        $.ajax({
-            url: '@Url.Action("DownloadMap")',
-            data: JSON.stringify({
-                "FileName": "2017_05_04_14_02_31_5434319",
-                "Folder": "FindTerrain"
-            }),
-            type: 'POST',
-            contentType: 'application/json; charset=utf-8',
-            success: function (data) {
-                window.location = data.FilePath;
-            },
-            error: function () {
-                console.log('Error');
-            }
-        });
-    };
-
     function FindTerrain() {
         document.getElementById("loading").style.display = "block";
         $.ajax({
