@@ -599,7 +599,7 @@ namespace AtlasSolar.Controllers
                 .ToList();
             ViewBag.CalcMeteoDataSources = new SelectList(calcmeteodatasources, "Id", "Name");
 
-            ViewBag.gip = Properties.Settings.Default.GeoServerURL;
+            ViewBag.gip = $"{Request.Url.Scheme}://{Request.Url.Host}";
             ViewBag.gport = Properties.Settings.Default.GeoServerPort;
             return View();
         }
@@ -2966,7 +2966,7 @@ namespace AtlasSolar.Controllers
                 "AnalizeTerrain");
             string GeoServerUser = Properties.Settings.Default.GeoServerUser,
                 GeoServerPassword = Properties.Settings.Default.GeoServerPassword,
-                GeoServerURL = Properties.Settings.Default.GeoServerURL,
+                GeoServerURL = $"{Request.Url.Scheme}://{Request.Url.Host}",
                 GeoServerPort = Properties.Settings.Default.GeoServerPort;
             string sum_swv_dwn_file_name = $"{RayonId.ToString()}_sum_swv_dwn.tif";
             string srtm_blh_file_name = $"{RayonId.ToString()}_srtm_blh.tif";
@@ -3204,7 +3204,7 @@ namespace AtlasSolar.Controllers
                 Properties.Settings.Default.WorkspaceDir);
             string GeoServerUser = Properties.Settings.Default.GeoServerUser,
                 GeoServerPassword = Properties.Settings.Default.GeoServerPassword,
-                GeoServerURL = Properties.Settings.Default.GeoServerURL,
+                GeoServerURL = $"{Request.Url.Scheme}://{Request.Url.Host}",
                 GeoServerPort = Properties.Settings.Default.GeoServerPort;
             string out_file_name_pure = $"{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_FFFFFFF")}";
             string out_file_name = $"{out_file_name_pure}.tif";
@@ -3540,7 +3540,7 @@ namespace AtlasSolar.Controllers
                 Properties.Settings.Default.WorkspaceDir);
             string GeoServerUser = Properties.Settings.Default.GeoServerUser,
                 GeoServerPassword = Properties.Settings.Default.GeoServerPassword,
-                GeoServerURL = Properties.Settings.Default.GeoServerURL,
+                GeoServerURL = $"{Request.Url.Scheme}://{Request.Url.Host}",
                 GeoServerPort = Properties.Settings.Default.GeoServerPort;
             string out_file_name_pure = $"{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_FFFFFFF")}";
             string out_file_name = $"{out_file_name_pure}.tif";
